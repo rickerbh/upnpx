@@ -74,61 +74,61 @@ public:
 	bool CanProcessMethod(string *method){
 		[NSRunLoop currentRunLoop]; //Start our runloop
 		
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-		
-		BOOL ret;
-		BasicHTTPServer_ObjC_Observer *obs = nil;
-		NSString *request = [[NSString alloc] initWithCString:method->c_str() encoding:NSASCIIStringEncoding];
-		
-		NSEnumerator *obsenum = [mObjCObservers objectEnumerator];	
-		while((obs = [obsenum nextObject])){
-			ret = [obs canProcessMethod:mObjCServer requestMethod:request];
-		}		
-		
-		[request release];
+    BOOL ret;
 
-		[pool drain];
+		@autoreleasepool {
+      BasicHTTPServer_ObjC_Observer *obs = nil;
+      NSString *request = [[NSString alloc] initWithCString:method->c_str() encoding:NSASCIIStringEncoding];
+      
+      NSEnumerator *obsenum = [mObjCObservers objectEnumerator];
+      while((obs = [obsenum nextObject])){
+        ret = [obs canProcessMethod:mObjCServer requestMethod:request];
+      }
+      
+      [request release];
+    }
 		
 		return (ret==YES?true:false);
 	}
 	
 	bool Request(char *senderIP, unsigned short senderPort, string *method, string *path, string *version, map<string, string> *headers, char *body, int bodylen){
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-		BOOL ret;
-		NSString *oMethod = [[NSString alloc] initWithCString:method->c_str() encoding:NSASCIIStringEncoding];
-		NSString *oPath = [[NSString alloc] initWithCString:path->c_str() encoding:NSASCIIStringEncoding];
-		NSString *oVersion = [[NSString alloc] initWithCString:version->c_str() encoding:NSASCIIStringEncoding];
-		NSMutableDictionary *oHeaders = [[NSMutableDictionary alloc] init];
-		map<string,string>::const_iterator it;
-		NSString *header = nil;
-		NSString *value = nil;
-		for ( it=headers->begin() ; it != headers->end(); it++ ){
-			header = [[NSString alloc] initWithCString:(*it).first.c_str() encoding:NSASCIIStringEncoding];
-			value = [[NSString alloc] initWithCString:(*it).second.c_str() encoding:NSASCIIStringEncoding];
-			NSString *upperHeader = [header uppercaseString];
-			[oHeaders setObject:value forKey:upperHeader];
-			[value release];
-			[header release];
-		}
-		NSData *oBody = nil;
-		if(bodylen >= 0){
-			oBody = [[NSData alloc] initWithBytes:body length:bodylen];
-		}
-		
-		BasicHTTPServer_ObjC_Observer *obs = nil;
-		NSEnumerator *obsenum = [mObjCObservers objectEnumerator];	
-		while((obs = [obsenum nextObject])){
-			ret = [obs request:mObjCServer method:oMethod path:oPath version:oVersion headers:oHeaders body:oBody];
-		}	
-		
-		[oMethod release];
-		[oPath release];
-		[oVersion release];
-		[oHeaders release];
-		[oBody release];
-		
-		[pool release];
+    BOOL ret;
+    
+    @autoreleasepool {
+      NSString *oMethod = [[NSString alloc] initWithCString:method->c_str() encoding:NSASCIIStringEncoding];
+      NSString *oPath = [[NSString alloc] initWithCString:path->c_str() encoding:NSASCIIStringEncoding];
+      NSString *oVersion = [[NSString alloc] initWithCString:version->c_str() encoding:NSASCIIStringEncoding];
+      NSMutableDictionary *oHeaders = [[NSMutableDictionary alloc] init];
+      map<string,string>::const_iterator it;
+      NSString *header = nil;
+      NSString *value = nil;
+      for ( it=headers->begin() ; it != headers->end(); it++ ){
+        header = [[NSString alloc] initWithCString:(*it).first.c_str() encoding:NSASCIIStringEncoding];
+        value = [[NSString alloc] initWithCString:(*it).second.c_str() encoding:NSASCIIStringEncoding];
+        NSString *upperHeader = [header uppercaseString];
+        [oHeaders setObject:value forKey:upperHeader];
+        [value release];
+        [header release];
+      }
+      NSData *oBody = nil;
+      if(bodylen >= 0){
+        oBody = [[NSData alloc] initWithBytes:body length:bodylen];
+      }
+      
+      NSLog(@"Request CFUNCTION: %@", [[[NSString alloc] initWithData:oBody encoding:NSUTF8StringEncoding] autorelease]);
+      
+      BasicHTTPServer_ObjC_Observer *obs = nil;
+      NSEnumerator *obsenum = [mObjCObservers objectEnumerator];	
+      while((obs = [obsenum nextObject])){
+        ret = [obs request:mObjCServer method:oMethod path:oPath version:oVersion headers:oHeaders body:oBody];
+      }	
+      
+      [oMethod release];
+      [oPath release];
+      [oVersion release];
+      [oHeaders release];
+      [oBody release];
+    }
 		
 		return (ret==YES?true:false);
 	}
@@ -136,48 +136,46 @@ public:
 	
 	
 	bool Response(int *returncode, map<string, string> *headers, char **body, int *bodylen){
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
 		BOOL ret;
 
-		int oReturnCode;
-		NSMutableDictionary *oHeaders = [[NSMutableDictionary alloc] init];
-		NSMutableData *oBody = [[NSMutableData alloc] init];
-		
-		headers->clear();
-		
-		string value;
-		string name;
-		
-		BasicHTTPServer_ObjC_Observer *obs = nil;
-		if([mObjCObservers count] > 0){
-			//Only the first observer can respond
-			obs = [mObjCObservers objectAtIndex:0];	
-			
-			oReturnCode = -1;
-			[oHeaders removeAllObjects];
-			[oBody setLength:0];
-			ret = [obs response:mObjCServer returncode:&oReturnCode headers:oHeaders body:oBody];
-			if(ret == YES){
-				*returncode = oReturnCode;
-				*bodylen = [oBody length];
-				if(*bodylen > 0){
-					*body = (char*)malloc([oBody length]); //must be deleted by the caller (!!!)
-					memcpy(*body, [oBody bytes], [oBody length]);
-				}
-				for(id key in oHeaders){
-					value = [(NSString*)[oHeaders objectForKey:key] cStringUsingEncoding: NSASCIIStringEncoding];
-					name = [(NSString*)key cStringUsingEncoding: NSASCIIStringEncoding];
-					(*headers)[name] = value;
-				}
-			}
-		}	
-		
-        [oHeaders release];
-        [oBody release];
+    @autoreleasepool {
+      int oReturnCode;
+      NSMutableDictionary *oHeaders = [[NSMutableDictionary alloc] init];
+      NSMutableData *oBody = [[NSMutableData alloc] init];
+      
+      headers->clear();
+      
+      string value;
+      string name;
+      
+      BasicHTTPServer_ObjC_Observer *obs = nil;
+      if([mObjCObservers count] > 0){
+        //Only the first observer can respond
+        obs = [mObjCObservers objectAtIndex:0];	
         
-		[pool release];
+        oReturnCode = -1;
+        [oHeaders removeAllObjects];
+        [oBody setLength:0];
+        ret = [obs response:mObjCServer returncode:&oReturnCode headers:oHeaders body:oBody];
+        if(ret == YES){
+          *returncode = oReturnCode;
+          *bodylen = [oBody length];
+          if(*bodylen > 0){
+            *body = (char*)malloc([oBody length]); //must be deleted by the caller (!!!)
+            memcpy(*body, [oBody bytes], [oBody length]);
+          }
+          for(id key in oHeaders){
+            value = [(NSString*)[oHeaders objectForKey:key] cStringUsingEncoding: NSASCIIStringEncoding];
+            name = [(NSString*)key cStringUsingEncoding: NSASCIIStringEncoding];
+            (*headers)[name] = value;
+          }
+        }
+      }	
 		
+      [oHeaders release];
+      [oBody release];
+    }
+
 		return (ret==YES?true:false);
 	}
 	

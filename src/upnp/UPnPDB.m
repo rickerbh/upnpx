@@ -268,56 +268,47 @@
 	return services;
 }
 
-
-
-
 //Thread
--(void)httpThread:(id)argument{
-	NSAutoreleasePool *pool;
-	
+- (void)httpThread:(id)argument{
 	while(1){
-		pool = [[NSAutoreleasePool alloc] init];
-		if([readyForDescription count] > 0){
-		//	NSLog(@"process queue httpThread:(id)argument, %d", [readyForDescription count]);
-			BasicUPnPDevice *upnpdevice;
-			//NSEnumerator *descenum = [readyForDescription objectEnumerator];
-			//while(upnpdevice = [descenum nextObject]){
-			while( [readyForDescription count] > 0){
-				upnpdevice = [readyForDescription objectAtIndex:0];
-				//fill the upnpdevice with info from the XML
-				int ret = [upnpdevice loadDeviceDescriptionFromXML];
-				if(ret == 0){
-					[self lock];
-					//NSLog(@"httpThread upnpdevice, location=%@", [upnpdevice xmlLocation]);
-					
-					//Inform the listeners so they know the rootDevices array might change
-					UPnPDBObserver *obs;
-					NSEnumerator *listeners = [mObservers objectEnumerator];
-					while((obs = [listeners nextObject])){
-						[obs UPnPDBWillUpdate:self];
-					}	
-					
-					//This is the only place we add devices to the rootdevices
-					[rootDevices addObject:upnpdevice];
+    @autoreleasepool {
+      if([readyForDescription count] > 0){
+      //	NSLog(@"process queue httpThread:(id)argument, %d", [readyForDescription count]);
+        BasicUPnPDevice *upnpdevice;
+        //NSEnumerator *descenum = [readyForDescription objectEnumerator];
+        //while(upnpdevice = [descenum nextObject]){
+        while( [readyForDescription count] > 0){
+          upnpdevice = [readyForDescription objectAtIndex:0];
+          //fill the upnpdevice with info from the XML
+          int ret = [upnpdevice loadDeviceDescriptionFromXML];
+          if(ret == 0){
+            [self lock];
+            //NSLog(@"httpThread upnpdevice, location=%@", [upnpdevice xmlLocation]);
+            
+            //Inform the listeners so they know the rootDevices array might change
+            UPnPDBObserver *obs;
+            NSEnumerator *listeners = [mObservers objectEnumerator];
+            while((obs = [listeners nextObject])){
+              [obs UPnPDBWillUpdate:self];
+            }	
+            
+            //This is the only place we add devices to the rootdevices
+            [rootDevices addObject:upnpdevice];
 
-							
-					listeners = [mObservers objectEnumerator];
-					while((obs = [listeners nextObject])){
-						[obs UPnPDBUpdated:self];
-					}		
-					
-					
-					[self unlock];
-				}
-				[readyForDescription removeObjectAtIndex:0];
-				
-			}				
-		}
-		[pool drain];
+            listeners = [mObservers objectEnumerator];
+            while((obs = [listeners nextObject])){
+              [obs UPnPDBUpdated:self];
+            }		
+            
+            [self unlock];
+          }
+          [readyForDescription removeObjectAtIndex:0];
+          
+        }				
+      }
+    }
 		sleep(2); //Wait and get signalled @TODO
 	}	
 }
-
-
 
 @end

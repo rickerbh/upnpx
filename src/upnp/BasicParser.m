@@ -145,16 +145,14 @@ static NSString *ElementStop = @"ElementStop";
 }
 
 
--(int)parseFromData:(NSData*)data{
+- (int)parseFromData:(NSData *)data{
 	int ret=0;
 	
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-	NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-	ret = [self startParser:parser];	
-	[parser release];
-	
-    [pool drain];
+  @autoreleasepool {
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
+    ret = [self startParser:parser];
+    [parser release];
+  }
     
 	return ret;
 }
@@ -162,10 +160,9 @@ static NSString *ElementStop = @"ElementStop";
 
 
 -(int)parseFromURL:(NSURL*)url{
-	int ret=0;
+	int ret = 0;
 
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
+  @autoreleasepool {
     //Workaround for memory leak
     //http://blog.filipekberg.se/2010/11/30/nsxmlparser-has-memory-leaks-in-ios-4/
     [[NSURLCache sharedURLCache] setMemoryCapacity:0];
@@ -174,11 +171,10 @@ static NSString *ElementStop = @"ElementStop";
     NSData *xml = [NSData dataWithContentsOfURL:url];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xml];;
 
-	ret = [self startParser:parser];	
+    ret = [self startParser:parser];
     [parser release];
 
-    [pool drain];
-	
+  }
 	return ret;
 }
 
