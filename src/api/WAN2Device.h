@@ -33,26 +33,16 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-
 #import "SoapActionsWANCommonInterfaceConfig1.h"
-
 
 /*
  * Services:
  * R - WANCommonInterfaceConfig:1 
  */
 
-@interface WAN2Device : BasicUPnPDevice {
-	SoapActionsWANCommonInterfaceConfig1 *mCommonInterfaceConfig;
-}
+@interface WAN2Device : BasicUPnPDevice
 
--(id)init;
--(void)dealloc;
-
--(SoapActionsWANCommonInterfaceConfig1*)commonInterfaceConfig;
-
--(BasicUPnPService*)commonInterfaceConfigService;
-
-
+- (SoapActionsWANCommonInterfaceConfig1 *)commonInterfaceConfig;
+- (BasicUPnPService *)commonInterfaceConfigService;
 
 @end

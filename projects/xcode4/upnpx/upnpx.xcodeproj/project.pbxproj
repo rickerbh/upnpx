@@ -73,7 +73,7 @@
 		15584064139134E900A734E7 /* SoapActionsWANIPConnection2.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584053139134E900A734E7 /* SoapActionsWANIPConnection2.m */; };
 		15584065139134E900A734E7 /* SoapActionsWANIPv6FirewallControl1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584054139134E900A734E7 /* SoapActionsWANIPv6FirewallControl1.m */; };
 		15584066139134E900A734E7 /* SoapActionsWANPOTSLinkConfig1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584055139134E900A734E7 /* SoapActionsWANPOTSLinkConfig1.m */; };
-		15584067139134E900A734E7 /* WAN2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584056139134E900A734E7 /* WAN2Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15584067139134E900A734E7 /* WAN2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584056139134E900A734E7 /* WAN2Device.m */; };
 		15584068139134E900A734E7 /* WANConnection2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584057139134E900A734E7 /* WANConnection2Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15BAC4F8132C22BA00F5C41A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BAC4F7132C22BA00F5C41A /* Foundation.framework */; };
 		15C44D9F132C30000013D453 /* basichttpobserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44D91132C30000013D453 /* basichttpobserver.h */; };

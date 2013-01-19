@@ -31,48 +31,23 @@
 //
 // **********************************************************************************
 
-
 #import "WAN2Device.h"
 
+@interface WAN2Device ()
+@property (strong) SoapActionsWANCommonInterfaceConfig1 *mCommonInterfaceConfig;
+@end
 
 @implementation WAN2Device
 
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {
-        mCommonInterfaceConfig = nil;
+- (SoapActionsWANCommonInterfaceConfig1 *)commonInterfaceConfig {
+	if (!self.mCommonInterfaceConfig) {
+		self.mCommonInterfaceConfig = (SoapActionsWANCommonInterfaceConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1"] soap];
 	}
-
-	return self;
+	return self.mCommonInterfaceConfig;
 }
 
-
--(void)dealloc{
-	
-	[mCommonInterfaceConfig release];
-	
-	[super dealloc];
+- (BasicUPnPService *)commonInterfaceConfigService {
+  return [self getServiceForType:@"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1"];
 }
-
-
-
--(SoapActionsWANCommonInterfaceConfig1*)commonInterfaceConfig{
-	if(mCommonInterfaceConfig == nil){
-		mCommonInterfaceConfig = (SoapActionsWANCommonInterfaceConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1"] soap];
-		[mCommonInterfaceConfig retain];
-	}	
-	return mCommonInterfaceConfig;
-}
-
-
--(BasicUPnPService*)commonInterfaceConfigService{
-	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1"];
-}
-
-
-
 
 @end
