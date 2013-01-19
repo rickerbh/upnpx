@@ -42,15 +42,15 @@ class SocketServerObserver_wrapper:public SocketServerObserver{
 private:	
 	SocketServer_ObjC* mObjCObserver;
 	SocketServer *mServer;
-	
+
 public:
 	SocketServerObserver_wrapper(SocketServer_ObjC* observer, SocketServer *server){
 		mObjCObserver = observer;
 		mServer = server;
 		mServer->AddObserver(this);
 	}
-	
-	~SocketServerObserver_wrapper(){
+
+  virtual ~SocketServerObserver_wrapper(){
 		mServer->RemoveObserver(this);
 	}
 	

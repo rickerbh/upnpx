@@ -376,7 +376,6 @@ int SocketServer::ReadLoop(){
 		}
 		
 	}
-EXIT:
 	return ret;
 }
 

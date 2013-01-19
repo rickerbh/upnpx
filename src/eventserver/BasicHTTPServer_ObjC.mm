@@ -53,7 +53,7 @@ public:
 		mCPPServer->AddObserver(this);
 	}
 	
-	~BasicHTTPObserver_wrapper(){
+	virtual ~BasicHTTPObserver_wrapper(){
 		mCPPServer->RemoveObserver(this);
 		delete(mCPPServer);
 	}

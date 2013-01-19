@@ -63,12 +63,12 @@ private:
 	unsigned short mPort;
 	char ipAddress[16];
 	
-	u8 mReadLoop;
-	
 	SOCKET mServerSocket;
 	struct sockaddr_in mClientAddr;
 	struct sockaddr_in mServerAddr;
 
+  u8 mReadLoop;
+	
 	pthread_t mReadThread;
 	fd_set mExceptionFDS;
 	fd_set mReadFDS;

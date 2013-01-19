@@ -342,7 +342,6 @@ int SSDP::ReadLoop(){
 
 		}
 	}
-EXIT:
 	return ret;
 }
 

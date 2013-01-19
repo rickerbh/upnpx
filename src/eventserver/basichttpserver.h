@@ -47,7 +47,7 @@ using namespace std;
 class BasicHTTPServer:public SocketServerObserver{
 public:
 	BasicHTTPServer(unsigned short prefferedPort);
-	~BasicHTTPServer();
+	virtual ~BasicHTTPServer();
 	
 	
 	SocketServer* GetSocketServer();

@@ -52,7 +52,7 @@ public:
 		UPNP::GetInstance()->GetSSDP()->GetDB()->AddObserver(this);
 	}
 	
-	~SSDPDB_Observer_wrapper(){
+	virtual ~SSDPDB_Observer_wrapper(){
 		UPNP::GetInstance()->GetSSDP()->GetDB()->RemoveObserver(this);
 	}
 	
