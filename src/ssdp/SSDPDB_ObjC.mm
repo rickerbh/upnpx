@@ -154,15 +154,12 @@ private:
     }
 }
 
--(void)SSDPDBUpdate{
-	[NSRunLoop currentRunLoop]; //Start our runloop
+- (void)SSDPDBUpdate{
+  [NSRunLoop currentRunLoop]; //Start our runloop
 	
   @autoreleasepool {
-    SSDPDB_ObjC_Observer *obs;
-    
     //Inform the listeners
-    NSEnumerator *listeners = [mObservers objectEnumerator];
-    while((obs = [listeners nextObject])){
+    for (SSDPDB_ObjC_Observer *obs in mObservers) {
       [obs SSDPDBWillUpdate:self];
     }
 	
@@ -183,8 +180,7 @@ private:
     UPNP::GetInstance()->GetSSDP()->GetDB()->Unlock();
     
     //Inform the listeners
-    listeners = [mObservers objectEnumerator];
-    while((obs = [listeners nextObject])){
+    for (SSDPDB_ObjC_Observer *obs in mObservers) {
       [obs SSDPDBUpdated:self];
     }
     
@@ -192,7 +188,6 @@ private:
   }
 }
 @end
-
 
 
 /**

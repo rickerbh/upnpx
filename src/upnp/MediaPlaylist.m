@@ -241,12 +241,10 @@
 			break;
 	}
 
-	if(oldState != state){
-		MediaPlaylistObserver *obs = nil;		
-		NSEnumerator *listeners = [mObservers objectEnumerator];
-		while((obs = [listeners nextObject])){
+	if (oldState != state){
+    for (MediaPlaylistObserver *obs in mObservers) {
 			[obs StateChanged:state];
-		}	
+    }
 	}
 	return ret;
 }

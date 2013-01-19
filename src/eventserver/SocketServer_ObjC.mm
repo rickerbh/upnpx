@@ -130,17 +130,13 @@ private:
 }
 
 
--(int)dataIn:(unsigned char*)data length:(int)len fromIP:(NSString*)ipAddress fromPort:(unsigned short)port{
+- (int)dataIn:(unsigned char *)data length:(int)len fromIP:(NSString *)ipAddress fromPort:(unsigned short)port {
 	int ret  = -1;
 
-	SocketServer_ObjC_Observer* obs;
-	
-	NSEnumerator *obsenum = [mObservers objectEnumerator];	
-	while(obs = [obsenum nextObject]){
+  for (SocketServer_ObjC_Observer* obs in mObservers) {
 		[obs DataIn:self withData:data andLen:len fromSource:ipAddress];
-	}			
-	
-
+  }
+  
 	return ret;
 }
 

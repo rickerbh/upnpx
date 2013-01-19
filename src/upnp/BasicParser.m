@@ -83,10 +83,8 @@ static NSString *ElementStop = @"ElementStop";
 
 -(BasicParserAsset*)getAssetForElementStack:(NSMutableArray*)stack{
 	BasicParserAsset* ret = nil;
-	BasicParserAsset* asset = nil;
 	
-	NSEnumerator *enumer = [mAssets objectEnumerator];
-	while((asset = [enumer nextObject])){
+  for (BasicParserAsset* asset in mAssets) {
 		//Full compares go first
 		if([[asset path] isEqualToArray:stack]){
 			ret = asset;
@@ -112,7 +110,7 @@ static NSString *ElementStop = @"ElementStop";
 						[lastAssetPath release];
 						[lastStackPath release];
 						break;
-					}		
+					}
 					[lastAssetPath release];
 					[lastStackPath release];
 				}
@@ -125,21 +123,21 @@ static NSString *ElementStop = @"ElementStop";
 					NSMutableArray *beginAssetPath = [[NSMutableArray alloc] initWithArray:[asset path]];
 					//Cut the last entry (which is * in one array and <element> in the other
 					[beginStackPath removeLastObject];
-					[beginAssetPath removeLastObject];					
+					[beginAssetPath removeLastObject];
 					if([beginAssetPath isEqualToArray:beginStackPath]){
 						ret = asset;
 						[beginAssetPath release];
 						[beginStackPath release];
 						break;
-					}		
+					}
 					[beginAssetPath release];
 					[beginStackPath release];
 					
-				}			
+				}
 			}
 			
 		}
-	}
+  }
 	
 	return ret;
 }

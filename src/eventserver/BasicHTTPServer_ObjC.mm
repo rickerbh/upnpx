@@ -77,11 +77,9 @@ public:
     BOOL ret;
 
 		@autoreleasepool {
-      BasicHTTPServer_ObjC_Observer *obs = nil;
       NSString *request = [[NSString alloc] initWithCString:method->c_str() encoding:NSASCIIStringEncoding];
       
-      NSEnumerator *obsenum = [mObjCObservers objectEnumerator];
-      while((obs = [obsenum nextObject])){
+      for (BasicHTTPServer_ObjC_Observer *obs in mObjCObservers) {
         ret = [obs canProcessMethod:mObjCServer requestMethod:request];
       }
       
@@ -117,11 +115,9 @@ public:
       
       NSLog(@"Request CFUNCTION: %@", [[[NSString alloc] initWithData:oBody encoding:NSUTF8StringEncoding] autorelease]);
       
-      BasicHTTPServer_ObjC_Observer *obs = nil;
-      NSEnumerator *obsenum = [mObjCObservers objectEnumerator];	
-      while((obs = [obsenum nextObject])){
+      for (BasicHTTPServer_ObjC_Observer *obs in mObjCObservers) {
         ret = [obs request:mObjCServer method:oMethod path:oPath version:oVersion headers:oHeaders body:oBody];
-      }	
+      }
       
       [oMethod release];
       [oPath release];

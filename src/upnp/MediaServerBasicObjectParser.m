@@ -222,7 +222,6 @@
 		MediaServer1ItemObject *media = [[MediaServer1ItemObject alloc] init];
 		
 		[media setIsContainer:NO];
-		
 
 		[media setObjectID:mediaID];
 		[media setParentID:parentID];
@@ -238,21 +237,18 @@
 		[media setAudioChannels:audioChannels];	
 		[media setSize:size];
 		[media setDuration:duration];
-        [media setDurationInSeconds:[duration HMS2Seconds]];
+    [media setDurationInSeconds:[duration HMS2Seconds]];
 		[media setBitrate:bitrate];
 		[media setIcon:icon]; //REMOVE THIS ?
 		[media setAlbumArt:albumArt];
-        [media setUriCollection:uriCollection];
+    [media setUriCollection:uriCollection];
+    
+    for (MediaServer1ItemRes *resource in resources) {
+      [media addRes:resource];
+    }
                 
-        MediaServer1ItemRes *resource = nil;		
-        NSEnumerator *e = [resources objectEnumerator];
-        while((resource = [e nextObject])){
-            [media addRes:resource];
-        }	    
-        [resources removeAllObjects];
-
-		[mediaObjects addObject:media];
-		
+    [resources removeAllObjects];
+    [mediaObjects addObject:media];
 		[media release];
 	}
 }

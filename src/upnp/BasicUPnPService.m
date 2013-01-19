@@ -196,14 +196,11 @@
 
 
 //UPnPEvents_Observer
--(void)UPnPEvent:(NSDictionary*)events{
-	BasicUPnPServiceObserver *obs = nil;
-	
+- (void)UPnPEvent:(NSDictionary *)events{
 	[mMutex lock];
-	NSEnumerator *listeners = [mObservers objectEnumerator];
-	while(obs = [listeners nextObject]){
+  for (BasicUPnPServiceObserver *obs in mObservers) {
 		[obs UPnPEvent:self events:events];
-	}	
+  }
 	[mMutex unlock];
 }
 
