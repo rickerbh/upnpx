@@ -41,7 +41,7 @@
 @class BasicUPnPServiceObserver, BasicUPnPService;
 
 @protocol BasicUPnPServiceObserver
--(void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary*)events;
+- (void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary *)events;
 @end
 
 
@@ -70,10 +70,10 @@
 
 
 -(id)initWithSSDPDevice:(SSDPDBDevice_ObjC*)device;
--(void)dealloc;
+- (void)dealloc;
 
--(int)addObserver:(BasicUPnPServiceObserver*)obs;
--(int)removeObserver:(BasicUPnPServiceObserver*)obs;
+- (int)addObserver:(BasicUPnPServiceObserver*)obs;
+- (int)removeObserver:(BasicUPnPServiceObserver*)obs;
 -(BOOL)isObserver:(BasicUPnPServiceObserver*)obs;
 
 
@@ -81,7 +81,7 @@
 //The BasicUPnPService (this) members are set with the right values
 //Further processing is service dependent and must be handled by the derived classes 
 //The return value must be 0 when implenented
--(int)process; //in C++ this should be a pure virtual function
+- (int)process; //in C++ this should be a pure virtual function
 
 
 

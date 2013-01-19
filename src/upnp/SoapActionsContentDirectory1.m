@@ -30,32 +30,22 @@
 
 @implementation SoapActionsContentDirectory1
 
+- (int)GetSearchCapabilitiesWithOutSearchCaps:(NSMutableString *)searchcaps {
+  int ret = 0;
 
--(id)retain{
-    return [super retain];
-}
--(id)autorelease{
-    return [super autorelease];
-}
+  NSDictionary *parameters = nil;
+  NSDictionary *output = nil;
+  NSArray *outputObjects = nil;
+  NSArray *outputKeys = nil;
+  outputKeys = [NSArray arrayWithObjects:@"SearchCaps", nil];
+  outputObjects = [NSArray arrayWithObjects:searchcaps, nil];
+  output = [NSDictionary dictionaryWithObjects:outputObjects forKeys:outputKeys];
 
-
--(int)GetSearchCapabilitiesWithOutSearchCaps:(NSMutableString*)searchcaps{
-    int ret = 0;
-
-    NSDictionary *parameters = nil;
-    NSDictionary *output = nil;
-    NSArray *outputObjects = nil;
-    NSArray *outputKeys = nil;
-    outputKeys = [NSArray arrayWithObjects:@"SearchCaps", nil];
-    outputObjects = [NSArray arrayWithObjects:searchcaps, nil];
-    output = [NSDictionary dictionaryWithObjects:outputObjects forKeys:outputKeys];
-
-    ret = [self action:@"GetSearchCapabilities" parameters:parameters returnValues:output];
-    return ret;
+  ret = [self action:@"GetSearchCapabilities" parameters:parameters returnValues:output];
+  return ret;
 }
 
-
--(int)GetSortCapabilitiesWithOutSortCaps:(NSMutableString*)sortcaps{
+- (int)GetSortCapabilitiesWithOutSortCaps:(NSMutableString *)sortcaps {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -70,8 +60,7 @@
     return ret;
 }
 
-
--(int)GetSystemUpdateIDWithOutId:(NSMutableString*)id{
+- (int)GetSystemUpdateIDWithOutId:(NSMutableString *)id {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -86,8 +75,7 @@
     return ret;
 }
 
-
--(int)BrowseWithObjectID:(NSString*)objectid BrowseFlag:(NSString*)browseflag Filter:(NSString*)filter StartingIndex:(NSString*)startingindex RequestedCount:(NSString*)requestedcount SortCriteria:(NSString*)sortcriteria OutResult:(NSMutableString*)result OutNumberReturned:(NSMutableString*)numberreturned OutTotalMatches:(NSMutableString*)totalmatches OutUpdateID:(NSMutableString*)updateid{
+- (int)BrowseWithObjectID:(NSString *)objectid BrowseFlag:(NSString *)browseflag Filter:(NSString *)filter StartingIndex:(NSString *)startingindex RequestedCount:(NSString *)requestedcount SortCriteria:(NSString *)sortcriteria OutResult:(NSMutableString *)result OutNumberReturned:(NSMutableString *)numberreturned OutTotalMatches:(NSMutableString *)totalmatches OutUpdateID:(NSMutableString *)updateid {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -108,8 +96,7 @@
     return ret;
 }
 
-
--(int)SearchWithContainerID:(NSString*)containerid SearchCriteria:(NSString*)searchcriteria Filter:(NSString*)filter StartingIndex:(NSString*)startingindex RequestedCount:(NSString*)requestedcount SortCriteria:(NSString*)sortcriteria OutResult:(NSMutableString*)result OutNumberReturned:(NSMutableString*)numberreturned OutTotalMatches:(NSMutableString*)totalmatches OutUpdateID:(NSMutableString*)updateid{
+- (int)SearchWithContainerID:(NSString *)containerid SearchCriteria:(NSString *)searchcriteria Filter:(NSString *)filter StartingIndex:(NSString *)startingindex RequestedCount:(NSString *)requestedcount SortCriteria:(NSString *)sortcriteria OutResult:(NSMutableString *)result OutNumberReturned:(NSMutableString *)numberreturned OutTotalMatches:(NSMutableString *)totalmatches OutUpdateID:(NSMutableString *)updateid {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -130,8 +117,7 @@
     return ret;
 }
 
-
--(int)CreateObjectWithContainerID:(NSString*)containerid Elements:(NSString*)elements OutObjectID:(NSMutableString*)objectid OutResult:(NSMutableString*)result{
+- (int)CreateObjectWithContainerID:(NSString *)containerid Elements:(NSString *)elements OutObjectID:(NSMutableString *)objectid OutResult:(NSMutableString *)result {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -152,8 +138,7 @@
     return ret;
 }
 
-
--(int)DestroyObjectWithObjectID:(NSString*)objectid{
+- (int)DestroyObjectWithObjectID:(NSString *)objectid {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -168,8 +153,7 @@
     return ret;
 }
 
-
--(int)UpdateObjectWithObjectID:(NSString*)objectid CurrentTagValue:(NSString*)currenttagvalue NewTagValue:(NSString*)newtagvalue{
+- (int)UpdateObjectWithObjectID:(NSString *)objectid CurrentTagValue:(NSString *)currenttagvalue NewTagValue:(NSString *)newtagvalue {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -184,8 +168,7 @@
     return ret;
 }
 
-
--(int)ImportResourceWithSourceURI:(NSString*)sourceuri DestinationURI:(NSString*)destinationuri OutTransferID:(NSMutableString*)transferid{
+- (int)ImportResourceWithSourceURI:(NSString *)sourceuri DestinationURI:(NSString *)destinationuri OutTransferID:(NSMutableString *)transferid {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -206,8 +189,7 @@
     return ret;
 }
 
-
--(int)ExportResourceWithSourceURI:(NSString*)sourceuri DestinationURI:(NSString*)destinationuri OutTransferID:(NSMutableString*)transferid{
+- (int)ExportResourceWithSourceURI:(NSString *)sourceuri DestinationURI:(NSString *)destinationuri OutTransferID:(NSMutableString *)transferid {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -228,8 +210,7 @@
     return ret;
 }
 
-
--(int)StopTransferResourceWithTransferID:(NSString*)transferid{
+- (int)StopTransferResourceWithTransferID:(NSString *)transferid {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -244,8 +225,7 @@
     return ret;
 }
 
-
--(int)GetTransferProgressWithTransferID:(NSString*)transferid OutTransferStatus:(NSMutableString*)transferstatus OutTransferLength:(NSMutableString*)transferlength OutTransferTotal:(NSMutableString*)transfertotal{
+- (int)GetTransferProgressWithTransferID:(NSString *)transferid OutTransferStatus:(NSMutableString *)transferstatus OutTransferLength:(NSMutableString *)transferlength OutTransferTotal:(NSMutableString *)transfertotal {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -266,8 +246,7 @@
     return ret;
 }
 
-
--(int)DeleteResourceWithResourceURI:(NSString*)resourceuri{
+- (int)DeleteResourceWithResourceURI:(NSString *)resourceuri {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -282,8 +261,7 @@
     return ret;
 }
 
-
--(int)CreateReferenceWithContainerID:(NSString*)containerid ObjectID:(NSString*)objectid OutNewID:(NSMutableString*)newid{
+- (int)CreateReferenceWithContainerID:(NSString *)containerid ObjectID:(NSString *)objectid OutNewID:(NSMutableString *)newid {
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -303,7 +281,5 @@
     ret = [self action:@"CreateReference" parameters:parameters returnValues:output];
     return ret;
 }
-
-
 
 @end

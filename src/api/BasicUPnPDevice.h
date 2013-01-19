@@ -66,9 +66,9 @@
 
 -(id)init;
 -(id)initWithSSDPDevice:(SSDPDBDevice_ObjC*)ssdp;
--(void)dealloc;
--(int)loadDeviceDescriptionFromXML;
--(BasicUPnPService*)getServiceForType:(NSString*)serviceUrn;
+- (void)dealloc;
+- (int)loadDeviceDescriptionFromXML;
+- (BasicUPnPService *)getServiceForType:(NSString *)serviceUrn;
 -(NSMutableDictionary*)getServices; //BasicUPnPService[]
 
 @property(readonly) bool isRoot;

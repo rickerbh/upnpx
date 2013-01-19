@@ -36,7 +36,7 @@
 
 @implementation NSString(AcranegraExtentions)
 
--(NSString*)XMLUnEscape{
+-(NSString *)XMLUnEscape{
 	if([self length] < 2){
 		return self;
 	}
@@ -62,7 +62,7 @@
 }
 
 
--(NSString*)XMLEscape{
+-(NSString *)XMLEscape{
 	if([self length] < 2){
 		return self;
 	}
@@ -100,24 +100,24 @@
 
 
 //hh:mm:ss -> seconds
--(int)HMS2Seconds{
+- (int)HMS2Seconds{
 	int s = 0;
   @autoreleasepool {
     NSArray *items = [self componentsSeparatedByString:@":"];
     if([items count] == 3){
       //hh
-      s = s + [(NSString*)[items objectAtIndex:0] intValue] * 60 * 60;		
+      s = s + [(NSString *)[items objectAtIndex:0] intValue] * 60 * 60;		
       //mm
-      s = s + [(NSString*)[items objectAtIndex:1] intValue] * 60;
+      s = s + [(NSString *)[items objectAtIndex:1] intValue] * 60;
       //ss
-      s = s + [(NSString*)[items objectAtIndex:2] intValue];
+      s = s + [(NSString *)[items objectAtIndex:2] intValue];
     }
   }
   return s;
 }
 
 //seconds -> hh:mm:ss 
-+(NSString*)Seconds2HMS:(int)seconds{
++(NSString *)Seconds2HMS:(int)seconds{
 	NSString *ret = nil;
 	if(seconds > 0){
 		int hh = (int) (seconds / 60 / 60);

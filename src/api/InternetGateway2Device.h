@@ -33,26 +33,16 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-
 #import "SoapActionsLayer3Forwarding1.h"
-
 
 /*
  * Services:
  * O - Layer3Forwarding:1 
  */
 
-@interface InternetGateway2Device : BasicUPnPDevice {
-	SoapActionsLayer3Forwarding1 *mLayer3Forwarding;
-}
+@interface InternetGateway2Device : BasicUPnPDevice
 
--(id)init;
--(void)dealloc;
-
--(SoapActionsLayer3Forwarding1*)layer3Forwarding;
-
--(BasicUPnPService*)layer3ForwardingService;
-
-
+- (SoapActionsLayer3Forwarding1 *)layer3Forwarding;
+- (BasicUPnPService *)layer3ForwardingService;
 
 @end

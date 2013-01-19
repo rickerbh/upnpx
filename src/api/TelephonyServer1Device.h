@@ -33,13 +33,11 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-
 #import "SoapActionsCallManagement1.h"
 #import "SoapActionsMessaging1.h"
 #import "SoapActionsInputConfig1.h"
 #import "SoapActionsDeviceProtection1.h"
 #import "SoapActionsConfigurationManagement1.h"
-
 
 /*
  * Services:
@@ -50,30 +48,17 @@
  * O - ConfigurationManagement:1
  */
 
-@interface TelephonyServer1Device : BasicUPnPDevice {
-	SoapActionsCallManagement1 *mCallManagement;
-	SoapActionsMessaging1 *mMessaging;
-	SoapActionsInputConfig1 *mInputConfig;
-	SoapActionsDeviceProtection1 *mDeviceProtection;
-    SoapActionsConfigurationManagement1 *mConfigurationManagement;
-}
+@interface TelephonyServer1Device : BasicUPnPDevice
 
--(id)init;
--(void)dealloc;
-
--(SoapActionsCallManagement1*)callManagement;
--(SoapActionsMessaging1*)messaging;
--(SoapActionsInputConfig1*)inputConfig;
--(SoapActionsDeviceProtection1*)deviceProtection;
--(SoapActionsConfigurationManagement1*)configurationManagement;
-
-
--(BasicUPnPService*)callManagementService;
--(BasicUPnPService*)messagingService;
--(BasicUPnPService*)inputConfigService;
--(BasicUPnPService*)deviceProtectionService;
--(BasicUPnPService*)configurationManagementService;
-
-
+- (SoapActionsCallManagement1 *)callManagement;
+- (SoapActionsMessaging1 *)messaging;
+- (SoapActionsInputConfig1 *)inputConfig;
+- (SoapActionsDeviceProtection1 *)deviceProtection;
+- (SoapActionsConfigurationManagement1 *)configurationManagement;
+- (BasicUPnPService *)callManagementService;
+- (BasicUPnPService *)messagingService;
+- (BasicUPnPService *)inputConfigService;
+- (BasicUPnPService *)deviceProtectionService;
+- (BasicUPnPService *)configurationManagementService;
 
 @end

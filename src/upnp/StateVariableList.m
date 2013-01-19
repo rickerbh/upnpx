@@ -33,39 +33,30 @@
 
 #import "StateVariableList.h"
 
+@interface StateVariableList ()
+@property(readwrite, strong) NSMutableArray *list;
+@end
 
 @implementation StateVariableList
 
-@synthesize list;
-
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        variableType = StateVariable_Type_List;
-        list = [[NSMutableArray alloc] init];
-        [self empty];
+- (id)init {
+  self = [super init];
+  if (self) {
+    self.variableType = StateVariable_Type_List;
+    _list = [[NSMutableArray alloc] init];
+    [self empty];
 	}
-
 	return self;
 }
 
--(void)dealloc{
-	[list release];
-	[super dealloc];
-}
-
--(void)empty{
+- (void)empty {
+	[self.list removeAllObjects];
 	[super empty];
-	[list removeAllObjects];
 }
 
--(void)copyFromStateVariableList:(StateVariableList*)stateVar{
-	[super copyFromStateVariable:(StateVariable*)stateVar];
-	[list release];
-	list = [[NSMutableArray alloc] initWithArray:[stateVar list]];
+- (void)copyFromStateVariableList:(StateVariableList *)stateVar {
+	[super copyFromStateVariable:(StateVariable *)stateVar];
+	self.list = [[NSMutableArray alloc] initWithArray:[stateVar list]];
 }
-
-
 
 @end

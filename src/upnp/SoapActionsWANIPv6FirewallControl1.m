@@ -40,7 +40,7 @@
 @implementation SoapActionsWANIPv6FirewallControl1
 
 
--(int)GetFirewallStatusWithOutFirewallEnabled:(NSMutableString*)firewallenabled OutInboundPinholeAllowed:(NSMutableString*)inboundpinholeallowed{
+- (int)GetFirewallStatusWithOutFirewallEnabled:(NSMutableString *)firewallenabled OutInboundPinholeAllowed:(NSMutableString *)inboundpinholeallowed{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -56,7 +56,7 @@
 }
 
 
--(int)GetOutboundPinholeTimeoutWithRemoteHost:(NSString*)remotehost RemotePort:(NSString*)remoteport InternalClient:(NSString*)internalclient InternalPort:(NSString*)internalport Protocol:(NSString*)protocol OutOutboundPinholeTimeout:(NSMutableString*)outboundpinholetimeout{
+- (int)GetOutboundPinholeTimeoutWithRemoteHost:(NSString *)remotehost RemotePort:(NSString *)remoteport InternalClient:(NSString *)internalclient InternalPort:(NSString *)internalport Protocol:(NSString *)protocol OutOutboundPinholeTimeout:(NSMutableString *)outboundpinholetimeout{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -78,7 +78,7 @@
 }
 
 
--(int)AddPinholeWithRemoteHost:(NSString*)remotehost RemotePort:(NSString*)remoteport InternalClient:(NSString*)internalclient InternalPort:(NSString*)internalport Protocol:(NSString*)protocol LeaseTime:(NSString*)leasetime OutUniqueID:(NSMutableString*)uniqueid{
+- (int)AddPinholeWithRemoteHost:(NSString *)remotehost RemotePort:(NSString *)remoteport InternalClient:(NSString *)internalclient InternalPort:(NSString *)internalport Protocol:(NSString *)protocol LeaseTime:(NSString *)leasetime OutUniqueID:(NSMutableString *)uniqueid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -100,7 +100,7 @@
 }
 
 
--(int)UpdatePinholeWithUniqueID:(NSString*)uniqueid NewLeaseTime:(NSString*)newleasetime{
+- (int)UpdatePinholeWithUniqueID:(NSString *)uniqueid NewLeaseTime:(NSString *)newleasetime{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -116,7 +116,7 @@
 }
 
 
--(int)DeletePinholeWithUniqueID:(NSString*)uniqueid{
+- (int)DeletePinholeWithUniqueID:(NSString *)uniqueid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -132,7 +132,7 @@
 }
 
 
--(int)GetPinholePacketsWithUniqueID:(NSString*)uniqueid OutPinholePackets:(NSMutableString*)pinholepackets{
+- (int)GetPinholePacketsWithUniqueID:(NSString *)uniqueid OutPinholePackets:(NSMutableString *)pinholepackets{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -154,7 +154,7 @@
 }
 
 
--(int)CheckPinholeWorkingWithUniqueID:(NSString*)uniqueid OutIsWorking:(NSMutableString*)isworking{
+- (int)CheckPinholeWorkingWithUniqueID:(NSString *)uniqueid OutIsWorking:(NSMutableString *)isworking{
     int ret = 0;
 
     NSDictionary *parameters = nil;

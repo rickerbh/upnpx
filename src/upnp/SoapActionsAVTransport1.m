@@ -32,7 +32,7 @@
 @implementation SoapActionsAVTransport1
 
 
--(int)SetAVTransportURIWithInstanceID:(NSString*)instanceid CurrentURI:(NSString*)currenturi CurrentURIMetaData:(NSString*)currenturimetadata{
+- (int)SetAVTransportURIWithInstanceID:(NSString *)instanceid CurrentURI:(NSString *)currenturi CurrentURIMetaData:(NSString *)currenturimetadata{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -48,7 +48,7 @@
 }
 
 
--(int)SetNextAVTransportURIWithInstanceID:(NSString*)instanceid NextURI:(NSString*)nexturi NextURIMetaData:(NSString*)nexturimetadata{
+- (int)SetNextAVTransportURIWithInstanceID:(NSString *)instanceid NextURI:(NSString *)nexturi NextURIMetaData:(NSString *)nexturimetadata{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -64,7 +64,7 @@
 }
 
 
--(int)GetMediaInfoWithInstanceID:(NSString*)instanceid OutNrTracks:(NSMutableString*)nrtracks OutMediaDuration:(NSMutableString*)mediaduration OutCurrentURI:(NSMutableString*)currenturi OutCurrentURIMetaData:(NSMutableString*)currenturimetadata OutNextURI:(NSMutableString*)nexturi OutNextURIMetaData:(NSMutableString*)nexturimetadata OutPlayMedium:(NSMutableString*)playmedium OutRecordMedium:(NSMutableString*)recordmedium OutWriteStatus:(NSMutableString*)writestatus{
+- (int)GetMediaInfoWithInstanceID:(NSString *)instanceid OutNrTracks:(NSMutableString *)nrtracks OutMediaDuration:(NSMutableString *)mediaduration OutCurrentURI:(NSMutableString *)currenturi OutCurrentURIMetaData:(NSMutableString *)currenturimetadata OutNextURI:(NSMutableString *)nexturi OutNextURIMetaData:(NSMutableString *)nexturimetadata OutPlayMedium:(NSMutableString *)playmedium OutRecordMedium:(NSMutableString *)recordmedium OutWriteStatus:(NSMutableString *)writestatus{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -86,7 +86,7 @@
 }
 
 
--(int)GetTransportInfoWithInstanceID:(NSString*)instanceid OutCurrentTransportState:(NSMutableString*)currenttransportstate OutCurrentTransportStatus:(NSMutableString*)currenttransportstatus OutCurrentSpeed:(NSMutableString*)currentspeed{
+- (int)GetTransportInfoWithInstanceID:(NSString *)instanceid OutCurrentTransportState:(NSMutableString *)currenttransportstate OutCurrentTransportStatus:(NSMutableString *)currenttransportstatus OutCurrentSpeed:(NSMutableString *)currentspeed{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -108,7 +108,7 @@
 }
 
 
--(int)GetPositionInfoWithInstanceID:(NSString*)instanceid OutTrack:(NSMutableString*)track OutTrackDuration:(NSMutableString*)trackduration OutTrackMetaData:(NSMutableString*)trackmetadata OutTrackURI:(NSMutableString*)trackuri OutRelTime:(NSMutableString*)reltime OutAbsTime:(NSMutableString*)abstime OutRelCount:(NSMutableString*)relcount OutAbsCount:(NSMutableString*)abscount{
+- (int)GetPositionInfoWithInstanceID:(NSString *)instanceid OutTrack:(NSMutableString *)track OutTrackDuration:(NSMutableString *)trackduration OutTrackMetaData:(NSMutableString *)trackmetadata OutTrackURI:(NSMutableString *)trackuri OutRelTime:(NSMutableString *)reltime OutAbsTime:(NSMutableString *)abstime OutRelCount:(NSMutableString *)relcount OutAbsCount:(NSMutableString *)abscount{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -130,7 +130,7 @@
 }
 
 
--(int)GetDeviceCapabilitiesWithInstanceID:(NSString*)instanceid OutPlayMedia:(NSMutableString*)playmedia OutRecMedia:(NSMutableString*)recmedia OutRecQualityModes:(NSMutableString*)recqualitymodes{
+- (int)GetDeviceCapabilitiesWithInstanceID:(NSString *)instanceid OutPlayMedia:(NSMutableString *)playmedia OutRecMedia:(NSMutableString *)recmedia OutRecQualityModes:(NSMutableString *)recqualitymodes{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -152,7 +152,7 @@
 }
 
 
--(int)GetTransportSettingsWithInstanceID:(NSString*)instanceid OutPlayMode:(NSMutableString*)playmode OutRecQualityMode:(NSMutableString*)recqualitymode{
+- (int)GetTransportSettingsWithInstanceID:(NSString *)instanceid OutPlayMode:(NSMutableString *)playmode OutRecQualityMode:(NSMutableString *)recqualitymode{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -174,7 +174,7 @@
 }
 
 
--(int)StopWithInstanceID:(NSString*)instanceid{
+- (int)StopWithInstanceID:(NSString *)instanceid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -190,7 +190,7 @@
 }
 
 
--(int)PlayWithInstanceID:(NSString*)instanceid Speed:(NSString*)speed{
+- (int)PlayWithInstanceID:(NSString *)instanceid Speed:(NSString *)speed{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -206,7 +206,7 @@
 }
 
 
--(int)PauseWithInstanceID:(NSString*)instanceid{
+- (int)PauseWithInstanceID:(NSString *)instanceid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -222,7 +222,7 @@
 }
 
 
--(int)RecordWithInstanceID:(NSString*)instanceid{
+- (int)RecordWithInstanceID:(NSString *)instanceid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -238,7 +238,7 @@
 }
 
 
--(int)SeekWithInstanceID:(NSString*)instanceid Unit:(NSString*)unit Target:(NSString*)target{
+- (int)SeekWithInstanceID:(NSString *)instanceid Unit:(NSString *)unit Target:(NSString *)target{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -254,7 +254,7 @@
 }
 
 
--(int)NextWithInstanceID:(NSString*)instanceid{
+- (int)NextWithInstanceID:(NSString *)instanceid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -270,7 +270,7 @@
 }
 
 
--(int)PreviousWithInstanceID:(NSString*)instanceid{
+- (int)PreviousWithInstanceID:(NSString *)instanceid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -286,7 +286,7 @@
 }
 
 
--(int)SetPlayModeWithInstanceID:(NSString*)instanceid NewPlayMode:(NSString*)newplaymode{
+- (int)SetPlayModeWithInstanceID:(NSString *)instanceid NewPlayMode:(NSString *)newplaymode{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -302,7 +302,7 @@
 }
 
 
--(int)SetRecordQualityModeWithInstanceID:(NSString*)instanceid NewRecordQualityMode:(NSString*)newrecordqualitymode{
+- (int)SetRecordQualityModeWithInstanceID:(NSString *)instanceid NewRecordQualityMode:(NSString *)newrecordqualitymode{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -318,7 +318,7 @@
 }
 
 
--(int)GetCurrentTransportActionsWithInstanceID:(NSString*)instanceid OutActions:(NSMutableString*)actions{
+- (int)GetCurrentTransportActionsWithInstanceID:(NSString *)instanceid OutActions:(NSMutableString *)actions{
     int ret = 0;
 
     NSDictionary *parameters = nil;

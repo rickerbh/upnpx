@@ -31,61 +31,35 @@
 //
 // **********************************************************************************
 
-
 #import "WANConnection1Device.h"
 
+@interface WANConnection1Device ()
+@property (strong) SoapActionsWANIPConnection1 *mIPConnection;
+@property (strong) SoapActionsWANPPPConnection1 *mPPPConnection;
+@end
 
 @implementation WANConnection1Device
 
-
--(id)init{
-    self = [super init];
-    
-    if (self) {
-        mIPConnection = nil;
-        mPPPConnection = nil;
-	}
-
-	return self;
-}
-
-
--(void)dealloc{
-	[mPPPConnection release];
-	[mIPConnection release];
-	
-	[super dealloc];
-}
-
-
--(BasicUPnPService*)ipConnectionService{
+- (BasicUPnPService *)ipConnectionService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANIPConnection:1"];
 }
 
-
--(BasicUPnPService*)pppConnectionService{
+- (BasicUPnPService *)pppConnectionService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANPPPConnection:1"];
 }
 
-
--(SoapActionsWANIPConnection1*)ipConnection{
-	if(mIPConnection == nil){	                                                                     
-		mIPConnection = (SoapActionsWANIPConnection1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANIPConnection:1"] soap];
-		[mIPConnection retain];
+- (SoapActionsWANIPConnection1 *)ipConnection {
+	if (!self.mIPConnection) {
+		self.mIPConnection = (SoapActionsWANIPConnection1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANIPConnection:1"] soap];
 	}
-	
-	return mIPConnection;
+	return self.mIPConnection;
 }
 
-
--(SoapActionsWANPPPConnection1*)pppConnection{
-	if(mPPPConnection == nil){	                                                                     
-		mPPPConnection = (SoapActionsWANPPPConnection1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANPPPConnection:1"] soap];
-		[mPPPConnection retain];
+- (SoapActionsWANPPPConnection1 *)pppConnection {
+	if (!self.mPPPConnection) {
+		self.mPPPConnection = (SoapActionsWANPPPConnection1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANPPPConnection:1"] soap];
 	}
-	
-	return mPPPConnection;
+	return self.mPPPConnection;
 }
-
 
 @end

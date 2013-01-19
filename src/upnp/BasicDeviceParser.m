@@ -135,7 +135,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	[device release];
 	[iconURL release];
 	[iconWidth release];
@@ -156,7 +156,7 @@
 /**
  * XML
  */
--(int)parse{
+- (int)parse{
 	int ret=0;
 
 	NSURL *descurl = [NSURL URLWithString:device.xmlLocation];	
@@ -192,7 +192,7 @@
 
 
 //Parse Icon stuff, if any
--(void)iconFound:(NSString*)startStop{
+- (void)iconFound:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		[self setIconURL:nil];
 		[self setIconWidth:nil];
@@ -237,7 +237,7 @@
 }
 
 
--(void)rootDevice:(NSString*)startStop{
+- (void)rootDevice:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 	}else{ 
 		//Was this the device we are looking for ?
@@ -250,7 +250,7 @@
 	}
 }
 
--(void)embeddedDevice:(NSString*)startStop{
+- (void)embeddedDevice:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		[friendlyNameStack addObject:friendlyName];
 		[udnStack addObject:udn];		

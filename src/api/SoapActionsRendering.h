@@ -31,28 +31,18 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "SoapAction.h"
 #import "BasicUPnPService.h"
 
+@interface SoapActionsRendering : SoapAction
 
-@interface SoapActionsRendering : SoapAction {
-	BasicUPnPService* upnpservice; //provides the URL's for the actions and events
-}
-
--(id)initWithService:(BasicUPnPService*)service;
--(void)dealloc;
-
-//SOAP 
--(int)listPesets:(NSMutableString*)presetsRet;
--(int)listPresetsForInstance:(int)instanceID presetsOut:(NSMutableString*)presetsRet;
-
-
--(int)getVolume;
--(int)getVolumeForInstance:(int)instanceID  andChannel:(NSString*)channel;
--(int)getVolumeDB;
--(int)getVolumeDBForInstance:(int)instanceID  andChannel:(NSString*)channel;
-
+- (id)initWithService:(BasicUPnPService *)service;
+- (int)listPesets:(NSMutableString *)presetsRet;
+- (int)listPresetsForInstance:(int)instanceID presetsOut:(NSMutableString *)presetsRet;
+- (int)getVolume;
+- (int)getVolumeForInstance:(int)instanceID andChannel:(NSString *)channel;
+- (int)getVolumeDB;
+- (int)getVolumeDBForInstance:(int)instanceID andChannel:(NSString *)channel;
 
 @end

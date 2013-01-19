@@ -33,41 +33,27 @@
 
 #import <Foundation/Foundation.h>
 
-
-
 typedef enum StateVariableType{
 	StateVariable_Type_Unknown = 0,
 	StateVariable_Type_Simple,
 	StateVariable_Type_List,
 	StateVariable_Type_Range	
-}StateVariableType;
+} StateVariableType;
 
 typedef enum StateVariableDataType{
 	StateVariable_DataType_Unknown = 0,
 	StateVariable_DataType_String,
 	StateVariable_DataType_Integer	
-}StateVariableDataType;
+} StateVariableDataType;
 
+@interface StateVariable : NSObject
+@property (readwrite, assign) StateVariableType variableType;
+@property (readonly, assign) StateVariableDataType dataType;
+@property (strong, nonatomic) NSString *name;
+@property (readonly, strong) NSString *dataTypeString;
 
-
-@interface StateVariable : NSObject {
-	StateVariableType variableType;
-	StateVariableDataType dataType;
-	NSString *name;
-	NSString *dataTypeString;
-}
-
-
--(id)init;
--(void)dealloc;
--(void)empty;
--(void)setDataTypeString:(NSString*)value;
--(void)copyFromStateVariable:(StateVariable*)stateVar;
-
-@property(readwrite) StateVariableType variableType;
-@property(readonly) StateVariableDataType dataType;
-@property(retain, nonatomic) NSString *name;
-@property(readonly) NSString *dataTypeString;
-
+- (void)empty;
+- (void)setDataTypeString:(NSString *)value;
+- (void)copyFromStateVariable:(StateVariable *)stateVar;
 
 @end

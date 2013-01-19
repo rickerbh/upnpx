@@ -31,22 +31,12 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "StateVariable.h"
-#import "StateVariable.h"
 
+@interface StateVariableList : StateVariable
+@property(readonly, strong) NSMutableArray *list;
 
-@interface StateVariableList : StateVariable {
-	NSMutableArray *list;
-}
-
--(id)init;
--(void)dealloc;
--(void)empty;
-
--(void)copyFromStateVariableList:(StateVariableList*)stateVar;
-
-@property(readonly) NSMutableArray *list;
+- (void)copyFromStateVariableList:(StateVariableList *)stateVar;
 
 @end

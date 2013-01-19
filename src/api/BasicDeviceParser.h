@@ -54,10 +54,10 @@
 }
 
 -(id)initWithUPnPDevice:(BasicUPnPDevice*)upnpdevice;
--(int)parse;
--(void)iconFound:(NSString*)startStop;
--(void)embeddedDevice:(NSString*)startStop;
--(void)rootDevice:(NSString*)startStop;
+- (int)parse;
+- (void)iconFound:(NSString *)startStop;
+- (void)embeddedDevice:(NSString *)startStop;
+- (void)rootDevice:(NSString *)startStop;
 
 
 @property (readwrite, retain) NSString* iconURL;

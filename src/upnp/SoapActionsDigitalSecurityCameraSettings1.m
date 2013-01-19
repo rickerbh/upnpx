@@ -40,7 +40,7 @@
 @implementation SoapActionsDigitalSecurityCameraSettings1
 
 
--(int)SetAutomaticWhiteBalanceWithNewAutomaticWhiteBalance:(NSString*)newautomaticwhitebalance{
+- (int)SetAutomaticWhiteBalanceWithNewAutomaticWhiteBalance:(NSString *)newautomaticwhitebalance{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -56,7 +56,7 @@
 }
 
 
--(int)GetAutomaticWhiteBalanceWithOutRetAutomaticWhiteBalance:(NSMutableString*)retautomaticwhitebalance{
+- (int)GetAutomaticWhiteBalanceWithOutRetAutomaticWhiteBalance:(NSMutableString *)retautomaticwhitebalance{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -72,7 +72,7 @@
 }
 
 
--(int)SetFixedWhiteBalanceWithNewFixedWhiteBalance:(NSString*)newfixedwhitebalance{
+- (int)SetFixedWhiteBalanceWithNewFixedWhiteBalance:(NSString *)newfixedwhitebalance{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -88,7 +88,7 @@
 }
 
 
--(int)GetFixedWhiteBalanceWithOutRetFixedWhiteBalance:(NSMutableString*)retfixedwhitebalance{
+- (int)GetFixedWhiteBalanceWithOutRetFixedWhiteBalance:(NSMutableString *)retfixedwhitebalance{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -104,7 +104,7 @@
 }
 
 
--(int)GetAvailableRotationsWithOutRetAvailableRotations:(NSMutableString*)retavailablerotations{
+- (int)GetAvailableRotationsWithOutRetAvailableRotations:(NSMutableString *)retavailablerotations{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -120,7 +120,7 @@
 }
 
 
--(int)SetDefaultRotationWithNewRotation:(NSString*)newrotation{
+- (int)SetDefaultRotationWithNewRotation:(NSString *)newrotation{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -136,7 +136,7 @@
 }
 
 
--(int)GetDefaultRotationWithOutRetRotation:(NSMutableString*)retrotation{
+- (int)GetDefaultRotationWithOutRetRotation:(NSMutableString *)retrotation{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -152,7 +152,7 @@
 }
 
 
--(int)SetBrightnessWithNewBrightness:(NSString*)newbrightness{
+- (int)SetBrightnessWithNewBrightness:(NSString *)newbrightness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -168,7 +168,7 @@
 }
 
 
--(int)GetBrightnessWithOutRetBrightness:(NSMutableString*)retbrightness{
+- (int)GetBrightnessWithOutRetBrightness:(NSMutableString *)retbrightness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -184,7 +184,7 @@
 }
 
 
--(int)IncreaseBrightness{
+- (int)IncreaseBrightness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -194,7 +194,7 @@
 }
 
 
--(int)DecreaseBrightness{
+- (int)DecreaseBrightness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -204,7 +204,7 @@
 }
 
 
--(int)SetColorSaturationWithNewColorSaturation:(NSString*)newcolorsaturation{
+- (int)SetColorSaturationWithNewColorSaturation:(NSString *)newcolorsaturation{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -220,7 +220,7 @@
 }
 
 
--(int)GetColorSaturationWithOutRetColorSaturation:(NSMutableString*)retcolorsaturation{
+- (int)GetColorSaturationWithOutRetColorSaturation:(NSMutableString *)retcolorsaturation{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -236,7 +236,7 @@
 }
 
 
--(int)IncreaseColorSaturation{
+- (int)IncreaseColorSaturation{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -246,7 +246,7 @@
 }
 
 
--(int)DecreaseColorSaturation{
+- (int)DecreaseColorSaturation{
     int ret = 0;
 
     NSDictionary *parameters = nil;

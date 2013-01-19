@@ -33,8 +33,8 @@
 
 //SOAP
 
--(int)SetTargetWithnewTargetValue:(NSString*)newtargetvalue;
--(int)GetTargetWithOutRetTargetValue:(NSMutableString*)rettargetvalue;
--(int)GetStatusWithOutResultStatus:(NSMutableString*)resultstatus;
+- (int)SetTargetWithnewTargetValue:(NSString *)newtargetvalue;
+- (int)GetTargetWithOutRetTargetValue:(NSMutableString *)rettargetvalue;
+- (int)GetStatusWithOutResultStatus:(NSMutableString *)resultstatus;
 
 @end

@@ -39,8 +39,8 @@
  * Interface
  */
 @protocol SSDPDB_ObjC_Observer
--(void)SSDPDBUpdated:(SSDPDB_ObjC*)sender;
--(void)SSDPDBWillUpdate:(SSDPDB_ObjC*)sender;
+- (void)SSDPDBUpdated:(SSDPDB_ObjC*)sender;
+- (void)SSDPDBWillUpdate:(SSDPDB_ObjC*)sender;
 @end
 
 
@@ -58,18 +58,18 @@
 
 
 -(id)init;
--(void)dealloc;
+- (void)dealloc;
 
--(void)lock;
--(void)unlock;
+- (void)lock;
+- (void)unlock;
 
--(int)startSSDP;
--(int)stopSSDP;
--(int)searchSSDP;
--(int)addObserver:(SSDPDB_ObjC_Observer*)obs;
--(int)removeObserver:(SSDPDB_ObjC_Observer*)obs;
--(void)SSDPDBUpdate;
--(void)setUserAgentProduct:(NSString*)product andOS:(NSString*)os;
+- (int)startSSDP;
+- (int)stopSSDP;
+- (int)searchSSDP;
+- (int)addObserver:(SSDPDB_ObjC_Observer*)obs;
+- (int)removeObserver:(SSDPDB_ObjC_Observer*)obs;
+- (void)SSDPDBUpdate;
+- (void)setUserAgentProduct:(NSString *)product andOS:(NSString *)os;
 
 @property(readonly, retain) NSMutableArray *SSDPObjCDevices;
 
@@ -96,7 +96,7 @@
 }
 
 -(id)initWithCPPDevice:(void*)cppDevice;
--(void)dealloc;
+- (void)dealloc;
 
 @property(readonly) bool isdevice;
 @property(readonly) bool isroot;

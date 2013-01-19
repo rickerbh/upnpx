@@ -40,7 +40,7 @@
  * Interface
  */
 @protocol SocketServer_ObjC_Observer
--(void)DataIn:(SocketServer_ObjC*)sender withData:(unsigned char*)data andLen:(int)len fromSource:(id)src;
+- (void)DataIn:(SocketServer_ObjC*)sender withData:(unsigned char*)data andLen:(int)len fromSource:(id)src;
 @end
 
 
@@ -56,13 +56,13 @@
 
 
 -(id)init;
--(void)dealloc;
--(void)start;
--(void)stop;
--(void)addObserver:(SocketServer_ObjC_Observer*)obs;
--(void)removeObserver:(SocketServer_ObjC_Observer*)obs;
--(NSString*)getIPAddress;
+- (void)dealloc;
+- (void)start;
+- (void)stop;
+- (void)addObserver:(SocketServer_ObjC_Observer*)obs;
+- (void)removeObserver:(SocketServer_ObjC_Observer*)obs;
+-(NSString *)getIPAddress;
 -(unsigned short)getPort;
--(int)dataIn:(unsigned char*)data length:(int)len fromIP:(NSString*)ipAddress fromPort:(unsigned short)port;
+- (int)dataIn:(unsigned char*)data length:(int)len fromIP:(NSString *)ipAddress fromPort:(unsigned short)port;
 
 @end

@@ -40,7 +40,7 @@
 @implementation SoapActionsDigitalSecurityCameraMotionImage1
 
 
--(int)GetAvailableEncodingsWithOutRetAvailableEncodings:(NSMutableString*)retavailableencodings{
+- (int)GetAvailableEncodingsWithOutRetAvailableEncodings:(NSMutableString *)retavailableencodings{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -56,7 +56,7 @@
 }
 
 
--(int)GetDefaultEncodingWithOutRetEncoding:(NSMutableString*)retencoding{
+- (int)GetDefaultEncodingWithOutRetEncoding:(NSMutableString *)retencoding{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -72,7 +72,7 @@
 }
 
 
--(int)SetDefaultEncodingWithReqEncoding:(NSString*)reqencoding{
+- (int)SetDefaultEncodingWithReqEncoding:(NSString *)reqencoding{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -88,7 +88,7 @@
 }
 
 
--(int)GetAvailableCompressionLevelsWithOutRetAvailableCompressionLevels:(NSMutableString*)retavailablecompressionlevels{
+- (int)GetAvailableCompressionLevelsWithOutRetAvailableCompressionLevels:(NSMutableString *)retavailablecompressionlevels{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -104,7 +104,7 @@
 }
 
 
--(int)GetDefaultCompressionLevelWithOutRetCompressionLevel:(NSMutableString*)retcompressionlevel{
+- (int)GetDefaultCompressionLevelWithOutRetCompressionLevel:(NSMutableString *)retcompressionlevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -120,7 +120,7 @@
 }
 
 
--(int)SetDefaultCompressionLevelWithReqCompressionLevel:(NSString*)reqcompressionlevel{
+- (int)SetDefaultCompressionLevelWithReqCompressionLevel:(NSString *)reqcompressionlevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -136,7 +136,7 @@
 }
 
 
--(int)GetAvailableResolutionsWithOutRetAvailableResolutions:(NSMutableString*)retavailableresolutions{
+- (int)GetAvailableResolutionsWithOutRetAvailableResolutions:(NSMutableString *)retavailableresolutions{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -152,7 +152,7 @@
 }
 
 
--(int)GetDefaultResolutionWithOutRetResolution:(NSMutableString*)retresolution{
+- (int)GetDefaultResolutionWithOutRetResolution:(NSMutableString *)retresolution{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -168,7 +168,7 @@
 }
 
 
--(int)SetDefaultResolutionWithReqResolution:(NSString*)reqresolution{
+- (int)SetDefaultResolutionWithReqResolution:(NSString *)reqresolution{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -184,7 +184,7 @@
 }
 
 
--(int)GetVideoURLWithReqEncoding:(NSString*)reqencoding ReqCompression:(NSString*)reqcompression ReqResolution:(NSString*)reqresolution ReqMaxBandwidth:(NSString*)reqmaxbandwidth ReqTargetFrameRate:(NSString*)reqtargetframerate OutRetVideoURL:(NSMutableString*)retvideourl{
+- (int)GetVideoURLWithReqEncoding:(NSString *)reqencoding ReqCompression:(NSString *)reqcompression ReqResolution:(NSString *)reqresolution ReqMaxBandwidth:(NSString *)reqmaxbandwidth ReqTargetFrameRate:(NSString *)reqtargetframerate OutRetVideoURL:(NSMutableString *)retvideourl{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -206,7 +206,7 @@
 }
 
 
--(int)GetDefaultVideoURLWithOutRetVideoURL:(NSMutableString*)retvideourl{
+- (int)GetDefaultVideoURLWithOutRetVideoURL:(NSMutableString *)retvideourl{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -222,7 +222,7 @@
 }
 
 
--(int)GetVideoPresentationURLWithReqEncoding:(NSString*)reqencoding ReqCompression:(NSString*)reqcompression ReqResolution:(NSString*)reqresolution ReqMaxBandwidth:(NSString*)reqmaxbandwidth ReqTargetFrameRate:(NSString*)reqtargetframerate OutRetVideoPresentationURL:(NSMutableString*)retvideopresentationurl{
+- (int)GetVideoPresentationURLWithReqEncoding:(NSString *)reqencoding ReqCompression:(NSString *)reqcompression ReqResolution:(NSString *)reqresolution ReqMaxBandwidth:(NSString *)reqmaxbandwidth ReqTargetFrameRate:(NSString *)reqtargetframerate OutRetVideoPresentationURL:(NSMutableString *)retvideopresentationurl{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -244,7 +244,7 @@
 }
 
 
--(int)GetDefaultVideoPresentationURLWithOutRetVideoPresentationURL:(NSMutableString*)retvideopresentationurl{
+- (int)GetDefaultVideoPresentationURLWithOutRetVideoPresentationURL:(NSMutableString *)retvideopresentationurl{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -260,7 +260,7 @@
 }
 
 
--(int)SetMaxBandwidthWithReqMaxBandwidth:(NSString*)reqmaxbandwidth{
+- (int)SetMaxBandwidthWithReqMaxBandwidth:(NSString *)reqmaxbandwidth{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -276,7 +276,7 @@
 }
 
 
--(int)GetMaxBandwidthWithOutRetMaxBandwidth:(NSMutableString*)retmaxbandwidth{
+- (int)GetMaxBandwidthWithOutRetMaxBandwidth:(NSMutableString *)retmaxbandwidth{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -292,7 +292,7 @@
 }
 
 
--(int)SetTargetFrameRateWithReqTargetFrameRate:(NSString*)reqtargetframerate{
+- (int)SetTargetFrameRateWithReqTargetFrameRate:(NSString *)reqtargetframerate{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -308,7 +308,7 @@
 }
 
 
--(int)GetTargetFrameRateWithOutRetTargetFrameRate:(NSMutableString*)rettargetframerate{
+- (int)GetTargetFrameRateWithOutRetTargetFrameRate:(NSMutableString *)rettargetframerate{
     int ret = 0;
 
     NSDictionary *parameters = nil;

@@ -35,7 +35,7 @@
 #import "BasicParser.h"
 
 @interface BasicParser()
-	-(int)startParser:(NSXMLParser*)parser;	
+	- (int)startParser:(NSXMLParser*)parser;	
 @end
 
 
@@ -61,13 +61,13 @@ static NSString *ElementStop = @"ElementStop";
 	return self;	
 }
 
--(void)dealloc{
+- (void)dealloc{
 	[mElementStack release];
 	[mAssets release];
 	[super dealloc];
 }
 
--(int)addAsset:(NSArray*)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj;{
+- (int)addAsset:(NSArray*)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj;{
 	BasicParserAsset* asset = [[BasicParserAsset alloc] initWithPath:path setStringValueFunction:valueFunction setStringValueObject:obj callFunction:function functionObject:funcObj];
 	[mAssets addObject:asset];
 	[asset release];
@@ -75,7 +75,7 @@ static NSString *ElementStop = @"ElementStop";
 }
 
 
--(void)clearAllAssets{
+- (void)clearAllAssets{
 	[mAssets removeAllObjects];
 }
 
@@ -92,7 +92,7 @@ static NSString *ElementStop = @"ElementStop";
 		}else{
 			// * -> leafX -> leafY
 			//Maybe we have a wildchar, that means that the path after the wildchar must match
-			if([(NSString*)[[asset path] objectAtIndex:0] isEqualToString:@"*"]){
+			if([(NSString *)[[asset path] objectAtIndex:0] isEqualToString:@"*"]){
 				if([stack count] >= [[asset path] count]){
 					//Path ends with
 					NSMutableArray *lastStackPath = [[NSMutableArray alloc] initWithArray:stack];
@@ -116,7 +116,7 @@ static NSString *ElementStop = @"ElementStop";
 				}
 			}
 			// leafX -> leafY -> *
-			if([(NSString*)[[asset path] lastObject] isEqualToString:@"*"]){
+			if([(NSString *)[[asset path] lastObject] isEqualToString:@"*"]){
 				if([stack count] == [[asset path] count] && [stack count] > 1){
 					//Path start with
 					NSMutableArray *beginStackPath = [[NSMutableArray alloc] initWithArray:stack];
@@ -157,7 +157,7 @@ static NSString *ElementStop = @"ElementStop";
 
 
 
--(int)parseFromURL:(NSURL*)url{
+- (int)parseFromURL:(NSURL *)url{
 	int ret = 0;
 
   @autoreleasepool {
@@ -177,7 +177,7 @@ static NSString *ElementStop = @"ElementStop";
 }
 
 
--(int)startParser:(NSXMLParser*)parser{
+- (int)startParser:(NSXMLParser*)parser{
 	int ret = 0;
 	
 	if(parser == nil){

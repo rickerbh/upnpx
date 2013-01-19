@@ -45,7 +45,7 @@
 }
 
 -(id)initWithPath:(NSArray*)thePath setStringValueFunction:(SEL)theValueFunction setStringValueObject:(id)obj callFunction:(SEL)theFunction functionObject:(id)funcobj;
--(void)dealloc;
+- (void)dealloc;
 
 @property (readwrite, retain) NSArray *path;
 @property (readonly) SEL function;

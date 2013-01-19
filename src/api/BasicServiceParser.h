@@ -55,11 +55,11 @@
 }
 
 -(id)initWithUPnPService:(BasicUPnPService*)upnpservice;
--(int)parse;
--(void)dealloc;
--(void)serviceTag:(NSString*)startStop;
--(void)stateVariable:(NSString*)startStop;
--(void)setAllowedValue:(NSString*)value;
+- (int)parse;
+- (void)dealloc;
+- (void)serviceTag:(NSString *)startStop;
+- (void)stateVariable:(NSString *)startStop;
+- (void)setAllowedValue:(NSString *)value;
 			
 @property (readonly, retain) BasicUPnPService* service;
 

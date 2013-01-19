@@ -9,7 +9,7 @@
 @implementation SoapActionsDeviceProtection1
 
 
--(int)SendSetupMessageWithProtocolType:(NSString*)protocoltype InMessage:(NSString*)inmessage OutOutMessage:(NSMutableString*)outmessage{
+- (int)SendSetupMessageWithProtocolType:(NSString *)protocoltype InMessage:(NSString *)inmessage OutOutMessage:(NSMutableString *)outmessage{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -31,7 +31,7 @@
 }
 
 
--(int)GetSupportedProtocolsWithOutProtocolList:(NSMutableString*)protocollist{
+- (int)GetSupportedProtocolsWithOutProtocolList:(NSMutableString *)protocollist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -47,7 +47,7 @@
 }
 
 
--(int)GetAssignedRolesWithOutRoleList:(NSMutableString*)rolelist{
+- (int)GetAssignedRolesWithOutRoleList:(NSMutableString *)rolelist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -63,7 +63,7 @@
 }
 
 
--(int)GetRolesForActionWithDeviceUDN:(NSString*)deviceudn ServiceId:(NSString*)serviceid ActionName:(NSString*)actionname OutRoleList:(NSMutableString*)rolelist OutRestrictedRoleList:(NSMutableString*)restrictedrolelist{
+- (int)GetRolesForActionWithDeviceUDN:(NSString *)deviceudn ServiceId:(NSString *)serviceid ActionName:(NSString *)actionname OutRoleList:(NSMutableString *)rolelist OutRestrictedRoleList:(NSMutableString *)restrictedrolelist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -85,7 +85,7 @@
 }
 
 
--(int)GetUserLoginChallengeWithProtocolType:(NSString*)protocoltype Name:(NSString*)name OutSalt:(NSMutableString*)salt OutChallenge:(NSMutableString*)challenge{
+- (int)GetUserLoginChallengeWithProtocolType:(NSString *)protocoltype Name:(NSString *)name OutSalt:(NSMutableString *)salt OutChallenge:(NSMutableString *)challenge{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -107,7 +107,7 @@
 }
 
 
--(int)UserLoginWithProtocolType:(NSString*)protocoltype Challenge:(NSString*)challenge Authenticator:(NSString*)authenticator{
+- (int)UserLoginWithProtocolType:(NSString *)protocoltype Challenge:(NSString *)challenge Authenticator:(NSString *)authenticator{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -123,7 +123,7 @@
 }
 
 
--(int)UserLogout{
+- (int)UserLogout{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -133,7 +133,7 @@
 }
 
 
--(int)GetACLDataWithOutACL:(NSMutableString*)acl{
+- (int)GetACLDataWithOutACL:(NSMutableString *)acl{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -149,7 +149,7 @@
 }
 
 
--(int)AddIdentityListWithIdentityList:(NSString*)identitylist OutIdentityListResult:(NSMutableString*)identitylistresult{
+- (int)AddIdentityListWithIdentityList:(NSString *)identitylist OutIdentityListResult:(NSMutableString *)identitylistresult{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -171,7 +171,7 @@
 }
 
 
--(int)RemoveIdentityWithIdentity:(NSString*)identity{
+- (int)RemoveIdentityWithIdentity:(NSString *)identity{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -187,7 +187,7 @@
 }
 
 
--(int)SetUserLoginPasswordWithProtocolType:(NSString*)protocoltype Name:(NSString*)name Stored:(NSString*)stored Salt:(NSString*)salt{
+- (int)SetUserLoginPasswordWithProtocolType:(NSString *)protocoltype Name:(NSString *)name Stored:(NSString *)stored Salt:(NSString *)salt{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -203,7 +203,7 @@
 }
 
 
--(int)AddRolesForIdentityWithIdentity:(NSString*)identity RoleList:(NSString*)rolelist{
+- (int)AddRolesForIdentityWithIdentity:(NSString *)identity RoleList:(NSString *)rolelist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -219,7 +219,7 @@
 }
 
 
--(int)RemoveRolesForIdentityWithIdentity:(NSString*)identity RoleList:(NSString*)rolelist{
+- (int)RemoveRolesForIdentityWithIdentity:(NSString *)identity RoleList:(NSString *)rolelist{
     int ret = 0;
 
     NSDictionary *parameters = nil;

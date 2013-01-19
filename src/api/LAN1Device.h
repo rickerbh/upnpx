@@ -33,26 +33,16 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-
 #import "SoapActionsLANHostConfigManagement1.h"
-
 
 /*
  * Services:
  * O - LANHostConfigManagement:1 
  */
 
-@interface LAN1Device : BasicUPnPDevice {
-	SoapActionsLANHostConfigManagement1 *mLanHostConfigManagement;
-}
+@interface LAN1Device : BasicUPnPDevice
 
--(id)init;
--(void)dealloc;
-
--(SoapActionsLANHostConfigManagement1*)lanHostConfigManagement;
-
--(BasicUPnPService*)lanHostConfigManagementService;
-
-
+- (SoapActionsLANHostConfigManagement1 *)lanHostConfigManagement;
+- (BasicUPnPService *)lanHostConfigManagementService;
 
 @end

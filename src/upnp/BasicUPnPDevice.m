@@ -38,7 +38,7 @@
 #import "ServiceFactory.h"
 
 @interface BasicUPnPDevice()
-	-(void)syncServices;
+	- (void)syncServices;
 @end
 
 
@@ -96,7 +96,7 @@
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
     
     [services removeAllObjects];
 	[services release];
@@ -118,7 +118,7 @@
 	[super dealloc];
 }
 
--(int)loadDeviceDescriptionFromXML{
+- (int)loadDeviceDescriptionFromXML{
 	int ret = 0;
 	if(xmlLocation == nil || [xmlLocation length] < 5){
 		return -1;
@@ -134,7 +134,7 @@
 
 
 
--(void)syncServices{
+- (void)syncServices{
   @autoreleasepool {
     //Sync 'services'
     SSDPDBDevice_ObjC *ssdpService = nil;
@@ -177,7 +177,7 @@
 	return services;
 }
 
--(BasicUPnPService*)getServiceForType:(NSString*)serviceUrn{
+- (BasicUPnPService *)getServiceForType:(NSString *)serviceUrn{
 	BasicUPnPService *thisService = nil;
 	
 	[self syncServices];	

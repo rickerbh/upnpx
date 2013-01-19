@@ -161,8 +161,8 @@ public:
             memcpy(*body, [oBody bytes], [oBody length]);
           }
           for(id key in oHeaders){
-            value = [(NSString*)[oHeaders objectForKey:key] cStringUsingEncoding: NSASCIIStringEncoding];
-            name = [(NSString*)key cStringUsingEncoding: NSASCIIStringEncoding];
+            value = [(NSString *)[oHeaders objectForKey:key] cStringUsingEncoding: NSASCIIStringEncoding];
+            name = [(NSString *)key cStringUsingEncoding: NSASCIIStringEncoding];
             (*headers)[name] = value;
           }
         }
@@ -194,7 +194,7 @@ private:
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
 	[self stop];
     if (httpServerWrapper) {
         delete((BasicHTTPObserver_wrapper*)httpServerWrapper);
@@ -204,19 +204,19 @@ private:
 	[super dealloc];
 }
 
--(int)start{
+- (int)start{
 	return ((BasicHTTPObserver_wrapper*)httpServerWrapper)->Start();
 }
 
--(int)stop{
+- (int)stop{
 	return ((BasicHTTPObserver_wrapper*)httpServerWrapper)->Stop();
 }
 
--(void)addObserver:(BasicHTTPServer_ObjC_Observer*)observer{
+- (void)addObserver:(BasicHTTPServer_ObjC_Observer*)observer{
 	[mObservers addObject:observer];
 }
 
--(void)removeObserver:(BasicHTTPServer_ObjC_Observer*)observer{
+- (void)removeObserver:(BasicHTTPServer_ObjC_Observer*)observer{
 	[mObservers removeObject:observer];
 }
 
@@ -226,7 +226,7 @@ private:
 
 
 
--(NSString*)getIPAddress{
+-(NSString *)getIPAddress{
 	char *ip = ((BasicHTTPObserver_wrapper*)httpServerWrapper)->GetServer()->GetSocketServer()->getServerIPAddress();
 	
 	return [NSString stringWithCString:ip encoding:NSASCIIStringEncoding];

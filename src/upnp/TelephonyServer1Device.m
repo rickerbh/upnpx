@@ -34,103 +34,71 @@
 
 #import "TelephonyServer1Device.h"
 
+@interface TelephonyServer1Device ()
+@property (strong) SoapActionsCallManagement1 *mCallManagement;
+@property (strong) SoapActionsMessaging1 *mMessaging;
+@property (strong) SoapActionsInputConfig1 *mInputConfig;
+@property (strong) SoapActionsDeviceProtection1 *mDeviceProtection;
+@property (strong) SoapActionsConfigurationManagement1 *mConfigurationManagement;
+@end
 
 @implementation TelephonyServer1Device
 
+- (SoapActionsCallManagement1 *)callManagement {
+	if (!self.mCallManagement) {
+		self.mCallManagement = (SoapActionsCallManagement1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:CallManagement:1"] soap];
+	}
+	return self.mCallManagement;
+}
 
-
--(id)init{
-    self = [super init];
-    
-    if (self) {		
-        mCallManagement = nil;
-        mMessaging = nil;
-        mInputConfig = nil;
-        mDeviceProtection = nil;
-        mConfigurationManagement = nil;
-    }
-
-	return self;
+- (SoapActionsMessaging1 *)messaging{
+	if (!self.mMessaging) {
+		self.mMessaging = (SoapActionsMessaging1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:Messaging:1"] soap];
+	}
+	return self.mMessaging;
 }
 
 
--(void)dealloc{
-	
-	[mCallManagement release];
-	[mMessaging release];
-	[mInputConfig release];
-	[mDeviceProtection release];
-	[mConfigurationManagement release];
-	
-	[super dealloc];
+- (SoapActionsInputConfig1 *)inputConfig {
+	if (!self.mInputConfig) {
+		self.mInputConfig = (SoapActionsInputConfig1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:InputConfig:1"] soap];
+	}
+	return self.mInputConfig;
 }
 
--(SoapActionsCallManagement1*)callManagement{
-	if(mCallManagement == nil){
-		mCallManagement = (SoapActionsCallManagement1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:CallManagement:1"] soap];
-		[mCallManagement retain];
+- (SoapActionsDeviceProtection1 *)deviceProtection {
+	if (!self.mDeviceProtection) {
+		self.mDeviceProtection = (SoapActionsDeviceProtection1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"] soap];
+	}
+	return self.mDeviceProtection;
+}
+
+- (SoapActionsConfigurationManagement1 *)configurationManagement {
+	if (!self.mConfigurationManagement) {
+		self.mConfigurationManagement = (SoapActionsConfigurationManagement1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"] soap];
 	}
 	
-	return mCallManagement;
+	return self.self.mConfigurationManagement;
 }
 
--(SoapActionsMessaging1*)messaging{
-	if(mMessaging == nil){
-		mMessaging = (SoapActionsMessaging1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:Messaging:1"] soap];
-		[mMessaging retain];
-	}
-	
-	return mMessaging;
-}
-
-
--(SoapActionsInputConfig1*)inputConfig{
-	if(mInputConfig == nil){
-		mInputConfig = (SoapActionsInputConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:InputConfig:1"] soap];
-		[mInputConfig retain];
-	}
-	
-	return mInputConfig;
-}
-
--(SoapActionsDeviceProtection1*)deviceProtection{
-	if(mDeviceProtection == nil){
-		mDeviceProtection = (SoapActionsDeviceProtection1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"] soap];
-		[mDeviceProtection retain];
-	}
-	
-	return mDeviceProtection;
-}
-
--(SoapActionsConfigurationManagement1*)configurationManagement{
-	if(mConfigurationManagement == nil){
-		mConfigurationManagement = (SoapActionsConfigurationManagement1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"] soap];
-		[mConfigurationManagement retain];
-	}
-	
-	return mConfigurationManagement;
-}
-
-
--(BasicUPnPService*)callManagementService{
+- (BasicUPnPService *)callManagementService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:CallManagement:1"];
 }
 
--(BasicUPnPService*)messagingService{
+- (BasicUPnPService *)messagingService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:Messaging:1"];
 }
 
--(BasicUPnPService*)inputConfigService{
+- (BasicUPnPService *)inputConfigService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:InputConfig:1"];
 }
 
--(BasicUPnPService*)deviceProtectionService{
+- (BasicUPnPService *)deviceProtectionService {
     return [self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"];
 }
 
--(BasicUPnPService*)configurationManagementService{
+- (BasicUPnPService *)configurationManagementService {
     return [self getServiceForType:@"urn:schemas-upnp-org:service:ConfigurationManagement:1"];
 }
-
 
 @end

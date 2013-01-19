@@ -40,7 +40,7 @@
 @implementation SoapActionsLayer3Forwarding1
 
 
--(int)SetDefaultConnectionServiceWithNewDefaultConnectionService:(NSString*)newdefaultconnectionservice{
+- (int)SetDefaultConnectionServiceWithNewDefaultConnectionService:(NSString *)newdefaultconnectionservice{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -56,7 +56,7 @@
 }
 
 
--(int)GetDefaultConnectionServiceWithOutNewDefaultConnectionService:(NSMutableString*)newdefaultconnectionservice{
+- (int)GetDefaultConnectionServiceWithOutNewDefaultConnectionService:(NSMutableString *)newdefaultconnectionservice{
     int ret = 0;
 
     NSDictionary *parameters = nil;

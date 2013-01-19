@@ -41,7 +41,7 @@
 
 //SOAP
 
--(int)SetDefaultConnectionServiceWithNewDefaultConnectionService:(NSString*)newdefaultconnectionservice;
--(int)GetDefaultConnectionServiceWithOutNewDefaultConnectionService:(NSMutableString*)newdefaultconnectionservice;
+- (int)SetDefaultConnectionServiceWithNewDefaultConnectionService:(NSString *)newdefaultconnectionservice;
+- (int)GetDefaultConnectionServiceWithOutNewDefaultConnectionService:(NSMutableString *)newdefaultconnectionservice;
 
 @end

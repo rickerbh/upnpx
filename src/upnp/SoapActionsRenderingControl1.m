@@ -32,7 +32,7 @@
 @implementation SoapActionsRenderingControl1
 
 
--(int)ListPresetsWithInstanceID:(NSString*)instanceid OutCurrentPresetNameList:(NSMutableString*)currentpresetnamelist{
+- (int)ListPresetsWithInstanceID:(NSString *)instanceid OutCurrentPresetNameList:(NSMutableString *)currentpresetnamelist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -54,7 +54,7 @@
 }
 
 
--(int)SelectPresetWithInstanceID:(NSString*)instanceid PresetName:(NSString*)presetname{
+- (int)SelectPresetWithInstanceID:(NSString *)instanceid PresetName:(NSString *)presetname{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -70,7 +70,7 @@
 }
 
 
--(int)GetBrightnessWithInstanceID:(NSString*)instanceid OutCurrentBrightness:(NSMutableString*)currentbrightness{
+- (int)GetBrightnessWithInstanceID:(NSString *)instanceid OutCurrentBrightness:(NSMutableString *)currentbrightness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -92,7 +92,7 @@
 }
 
 
--(int)SetBrightnessWithInstanceID:(NSString*)instanceid DesiredBrightness:(NSString*)desiredbrightness{
+- (int)SetBrightnessWithInstanceID:(NSString *)instanceid DesiredBrightness:(NSString *)desiredbrightness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -108,7 +108,7 @@
 }
 
 
--(int)GetContrastWithInstanceID:(NSString*)instanceid OutCurrentContrast:(NSMutableString*)currentcontrast{
+- (int)GetContrastWithInstanceID:(NSString *)instanceid OutCurrentContrast:(NSMutableString *)currentcontrast{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -130,7 +130,7 @@
 }
 
 
--(int)SetContrastWithInstanceID:(NSString*)instanceid DesiredContrast:(NSString*)desiredcontrast{
+- (int)SetContrastWithInstanceID:(NSString *)instanceid DesiredContrast:(NSString *)desiredcontrast{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -146,7 +146,7 @@
 }
 
 
--(int)GetSharpnessWithInstanceID:(NSString*)instanceid OutCurrentSharpness:(NSMutableString*)currentsharpness{
+- (int)GetSharpnessWithInstanceID:(NSString *)instanceid OutCurrentSharpness:(NSMutableString *)currentsharpness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -168,7 +168,7 @@
 }
 
 
--(int)SetSharpnessWithInstanceID:(NSString*)instanceid DesiredSharpness:(NSString*)desiredsharpness{
+- (int)SetSharpnessWithInstanceID:(NSString *)instanceid DesiredSharpness:(NSString *)desiredsharpness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -184,7 +184,7 @@
 }
 
 
--(int)GetRedVideoGainWithInstanceID:(NSString*)instanceid OutCurrentRedVideoGain:(NSMutableString*)currentredvideogain{
+- (int)GetRedVideoGainWithInstanceID:(NSString *)instanceid OutCurrentRedVideoGain:(NSMutableString *)currentredvideogain{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -206,7 +206,7 @@
 }
 
 
--(int)SetRedVideoGainWithInstanceID:(NSString*)instanceid DesiredRedVideoGain:(NSString*)desiredredvideogain{
+- (int)SetRedVideoGainWithInstanceID:(NSString *)instanceid DesiredRedVideoGain:(NSString *)desiredredvideogain{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -222,7 +222,7 @@
 }
 
 
--(int)GetGreenVideoGainWithInstanceID:(NSString*)instanceid OutCurrentGreenVideoGain:(NSMutableString*)currentgreenvideogain{
+- (int)GetGreenVideoGainWithInstanceID:(NSString *)instanceid OutCurrentGreenVideoGain:(NSMutableString *)currentgreenvideogain{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -244,7 +244,7 @@
 }
 
 
--(int)SetGreenVideoGainWithInstanceID:(NSString*)instanceid DesiredGreenVideoGain:(NSString*)desiredgreenvideogain{
+- (int)SetGreenVideoGainWithInstanceID:(NSString *)instanceid DesiredGreenVideoGain:(NSString *)desiredgreenvideogain{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -260,7 +260,7 @@
 }
 
 
--(int)GetBlueVideoGainWithInstanceID:(NSString*)instanceid OutCurrentBlueVideoGain:(NSMutableString*)currentbluevideogain{
+- (int)GetBlueVideoGainWithInstanceID:(NSString *)instanceid OutCurrentBlueVideoGain:(NSMutableString *)currentbluevideogain{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -282,7 +282,7 @@
 }
 
 
--(int)SetBlueVideoGainWithInstanceID:(NSString*)instanceid DesiredBlueVideoGain:(NSString*)desiredbluevideogain{
+- (int)SetBlueVideoGainWithInstanceID:(NSString *)instanceid DesiredBlueVideoGain:(NSString *)desiredbluevideogain{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -298,7 +298,7 @@
 }
 
 
--(int)GetRedVideoBlackLevelWithInstanceID:(NSString*)instanceid OutCurrentRedVideoBlackLevel:(NSMutableString*)currentredvideoblacklevel{
+- (int)GetRedVideoBlackLevelWithInstanceID:(NSString *)instanceid OutCurrentRedVideoBlackLevel:(NSMutableString *)currentredvideoblacklevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -320,7 +320,7 @@
 }
 
 
--(int)SetRedVideoBlackLevelWithInstanceID:(NSString*)instanceid DesiredRedVideoBlackLevel:(NSString*)desiredredvideoblacklevel{
+- (int)SetRedVideoBlackLevelWithInstanceID:(NSString *)instanceid DesiredRedVideoBlackLevel:(NSString *)desiredredvideoblacklevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -336,7 +336,7 @@
 }
 
 
--(int)GetGreenVideoBlackLevelWithInstanceID:(NSString*)instanceid OutCurrentGreenVideoBlackLevel:(NSMutableString*)currentgreenvideoblacklevel{
+- (int)GetGreenVideoBlackLevelWithInstanceID:(NSString *)instanceid OutCurrentGreenVideoBlackLevel:(NSMutableString *)currentgreenvideoblacklevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -358,7 +358,7 @@
 }
 
 
--(int)SetGreenVideoBlackLevelWithInstanceID:(NSString*)instanceid DesiredGreenVideoBlackLevel:(NSString*)desiredgreenvideoblacklevel{
+- (int)SetGreenVideoBlackLevelWithInstanceID:(NSString *)instanceid DesiredGreenVideoBlackLevel:(NSString *)desiredgreenvideoblacklevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -374,7 +374,7 @@
 }
 
 
--(int)GetBlueVideoBlackLevelWithInstanceID:(NSString*)instanceid OutCurrentBlueVideoBlackLevel:(NSMutableString*)currentbluevideoblacklevel{
+- (int)GetBlueVideoBlackLevelWithInstanceID:(NSString *)instanceid OutCurrentBlueVideoBlackLevel:(NSMutableString *)currentbluevideoblacklevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -396,7 +396,7 @@
 }
 
 
--(int)SetBlueVideoBlackLevelWithInstanceID:(NSString*)instanceid DesiredBlueVideoBlackLevel:(NSString*)desiredbluevideoblacklevel{
+- (int)SetBlueVideoBlackLevelWithInstanceID:(NSString *)instanceid DesiredBlueVideoBlackLevel:(NSString *)desiredbluevideoblacklevel{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -412,7 +412,7 @@
 }
 
 
--(int)GetColorTemperatureWithInstanceID:(NSString*)instanceid OutCurrentColorTemperature:(NSMutableString*)currentcolortemperature{
+- (int)GetColorTemperatureWithInstanceID:(NSString *)instanceid OutCurrentColorTemperature:(NSMutableString *)currentcolortemperature{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -434,7 +434,7 @@
 }
 
 
--(int)SetColorTemperatureWithInstanceID:(NSString*)instanceid DesiredColorTemperature:(NSString*)desiredcolortemperature{
+- (int)SetColorTemperatureWithInstanceID:(NSString *)instanceid DesiredColorTemperature:(NSString *)desiredcolortemperature{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -450,7 +450,7 @@
 }
 
 
--(int)GetHorizontalKeystoneWithInstanceID:(NSString*)instanceid OutCurrentHorizontalKeystone:(NSMutableString*)currenthorizontalkeystone{
+- (int)GetHorizontalKeystoneWithInstanceID:(NSString *)instanceid OutCurrentHorizontalKeystone:(NSMutableString *)currenthorizontalkeystone{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -472,7 +472,7 @@
 }
 
 
--(int)SetHorizontalKeystoneWithInstanceID:(NSString*)instanceid DesiredHorizontalKeystone:(NSString*)desiredhorizontalkeystone{
+- (int)SetHorizontalKeystoneWithInstanceID:(NSString *)instanceid DesiredHorizontalKeystone:(NSString *)desiredhorizontalkeystone{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -488,7 +488,7 @@
 }
 
 
--(int)GetVerticalKeystoneWithInstanceID:(NSString*)instanceid OutCurrentVerticalKeystone:(NSMutableString*)currentverticalkeystone{
+- (int)GetVerticalKeystoneWithInstanceID:(NSString *)instanceid OutCurrentVerticalKeystone:(NSMutableString *)currentverticalkeystone{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -510,7 +510,7 @@
 }
 
 
--(int)SetVerticalKeystoneWithInstanceID:(NSString*)instanceid DesiredVerticalKeystone:(NSString*)desiredverticalkeystone{
+- (int)SetVerticalKeystoneWithInstanceID:(NSString *)instanceid DesiredVerticalKeystone:(NSString *)desiredverticalkeystone{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -526,7 +526,7 @@
 }
 
 
--(int)GetMuteWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel OutCurrentMute:(NSMutableString*)currentmute{
+- (int)GetMuteWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel OutCurrentMute:(NSMutableString *)currentmute{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -548,7 +548,7 @@
 }
 
 
--(int)SetMuteWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel DesiredMute:(NSString*)desiredmute{
+- (int)SetMuteWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel DesiredMute:(NSString *)desiredmute{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -564,7 +564,7 @@
 }
 
 
--(int)GetVolumeWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel OutCurrentVolume:(NSMutableString*)currentvolume{
+- (int)GetVolumeWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel OutCurrentVolume:(NSMutableString *)currentvolume{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -586,7 +586,7 @@
 }
 
 
--(int)SetVolumeWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel DesiredVolume:(NSString*)desiredvolume{
+- (int)SetVolumeWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel DesiredVolume:(NSString *)desiredvolume{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -602,7 +602,7 @@
 }
 
 
--(int)GetVolumeDBWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel OutCurrentVolume:(NSMutableString*)currentvolume{
+- (int)GetVolumeDBWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel OutCurrentVolume:(NSMutableString *)currentvolume{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -624,7 +624,7 @@
 }
 
 
--(int)SetVolumeDBWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel DesiredVolume:(NSString*)desiredvolume{
+- (int)SetVolumeDBWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel DesiredVolume:(NSString *)desiredvolume{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -640,7 +640,7 @@
 }
 
 
--(int)GetVolumeDBRangeWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel OutMinValue:(NSMutableString*)minvalue OutMaxValue:(NSMutableString*)maxvalue{
+- (int)GetVolumeDBRangeWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel OutMinValue:(NSMutableString *)minvalue OutMaxValue:(NSMutableString *)maxvalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -662,7 +662,7 @@
 }
 
 
--(int)GetLoudnessWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel OutCurrentLoudness:(NSMutableString*)currentloudness{
+- (int)GetLoudnessWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel OutCurrentLoudness:(NSMutableString *)currentloudness{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -684,7 +684,7 @@
 }
 
 
--(int)SetLoudnessWithInstanceID:(NSString*)instanceid Channel:(NSString*)channel DesiredLoudness:(NSString*)desiredloudness{
+- (int)SetLoudnessWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel DesiredLoudness:(NSString *)desiredloudness{
     int ret = 0;
 
     NSDictionary *parameters = nil;

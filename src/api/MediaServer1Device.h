@@ -53,15 +53,15 @@
 }
 
 -(id)init;
--(void)dealloc;
+- (void)dealloc;
 
--(SoapActionsAVTransport1*)avTransport;
--(SoapActionsConnectionManager1*)connectionManager;
--(SoapActionsContentDirectory1*)contentDirectory;
+- (SoapActionsAVTransport1 *)avTransport;
+- (SoapActionsConnectionManager1 *)connectionManager;
+- (SoapActionsContentDirectory1 *)contentDirectory;
 
--(BasicUPnPService*)avTransportService;
--(BasicUPnPService*)connectionManagerService;
--(BasicUPnPService*)contentDirectoryService;
+- (BasicUPnPService *)avTransportService;
+- (BasicUPnPService *)connectionManagerService;
+- (BasicUPnPService *)contentDirectoryService;
 
 
 

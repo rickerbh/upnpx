@@ -65,7 +65,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	[mStatevarCache release];
 	[mStatevarRangeCache release];
 	[mStatevarListCache release];
@@ -76,7 +76,7 @@
 
 
 
--(int)parse{
+- (int)parse{
 	int ret;
 	
 	/*
@@ -143,7 +143,7 @@
 
 
 
--(void)serviceTag:(NSString*)startStop{
+- (void)serviceTag:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStop"]){
 		//Is our cached servicetype the same as the one in the ssdp description, if so we can initialize the upnp service object
 		if([serviceType compare:[[service ssdpdevice] urn] ] == NSOrderedSame){
@@ -158,7 +158,7 @@
 }
 
 
--(void)stateVariable:(NSString*)startStop{
+- (void)stateVariable:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		mCollectingStateVar = YES;
 		//clear our cache
@@ -202,7 +202,7 @@
 }
 
 
--(void)allowedValueRange:(NSString*)startStop{
+- (void)allowedValueRange:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		//Copy from mStatevarCache 
 		[mStatevarRangeCache copyFromStateVariable:mStatevarCache];
@@ -213,7 +213,7 @@
 }
 
 
--(void)allowedValueList:(NSString*)startStop{
+- (void)allowedValueList:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		//Copy from mStatevarCache 
 		[mStatevarListCache copyFromStateVariable:mStatevarCache];
@@ -223,7 +223,7 @@
 	}
 }
 
--(void)setAllowedValue:(NSString*)value{
+- (void)setAllowedValue:(NSString *)value{
 	[[mStatevarListCache list] addObject:value]; 
 }
 

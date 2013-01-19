@@ -43,14 +43,14 @@
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
 	
 	[super dealloc];
 }
 
 
 
--(BasicUPnPService*)allocServiceForSSDPService:(SSDPDBDevice_ObjC*)ssdp{
+- (BasicUPnPService *)allocServiceForSSDPService:(SSDPDBDevice_ObjC*)ssdp{
 	BasicUPnPService* service = nil;	
 
 	//Our BasicUPnPService is generic enough, no need so far to make more specialized, derived services

@@ -41,6 +41,6 @@
 
 -(BasicUPnPDevice*)allocDeviceForSSDPDevice:(SSDPDBDevice_ObjC*)ssdp;
 -(id)init;
--(void)dealloc;
+- (void)dealloc;
 
 @end

@@ -45,23 +45,13 @@
 //
 //</res>
 
-@interface MediaServer1ItemRes : NSObject {
-    int bitrate;
-    NSString *duration;
-    int nrAudioChannels;
-    NSString *protocolInfo;
-    int size;
-    int durationInSeconds;
-}
+@interface MediaServer1ItemRes : NSObject
 
--(void)dealloc;
-
-@property(readwrite) int bitrate;
-@property(retain, nonatomic) NSString *duration;
-@property(readwrite) int nrAudioChannels;
-@property(retain, nonatomic) NSString *protocolInfo;
-@property(readwrite) int size;
-@property(readwrite) int durationInSeconds;
-
+@property (readwrite, assign) int bitrate;
+@property (strong, nonatomic) NSString *duration;
+@property (readwrite, assign) int nrAudioChannels;
+@property (strong, nonatomic) NSString *protocolInfo;
+@property (readwrite, assign) int size;
+@property (readwrite, assign) int durationInSeconds;
 
 @end

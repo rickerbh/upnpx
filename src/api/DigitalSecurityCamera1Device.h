@@ -33,11 +33,9 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-
 #import "SoapActionsDigitalSecurityCameraSettings1.h"
 #import "SoapActionsDigitalSecurityCameraStillImage1.h"
 #import "SoapActionsDigitalSecurityCameraMotionImage1.h"
-
 
 /*
  * Services:
@@ -46,24 +44,13 @@
  * O - DigitalSecurityCameraMotionImage:1
  */
 
+@interface DigitalSecurityCamera1Device : BasicUPnPDevice
 
-@interface DigitalSecurityCamera1Device : BasicUPnPDevice {
-	SoapActionsDigitalSecurityCameraSettings1 *mDigitalSecurityCameraSettings;
-	SoapActionsDigitalSecurityCameraStillImage1 *mDigitalSecurityCameraStillImage;
-	SoapActionsDigitalSecurityCameraMotionImage1 *mDigitalSecurityCameraMotionImage;
-}
-
--(id)init;
--(void)dealloc;
-
--(SoapActionsDigitalSecurityCameraSettings1*)digitalSecurityCameraSettings;
--(SoapActionsDigitalSecurityCameraStillImage1*)digitalSecurityCameraStillImage;
--(SoapActionsDigitalSecurityCameraMotionImage1*)digitalSecurityCameraMotionImage;
-
--(BasicUPnPService*)digitalSecurityCameraSettingsService;
--(BasicUPnPService*)digitalSecurityCameraStillImageService;
--(BasicUPnPService*)digitalSecurityCameraMotionImageService;
-
-
+- (SoapActionsDigitalSecurityCameraSettings1 *)digitalSecurityCameraSettings;
+- (SoapActionsDigitalSecurityCameraStillImage1 *)digitalSecurityCameraStillImage;
+- (SoapActionsDigitalSecurityCameraMotionImage1 *)digitalSecurityCameraMotionImage;
+- (BasicUPnPService *)digitalSecurityCameraSettingsService;
+- (BasicUPnPService *)digitalSecurityCameraStillImageService;
+- (BasicUPnPService *)digitalSecurityCameraMotionImageService;
 
 @end

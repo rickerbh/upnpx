@@ -50,7 +50,7 @@
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
     [objectID release];
     [parentID release];
     [title release];

@@ -9,7 +9,7 @@
 @implementation SoapActionsCallManagement1
 
 
--(int)AcceptCallWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey TargetCallID:(NSString*)targetcallid MediaCapabilityInfo:(NSString*)mediacapabilityinfo CallMode:(NSString*)callmode{
+- (int)AcceptCallWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey TargetCallID:(NSString *)targetcallid MediaCapabilityInfo:(NSString *)mediacapabilityinfo CallMode:(NSString *)callmode{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -25,7 +25,7 @@
 }
 
 
--(int)AcceptModifyCallWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey TargetCallID:(NSString*)targetcallid MediaCapabilityInfo:(NSString*)mediacapabilityinfo{
+- (int)AcceptModifyCallWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey TargetCallID:(NSString *)targetcallid MediaCapabilityInfo:(NSString *)mediacapabilityinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -41,7 +41,7 @@
 }
 
 
--(int)ChangeMonopolizerWithCurrentMonopolizer:(NSString*)currentmonopolizer SecretKey:(NSString*)secretkey TargetCallID:(NSString*)targetcallid NewMonopolizer:(NSString*)newmonopolizer{
+- (int)ChangeMonopolizerWithCurrentMonopolizer:(NSString *)currentmonopolizer SecretKey:(NSString *)secretkey TargetCallID:(NSString *)targetcallid NewMonopolizer:(NSString *)newmonopolizer{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -57,7 +57,7 @@
 }
 
 
--(int)ChangeTelCPNameWithCurrentTelCPName:(NSString*)currenttelcpname CurrentSecretKey:(NSString*)currentsecretkey NewTelCPName:(NSString*)newtelcpname OutNewSecretKey:(NSMutableString*)newsecretkey OutExpires:(NSMutableString*)expires{
+- (int)ChangeTelCPNameWithCurrentTelCPName:(NSString *)currenttelcpname CurrentSecretKey:(NSString *)currentsecretkey NewTelCPName:(NSString *)newtelcpname OutNewSecretKey:(NSMutableString *)newsecretkey OutExpires:(NSMutableString *)expires{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -79,7 +79,7 @@
 }
 
 
--(int)ClearCallBackWithCallBackID:(NSString*)callbackid{
+- (int)ClearCallBackWithCallBackID:(NSString *)callbackid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -95,7 +95,7 @@
 }
 
 
--(int)ClearCallLogs{
+- (int)ClearCallLogs{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -105,7 +105,7 @@
 }
 
 
--(int)GetCallBackInfoWithOutCallBackInfo:(NSMutableString*)callbackinfo{
+- (int)GetCallBackInfoWithOutCallBackInfo:(NSMutableString *)callbackinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -121,7 +121,7 @@
 }
 
 
--(int)GetCallInfoWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey TargetCallID:(NSString*)targetcallid OutCallInfoList:(NSMutableString*)callinfolist{
+- (int)GetCallInfoWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey TargetCallID:(NSString *)targetcallid OutCallInfoList:(NSMutableString *)callinfolist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -143,7 +143,7 @@
 }
 
 
--(int)GetCallLogsWithOutCallLogs:(NSMutableString*)calllogs{
+- (int)GetCallLogsWithOutCallLogs:(NSMutableString *)calllogs{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -159,7 +159,7 @@
 }
 
 
--(int)GetMediaCapabilitiesWithTCMediaCapabilityInfo:(NSString*)tcmediacapabilityinfo OutSupportedMediaCapabilityInfo:(NSMutableString*)supportedmediacapabilityinfo{
+- (int)GetMediaCapabilitiesWithTCMediaCapabilityInfo:(NSString *)tcmediacapabilityinfo OutSupportedMediaCapabilityInfo:(NSMutableString *)supportedmediacapabilityinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -181,7 +181,7 @@
 }
 
 
--(int)GetTelephonyIdentityWithOutTelephonyIdentity:(NSMutableString*)telephonyidentity{
+- (int)GetTelephonyIdentityWithOutTelephonyIdentity:(NSMutableString *)telephonyidentity{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -197,7 +197,7 @@
 }
 
 
--(int)GetTelCPNameListWithOutTelCPNameList:(NSMutableString*)telcpnamelist{
+- (int)GetTelCPNameListWithOutTelCPNameList:(NSMutableString *)telcpnamelist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -213,7 +213,7 @@
 }
 
 
--(int)InitiateCallWithCalleeID:(NSString*)calleeid OutCallID:(NSMutableString*)callid{
+- (int)InitiateCallWithCalleeID:(NSString *)calleeid OutCallID:(NSMutableString *)callid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -235,7 +235,7 @@
 }
 
 
--(int)ModifyCallWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey TargetCallID:(NSString*)targetcallid MediaCapabilityInfo:(NSString*)mediacapabilityinfo{
+- (int)ModifyCallWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey TargetCallID:(NSString *)targetcallid MediaCapabilityInfo:(NSString *)mediacapabilityinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -251,7 +251,7 @@
 }
 
 
--(int)RegisterCallBackWithCalleeID:(NSString*)calleeid OutCallBackID:(NSMutableString*)callbackid{
+- (int)RegisterCallBackWithCalleeID:(NSString *)calleeid OutCallBackID:(NSMutableString *)callbackid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -273,7 +273,7 @@
 }
 
 
--(int)RegisterTelCPNameWithTelCPName:(NSString*)telcpname CurrentSecretKey:(NSString*)currentsecretkey OutNewSecretKey:(NSMutableString*)newsecretkey OutExpires:(NSMutableString*)expires{
+- (int)RegisterTelCPNameWithTelCPName:(NSString *)telcpname CurrentSecretKey:(NSString *)currentsecretkey OutNewSecretKey:(NSMutableString *)newsecretkey OutExpires:(NSMutableString *)expires{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -295,7 +295,7 @@
 }
 
 
--(int)RejectCallWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey TargetCallID:(NSString*)targetcallid RejectReason:(NSString*)rejectreason{
+- (int)RejectCallWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey TargetCallID:(NSString *)targetcallid RejectReason:(NSString *)rejectreason{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -311,7 +311,7 @@
 }
 
 
--(int)StartCallWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey CalleeID:(NSString*)calleeid CallPriority:(NSString*)callpriority MediaCapabilityInfo:(NSString*)mediacapabilityinfo CallMode:(NSString*)callmode OutCallID:(NSMutableString*)callid{
+- (int)StartCallWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey CalleeID:(NSString *)calleeid CallPriority:(NSString *)callpriority MediaCapabilityInfo:(NSString *)mediacapabilityinfo CallMode:(NSString *)callmode OutCallID:(NSMutableString *)callid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -333,7 +333,7 @@
 }
 
 
--(int)StartMediaTransferWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey TargetCallID:(NSString*)targetcallid TCList:(NSString*)tclist MediaCapabilityInfo:(NSString*)mediacapabilityinfo{
+- (int)StartMediaTransferWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey TargetCallID:(NSString *)targetcallid TCList:(NSString *)tclist MediaCapabilityInfo:(NSString *)mediacapabilityinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -349,7 +349,7 @@
 }
 
 
--(int)StopCallWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey CallID:(NSString*)callid{
+- (int)StopCallWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey CallID:(NSString *)callid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -365,7 +365,7 @@
 }
 
 
--(int)UnregisterTelCPNameWithTelCPName:(NSString*)telcpname SecretKey:(NSString*)secretkey{
+- (int)UnregisterTelCPNameWithTelCPName:(NSString *)telcpname SecretKey:(NSString *)secretkey{
     int ret = 0;
 
     NSDictionary *parameters = nil;

@@ -31,7 +31,6 @@
 //
 // **********************************************************************************
 
-
 /* WANConnectionDevice:2 Services (O:Optional/R:Required)
  *
  * WANPOTSLinkConfig:1			O for POTS modems
@@ -43,10 +42,8 @@
  * WANIPv6FirewallControl:1     O
  */
 
-
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-
 #import "SoapActionsWANPOTSLinkConfig1.h"
 #import "SoapActionsWANDSLLinkConfig1.h"
 #import "SoapActionsWANCableLinkConfig1.h"
@@ -55,35 +52,22 @@
 #import "SoapActionsWANIPConnection2.h"
 #import "SoapActionsWANIPv6FirewallControl1.h"
 
+@interface WANConnection2Device : BasicUPnPDevice
 
-@interface WANConnection2Device : BasicUPnPDevice {
-    SoapActionsWANPOTSLinkConfig1 *mPOTSLinkConfig;
-    SoapActionsWANDSLLinkConfig1 *mDSLLinkConfig;
-    SoapActionsWANCableLinkConfig1 *mCableLinkConfig;
-    SoapActionsWANEthernetLinkConfig1 *mEthernetLinkConfig;
-    SoapActionsWANPPPConnection1 *mPPPConnection;
-    SoapActionsWANIPConnection2 *mIPConnection;
-    SoapActionsWANIPv6FirewallControl1 *mIPv6FirewallControl;
-}
+- (SoapActionsWANPOTSLinkConfig1 *)potsLinkConfig;
+- (SoapActionsWANDSLLinkConfig1 *)dslLinkConfig;
+- (SoapActionsWANCableLinkConfig1 *)cableLinkConfig;
+- (SoapActionsWANEthernetLinkConfig1 *)ethernetLinkConfig;
+- (SoapActionsWANPPPConnection1 *)pppConnection;
+- (SoapActionsWANIPConnection2 *)ipConnection;
+- (SoapActionsWANIPv6FirewallControl1 *)ipv6FirewallControl;
 
--(id)init;
--(void)dealloc;
-
--(SoapActionsWANPOTSLinkConfig1*)potsLinkConfig;
--(SoapActionsWANDSLLinkConfig1*)dslLinkConfig;
--(SoapActionsWANCableLinkConfig1*)cableLinkConfig;
--(SoapActionsWANEthernetLinkConfig1*)ethernetLinkConfig;
--(SoapActionsWANPPPConnection1*)pppConnection;
--(SoapActionsWANIPConnection2*)ipConnection;
--(SoapActionsWANIPv6FirewallControl1*)ipv6FirewallControl;
-
--(BasicUPnPService*)potsLinkConfigService;
--(BasicUPnPService*)dslLinkConfigService;
--(BasicUPnPService*)cableLinkConfigService;
--(BasicUPnPService*)ethernetLinkConfigService;
--(BasicUPnPService*)pppConnectionService;
--(BasicUPnPService*)ipConnectionService;
--(BasicUPnPService*)ipv6FirewallControlService;
-
+- (BasicUPnPService *)potsLinkConfigService;
+- (BasicUPnPService *)dslLinkConfigService;
+- (BasicUPnPService *)cableLinkConfigService;
+- (BasicUPnPService *)ethernetLinkConfigService;
+- (BasicUPnPService *)pppConnectionService;
+- (BasicUPnPService *)ipConnectionService;
+- (BasicUPnPService *)ipv6FirewallControlService;
 
 @end

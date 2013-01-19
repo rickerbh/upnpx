@@ -10,10 +10,10 @@
 
 //SOAP
 
--(int)GetMediaCapabilitiesWithTSMediaCapabilityInfo:(NSString*)tsmediacapabilityinfo OutSupportedMediaCapabilityInfo:(NSMutableString*)supportedmediacapabilityinfo;
--(int)GetMediaSessionInfoWithTargetMediaSessionID:(NSString*)targetmediasessionid OutMediaSessionInfoList:(NSMutableString*)mediasessioninfolist;
--(int)ModifyMediaSessionWithTargetMediaSessionID:(NSString*)targetmediasessionid NewMediaCapabilityInfo:(NSString*)newmediacapabilityinfo OutTCMediaCapabilityInfo:(NSMutableString*)tcmediacapabilityinfo;
--(int)StartMediaSessionWithTSMediaCapabilityInfo:(NSString*)tsmediacapabilityinfo OutMediaSessionID:(NSMutableString*)mediasessionid OutTCMediaCapabilityInfo:(NSMutableString*)tcmediacapabilityinfo;
--(int)StopMediaSessionWithTargetMediaSessionID:(NSString*)targetmediasessionid;
+- (int)GetMediaCapabilitiesWithTSMediaCapabilityInfo:(NSString *)tsmediacapabilityinfo OutSupportedMediaCapabilityInfo:(NSMutableString *)supportedmediacapabilityinfo;
+- (int)GetMediaSessionInfoWithTargetMediaSessionID:(NSString *)targetmediasessionid OutMediaSessionInfoList:(NSMutableString *)mediasessioninfolist;
+- (int)ModifyMediaSessionWithTargetMediaSessionID:(NSString *)targetmediasessionid NewMediaCapabilityInfo:(NSString *)newmediacapabilityinfo OutTCMediaCapabilityInfo:(NSMutableString *)tcmediacapabilityinfo;
+- (int)StartMediaSessionWithTSMediaCapabilityInfo:(NSString *)tsmediacapabilityinfo OutMediaSessionID:(NSMutableString *)mediasessionid OutTCMediaCapabilityInfo:(NSMutableString *)tcmediacapabilityinfo;
+- (int)StopMediaSessionWithTargetMediaSessionID:(NSString *)targetmediasessionid;
 
 @end

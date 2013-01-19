@@ -41,8 +41,8 @@
  */
 @protocol BasicHTTPServer_ObjC_Observer
 //Methods to hook into the HTTP Server
--(BOOL)canProcessMethod:(BasicHTTPServer_ObjC*)sender requestMethod:(NSString*)method;
--(BOOL)request:(BasicHTTPServer_ObjC*)sender method:(NSString*)method path:(NSString*)path version:(NSString*)version headers:(NSDictionary*)headers body:(NSData*)body;
+-(BOOL)canProcessMethod:(BasicHTTPServer_ObjC*)sender requestMethod:(NSString *)method;
+-(BOOL)request:(BasicHTTPServer_ObjC*)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData*)body;
 -(BOOL)response:(BasicHTTPServer_ObjC*)sender returncode:(int*)returncode headers:(NSMutableDictionary*)headers body:(NSMutableData*)body;
 @end
 
@@ -56,13 +56,13 @@
 
 
 -(id)init;
--(void)dealloc;
--(int)start;
--(int)stop;
--(void)addObserver:(BasicHTTPServer_ObjC_Observer*)observer;
--(void)removeObserver:(BasicHTTPServer_ObjC_Observer*)observer;
+- (void)dealloc;
+- (int)start;
+- (int)stop;
+- (void)addObserver:(BasicHTTPServer_ObjC_Observer*)observer;
+- (void)removeObserver:(BasicHTTPServer_ObjC_Observer*)observer;
 -(NSMutableArray*)getObservers;
--(NSString*)getIPAddress;
+-(NSString *)getIPAddress;
 -(unsigned short)getPort;
 
 @end

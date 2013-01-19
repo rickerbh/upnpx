@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15004517141298EA00ED553F /* MediaServer1ItemRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 15004515141298E900ED553F /* MediaServer1ItemRes.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15004517141298EA00ED553F /* MediaServer1ItemRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 15004515141298E900ED553F /* MediaServer1ItemRes.m */; };
 		1500451A1412A00C00ED553F /* MediaServer1ItemRes.h in Headers */ = {isa = PBXBuildFile; fileRef = 150045191412A00C00ED553F /* MediaServer1ItemRes.h */; };
 		15055E8B1391E2A4003DE49F /* SoapActionsCallManagement1.h in Headers */ = {isa = PBXBuildFile; fileRef = 15055E831391E2A4003DE49F /* SoapActionsCallManagement1.h */; };
 		15055E8C1391E2A4003DE49F /* SoapActionsConfigurationManagement1.h in Headers */ = {isa = PBXBuildFile; fileRef = 15055E841391E2A4003DE49F /* SoapActionsConfigurationManagement1.h */; };
@@ -23,8 +23,8 @@
 		15055E9F1391E2C1003DE49F /* SoapActionsInputConfig1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E971391E2C1003DE49F /* SoapActionsInputConfig1.m */; };
 		15055EA01391E2C1003DE49F /* SoapActionsMediaManagement1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E981391E2C1003DE49F /* SoapActionsMediaManagement1.m */; };
 		15055EA11391E2C1003DE49F /* SoapActionsMessaging1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E991391E2C1003DE49F /* SoapActionsMessaging1.m */; };
-		15055EA21391E2C1003DE49F /* TelephonyClient1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E9A1391E2C1003DE49F /* TelephonyClient1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15055EA31391E2C1003DE49F /* TelephonyServer1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E9B1391E2C1003DE49F /* TelephonyServer1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15055EA21391E2C1003DE49F /* TelephonyClient1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E9A1391E2C1003DE49F /* TelephonyClient1Device.m */; };
+		15055EA31391E2C1003DE49F /* TelephonyServer1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E9B1391E2C1003DE49F /* TelephonyServer1Device.m */; };
 		1541026313D2762A000894ED /* OrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 1541026113D2762A000894ED /* OrderedDictionary.h */; };
 		1541026413D2762A000894ED /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1541026213D2762A000894ED /* OrderedDictionary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		154978C71393D863008A5BD4 /* BinaryLight1Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 154978C51393D863008A5BD4 /* BinaryLight1Device.h */; };
@@ -58,9 +58,9 @@
 		155840431391349900A734E7 /* WAN2Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 1558402F1391349900A734E7 /* WAN2Device.h */; };
 		155840441391349900A734E7 /* WANConnection1Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 155840301391349900A734E7 /* WANConnection1Device.h */; };
 		155840451391349900A734E7 /* WANConnection2Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 155840311391349900A734E7 /* WANConnection2Device.h */; };
-		15584058139134E900A734E7 /* DigitalSecurityCamera1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584047139134E900A734E7 /* DigitalSecurityCamera1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15584059139134E900A734E7 /* InternetGateway2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584048139134E900A734E7 /* InternetGateway2Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1558405A139134E900A734E7 /* LAN1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584049139134E900A734E7 /* LAN1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15584058139134E900A734E7 /* DigitalSecurityCamera1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584047139134E900A734E7 /* DigitalSecurityCamera1Device.m */; };
+		15584059139134E900A734E7 /* InternetGateway2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584048139134E900A734E7 /* InternetGateway2Device.m */; };
+		1558405A139134E900A734E7 /* LAN1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584049139134E900A734E7 /* LAN1Device.m */; };
 		1558405B139134E900A734E7 /* SoapActionsDigitalSecurityCameraMotionImage1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1558404A139134E900A734E7 /* SoapActionsDigitalSecurityCameraMotionImage1.m */; };
 		1558405C139134E900A734E7 /* SoapActionsDigitalSecurityCameraSettings1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1558404B139134E900A734E7 /* SoapActionsDigitalSecurityCameraSettings1.m */; };
 		1558405D139134E900A734E7 /* SoapActionsDigitalSecurityCameraStillImage1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1558404C139134E900A734E7 /* SoapActionsDigitalSecurityCameraStillImage1.m */; };
@@ -74,7 +74,7 @@
 		15584065139134E900A734E7 /* SoapActionsWANIPv6FirewallControl1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584054139134E900A734E7 /* SoapActionsWANIPv6FirewallControl1.m */; };
 		15584066139134E900A734E7 /* SoapActionsWANPOTSLinkConfig1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584055139134E900A734E7 /* SoapActionsWANPOTSLinkConfig1.m */; };
 		15584067139134E900A734E7 /* WAN2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584056139134E900A734E7 /* WAN2Device.m */; };
-		15584068139134E900A734E7 /* WANConnection2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584057139134E900A734E7 /* WANConnection2Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15584068139134E900A734E7 /* WANConnection2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584057139134E900A734E7 /* WANConnection2Device.m */; };
 		15BAC4F8132C22BA00F5C41A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BAC4F7132C22BA00F5C41A /* Foundation.framework */; };
 		15C44D9F132C30000013D453 /* basichttpobserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44D91132C30000013D453 /* basichttpobserver.h */; };
 		15C44DA1132C30000013D453 /* BasicHTTPServer_ObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D93132C30000013D453 /* BasicHTTPServer_ObjC.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -145,25 +145,25 @@
 		15C44E68132C30490013D453 /* MediaServer1ItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1B132C30490013D453 /* MediaServer1ItemObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15C44E6A132C30490013D453 /* MediaServerBasicObjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1D132C30490013D453 /* MediaServerBasicObjectParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15C44E6C132C30490013D453 /* ServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1F132C30490013D453 /* ServiceFactory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E6E132C30490013D453 /* SoapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E21132C30490013D453 /* SoapAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E70132C30490013D453 /* SoapActionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E23132C30490013D453 /* SoapActionFactory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44E6E132C30490013D453 /* SoapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E21132C30490013D453 /* SoapAction.m */; };
+		15C44E70132C30490013D453 /* SoapActionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E23132C30490013D453 /* SoapActionFactory.m */; };
 		15C44E72132C30490013D453 /* SoapActionsAVTransport1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E25132C30490013D453 /* SoapActionsAVTransport1.m */; };
 		15C44E74132C30490013D453 /* SoapActionsConnectionManager1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E27132C30490013D453 /* SoapActionsConnectionManager1.m */; };
-		15C44E76132C30490013D453 /* SoapActionsContentDirectory1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E29132C30490013D453 /* SoapActionsContentDirectory1.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44E76132C30490013D453 /* SoapActionsContentDirectory1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E29132C30490013D453 /* SoapActionsContentDirectory1.m */; };
 		15C44E78132C30490013D453 /* SoapActionsDimming1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E2B132C30490013D453 /* SoapActionsDimming1.m */; };
-		15C44E7A132C30490013D453 /* SoapActionsRendering.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E2D132C30490013D453 /* SoapActionsRendering.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44E7A132C30490013D453 /* SoapActionsRendering.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E2D132C30490013D453 /* SoapActionsRendering.m */; };
 		15C44E7C132C30490013D453 /* SoapActionsRenderingControl1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E2F132C30490013D453 /* SoapActionsRenderingControl1.m */; };
 		15C44E7E132C30490013D453 /* SoapActionsSwitchPower1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E31132C30490013D453 /* SoapActionsSwitchPower1.m */; };
 		15C44E80132C30490013D453 /* SoapActionsWANIPConnection1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E33132C30490013D453 /* SoapActionsWANIPConnection1.m */; };
 		15C44E82132C30490013D453 /* SoapActionsWANPPPConnection1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E35132C30490013D453 /* SoapActionsWANPPPConnection1.m */; };
-		15C44E84132C30490013D453 /* StateVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E37132C30490013D453 /* StateVariable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E86132C30490013D453 /* StateVariableList.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E39132C30490013D453 /* StateVariableList.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E88132C30490013D453 /* StateVariableRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E3B132C30490013D453 /* StateVariableRange.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E8A132C30490013D453 /* UPnPDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E3E132C30490013D453 /* UPnPDB.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44E84132C30490013D453 /* StateVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E37132C30490013D453 /* StateVariable.m */; };
+		15C44E86132C30490013D453 /* StateVariableList.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E39132C30490013D453 /* StateVariableList.m */; };
+		15C44E88132C30490013D453 /* StateVariableRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E3B132C30490013D453 /* StateVariableRange.m */; };
+		15C44E8A132C30490013D453 /* UPnPDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E3E132C30490013D453 /* UPnPDB.m */; };
 		15C44E8C132C30490013D453 /* UPnPEventParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E40132C30490013D453 /* UPnPEventParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15C44E8E132C30490013D453 /* UPnPEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E42132C30490013D453 /* UPnPEvents.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E90132C30490013D453 /* UPnPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E44132C30490013D453 /* UPnPManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E92132C30490013D453 /* WANConnection1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E46132C30490013D453 /* WANConnection1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44E90132C30490013D453 /* UPnPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E44132C30490013D453 /* UPnPManager.m */; };
+		15C44E92132C30490013D453 /* WANConnection1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E46132C30490013D453 /* WANConnection1Device.m */; };
 		15C44EA2132C332D0013D453 /* iphoneport.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44EA1132C332D0013D453 /* iphoneport.h */; };
 		15C44F04132C3AF80013D453 /* BasicHTTPServer_ObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44EF8132C3AF80013D453 /* BasicHTTPServer_ObjC.h */; };
 		15C44F05132C3AF80013D453 /* BasicParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44EF9132C3AF80013D453 /* BasicParser.h */; };

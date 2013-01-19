@@ -89,7 +89,7 @@
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
     NSLog(@"BasicUPnPService - dealloc - %@", [ssdpdevice urn]);
 
 	if(eventUUID != nil){
@@ -125,7 +125,7 @@
 }
 
 
--(int)addObserver:(BasicUPnPServiceObserver*)obs{
+- (int)addObserver:(BasicUPnPServiceObserver*)obs{
 	int ret = 0;
 	
 	[mMutex lock];
@@ -136,7 +136,7 @@
 	return ret;	
 }
 
--(int)removeObserver:(BasicUPnPServiceObserver*)obs{
+- (int)removeObserver:(BasicUPnPServiceObserver*)obs{
 	int ret = 0;
 	
 	[mMutex lock];
@@ -159,7 +159,7 @@
 
 
 //Can be overriden by subclasses if they need ohter kind of parsing
--(int)process{
+- (int)process{
 	int ret = 0;
 	
 	if(isProcessed == YES){
@@ -204,21 +204,22 @@
 	[mMutex unlock];
 }
 
--(NSURL*)GetUPnPEventURL{
+-(NSURL *)GetUPnPEventURL{
 	NSURL *ret = nil;
 	if(eventURL){
 		ret = [NSURL URLWithString:eventURL relativeToURL:baseURL];		
+    NSLog(@"[BasicUPnPService GetUPnPEventURL: %@", ret);
 	}
 	return ret;
 }
 
--(void)SubscriptionTimerExpiresIn:(int)seconds timeoutSubscription:(int)timeout timeSubscription:(double)subscribed{
+- (void)SubscriptionTimerExpiresIn:(int)seconds timeoutSubscription:(int)timeout timeSubscription:(double)subscribed{
 
 	//Re-Subscribe
 	if(eventURL){
         NSString *oldUUID = eventUUID;
 		eventUUID = [[[UPnPManager GetInstance] upnpEvents] Subscribe:(UPnPEvents_Observer*)self]; 		
-        if(eventUUID != nil){
+        if(eventUUID != nil && oldUUID){
             //NSLog(@"Service Re-Subsrcibed for events; uuid:%@, old uuid:%@", eventUUID, oldUUID);
             //Unsubscribe old
             [[[UPnPManager GetInstance] upnpEvents] UnSubscribe:oldUUID];

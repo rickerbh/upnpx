@@ -40,10 +40,10 @@
 @interface ServiceFactory : NSObject {
 }
 
--(BasicUPnPService*)allocServiceForSSDPService:(SSDPDBDevice_ObjC*)ssdp;
+- (BasicUPnPService *)allocServiceForSSDPService:(SSDPDBDevice_ObjC*)ssdp;
 
 
 -(id)init;
--(void)dealloc;
+- (void)dealloc;
 
 @end

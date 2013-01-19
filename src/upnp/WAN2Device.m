@@ -41,7 +41,7 @@
 
 - (SoapActionsWANCommonInterfaceConfig1 *)commonInterfaceConfig {
 	if (!self.mCommonInterfaceConfig) {
-		self.mCommonInterfaceConfig = (SoapActionsWANCommonInterfaceConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1"] soap];
+		self.mCommonInterfaceConfig = (SoapActionsWANCommonInterfaceConfig1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1"] soap];
 	}
 	return self.mCommonInterfaceConfig;
 }

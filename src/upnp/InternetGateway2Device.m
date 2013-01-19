@@ -34,45 +34,21 @@
 
 #import "InternetGateway2Device.h"
 
+@interface InternetGateway2Device ()
+@property (strong) SoapActionsLayer3Forwarding1 *mLayer3Forwarding;
+@end
 
 @implementation InternetGateway2Device
 
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mLayer3Forwarding = nil;
+- (SoapActionsLayer3Forwarding1 *)layer3Forwarding {
+	if(!self.mLayer3Forwarding) {
+		self.mLayer3Forwarding = (SoapActionsLayer3Forwarding1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:Layer3Forwarding:1"] soap];
 	}
-    
-	return self;
+	return self.mLayer3Forwarding;
 }
 
-
--(void)dealloc{
-	
-	[mLayer3Forwarding release];
-	
-	[super dealloc];
-}
-
-
-
--(SoapActionsLayer3Forwarding1*)layer3Forwarding{
-	if(mLayer3Forwarding == nil){
-		mLayer3Forwarding = (SoapActionsLayer3Forwarding1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:Layer3Forwarding:1"] soap];
-		[mLayer3Forwarding retain];
-	}	
-	return mLayer3Forwarding;
-}
-
-
--(BasicUPnPService*)layer3ForwardingService{
+- (BasicUPnPService *)layer3ForwardingService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:Layer3Forwarding:1"];
 }
-
-
-
 
 @end

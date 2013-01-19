@@ -72,13 +72,13 @@
 
 -(id)initWithMediaObjectArray:(NSMutableArray*)mediaObjectsArray;
 -(id)initWithMediaObjectArray:(NSMutableArray*)mediaObjectsArray itemsOnly:(BOOL)onlyItems;
--(void)dealloc;
+- (void)dealloc;
 
--(void)container:(NSString*)startStop;
--(void)item:(NSString*)startStop;
--(void)empty;
+- (void)container:(NSString *)startStop;
+- (void)item:(NSString *)startStop;
+- (void)empty;
 
--(void)setUri:(NSString*)s;
+- (void)setUri:(NSString *)s;
 
 @property(readwrite, retain) NSString *mediaTitle;
 @property(readwrite, retain) NSString *mediaClass;

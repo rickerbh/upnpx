@@ -9,7 +9,7 @@
 @implementation SoapActionsConfigurationManagement1
 
 
--(int)GetSupportedDataModelsWithOutSupportedDataModels:(NSMutableString*)supporteddatamodels{
+- (int)GetSupportedDataModelsWithOutSupportedDataModels:(NSMutableString *)supporteddatamodels{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -25,7 +25,7 @@
 }
 
 
--(int)GetSupportedParametersWithStartingNode:(NSString*)startingnode SearchDepth:(NSString*)searchdepth OutResult:(NSMutableString*)result{
+- (int)GetSupportedParametersWithStartingNode:(NSString *)startingnode SearchDepth:(NSString *)searchdepth OutResult:(NSMutableString *)result{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -47,7 +47,7 @@
 }
 
 
--(int)GetInstancesWithStartingNode:(NSString*)startingnode SearchDepth:(NSString*)searchdepth OutResult:(NSMutableString*)result{
+- (int)GetInstancesWithStartingNode:(NSString *)startingnode SearchDepth:(NSString *)searchdepth OutResult:(NSMutableString *)result{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -69,7 +69,7 @@
 }
 
 
--(int)GetValuesWithParameters:(NSString*)parameters OutParameterValueList:(NSMutableString*)parametervaluelist{
+- (int)GetValuesWithParameters:(NSString *)parameters OutParameterValueList:(NSMutableString *)parametervaluelist{
     int ret = 0;
 
     NSDictionary *parametersd = nil;
@@ -91,7 +91,7 @@
 }
 
 
--(int)GetSelectedValuesWithStartingNode:(NSString*)startingnode Filter:(NSString*)filter OutParameterValueList:(NSMutableString*)parametervaluelist{
+- (int)GetSelectedValuesWithStartingNode:(NSString *)startingnode Filter:(NSString *)filter OutParameterValueList:(NSMutableString *)parametervaluelist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -113,7 +113,7 @@
 }
 
 
--(int)SetValuesWithParameterValueList:(NSString*)parametervaluelist OutStatus:(NSMutableString*)status{
+- (int)SetValuesWithParameterValueList:(NSString *)parametervaluelist OutStatus:(NSMutableString *)status{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -135,7 +135,7 @@
 }
 
 
--(int)CreateInstanceWithMultiInstanceName:(NSString*)multiinstancename ChildrenInitialization:(NSString*)childreninitialization OutInstanceIdentifier:(NSMutableString*)instanceidentifier OutStatus:(NSMutableString*)status{
+- (int)CreateInstanceWithMultiInstanceName:(NSString *)multiinstancename ChildrenInitialization:(NSString *)childreninitialization OutInstanceIdentifier:(NSMutableString *)instanceidentifier OutStatus:(NSMutableString *)status{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -157,7 +157,7 @@
 }
 
 
--(int)DeleteInstanceWithInstanceIdentifier:(NSString*)instanceidentifier OutStatus:(NSMutableString*)status{
+- (int)DeleteInstanceWithInstanceIdentifier:(NSString *)instanceidentifier OutStatus:(NSMutableString *)status{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -179,7 +179,7 @@
 }
 
 
--(int)GetAttributesWithParameters:(NSString*)parameters OutNodeAttributeValueList:(NSMutableString*)nodeattributevaluelist{
+- (int)GetAttributesWithParameters:(NSString *)parameters OutNodeAttributeValueList:(NSMutableString *)nodeattributevaluelist{
     int ret = 0;
 
     NSDictionary *parametersd = nil;
@@ -201,7 +201,7 @@
 }
 
 
--(int)SetAttributesWithNodeAttributeValueList:(NSString*)nodeattributevaluelist OutStatus:(NSMutableString*)status{
+- (int)SetAttributesWithNodeAttributeValueList:(NSString *)nodeattributevaluelist OutStatus:(NSMutableString *)status{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -223,7 +223,7 @@
 }
 
 
--(int)GetInconsistentStatusWithOutStateVariableValue:(NSMutableString*)statevariablevalue{
+- (int)GetInconsistentStatusWithOutStateVariableValue:(NSMutableString *)statevariablevalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -239,7 +239,7 @@
 }
 
 
--(int)GetConfigurationUpdateWithOutStateVariableValue:(NSMutableString*)statevariablevalue{
+- (int)GetConfigurationUpdateWithOutStateVariableValue:(NSMutableString *)statevariablevalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -255,7 +255,7 @@
 }
 
 
--(int)GetCurrentConfigurationVersionWithOutStateVariableValue:(NSMutableString*)statevariablevalue{
+- (int)GetCurrentConfigurationVersionWithOutStateVariableValue:(NSMutableString *)statevariablevalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -271,7 +271,7 @@
 }
 
 
--(int)GetSupportedDataModelsUpdateWithOutStateVariableValue:(NSMutableString*)statevariablevalue{
+- (int)GetSupportedDataModelsUpdateWithOutStateVariableValue:(NSMutableString *)statevariablevalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -287,7 +287,7 @@
 }
 
 
--(int)GetSupportedParametersUpdateWithOutStateVariableValue:(NSMutableString*)statevariablevalue{
+- (int)GetSupportedParametersUpdateWithOutStateVariableValue:(NSMutableString *)statevariablevalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -303,7 +303,7 @@
 }
 
 
--(int)GetAttributeValuesUpdateWithOutStateVariableValue:(NSMutableString*)statevariablevalue{
+- (int)GetAttributeValuesUpdateWithOutStateVariableValue:(NSMutableString *)statevariablevalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;

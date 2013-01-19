@@ -32,7 +32,7 @@
 @implementation SoapActionsSwitchPower1
 
 
--(int)SetTargetWithnewTargetValue:(NSString*)newtargetvalue{
+- (int)SetTargetWithnewTargetValue:(NSString *)newtargetvalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -48,7 +48,7 @@
 }
 
 
--(int)GetTargetWithOutRetTargetValue:(NSMutableString*)rettargetvalue{
+- (int)GetTargetWithOutRetTargetValue:(NSMutableString *)rettargetvalue{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -64,7 +64,7 @@
 }
 
 
--(int)GetStatusWithOutResultStatus:(NSMutableString*)resultstatus{
+- (int)GetStatusWithOutResultStatus:(NSMutableString *)resultstatus{
     int ret = 0;
 
     NSDictionary *parameters = nil;

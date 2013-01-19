@@ -9,7 +9,7 @@
 @implementation SoapActionsInputConfig1
 
 
--(int)GetInputCapabilityWithOutSupportedCapabilities:(NSMutableString*)supportedcapabilities{
+- (int)GetInputCapabilityWithOutSupportedCapabilities:(NSMutableString *)supportedcapabilities{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -25,7 +25,7 @@
 }
 
 
--(int)GetInputConnectionListWithOutCurrentConnectionList:(NSMutableString*)currentconnectionlist{
+- (int)GetInputConnectionListWithOutCurrentConnectionList:(NSMutableString *)currentconnectionlist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -41,7 +41,7 @@
 }
 
 
--(int)SetInputSessionWithSelectedCapability:(NSString*)selectedcapability ReceiverInfo:(NSString*)receiverinfo PeerDeviceInfo:(NSString*)peerdeviceinfo ConnectionInfo:(NSString*)connectioninfo OutSessionID:(NSMutableString*)sessionid{
+- (int)SetInputSessionWithSelectedCapability:(NSString *)selectedcapability ReceiverInfo:(NSString *)receiverinfo PeerDeviceInfo:(NSString *)peerdeviceinfo ConnectionInfo:(NSString *)connectioninfo OutSessionID:(NSMutableString *)sessionid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -63,7 +63,7 @@
 }
 
 
--(int)StartInputSessionWithSessionID:(NSString*)sessionid{
+- (int)StartInputSessionWithSessionID:(NSString *)sessionid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -79,7 +79,7 @@
 }
 
 
--(int)StopInputsessionWithSessionID:(NSString*)sessionid{
+- (int)StopInputsessionWithSessionID:(NSString *)sessionid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -95,7 +95,7 @@
 }
 
 
--(int)SwitchInputSessionWithSessionID:(NSString*)sessionid{
+- (int)SwitchInputSessionWithSessionID:(NSString *)sessionid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -111,7 +111,7 @@
 }
 
 
--(int)SetMultiInputModeWithNewMultiInputMode:(NSString*)newmultiinputmode{
+- (int)SetMultiInputModeWithNewMultiInputMode:(NSString *)newmultiinputmode{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -127,7 +127,7 @@
 }
 
 
--(int)SetMonopolizedSenderWithOwnerDeviceInfo:(NSString*)ownerdeviceinfo OwnedSessionID:(NSString*)ownedsessionid{
+- (int)SetMonopolizedSenderWithOwnerDeviceInfo:(NSString *)ownerdeviceinfo OwnedSessionID:(NSString *)ownedsessionid{
     int ret = 0;
 
     NSDictionary *parameters = nil;

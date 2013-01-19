@@ -52,12 +52,12 @@
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
 	[super dealloc];
 }
 
 
--(void)propertyName:(NSString*)startStop{
+- (void)propertyName:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 	}else{		
 		//Element name

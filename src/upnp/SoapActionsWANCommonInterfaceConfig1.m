@@ -9,7 +9,7 @@
 @implementation SoapActionsWANCommonInterfaceConfig1
 
 
--(int)SetEnabledForInternetWithNewEnabledForInternet:(NSString*)newenabledforinternet{
+- (int)SetEnabledForInternetWithNewEnabledForInternet:(NSString *)newenabledforinternet{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -25,7 +25,7 @@
 }
 
 
--(int)GetEnabledForInternetWithOutNewEnabledForInternet:(NSMutableString*)newenabledforinternet{
+- (int)GetEnabledForInternetWithOutNewEnabledForInternet:(NSMutableString *)newenabledforinternet{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -41,7 +41,7 @@
 }
 
 
--(int)GetCommonLinkPropertiesWithOutNewWANAccessType:(NSMutableString*)newwanaccesstype OutNewLayer1UpstreamMaxBitRate:(NSMutableString*)newlayer1upstreammaxbitrate OutNewLayer1DownstreamMaxBitRate:(NSMutableString*)newlayer1downstreammaxbitrate OutNewPhysicalLinkStatus:(NSMutableString*)newphysicallinkstatus{
+- (int)GetCommonLinkPropertiesWithOutNewWANAccessType:(NSMutableString *)newwanaccesstype OutNewLayer1UpstreamMaxBitRate:(NSMutableString *)newlayer1upstreammaxbitrate OutNewLayer1DownstreamMaxBitRate:(NSMutableString *)newlayer1downstreammaxbitrate OutNewPhysicalLinkStatus:(NSMutableString *)newphysicallinkstatus{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -57,7 +57,7 @@
 }
 
 
--(int)GetWANAccessProviderWithOutNewWANAccessProvider:(NSMutableString*)newwanaccessprovider{
+- (int)GetWANAccessProviderWithOutNewWANAccessProvider:(NSMutableString *)newwanaccessprovider{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -73,7 +73,7 @@
 }
 
 
--(int)GetMaximumActiveConnectionsWithOutNewMaximumActiveConnections:(NSMutableString*)newmaximumactiveconnections{
+- (int)GetMaximumActiveConnectionsWithOutNewMaximumActiveConnections:(NSMutableString *)newmaximumactiveconnections{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -89,7 +89,7 @@
 }
 
 
--(int)GetTotalBytesSentWithOutNewTotalBytesSent:(NSMutableString*)newtotalbytessent{
+- (int)GetTotalBytesSentWithOutNewTotalBytesSent:(NSMutableString *)newtotalbytessent{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -105,7 +105,7 @@
 }
 
 
--(int)GetTotalBytesReceivedWithOutNewTotalBytesReceived:(NSMutableString*)newtotalbytesreceived{
+- (int)GetTotalBytesReceivedWithOutNewTotalBytesReceived:(NSMutableString *)newtotalbytesreceived{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -121,7 +121,7 @@
 }
 
 
--(int)GetTotalPacketsSentWithOutNewTotalPacketsSent:(NSMutableString*)newtotalpacketssent{
+- (int)GetTotalPacketsSentWithOutNewTotalPacketsSent:(NSMutableString *)newtotalpacketssent{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -137,7 +137,7 @@
 }
 
 
--(int)GetTotalPacketsReceivedWithOutNewTotalPacketsReceived:(NSMutableString*)newtotalpacketsreceived{
+- (int)GetTotalPacketsReceivedWithOutNewTotalPacketsReceived:(NSMutableString *)newtotalpacketsreceived{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -153,7 +153,7 @@
 }
 
 
--(int)GetActiveConnectionWithNewActiveConnectionIndex:(NSString*)newactiveconnectionindex OutNewActiveConnDeviceContainer:(NSMutableString*)newactiveconndevicecontainer OutNewActiveConnectionServiceID:(NSMutableString*)newactiveconnectionserviceid{
+- (int)GetActiveConnectionWithNewActiveConnectionIndex:(NSString *)newactiveconnectionindex OutNewActiveConnDeviceContainer:(NSMutableString *)newactiveconndevicecontainer OutNewActiveConnectionServiceID:(NSMutableString *)newactiveconnectionserviceid{
     int ret = 0;
 
     NSDictionary *parameters = nil;

@@ -67,7 +67,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
     [artist release];
     [album release];
     [date release];
@@ -88,7 +88,7 @@
 }
 
 
--(void)addRes:(MediaServer1ItemRes*) resource{
+- (void)addRes:(MediaServer1ItemRes*) resource{
     if(resource != nil){
         [resources addObject:resource];
     }

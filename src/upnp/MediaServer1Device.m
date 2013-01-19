@@ -52,7 +52,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	
     if(mContentDirectory)
         NSLog(@"[mContentDirectory retainCount]=%d", [mContentDirectory retainCount] );
@@ -66,18 +66,18 @@
 }
 
 
--(SoapActionsAVTransport1*)avTransport{
+- (SoapActionsAVTransport1 *)avTransport{
 	if(mAvTransport == nil){
-		mAvTransport = (SoapActionsAVTransport1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
+		mAvTransport = (SoapActionsAVTransport1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
 		[mAvTransport retain];
 	}
 	
 	return mAvTransport;
 }
 
--(SoapActionsContentDirectory1*)contentDirectory{
+- (SoapActionsContentDirectory1 *)contentDirectory{
 	if(mContentDirectory == nil){
-		mContentDirectory = (SoapActionsContentDirectory1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:ContentDirectory:1"] soap];
+		mContentDirectory = (SoapActionsContentDirectory1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ContentDirectory:1"] soap];
 		[mContentDirectory retain];
 	}
 	
@@ -85,9 +85,9 @@
 }
 
 
--(SoapActionsConnectionManager1*)connectionManager{
+- (SoapActionsConnectionManager1 *)connectionManager{
 	if(mConnectionManager == nil){
-		mConnectionManager = (SoapActionsConnectionManager1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
+		mConnectionManager = (SoapActionsConnectionManager1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
 		[mConnectionManager retain];
 	}
 	
@@ -95,16 +95,16 @@
 }
 
 
--(BasicUPnPService*)avTransportService{
+- (BasicUPnPService *)avTransportService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"];
 }
 
 
--(BasicUPnPService*)connectionManagerService{
+- (BasicUPnPService *)connectionManagerService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"];
 }
 
--(BasicUPnPService*)contentDirectoryService{
+- (BasicUPnPService *)contentDirectoryService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:ContentDirectory:1"];
 }
 

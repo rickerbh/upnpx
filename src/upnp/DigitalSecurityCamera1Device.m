@@ -31,82 +31,50 @@
 //
 // **********************************************************************************
 
-
-
 #include "DigitalSecurityCamera1Device.h"
-
 #import "SoapActionsDigitalSecurityCameraSettings1.h"
 #import "SoapActionsDigitalSecurityCameraStillImage1.h"
 #import "SoapActionsDigitalSecurityCameraMotionImage1.h"
 
+@interface DigitalSecurityCamera1Device ()
+@property (strong) SoapActionsDigitalSecurityCameraSettings1 *mDigitalSecurityCameraSettings;
+@property (strong) SoapActionsDigitalSecurityCameraStillImage1 *mDigitalSecurityCameraStillImage;
+@property (strong) SoapActionsDigitalSecurityCameraMotionImage1 *mDigitalSecurityCameraMotionImage;
+@end
 
 @implementation DigitalSecurityCamera1Device
 
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mDigitalSecurityCameraSettings = nil;
-        mDigitalSecurityCameraStillImage = nil;
-        mDigitalSecurityCameraMotionImage = nil;
+- (SoapActionsDigitalSecurityCameraSettings1 *)digitalSecurityCameraSettings {
+	if (!self.mDigitalSecurityCameraSettings) {
+		self.mDigitalSecurityCameraSettings = (SoapActionsDigitalSecurityCameraSettings1 *)[[self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraSettings:1"] soap];
 	}
-    
-	return self;
+	return self.mDigitalSecurityCameraSettings;
 }
 
-
--(void)dealloc{
-	
-	[mDigitalSecurityCameraSettings release];
-	[mDigitalSecurityCameraStillImage release];
-	[mDigitalSecurityCameraMotionImage release];
-	
-	[super dealloc];
-}
-
-
--(SoapActionsDigitalSecurityCameraSettings1*)digitalSecurityCameraSettings{
-	if(mDigitalSecurityCameraSettings == nil){
-		mDigitalSecurityCameraSettings = (SoapActionsDigitalSecurityCameraSettings1*)[[self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraSettings:1"] soap];
-		[mDigitalSecurityCameraSettings retain];
+- (SoapActionsDigitalSecurityCameraStillImage1 *)digitalSecurityCameraStillImage {
+	if (!self.mDigitalSecurityCameraStillImage) {
+		self.mDigitalSecurityCameraStillImage = (SoapActionsDigitalSecurityCameraStillImage1 *)[[self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraStillImage:1"] soap];
 	}
-	 
-	return mDigitalSecurityCameraSettings;
+	return self.mDigitalSecurityCameraStillImage;
 }
 
--(SoapActionsDigitalSecurityCameraStillImage1*)digitalSecurityCameraStillImage{
-	if(mDigitalSecurityCameraStillImage == nil){
-		mDigitalSecurityCameraStillImage = (SoapActionsDigitalSecurityCameraStillImage1*)[[self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraStillImage:1"] soap];
-		[mDigitalSecurityCameraStillImage retain];
+- (SoapActionsDigitalSecurityCameraMotionImage1 *)digitalSecurityCameraMotionImage {
+	if (!self.mDigitalSecurityCameraMotionImage) {
+		self.mDigitalSecurityCameraMotionImage = (SoapActionsDigitalSecurityCameraMotionImage1 *)[[self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraMotionImage:1"] soap];
 	}
- 	
-	return mDigitalSecurityCameraStillImage;
+	return self.mDigitalSecurityCameraMotionImage;
 }
 
-
--(SoapActionsDigitalSecurityCameraMotionImage1*)digitalSecurityCameraMotionImage{
-	if(mDigitalSecurityCameraMotionImage == nil){
-		mDigitalSecurityCameraMotionImage = (SoapActionsDigitalSecurityCameraMotionImage1*)[[self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraMotionImage:1"] soap];
-		[mDigitalSecurityCameraMotionImage retain];
-	}
-	
-	return mDigitalSecurityCameraMotionImage;
-}
-
-
--(BasicUPnPService*)digitalSecurityCameraSettingsService{
+- (BasicUPnPService *)digitalSecurityCameraSettingsService {
 	return [self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraSettings:1"];
 }
 
-
--(BasicUPnPService*)digitalSecurityCameraStillImageService{
+- (BasicUPnPService *)digitalSecurityCameraStillImageService {
 	return [self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraStillImage:1"];
 }
 
--(BasicUPnPService*)digitalSecurityCameraMotionImageService{
+- (BasicUPnPService *)digitalSecurityCameraMotionImageService {
 	return [self getServiceForType:@"urn:schemasupnp-org:service:DigitalSecurityCameraMotionImage:1"];
 }
-
-
 
 @end

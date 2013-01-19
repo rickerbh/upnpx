@@ -49,7 +49,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	
 	[mSwitchPower release];
 	
@@ -58,14 +58,14 @@
 
 
 
--(BasicUPnPService*)switchPowerService{
+- (BasicUPnPService *)switchPowerService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"];
 }
 
 
--(SoapActionsSwitchPower1*)switchPower{
+- (SoapActionsSwitchPower1 *)switchPower{
 	if(mSwitchPower == nil){	                                                                     
-		mSwitchPower = (SoapActionsSwitchPower1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
+		mSwitchPower = (SoapActionsSwitchPower1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
 		[mSwitchPower retain];
 	}
 	

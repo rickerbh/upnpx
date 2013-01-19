@@ -44,7 +44,7 @@
 
 
 @interface MediaPlaylist()
--(int)changeState:(MediaPlaylistState)newState;
+- (int)changeState:(MediaPlaylistState)newState;
 @end
 
 	
@@ -76,7 +76,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	[mObservers removeAllObjects];
 	[mObservers release];
 	[playList removeAllObjects];
@@ -89,7 +89,7 @@
 }
 
 
--(int)addObserver:(MediaPlaylistObserver*)obs{
+- (int)addObserver:(MediaPlaylistObserver*)obs{
 	int ret = 0;
 	
 	[mObservers addObject:obs];
@@ -99,7 +99,7 @@
 }
 
 
--(int)removeObserver:(MediaPlaylistObserver*)obs{
+- (int)removeObserver:(MediaPlaylistObserver*)obs{
 	int ret = 0;
 	
 	[mObservers removeObject:obs];
@@ -109,7 +109,7 @@
 }
 
 
--(int)loadWithMediaServer:(MediaServer1Device*)server forContainer:(MediaServer1ContainerObject*)selectedContainer{
+- (int)loadWithMediaServer:(MediaServer1Device*)server forContainer:(MediaServer1ContainerObject*)selectedContainer{
 	int ret = 0;
 	
 	//Sanity
@@ -162,7 +162,7 @@
 }
 
 
--(int)setTrackByNumber:(int)track{
+- (int)setTrackByNumber:(int)track{
 	if([playList count] > track){		
 		currentTrack = track;
 	}else{
@@ -171,7 +171,7 @@
 	return currentTrack;
 }
 
--(int)setTrackByID:(NSString*)objectID{
+- (int)setTrackByID:(NSString *)objectID{
 	MediaServer1ItemObject* lobj = nil;
 	
 	//Set the current track
@@ -186,7 +186,7 @@
 	return currentTrack;
 }
 
--(int)nextTrack{
+- (int)nextTrack{
 	if(state == MediaPlaylistState_Playing && [playList count] > currentTrack + 1){		
 		currentTrack++;
 	}else{
@@ -195,7 +195,7 @@
 	return currentTrack;
 }
 
--(int)prevTrack{
+- (int)prevTrack{
 	if(state == MediaPlaylistState_Playing && [playList count] > currentTrack - 1){		
 		if(currentTrack > 0){
 			currentTrack--;
@@ -207,17 +207,17 @@
 }
 
 
--(int)stop{
+- (int)stop{
 	return [self changeState:MediaPlaylistState_Stopped];
 }
 
 
--(int)play{
+- (int)play{
 	return [self changeState:MediaPlaylistState_Playing];
 }
 
 
--(int)changeState:(MediaPlaylistState)newState{
+- (int)changeState:(MediaPlaylistState)newState{
 	int ret = 0;
 	
 	MediaPlaylistState oldState = state;

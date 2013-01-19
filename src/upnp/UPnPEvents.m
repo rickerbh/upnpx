@@ -39,7 +39,7 @@
 @synthesize observer;
 @synthesize timeout;
 @synthesize subscriptiontime;
--(void)dealloc{
+- (void)dealloc{
     [observer release];
 	[super dealloc];
 }
@@ -68,7 +68,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	[mTimeoutTimer release];
     [server stop];
 	[server release];
@@ -79,19 +79,19 @@
 	[super dealloc];
 }
 
--(void)start{
+- (void)start{
     //Start the subscription timer
     mTimeoutTimer = [NSTimer timerWithTimeInterval:60.0 target:self selector:@selector(ManageSubscriptionTimeouts:) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:mTimeoutTimer forMode:NSDefaultRunLoopMode];
 }
--(void)stop{
+- (void)stop{
     //Stop the subscription timer
     [mTimeoutTimer invalidate];
 }
 
 
 
--(NSString*)Subscribe:(UPnPEvents_Observer*)subscriber{
+-(NSString *)Subscribe:(UPnPEvents_Observer*)subscriber{
 	//Send Event subscription over HTTP
 	NSString *retUUID = nil;	
 	NSString *timeOut = nil;	
@@ -153,7 +153,7 @@
 	return retUUID;
 }
 
--(void)UnSubscribe:(NSString*)uuid{
+- (void)UnSubscribe:(NSString *)uuid{
 	[mMutex lock];
 	[mEventSubscribers removeObjectForKey:uuid];
 	[mMutex unlock];
@@ -175,7 +175,7 @@
 }
 
 //Request / Response is always synchronized 
--(BOOL)request:(BasicHTTPServer_ObjC*)sender method:(NSString*)method path:(NSString*)path version:(NSString*)version headers:(NSDictionary*)headers body:(NSData*)body{
+-(BOOL)request:(BasicHTTPServer_ObjC*)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData*)body{
 	BOOL ret = NO;
 	
 	NSString *uuid = [headers objectForKey:@"SID"];

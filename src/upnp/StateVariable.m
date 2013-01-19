@@ -34,91 +34,72 @@
 
 #import "StateVariable.h"
 
+@interface StateVariable ()
+@property (readwrite, assign) StateVariableDataType dataType;
+@end
 
 @implementation StateVariable
 
-@synthesize variableType;
-@synthesize dataType;
-@synthesize name;
-@synthesize dataTypeString;
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {		    
-        variableType = StateVariable_Type_Simple;
-        [self empty];
-    }
-	
-	return self;
+- (id)init {
+  self = [super init];
+  if (self) {
+    _variableType = StateVariable_Type_Simple;
+    [self empty];
+  }
+  return self;
 }
 
--(void)dealloc{
-	
-	[dataTypeString release];
-	[name release];
-	
-	[super dealloc];
-}
-
-
--(void)empty{
-	[self setDataTypeString:nil];
+- (void)empty {
+  [self setDataTypeString:nil];
     /* IcY: "dataType:" looks like a goto label but is never used
      * should it be dataType = StateVariable_DataType_Unknown
      */
 	//dataType: StateVariable_DataType_Unknown;
 }
 
+- (void)setDataTypeString:(NSString *)value{
+	_dataTypeString = [value copy];
 
--(void)setDataTypeString:(NSString*)value{
-	[dataTypeString release];
-	dataTypeString = value;
-	[dataTypeString retain];
-
-	if([dataTypeString isEqualToString:@"ui1"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"ui2"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"ui4"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"i1"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"i2"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"i4"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"int"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"r4"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"r8"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"number"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"fixed14.4"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"float"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"boolean"]){
-		dataType = StateVariable_DataType_Integer;
-	}else if([dataTypeString isEqualToString:@"char"]){
-		dataType = StateVariable_DataType_String;
-	}else if([dataTypeString isEqualToString:@"string"]){
-		dataType = StateVariable_DataType_String;
-	}else{
-		dataType = StateVariable_DataType_Unknown;
+	if ([self.dataTypeString isEqualToString:@"ui1"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"ui2"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"ui4"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"i1"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"i2"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"i4"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"int"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"r4"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"r8"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"number"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"fixed14.4"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"float"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"boolean"]) {
+		self.dataType = StateVariable_DataType_Integer;
+	} else if ([self.dataTypeString isEqualToString:@"char"]) {
+		self.dataType = StateVariable_DataType_String;
+	} else if ([self.dataTypeString isEqualToString:@"string"]) {
+		self.dataType = StateVariable_DataType_String;
+	} else {
+		self.dataType = StateVariable_DataType_Unknown;
 	}//complete the list
 		
 }
 		
--(void)copyFromStateVariable:(StateVariable*)stateVar{
+- (void)copyFromStateVariable:(StateVariable *)stateVar {
 	[self setName:[NSString stringWithString:[stateVar name]]];
-	dataType = [stateVar dataType];
+	self.dataType = [stateVar dataType];
 	[self setDataTypeString:[NSString stringWithString:[stateVar dataTypeString]]];
 }
-	
-
 
 @end

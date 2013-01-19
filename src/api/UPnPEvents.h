@@ -40,9 +40,9 @@
 
 //Observer
 @protocol UPnPEvents_Observer
--(void)UPnPEvent:(NSDictionary*)events;
--(NSURL*)GetUPnPEventURL;
--(void)SubscriptionTimerExpiresIn:(int)seconds timeoutSubscription:(int)timeout timeSubscription:(double)subscribed;
+- (void)UPnPEvent:(NSDictionary *)events;
+-(NSURL *)GetUPnPEventURL;
+- (void)SubscriptionTimerExpiresIn:(int)seconds timeoutSubscription:(int)timeout timeSubscription:(double)subscribed;
 @end
 
 
@@ -51,7 +51,7 @@
     int timeout;
     double subscriptiontime;
 }
--(void)dealloc;
+- (void)dealloc;
 @property (readwrite, retain) UPnPEvents_Observer* observer;
 @property (readwrite) int timeout;;
 @property (readwrite) double subscriptiontime;
@@ -67,19 +67,19 @@
 }
 
 -(id)init;
--(void)dealloc;
--(void)start;
--(void)stop;
+- (void)dealloc;
+- (void)start;
+- (void)stop;
 
--(NSString*)Subscribe:(UPnPEvents_Observer*)subscriber;
--(void)UnSubscribe:(NSString*)uuid;
+-(NSString *)Subscribe:(UPnPEvents_Observer*)subscriber;
+- (void)UnSubscribe:(NSString *)uuid;
 
--(void)ManageSubscriptionTimeouts:(NSTimer*)timer;
+- (void)ManageSubscriptionTimeouts:(NSTimer*)timer;
 
 
 //BasicHTTPServer_ObjC_Observer
--(BOOL)canProcessMethod:(BasicHTTPServer_ObjC*)sender requestMethod:(NSString*)method;
--(BOOL)request:(BasicHTTPServer_ObjC*)sender method:(NSString*)method path:(NSString*)path version:(NSString*)version headers:(NSDictionary*)headers body:(NSData*)body;
+-(BOOL)canProcessMethod:(BasicHTTPServer_ObjC*)sender requestMethod:(NSString *)method;
+-(BOOL)request:(BasicHTTPServer_ObjC*)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData*)body;
 -(BOOL)response:(BasicHTTPServer_ObjC*)sender returncode:(int*)returncode headers:(NSMutableDictionary*)headers body:(NSMutableData*)body;
 
 @end

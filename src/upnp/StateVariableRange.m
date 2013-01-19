@@ -33,50 +33,38 @@
 
 #import "StateVariableRange.h"
 
-
 @implementation StateVariableRange
 
-@synthesize min;
-@synthesize max;
-
--(id)init{
-    self = [super init];
-    
-    if (self) {		
-        variableType = StateVariable_Type_Range;
-        [self empty];
+- (id)init {
+  self = [super init];
+  if (self) {
+    // Super has already init'd variableType, so it's _probably_ OK to send messages here.
+    self.variableType = StateVariable_Type_Range;
+    [self empty];
 	}
-
 	return self;
 }
 
--(void)dealloc{
-	[super dealloc];
-}
-
--(void)empty{
+- (void)empty {
 	[super empty];
-	min = 0;
-	max = 0;
+	self.min = 0;
+	self.max = 0;
 }
 
--(int)setMinWithString:(NSString*)val{
-	min = [val intValue];
-	return min;
+- (int)setMinWithString:(NSString *)val {
+	self.min = [val intValue];
+	return self.min;
 }
 
--(int)setMaxWithString:(NSString*)val{
-	max = [val intValue];
-	return max;
+- (int)setMaxWithString:(NSString *)val {
+	self.max = [val intValue];
+	return self.max;
 }
 
--(void)copyFromStateVariableRange:(StateVariableRange*)stateVar{
-	[super copyFromStateVariable:(StateVariable*)stateVar];
-	min = [stateVar min];
-	max = [stateVar max];
+- (void)copyFromStateVariableRange:(StateVariableRange *)stateVar {
+	[super copyFromStateVariable:(StateVariable *)stateVar];
+	self.min = [stateVar min];
+	self.max = [stateVar max];
 }
-
-
-
 
 @end

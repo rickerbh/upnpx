@@ -34,128 +34,93 @@
 
 #import "WANConnection2Device.h"
 
+@interface WANConnection2Device ()
+@property (strong) SoapActionsWANPOTSLinkConfig1 *mPOTSLinkConfig;
+@property (strong) SoapActionsWANDSLLinkConfig1 *mDSLLinkConfig;
+@property (strong) SoapActionsWANCableLinkConfig1 *mCableLinkConfig;
+@property (strong) SoapActionsWANEthernetLinkConfig1 *mEthernetLinkConfig;
+@property (strong) SoapActionsWANPPPConnection1 *mPPPConnection;
+@property (strong) SoapActionsWANIPConnection2 *mIPConnection;
+@property (strong) SoapActionsWANIPv6FirewallControl1 *mIPv6FirewallControl;
+@end
 
 @implementation WANConnection2Device
 
-
--(id)init{
-    self = [super init];
-    
-    if (self) {
-        mPOTSLinkConfig         = nil;
-        mDSLLinkConfig          = nil;
-        mCableLinkConfig        = nil;
-        mEthernetLinkConfig     = nil;
-        mPPPConnection          = nil;
-        mIPConnection           = nil;
-        mIPv6FirewallControl    = nil;
+- (SoapActionsWANPOTSLinkConfig1 *)potsLinkConfig {
+	if (!self.mPOTSLinkConfig) {
+		self.mPOTSLinkConfig = (SoapActionsWANPOTSLinkConfig1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANPOTSLinkConfig:1"] soap];
 	}
-
-	return self;
+	return self.mPOTSLinkConfig;
 }
 
-
--(void)dealloc{
-	[mPOTSLinkConfig release];
-	[mDSLLinkConfig release];
-	[mCableLinkConfig release];
-	[mEthernetLinkConfig release];
-	[mPPPConnection release];
-	[mIPConnection release];
-	[mIPv6FirewallControl release];
-	
-	[super dealloc];
-}
-
-
-
--(SoapActionsWANPOTSLinkConfig1*)potsLinkConfig{
-	if(mPOTSLinkConfig == nil){	                                                                     
-		mPOTSLinkConfig = (SoapActionsWANPOTSLinkConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANPOTSLinkConfig:1"] soap];
-		[mPOTSLinkConfig retain];
+- (SoapActionsWANDSLLinkConfig1 *)dslLinkConfig {
+	if (!self.mDSLLinkConfig) {
+		self.mDSLLinkConfig = (SoapActionsWANDSLLinkConfig1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANDSLLinkConfig:1"] soap];
 	}
-	return mPOTSLinkConfig;
+	return self.mDSLLinkConfig;
 }
 
--(SoapActionsWANDSLLinkConfig1*)dslLinkConfig{
-	if(mDSLLinkConfig == nil){	                                                                     
-		mDSLLinkConfig = (SoapActionsWANDSLLinkConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANDSLLinkConfig:1"] soap];
-		[mDSLLinkConfig retain];
+- (SoapActionsWANCableLinkConfig1 *)cableLinkConfig {
+	if (!self.mCableLinkConfig) {
+		self.mCableLinkConfig = (SoapActionsWANCableLinkConfig1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANCableLinkConfig:1"] soap];
 	}
-	return mDSLLinkConfig;
+	return self.mCableLinkConfig;
 }
 
--(SoapActionsWANCableLinkConfig1*)cableLinkConfig{
-	if(mCableLinkConfig == nil){	                                                                     
-		mCableLinkConfig = (SoapActionsWANCableLinkConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANCableLinkConfig:1"] soap];
-		[mCableLinkConfig retain];
+- (SoapActionsWANEthernetLinkConfig1 *)ethernetLinkConfig {
+	if (!self.mEthernetLinkConfig) {
+		self.mEthernetLinkConfig = (SoapActionsWANEthernetLinkConfig1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANEthernetLinkConfig:1"] soap];
 	}
-	return mCableLinkConfig;
+	return self.mEthernetLinkConfig;
 }
 
--(SoapActionsWANEthernetLinkConfig1*)ethernetLinkConfig{
-	if(mEthernetLinkConfig == nil){	                                                                     
-		mEthernetLinkConfig = (SoapActionsWANEthernetLinkConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANEthernetLinkConfig:1"] soap];
-		[mEthernetLinkConfig retain];
+- (SoapActionsWANPPPConnection1 *)pppConnection {
+	if (!self.mPPPConnection) {
+		self.mPPPConnection = (SoapActionsWANPPPConnection1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANPPPConnection:1"] soap];
 	}
-	return mEthernetLinkConfig;
+	return self.mPPPConnection;
 }
 
--(SoapActionsWANPPPConnection1*)pppConnection{
-	if(mPPPConnection == nil){	                                                                     
-		mPPPConnection = (SoapActionsWANPPPConnection1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANPPPConnection:1"] soap];
-		[mPPPConnection retain];
+- (SoapActionsWANIPConnection2 *)ipConnection {
+	if (!self.mIPConnection) {
+		self.mIPConnection = (SoapActionsWANIPConnection2*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANIPConnection:2"] soap];
 	}
-	return mPPPConnection;
+	return self.mIPConnection;
 }
 
--(SoapActionsWANIPConnection2*)ipConnection{
-	if(mIPConnection == nil){	                                                                     
-		mIPConnection = (SoapActionsWANIPConnection2*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANIPConnection:2"] soap];
-		[mIPConnection retain];
+- (SoapActionsWANIPv6FirewallControl1 *)ipv6FirewallControl {
+	if (!self.mIPv6FirewallControl) {
+		self.mIPv6FirewallControl = (SoapActionsWANIPv6FirewallControl1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANIPv6FirewallControl:1"] soap];
 	}
-	return mIPConnection;
+	return self.mIPv6FirewallControl;
 }
 
--(SoapActionsWANIPv6FirewallControl1*)ipv6FirewallControl{
-	if(mIPv6FirewallControl == nil){	                                                                     
-		mIPv6FirewallControl = (SoapActionsWANIPv6FirewallControl1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:WANIPv6FirewallControl:1"] soap];
-		[mIPv6FirewallControl retain];
-	}
-	return mIPv6FirewallControl;
-}
-
-
-
-
-
--(BasicUPnPService*)potsLinkConfigService{
+- (BasicUPnPService *)potsLinkConfigService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANPOTSLinkConfig:1"];
 }
 
--(BasicUPnPService*)dslLinkConfigService{
+- (BasicUPnPService *)dslLinkConfigService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANDSLLinkConfig:1"];
 }
 
--(BasicUPnPService*)cableLinkConfigService{
+- (BasicUPnPService *)cableLinkConfigService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANCableLinkConfig:1"];
 }
 
--(BasicUPnPService*)ethernetLinkConfigService{
+- (BasicUPnPService *)ethernetLinkConfigService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANEthernetLinkConfig:1"];
 }
 
--(BasicUPnPService*)pppConnectionService{
+- (BasicUPnPService *)pppConnectionService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANPPPConnection:1"];
 }
 
--(BasicUPnPService*)ipConnectionService{
+- (BasicUPnPService *)ipConnectionService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANIPConnection:2"];
 }
 
--(BasicUPnPService*)ipv6FirewallControlService{
+- (BasicUPnPService*)ipv6FirewallControlService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:WANIPv6FirewallControl:1"];
 }
-
 
 @end

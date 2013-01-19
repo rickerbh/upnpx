@@ -32,38 +32,30 @@
 // **********************************************************************************
 
 #import "SoapActionsRendering.h"
-
-
 #import "OrderedDictionary.h"
+
+@interface SoapActionsRendering ()
+@property (strong) BasicUPnPService* upnpservice; //provides the URL's for the actions and events
+@end
 
 @implementation SoapActionsRendering
 
-
--(id)initWithService:(BasicUPnPService*)service{
-    self = [super initWithActionURL:[NSURL URLWithString:[service controlURL] relativeToURL:[service baseURL]] 
-                           eventURL:[NSURL URLWithString:[service eventURL] relativeToURL:[service baseURL]] 
-                      upnpnamespace:@"urn:schemas-upnp-org:service:RenderingControl:1"];
-    
-    if (self) {
-        /* TODO: set upnpservice as retain property */
-        upnpservice = service;
-        [upnpservice retain];
+- (id)initWithService:(BasicUPnPService*)service {
+  self = [super initWithActionURL:[NSURL URLWithString:[service controlURL] relativeToURL:[service baseURL]]
+                         eventURL:[NSURL URLWithString:[service eventURL] relativeToURL:[service baseURL]]
+                    upnpnamespace:@"urn:schemas-upnp-org:service:RenderingControl:1"];
+  if (self) {
+    _upnpservice = service;
 	}
-    
+  
 	return self;
 }
 
--(void)dealloc{
-	[upnpservice release];
-	
-	[super dealloc];
-}
-
--(int)getVolume{
+- (int)getVolume {
 	return [self getVolumeForInstance:0 andChannel:@"Master"];
 }
 
--(int)getVolumeForInstance:(int)instanceID  andChannel:(NSString*)channel{
+- (int)getVolumeForInstance:(int)instanceID andChannel:(NSString *)channel {
 	int ret = 0;
 	
 	NSMutableString *currentVolumeString = [[NSMutableString alloc] init]; 
@@ -77,23 +69,19 @@
 	
 	ret = [self action:@"GetVolume" parameters:parameters returnValues:output];
 
-	if(ret == 0){
+	if (ret == 0) {
 		//Cast the return to a int
 		ret = [currentVolumeString intValue];
 	}
-	[currentVolumeString release];
 	
 	return ret;
 }
 
-
-
-
--(int)getVolumeDB{
+- (int)getVolumeDB {
 	return [self getVolumeDBForInstance:0 andChannel:@"Master"];
 }
 
--(int)getVolumeDBForInstance:(int)instanceID  andChannel:(NSString*)channel{
+- (int)getVolumeDBForInstance:(int)instanceID andChannel:(NSString *)channel {
 	int ret = 0;
 	
 	NSMutableString *currentVolumeString = [[NSMutableString alloc] init]; 
@@ -107,25 +95,24 @@
 	
 	ret = [self action:@"GetVolumeDB" parameters:parameters returnValues:output];
 	
-	if(ret == 0){
+	if (ret == 0){
 		//Cast the return to a int
 		ret = [currentVolumeString intValue];
 	}
-	[currentVolumeString release];
 	
 	return ret;
 }
 
 
--(int)listPesets:(NSMutableString*)presetsRet{
+- (int)listPesets:(NSMutableString *)presetsRet {
 	return [self listPresetsForInstance:0 presetsOut:presetsRet];
 }
 
--(int)listPresetsForInstance:(int)instanceID presetsOut:(NSMutableString*)presetsRet{
+- (int)listPresetsForInstance:(int)instanceID presetsOut:(NSMutableString *)presetsRet {
 	int ret = 0;
 	
 	NSMutableString *currentPresetString = [[NSMutableString alloc] init]; 	
-	NSArray *parameterKeys		= [NSArray arrayWithObjects:@"InstanceID",									nil];
+	NSArray *parameterKeys		= [NSArray arrayWithObjects:@"InstanceID", nil];
 	NSArray *parameterObjects	= [NSArray arrayWithObjects:[NSString stringWithFormat:@"%d", instanceID],  nil];		
 	NSDictionary *parameters = [OrderedDictionary dictionaryWithObjects:parameterObjects forKeys:parameterKeys];
 	
@@ -135,16 +122,11 @@
 	
 	ret = [self action:@"ListPresets" parameters:parameters returnValues:output];
 	
-	if(ret == 0){
-		if(presetsRet != nil){
-			[presetsRet setString:currentPresetString];
-		}
+	if (ret == 0 && presetsRet) {
+    [presetsRet setString:currentPresetString];
 	}
-	[currentPresetString release];
 	
 	return ret;
 }
-
-
 
 @end

@@ -89,7 +89,7 @@ private:
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
     if (mWrapper) {
         delete((SSDPDB_Observer_wrapper*)mWrapper);
     }
@@ -101,31 +101,31 @@ private:
 	[super dealloc];
 }
 
--(void)lock{
+- (void)lock{
 	[mMutex lock];
 }
 
--(void)unlock{
+- (void)unlock{
 	[mMutex unlock];
 }
 
 
--(int)startSSDP{
+- (int)startSSDP{
 	return UPNP::GetInstance()->GetSSDP()->Start();
 }
 
--(int)stopSSDP{
+- (int)stopSSDP{
 	return UPNP::GetInstance()->GetSSDP()->Stop();
 }
 
 
 
--(int)searchSSDP{
+- (int)searchSSDP{
 	return UPNP::GetInstance()->GetSSDP()->Search();	
 }
 
 
--(int)addObserver:(SSDPDB_ObjC_Observer*)obs{
+- (int)addObserver:(SSDPDB_ObjC_Observer*)obs{
 	int ret = 0;
 	[self lock];
 	[mObservers addObject:obs];
@@ -134,7 +134,7 @@ private:
 	return ret;
 }
 
--(int)removeObserver:(SSDPDB_ObjC_Observer*)obs{
+- (int)removeObserver:(SSDPDB_ObjC_Observer*)obs{
 	int ret = 0;
 	[self lock];
 	[mObservers removeObject:obs];
@@ -143,7 +143,7 @@ private:
 	return ret;
 }
 
--(void)setUserAgentProduct:(NSString*)product andOS:(NSString*)os{    
+- (void)setUserAgentProduct:(NSString *)product andOS:(NSString *)os{    
     if(os != nil){
         const char *c_os = [os cStringUsingEncoding:NSASCIIStringEncoding];
         UPNP::GetInstance()->GetSSDP()->SetOS(c_os);        
@@ -232,7 +232,7 @@ private:
 	return self;
 }
 
--(void)dealloc{
+- (void)dealloc{
 	[uuid release];
 	[urn release];
 	[usn release];

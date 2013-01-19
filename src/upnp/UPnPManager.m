@@ -36,56 +36,44 @@
 
 static UPnPManager *_upnpmanager = nil;
 
+@interface UPnPManager ()
+@property (readwrite, strong) SSDPDB_ObjC *SSDP;
+@property (readwrite, strong) UPnPDB *DB;
+@property (readwrite, strong) ServiceFactory* serviceFactory;
+@property (readwrite, strong) DeviceFactory* deviceFactory;
+@property (readwrite, strong) SoapActionFactory* soapFactory;
+@property (readwrite, strong) UPnPEvents *upnpEvents;
+@property (readwrite, strong) MediaPlaylist *defaultPlaylist;
+@end
+
 @implementation UPnPManager
 
-@synthesize SSDP;
-@synthesize DB;
-@synthesize serviceFactory;
-@synthesize deviceFactory;
-@synthesize soapFactory;
-@synthesize upnpEvents;
-@synthesize defaultMediaRenderer1;
-@synthesize defaultPlaylist;
-
-+(UPnPManager*)GetInstance{
-	if(_upnpmanager == nil){
++ (UPnPManager *)GetInstance {
+	if (!_upnpmanager) {
 		_upnpmanager = [[UPnPManager alloc] init];
 	}
 	return _upnpmanager;
 }
 
--(id)init{
-    self = [super init];
-    
-    if (self) {
-        upnpEvents = [[UPnPEvents alloc] init];
-        soapFactory = [[SoapActionFactory alloc] init];
-        serviceFactory = [[ServiceFactory alloc] init];
-        deviceFactory = [[DeviceFactory alloc] init];
-        SSDP = [[SSDPDB_ObjC alloc] init];
-        DB = [[UPnPDB alloc] initWithSSDP:SSDP]; 
-        defaultPlaylist = [[MediaPlaylist alloc] init];
-
-        [SSDP startSSDP];
-        [upnpEvents start];
-    }
-	
-	return self;
+- (id)init {
+  self = [super init];
+  if (self) {
+    _upnpEvents = [[UPnPEvents alloc] init];
+    _soapFactory = [[SoapActionFactory alloc] init];
+    _serviceFactory = [[ServiceFactory alloc] init];
+    _deviceFactory = [[DeviceFactory alloc] init];
+    _SSDP = [[SSDPDB_ObjC alloc] init];
+    _DB = [[UPnPDB alloc] initWithSSDP:_SSDP];
+    _defaultPlaylist = [[MediaPlaylist alloc] init];
+    [_SSDP startSSDP];
+    [_upnpEvents start];
+  }
+  return self;
 }
 
--(void)dealloc{
-    [upnpEvents stop];
-	[SSDP stopSSDP];
-	[SSDP release];
-	[DB release];
-	[serviceFactory release];
-	[deviceFactory release];
-	[soapFactory release];
-	[upnpEvents release];
-	[defaultPlaylist release];
-	
-	[super dealloc];
+- (void)dealloc {
+  [self.upnpEvents stop];
+	[self.SSDP stopSSDP];
 }
-
 
 @end

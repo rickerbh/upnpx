@@ -31,27 +31,15 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "StateVariable.h"
 
-@interface StateVariableRange : StateVariable {
-	int min;
-	int max;
-}
+@interface StateVariableRange : StateVariable
+@property (readwrite, assign) int min;
+@property (readwrite, assign) int max;
 
--(id)init;
--(void)dealloc;
--(void)empty;
+- (int)setMinWithString:(NSString *)val;
+- (int)setMaxWithString:(NSString *)val;
+- (void)copyFromStateVariableRange:(StateVariableRange *)stateVar;
 
--(int)setMinWithString:(NSString*)val;
--(int)setMaxWithString:(NSString*)val;
-
--(void)copyFromStateVariableRange:(StateVariableRange*)stateVar;
-
-@property(readwrite) int min;
-@property(readwrite) int max;
-
-
-	
 @end

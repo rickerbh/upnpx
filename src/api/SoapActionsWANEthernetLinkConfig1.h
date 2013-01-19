@@ -41,6 +41,6 @@
 
 //SOAP
 
--(int)GetEthernetLinkStatusWithOutNewEthernetLinkStatus:(NSMutableString*)newethernetlinkstatus;
+- (int)GetEthernetLinkStatusWithOutNewEthernetLinkStatus:(NSMutableString *)newethernetlinkstatus;
 
 @end

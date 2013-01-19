@@ -34,45 +34,21 @@
 
 #import "LAN1Device.h"
 
+@interface LAN1Device ()
+@property (strong) SoapActionsLANHostConfigManagement1 *mLanHostConfigManagement;
+@end
 
 @implementation LAN1Device
 
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mLanHostConfigManagement = nil;
+- (SoapActionsLANHostConfigManagement1 *)lanHostConfigManagement{
+	if (!self.mLanHostConfigManagement){
+		self.mLanHostConfigManagement = (SoapActionsLANHostConfigManagement1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:LANHostConfigManagement:1"] soap];
 	}
-    
-	return self;
+	return self.mLanHostConfigManagement;
 }
 
-
--(void)dealloc{
-	
-	[mLanHostConfigManagement release];
-	
-	[super dealloc];
-}
-
-
-
--(SoapActionsLANHostConfigManagement1*)lanHostConfigManagement{
-	if(mLanHostConfigManagement == nil){
-		mLanHostConfigManagement = (SoapActionsLANHostConfigManagement1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:LANHostConfigManagement:1"] soap];
-		[mLanHostConfigManagement retain];
-	}	
-	return mLanHostConfigManagement;
-}
-
-
--(BasicUPnPService*)lanHostConfigManagementService{
+- (BasicUPnPService *)lanHostConfigManagementService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:LANHostConfigManagement:1"];
 }
-
-
-
 
 @end

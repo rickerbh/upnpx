@@ -49,39 +49,35 @@
 @synthesize elementValue;
 
 -(id)init{
-    self = [super initWithNamespaceSupport:YES];
+  self = [super initWithNamespaceSupport:YES];
     
-    if (self) {	
-        events = [[NSMutableDictionary alloc] init];	
+  if (self) {	
+    events = [[NSMutableDictionary alloc] init];	
 
-        lastChangeParser = nil;
-        
-        //Device is the root device
-        [self addAsset:[NSArray arrayWithObjects: @"propertyset", @"property", @"LastChange", nil] callfunction:@selector(lastChangeElement:) functionObject:self setStringValueFunction:@selector(setElementValue:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"propertyset", @"property", @"*", nil] callfunction:@selector(propertyName:) functionObject:self setStringValueFunction:@selector(setElementValue:) setStringValueObject:self];
-    }
+    lastChangeParser = nil;
 
-	return self;
+    //Device is the root device
+    [self addAsset:[NSArray arrayWithObjects: @"propertyset", @"property", @"LastChange", nil] callfunction:@selector(lastChangeElement:) functionObject:self setStringValueFunction:@selector(setElementValue:) setStringValueObject:self];
+    [self addAsset:[NSArray arrayWithObjects: @"propertyset", @"property", @"*", nil] callfunction:@selector(propertyName:) functionObject:self setStringValueFunction:@selector(setElementValue:) setStringValueObject:self];
+  }
+
+  return self;
 }
 
-
--(void)dealloc{
+- (void)dealloc {
 	[lastChangeParser release];
 	[elementValue release];
 	[events release];
 	[super dealloc];
 }
 
-
--(void)reinit{
+- (void)reinit {
 	[events removeAllObjects];
 }
 
-
-
--(void)propertyName:(NSString*)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
-	}else{
+- (void)propertyName:(NSString *)startStop {
+	if ([startStop isEqualToString:@"ElementStart"]) {
+	} else {
 		//Element name
 		NSString *name = [[NSString alloc] initWithString:currentElementName];
 		//Element value
@@ -94,24 +90,22 @@
 	}
 }
 
--(void)lastChangeElement:(NSString*)startStop{
-	if(lastChangeParser == nil){
+- (void)lastChangeElement:(NSString *)startStop {
+	if (lastChangeParser == nil) {
 		lastChangeParser = [[LastChangeParser alloc] initWithEventDictionary:events];
 	}
 
-	if([startStop isEqualToString:@"ElementStart"]){
-	}else{	
+	if ([startStop isEqualToString:@"ElementStart"]) {
+	} else {
 		//NSLog(@"LastChange - element:%@, value:%@", currentElementName, elementValue );
 		//Parse LastChange
 		NSData *lastChange = [elementValue dataUsingEncoding:NSUTF8StringEncoding]; 
 		
 		int ret = [lastChangeParser parseFromData:lastChange];
-		if(ret != 0){
+		if (ret != 0) {
 			NSLog(@"Something went wrong during LastChange parsing");
 		}
 	}
 }
-
-
 
 @end

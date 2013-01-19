@@ -88,7 +88,7 @@ private:
 	return self;
 }
 	
--(void)dealloc{
+- (void)dealloc{
     if (mCppSocketServer) {
         ((SocketServer*)mCppSocketServer)->Stop();
         delete((SocketServer*)mCppSocketServer);
@@ -101,16 +101,16 @@ private:
 	[super dealloc];
 }
 
--(void)start{
+- (void)start{
 	((SocketServer*)mCppSocketServer)->Start();	
 }
 
--(void)stop{
+- (void)stop{
 	((SocketServer*)mCppSocketServer)->Stop();
 }
 
 
--(NSString*)getIPAddress{
+-(NSString *)getIPAddress{
 	char *ip = ((SocketServer*)mCppSocketServer)->getServerIPAddress();
 	
 	return [NSString stringWithCString:ip encoding:NSASCIIStringEncoding];
@@ -121,11 +121,11 @@ private:
 }
 
 
--(void)addObserver:(SocketServer_ObjC_Observer*)obs{
+- (void)addObserver:(SocketServer_ObjC_Observer*)obs{
 	[mObservers addObject:obs];
 }
 
--(void)removeObserver:(SocketServer_ObjC_Observer*)obs{
+- (void)removeObserver:(SocketServer_ObjC_Observer*)obs{
 	[mObservers removeObject:obs];
 }
 

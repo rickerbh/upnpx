@@ -134,7 +134,7 @@
 
 
 
--(void)dealloc{
+- (void)dealloc{
 	[mediaTitle release];
 	[mediaClass release];
 	[mediaID release];
@@ -163,7 +163,7 @@
 }
 
 
--(void)empty{
+- (void)empty{
 	[self setMediaClass:@""];
 	[self setMediaTitle:@""];
 	[self setMediaID:@""];
@@ -180,7 +180,7 @@
 }
 
 
--(void)container:(NSString*)startStop{
+- (void)container:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		//Clear
 		[self empty];
@@ -210,7 +210,7 @@
 }
 
 
--(void)item:(NSString*)startStop{
+- (void)item:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		//Clear
 		[self empty];
@@ -254,7 +254,7 @@
 }
 
 
--(void)res:(NSString*)startStop{
+- (void)res:(NSString *)startStop{
 	if([startStop isEqualToString:@"ElementStart"]){
 		//Get the attributes
 		[self setProtocolInfo:[elementAttributeDict objectForKey:@"protocolInfo"]];
@@ -285,7 +285,7 @@
 	}
 }
 
--(void)setUri:(NSString*)s{
+- (void)setUri:(NSString *)s{
     [uri release];
     uri = s;
     [uri retain];

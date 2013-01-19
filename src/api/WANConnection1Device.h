@@ -31,7 +31,6 @@
 //
 // **********************************************************************************
 
-
 /* WANConnectionDevice:1 Services (O:Optional/R:Required)
  *
  * WANPOTSLinkConfig:1			O for POTS modems
@@ -43,27 +42,16 @@
  *
  */
 
-
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
 #import "SoapActionsWANIPConnection1.h"
 #import "SoapActionsWANPPPConnection1.h"
 
+@interface WANConnection1Device : BasicUPnPDevice
 
-@interface WANConnection1Device : BasicUPnPDevice {
-	SoapActionsWANIPConnection1 *mIPConnection;
-	SoapActionsWANPPPConnection1 *mPPPConnection;
-}
-
--(id)init;
--(void)dealloc;
-
--(SoapActionsWANIPConnection1*)ipConnection;
--(SoapActionsWANPPPConnection1*)pppConnection;
-
--(BasicUPnPService*)ipConnectionService;
--(BasicUPnPService*)pppConnectionService;
-
-
+- (SoapActionsWANIPConnection1 *)ipConnection;
+- (SoapActionsWANPPPConnection1 *)pppConnection;
+- (BasicUPnPService *)ipConnectionService;
+- (BasicUPnPService *)pppConnectionService;
 
 @end

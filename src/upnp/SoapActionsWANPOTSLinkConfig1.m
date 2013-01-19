@@ -40,7 +40,7 @@
 @implementation SoapActionsWANPOTSLinkConfig1
 
 
--(int)SetISPInfoWithNewISPPhoneNumber:(NSString*)newispphonenumber NewISPInfo:(NSString*)newispinfo NewLinkType:(NSString*)newlinktype{
+- (int)SetISPInfoWithNewISPPhoneNumber:(NSString *)newispphonenumber NewISPInfo:(NSString *)newispinfo NewLinkType:(NSString *)newlinktype{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -56,7 +56,7 @@
 }
 
 
--(int)SetCallRetryInfoWithNewNumberOfRetries:(NSString*)newnumberofretries NewDelayBetweenRetries:(NSString*)newdelaybetweenretries{
+- (int)SetCallRetryInfoWithNewNumberOfRetries:(NSString *)newnumberofretries NewDelayBetweenRetries:(NSString *)newdelaybetweenretries{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -72,7 +72,7 @@
 }
 
 
--(int)GetISPInfoWithOutNewISPPhoneNumber:(NSMutableString*)newispphonenumber OutNewISPInfo:(NSMutableString*)newispinfo OutNewLinkType:(NSMutableString*)newlinktype{
+- (int)GetISPInfoWithOutNewISPPhoneNumber:(NSMutableString *)newispphonenumber OutNewISPInfo:(NSMutableString *)newispinfo OutNewLinkType:(NSMutableString *)newlinktype{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -88,7 +88,7 @@
 }
 
 
--(int)GetCallRetryInfoWithOutNewNumberOfRetries:(NSMutableString*)newnumberofretries OutNewDelayBetweenRetries:(NSMutableString*)newdelaybetweenretries{
+- (int)GetCallRetryInfoWithOutNewNumberOfRetries:(NSMutableString *)newnumberofretries OutNewDelayBetweenRetries:(NSMutableString *)newdelaybetweenretries{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -104,7 +104,7 @@
 }
 
 
--(int)GetFclassWithOutNewFclass:(NSMutableString*)newfclass{
+- (int)GetFclassWithOutNewFclass:(NSMutableString *)newfclass{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -120,7 +120,7 @@
 }
 
 
--(int)GetDataModulationSupportedWithOutNewDataModulationSupported:(NSMutableString*)newdatamodulationsupported{
+- (int)GetDataModulationSupportedWithOutNewDataModulationSupported:(NSMutableString *)newdatamodulationsupported{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -136,7 +136,7 @@
 }
 
 
--(int)GetDataProtocolWithOutNewDataProtocol:(NSMutableString*)newdataprotocol{
+- (int)GetDataProtocolWithOutNewDataProtocol:(NSMutableString *)newdataprotocol{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -152,7 +152,7 @@
 }
 
 
--(int)GetDataCompressionWithOutNewDataCompression:(NSMutableString*)newdatacompression{
+- (int)GetDataCompressionWithOutNewDataCompression:(NSMutableString *)newdatacompression{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -168,7 +168,7 @@
 }
 
 
--(int)GetPlusVTRCommandSupportedWithOutNewPlusVTRCommandSupported:(NSMutableString*)newplusvtrcommandsupported{
+- (int)GetPlusVTRCommandSupportedWithOutNewPlusVTRCommandSupported:(NSMutableString *)newplusvtrcommandsupported{
     int ret = 0;
 
     NSDictionary *parameters = nil;

@@ -31,12 +31,10 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "SSDPDB_ObjC.h"
 #import "BasicUPnPDevice.h"
 #include <pthread.h>
-
 
 @class UPnPDBObserver, UPnPDB;
 
@@ -44,32 +42,20 @@
  * Observers
  */
 @protocol UPnPDBObserver
--(void)UPnPDBWillUpdate:(UPnPDB*)sender;
--(void)UPnPDBUpdated:(UPnPDB*)sender;
+- (void)UPnPDBWillUpdate:(UPnPDB*)sender;
+- (void)UPnPDBUpdated:(UPnPDB*)sender;
 @end
 
+@interface UPnPDB : NSObject <SSDPDB_ObjC_Observer>
+@property (readonly, strong) NSMutableArray *rootDevices;
 
-
-@interface UPnPDB : NSObject <SSDPDB_ObjC_Observer>{
-	NSMutableArray *readyForDescription; //BasicUPnPDevice (only some info is known)
-	NSMutableArray *rootDevices; //BasicUPnPDevice (full info is known)
-	NSRecursiveLock *mMutex;
-	SSDPDB_ObjC *mSSDP;
-	NSMutableArray *mObservers;
-	NSThread *mHTTPThread;
-	
-}
-
--(id)initWithSSDP:(SSDPDB_ObjC*)ssdp; 
--(void)dealloc;
--(void)lock;
--(void)unlock;
--(void)httpThread:(id)argument;
--(int)addObserver:(UPnPDBObserver*)obs;
--(int)removeObserver:(UPnPDBObserver*)obs;
--(NSArray*)getSSDPServicesFor:(BasicUPnPDevice*)device; //Returns NSArray[SSDPDBDevice_ObjC*] devices
--(NSArray*)getSSDPServicesForUUID:(NSString*)uuid; //Returns NSArray[SSDPDBDevice_ObjC*] devices
-
-@property(readonly, retain) NSMutableArray *rootDevices;
+- (id)initWithSSDP:(SSDPDB_ObjC *)ssdp;
+- (void)lock;
+- (void)unlock;
+- (void)httpThread:(id)argument;
+- (int)addObserver:(UPnPDBObserver*)obs;
+- (int)removeObserver:(UPnPDBObserver*)obs;
+- (NSArray *)getSSDPServicesFor:(BasicUPnPDevice *)device; //Returns NSArray[SSDPDBDevice_ObjC*] devices
+- (NSArray *)getSSDPServicesForUUID:(NSString *)uuid; //Returns NSArray[SSDPDBDevice_ObjC*] devices
 
 @end

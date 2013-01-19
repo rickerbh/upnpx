@@ -48,26 +48,15 @@
  * O - DeviceProtection:1
  */
 
-@interface TelephonyClient1Device : BasicUPnPDevice {
-	SoapActionsMediaManagement1 *mMediaManagement;
-	SoapActionsMessaging1 *mMessaging;
-	SoapActionsInputConfig1 *mInputConfig;
-	SoapActionsDeviceProtection1 *mDeviceProtection;
-}
+@interface TelephonyClient1Device : BasicUPnPDevice
 
--(id)init;
--(void)dealloc;
-
--(SoapActionsMediaManagement1*)mediaManagement;
--(SoapActionsMessaging1*)messaging;
--(SoapActionsInputConfig1*)inputConfig;
--(SoapActionsDeviceProtection1*)deviceProtection;
-
--(BasicUPnPService*)mediaManagementService;
--(BasicUPnPService*)messagingService;
--(BasicUPnPService*)inputConfigService;
--(BasicUPnPService*)deviceProtectionService;
-
-
+- (SoapActionsMediaManagement1 *)mediaManagement;
+- (SoapActionsMessaging1 *)messaging;
+- (SoapActionsInputConfig1 *)inputConfig;
+- (SoapActionsDeviceProtection1 *)deviceProtection;
+- (BasicUPnPService *)mediaManagementService;
+- (BasicUPnPService *)messagingService;
+- (BasicUPnPService *)inputConfigService;
+- (BasicUPnPService *)deviceProtectionService;
 
 @end

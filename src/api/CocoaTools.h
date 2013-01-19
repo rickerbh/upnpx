@@ -37,10 +37,10 @@
 
 //NSString functions (via categories)
 @interface NSString(AcranegraExtentions)
--(NSString*)XMLUnEscape;
--(NSString*)XMLEscape;
--(int)HMS2Seconds;
-+(NSString*)Seconds2HMS:(int)seconds;
+-(NSString *)XMLUnEscape;
+-(NSString *)XMLEscape;
+- (int)HMS2Seconds;
++(NSString *)Seconds2HMS:(int)seconds;
 @end
 
 

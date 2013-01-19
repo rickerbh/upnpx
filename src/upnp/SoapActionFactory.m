@@ -31,9 +31,7 @@
 //
 // **********************************************************************************
 
-
 #import "SoapActionFactory.h"
-
 #import "SoapActionsAVTransport1.h"
 #import "SoapActionsConnectionManager1.h"
 #import "SoapActionsContentDirectory1.h"
@@ -45,91 +43,45 @@
 
 @implementation SoapActionFactory
 
-
--(id)init{
-    self = [super init];
-    
-    return self;
-}
-
-
--(void)dealloc{
-	
-	[super dealloc];
-}
-
-
--(SoapAction*)allocSoapWithURN:(NSString*)urn andBaseNSURL:(NSURL*)baseURL andControlURL:(NSString*)controlURL andEventURL:(NSString*)eventURL{
+- (SoapAction *)allocSoapWithURN:(NSString *)urn andBaseNSURL:(NSURL *)baseURL andControlURL:(NSString *)controlURL andEventURL:(NSString *)eventURL {
 	SoapAction *soapaction = nil;
 	
-	if([urn isEqualToString:@"urn:schemas-upnp-org:service:AVTransport:1"]){
+	if ([urn isEqualToString:@"urn:schemas-upnp-org:service:AVTransport:1"]) {
+    soapaction = [[SoapActionsAVTransport1 alloc] initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL]
+                                                           eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                      upnpnamespace:urn];
+	} else if ([urn isEqualToString:@"urn:schemas-upnp-org:service:ConnectionManager:1"]) {
+		soapaction = [[SoapActionsConnectionManager1 alloc] initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL]
+                                                                 eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                            upnpnamespace:urn];
+	} else if ([urn isEqualToString:@"urn:schemas-upnp-org:service:ContentDirectory:1"]) {
 
-	
-		soapaction = [[SoapActionsAVTransport1 alloc]
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					 ];
-		
-		
-	}else if([urn isEqualToString:@"urn:schemas-upnp-org:service:ConnectionManager:1"]){
-		
-		soapaction = [[SoapActionsConnectionManager1 alloc] 
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					  ];
-		
-
-	}else if([urn isEqualToString:@"urn:schemas-upnp-org:service:ContentDirectory:1"]){
-
-		soapaction = [[SoapActionsContentDirectory1 alloc] 
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					  ];
-		
-	}else if([urn isEqualToString:@"urn:schemas-upnp-org:service:RenderingControl:1"]){
-
-		soapaction = [[SoapActionsRenderingControl1 alloc]	
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					  ];
-		
-	}else if([urn isEqualToString:@"urn:schemas-upnp-org:service:SwitchPower:1"]){		
-		soapaction = [[SoapActionsSwitchPower1 alloc]	
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					  ];
-
-	}else if([urn isEqualToString:@"urn:schemas-upnp-org:service:Dimming:1"]){		
-		soapaction = [[SoapActionsDimming1 alloc]	
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					  ];
-
-	}else if([urn isEqualToString:@"urn:schemas-upnp-org:service:WANIPConnection:1"]){		
-		soapaction = [[SoapActionsWANIPConnection1 alloc]	
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					  ];
-	}else if([urn isEqualToString:@"urn:schemas-upnp-org:service:WANPPPConnection:1"]){		
-		soapaction = [[SoapActionsWANPPPConnection1 alloc]	
-					  initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
-					  eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL] 
-					  upnpnamespace:urn
-					  ];
+		soapaction = [[SoapActionsContentDirectory1 alloc] initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL]
+                                                                eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                           upnpnamespace:urn];
+	} else if ([urn isEqualToString:@"urn:schemas-upnp-org:service:RenderingControl:1"]) {
+		soapaction = [[SoapActionsRenderingControl1 alloc] initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL] 
+                                                                eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                           upnpnamespace:urn];
+	} else if ([urn isEqualToString:@"urn:schemas-upnp-org:service:SwitchPower:1"]) {		
+		soapaction = [[SoapActionsSwitchPower1 alloc]	initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL]
+                                                           eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                      upnpnamespace:urn];
+	} else if ([urn isEqualToString:@"urn:schemas-upnp-org:service:Dimming:1"]) {		
+		soapaction = [[SoapActionsDimming1 alloc]	initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL]
+                                                       eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                  upnpnamespace:urn];
+	} else if ([urn isEqualToString:@"urn:schemas-upnp-org:service:WANIPConnection:1"]) {		
+		soapaction = [[SoapActionsWANIPConnection1 alloc]	initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL]
+                                                               eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                          upnpnamespace:urn];
+	} else if ([urn isEqualToString:@"urn:schemas-upnp-org:service:WANPPPConnection:1"]) {
+    soapaction = [[SoapActionsWANPPPConnection1 alloc] initWithActionURL:[NSURL URLWithString:controlURL relativeToURL:baseURL]
+                                                                eventURL:[NSURL URLWithString:eventURL relativeToURL:baseURL]
+                                                           upnpnamespace:urn];
 	}
 
-	
-	
 	return soapaction;
-
 }
-
 
 @end

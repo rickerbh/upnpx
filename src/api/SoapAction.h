@@ -34,19 +34,10 @@
 #import <Foundation/Foundation.h>
 #import "BasicParser.h"
 
+@interface SoapAction : BasicParser
 
-
-@interface SoapAction : BasicParser {
-	NSURL *actionURL;
-	NSURL *eventURL;
-	NSString *upnpNameSpace;
-	NSDictionary *mOutput;
-}
-
--(id)initWithActionURL:(NSURL*)aUrl eventURL:(NSURL*)eUrl upnpnamespace:(NSString*)ns;
--(void)dealloc;
--(int)action:(NSString*)soapAction parameters:(NSDictionary*)parameters returnValues:(NSDictionary*)output;
-
--(void)setStringValueForFoundAsset:(NSString*)value;
+- (id)initWithActionURL:(NSURL *)aUrl eventURL:(NSURL *)eUrl upnpnamespace:(NSString *)ns;
+- (int)action:(NSString *)soapAction parameters:(NSDictionary *)parameters returnValues:(NSDictionary *)output;
+- (void)setStringValueForFoundAsset:(NSString *)value;
 
 @end

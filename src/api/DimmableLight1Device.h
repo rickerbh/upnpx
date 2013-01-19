@@ -43,12 +43,12 @@
 }
 
 -(id)init;
--(void)dealloc;
+- (void)dealloc;
 
--(SoapActionsSwitchPower1*)switchPower;
--(SoapActionsDimming1*)dimming;
+- (SoapActionsSwitchPower1 *)switchPower;
+- (SoapActionsDimming1 *)dimming;
 
--(BasicUPnPService*)switchPowerService;
--(BasicUPnPService*)dimmingService;
+- (BasicUPnPService *)switchPowerService;
+- (BasicUPnPService *)dimmingService;
 
 @end

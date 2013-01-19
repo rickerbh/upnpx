@@ -61,7 +61,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	
 	[[self avTransportService] removeObserver:(BasicUPnPServiceObserver*)self];
 
@@ -76,32 +76,32 @@
 }
 
 
--(BasicUPnPService*)avTransportService{
+- (BasicUPnPService *)avTransportService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"];
 }
 
--(BasicUPnPService*)renderingControlService{
+- (BasicUPnPService *)renderingControlService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:RenderingControl:1"];
 }
 
--(BasicUPnPService*)connectionManagerService{
+- (BasicUPnPService *)connectionManagerService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"];
 }
 
 
--(SoapActionsAVTransport1*)avTransport{
+- (SoapActionsAVTransport1 *)avTransport{
 	if(mAvTransport == nil){
 		
-		mAvTransport = (SoapActionsAVTransport1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
+		mAvTransport = (SoapActionsAVTransport1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
 		[mAvTransport retain];
 	}
 	
 	return mAvTransport;
 }
 
--(SoapActionsRenderingControl1*)renderingControl{
+- (SoapActionsRenderingControl1 *)renderingControl{
 	if(mRenderingControl == nil){
-		mRenderingControl = (SoapActionsRenderingControl1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:RenderingControl:1"] soap];
+		mRenderingControl = (SoapActionsRenderingControl1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:RenderingControl:1"] soap];
 		[mRenderingControl retain];
 	}
 	
@@ -109,9 +109,9 @@
 }
 
 
--(SoapActionsConnectionManager1*)connectionManager{
+- (SoapActionsConnectionManager1 *)connectionManager{
 	if(mConnectionManager == nil){
-		mConnectionManager = (SoapActionsConnectionManager1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
+		mConnectionManager = (SoapActionsConnectionManager1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
 		[mConnectionManager retain];
 	}
 	
@@ -119,7 +119,7 @@
 }
 
 
--(BOOL)supportProtocol:(NSString*)protocolInfo withCache:(BOOL)useCache{
+-(BOOL)supportProtocol:(NSString *)protocolInfo withCache:(BOOL)useCache{
 	BOOL ret = NO;
 	
 	//Cache the protocolInfo
@@ -145,7 +145,7 @@
 
 
 
--(int)play{
+- (int)play{
 	
 	[playList stop];
 	
@@ -202,7 +202,7 @@
 
 
 
--(int)playWithMedia:(MediaServer1BasicObject*)media{
+- (int)playWithMedia:(MediaServer1BasicObject*)media{
 
 	
 	[playList setTrackByID:[media objectID]];
@@ -213,7 +213,7 @@
 
 
 //BasicUPnPServiceObserver
--(void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary*)events{
+- (void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary *)events{
 	if(sender == [self avTransportService]){
 		NSString *newState = [events objectForKey:@"TransportState"];
 	

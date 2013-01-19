@@ -40,7 +40,7 @@
 @implementation SoapActionsWANDSLLinkConfig1
 
 
--(int)SetDSLLinkTypeWithNewLinkType:(NSString*)newlinktype{
+- (int)SetDSLLinkTypeWithNewLinkType:(NSString *)newlinktype{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -56,7 +56,7 @@
 }
 
 
--(int)GetDSLLinkInfoWithOutNewLinkType:(NSMutableString*)newlinktype OutNewLinkStatus:(NSMutableString*)newlinkstatus{
+- (int)GetDSLLinkInfoWithOutNewLinkType:(NSMutableString *)newlinktype OutNewLinkStatus:(NSMutableString *)newlinkstatus{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -72,7 +72,7 @@
 }
 
 
--(int)GetAutoConfigWithOutNewAutoConfig:(NSMutableString*)newautoconfig{
+- (int)GetAutoConfigWithOutNewAutoConfig:(NSMutableString *)newautoconfig{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -88,7 +88,7 @@
 }
 
 
--(int)GetModulationTypeWithOutNewModulationType:(NSMutableString*)newmodulationtype{
+- (int)GetModulationTypeWithOutNewModulationType:(NSMutableString *)newmodulationtype{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -104,7 +104,7 @@
 }
 
 
--(int)SetDestinationAddressWithNewDestinationAddress:(NSString*)newdestinationaddress{
+- (int)SetDestinationAddressWithNewDestinationAddress:(NSString *)newdestinationaddress{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -120,7 +120,7 @@
 }
 
 
--(int)GetDestinationAddressWithOutNewDestinationAddress:(NSMutableString*)newdestinationaddress{
+- (int)GetDestinationAddressWithOutNewDestinationAddress:(NSMutableString *)newdestinationaddress{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -136,7 +136,7 @@
 }
 
 
--(int)SetATMEncapsulationWithNewATMEncapsulation:(NSString*)newatmencapsulation{
+- (int)SetATMEncapsulationWithNewATMEncapsulation:(NSString *)newatmencapsulation{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -152,7 +152,7 @@
 }
 
 
--(int)GetATMEncapsulationWithOutNewATMEncapsulation:(NSMutableString*)newatmencapsulation{
+- (int)GetATMEncapsulationWithOutNewATMEncapsulation:(NSMutableString *)newatmencapsulation{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -168,7 +168,7 @@
 }
 
 
--(int)SetFCSPreservedWithNewFCSPreserved:(NSString*)newfcspreserved{
+- (int)SetFCSPreservedWithNewFCSPreserved:(NSString *)newfcspreserved{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -184,7 +184,7 @@
 }
 
 
--(int)GetFCSPreservedWithOutNewFCSPreserved:(NSMutableString*)newfcspreserved{
+- (int)GetFCSPreservedWithOutNewFCSPreserved:(NSMutableString *)newfcspreserved{
     int ret = 0;
 
     NSDictionary *parameters = nil;

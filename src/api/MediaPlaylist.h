@@ -52,8 +52,8 @@ typedef enum MediaPlaylistState{
  * Observer
  */
 @protocol MediaPlaylistObserver
--(int)NewTrack:(MediaServer1ItemObject*)track;
--(void)StateChanged:(MediaPlaylistState)state;
+- (int)NewTrack:(MediaServer1ItemObject*)track;
+- (void)StateChanged:(MediaPlaylistState)state;
 @end
 
 
@@ -72,17 +72,17 @@ typedef enum MediaPlaylistState{
 }
 
 -(id)init;
--(void)dealloc;
--(int)addObserver:(MediaPlaylistObserver*)obs;
--(int)removeObserver:(MediaPlaylistObserver*)obs;
--(int)loadWithMediaServer:(MediaServer1Device*)server forContainer:(MediaServer1ContainerObject*)selectedContainer;
+- (void)dealloc;
+- (int)addObserver:(MediaPlaylistObserver*)obs;
+- (int)removeObserver:(MediaPlaylistObserver*)obs;
+- (int)loadWithMediaServer:(MediaServer1Device*)server forContainer:(MediaServer1ContainerObject*)selectedContainer;
 
--(int)stop;
--(int)play;
--(int)nextTrack;
--(int)prevTrack;
--(int)setTrackByNumber:(int)track;
--(int)setTrackByID:(NSString*)objectID; 
+- (int)stop;
+- (int)play;
+- (int)nextTrack;
+- (int)prevTrack;
+- (int)setTrackByNumber:(int)track;
+- (int)setTrackByID:(NSString *)objectID; 
 -(MediaServer1ItemObject*)GetCurrentTrackItem;
 
 @property(readonly) NSMutableArray *playList;

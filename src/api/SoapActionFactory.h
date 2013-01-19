@@ -31,17 +31,11 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "SoapAction.h"
 
-@interface SoapActionFactory : NSObject {
+@interface SoapActionFactory : NSObject
 
-}
-
--(id)init;
--(void)dealloc;
--(SoapAction*)allocSoapWithURN:(NSString*)urn andBaseNSURL:(NSURL*)baseURL andControlURL:(NSString*)controlURL andEventURL:(NSString*)eventURL;
-
+- (SoapAction *)allocSoapWithURN:(NSString *)urn andBaseNSURL:(NSURL *)baseURL andControlURL:(NSString *)controlURL andEventURL:(NSString *)eventURL;
 
 @end

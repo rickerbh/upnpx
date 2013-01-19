@@ -32,7 +32,7 @@
 @implementation SoapActionsConnectionManager1
 
 
--(int)GetProtocolInfoWithOutSource:(NSMutableString*)source OutSink:(NSMutableString*)sink{
+- (int)GetProtocolInfoWithOutSource:(NSMutableString *)source OutSink:(NSMutableString *)sink{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -48,7 +48,7 @@
 }
 
 
--(int)PrepareForConnectionWithRemoteProtocolInfo:(NSString*)remoteprotocolinfo PeerConnectionManager:(NSString*)peerconnectionmanager PeerConnectionID:(NSString*)peerconnectionid Direction:(NSString*)direction OutConnectionID:(NSMutableString*)connectionid OutAVTransportID:(NSMutableString*)avtransportid OutRcsID:(NSMutableString*)rcsid{
+- (int)PrepareForConnectionWithRemoteProtocolInfo:(NSString *)remoteprotocolinfo PeerConnectionManager:(NSString *)peerconnectionmanager PeerConnectionID:(NSString *)peerconnectionid Direction:(NSString *)direction OutConnectionID:(NSMutableString *)connectionid OutAVTransportID:(NSMutableString *)avtransportid OutRcsID:(NSMutableString *)rcsid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -70,7 +70,7 @@
 }
 
 
--(int)ConnectionCompleteWithConnectionID:(NSString*)connectionid{
+- (int)ConnectionCompleteWithConnectionID:(NSString *)connectionid{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -86,7 +86,7 @@
 }
 
 
--(int)GetCurrentConnectionIDsWithOutConnectionIDs:(NSMutableString*)connectionids{
+- (int)GetCurrentConnectionIDsWithOutConnectionIDs:(NSMutableString *)connectionids{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -102,7 +102,7 @@
 }
 
 
--(int)GetCurrentConnectionInfoWithConnectionID:(NSString*)connectionid OutRcsID:(NSMutableString*)rcsid OutAVTransportID:(NSMutableString*)avtransportid OutProtocolInfo:(NSMutableString*)protocolinfo OutPeerConnectionManager:(NSMutableString*)peerconnectionmanager OutPeerConnectionID:(NSMutableString*)peerconnectionid OutDirection:(NSMutableString*)direction OutStatus:(NSMutableString*)status{
+- (int)GetCurrentConnectionInfoWithConnectionID:(NSString *)connectionid OutRcsID:(NSMutableString *)rcsid OutAVTransportID:(NSMutableString *)avtransportid OutProtocolInfo:(NSMutableString *)protocolinfo OutPeerConnectionManager:(NSMutableString *)peerconnectionmanager OutPeerConnectionID:(NSMutableString *)peerconnectionid OutDirection:(NSMutableString *)direction OutStatus:(NSMutableString *)status{
     int ret = 0;
 
     NSDictionary *parameters = nil;

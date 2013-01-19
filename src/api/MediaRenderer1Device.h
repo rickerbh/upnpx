@@ -64,26 +64,26 @@
 }
 
 -(id)init;
--(void)dealloc;
+- (void)dealloc;
 
--(SoapActionsAVTransport1*)avTransport;
--(SoapActionsRenderingControl1*)renderingControl;
--(SoapActionsConnectionManager1*)connectionManager;
+- (SoapActionsAVTransport1 *)avTransport;
+- (SoapActionsRenderingControl1 *)renderingControl;
+- (SoapActionsConnectionManager1 *)connectionManager;
 
--(BasicUPnPService*)avTransportService;
--(BasicUPnPService*)renderingControlService;
--(BasicUPnPService*)connectionManagerService;
+- (BasicUPnPService *)avTransportService;
+- (BasicUPnPService *)renderingControlService;
+- (BasicUPnPService *)connectionManagerService;
 
--(BOOL)supportProtocol:(NSString*)protocolInfo withCache:(BOOL)useCache;
+-(BOOL)supportProtocol:(NSString *)protocolInfo withCache:(BOOL)useCache;
 
 
--(int)play;
--(int)playWithMedia:(MediaServer1BasicObject*)media;
+- (int)play;
+- (int)playWithMedia:(MediaServer1BasicObject*)media;
 
 @property(readonly) MediaPlaylist *playList;
 
 //BasicUPnPServiceObserver
--(void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary*)events;
+- (void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary *)events;
 
 
 @end

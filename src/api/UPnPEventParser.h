@@ -43,10 +43,10 @@
 }
 
 -(id)init;
--(void)dealloc;
--(void)propertyName:(NSString*)startStop;
--(void)lastChangeElement:(NSString*)startStop;
--(void)reinit;
+- (void)dealloc;
+- (void)propertyName:(NSString *)startStop;
+- (void)lastChangeElement:(NSString *)startStop;
+- (void)reinit;
 
 @property(readonly)NSMutableDictionary *events;
 @property(retain, nonatomic)NSString *elementValue;

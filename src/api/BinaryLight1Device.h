@@ -47,10 +47,10 @@
 
 
 -(id)init;
--(void)dealloc;
+- (void)dealloc;
 
--(SoapActionsSwitchPower1*)switchPower;
--(BasicUPnPService*)switchPowerService;
+- (SoapActionsSwitchPower1 *)switchPower;
+- (BasicUPnPService *)switchPowerService;
 
 
 

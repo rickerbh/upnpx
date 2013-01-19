@@ -9,7 +9,7 @@
 @implementation SoapActionsMediaManagement1
 
 
--(int)GetMediaCapabilitiesWithTSMediaCapabilityInfo:(NSString*)tsmediacapabilityinfo OutSupportedMediaCapabilityInfo:(NSMutableString*)supportedmediacapabilityinfo{
+- (int)GetMediaCapabilitiesWithTSMediaCapabilityInfo:(NSString *)tsmediacapabilityinfo OutSupportedMediaCapabilityInfo:(NSMutableString *)supportedmediacapabilityinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -31,7 +31,7 @@
 }
 
 
--(int)GetMediaSessionInfoWithTargetMediaSessionID:(NSString*)targetmediasessionid OutMediaSessionInfoList:(NSMutableString*)mediasessioninfolist{
+- (int)GetMediaSessionInfoWithTargetMediaSessionID:(NSString *)targetmediasessionid OutMediaSessionInfoList:(NSMutableString *)mediasessioninfolist{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -53,7 +53,7 @@
 }
 
 
--(int)ModifyMediaSessionWithTargetMediaSessionID:(NSString*)targetmediasessionid NewMediaCapabilityInfo:(NSString*)newmediacapabilityinfo OutTCMediaCapabilityInfo:(NSMutableString*)tcmediacapabilityinfo{
+- (int)ModifyMediaSessionWithTargetMediaSessionID:(NSString *)targetmediasessionid NewMediaCapabilityInfo:(NSString *)newmediacapabilityinfo OutTCMediaCapabilityInfo:(NSMutableString *)tcmediacapabilityinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -75,7 +75,7 @@
 }
 
 
--(int)StartMediaSessionWithTSMediaCapabilityInfo:(NSString*)tsmediacapabilityinfo OutMediaSessionID:(NSMutableString*)mediasessionid OutTCMediaCapabilityInfo:(NSMutableString*)tcmediacapabilityinfo{
+- (int)StartMediaSessionWithTSMediaCapabilityInfo:(NSString *)tsmediacapabilityinfo OutMediaSessionID:(NSMutableString *)mediasessionid OutTCMediaCapabilityInfo:(NSMutableString *)tcmediacapabilityinfo{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -97,7 +97,7 @@
 }
 
 
--(int)StopMediaSessionWithTargetMediaSessionID:(NSString*)targetmediasessionid{
+- (int)StopMediaSessionWithTargetMediaSessionID:(NSString *)targetmediasessionid{
     int ret = 0;
 
     NSDictionary *parameters = nil;

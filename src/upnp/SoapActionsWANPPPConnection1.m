@@ -40,7 +40,7 @@
 @implementation SoapActionsWANPPPConnection1
 
 
--(int)SetConnectionTypeWithNewConnectionType:(NSString*)newconnectiontype{
+- (int)SetConnectionTypeWithNewConnectionType:(NSString *)newconnectiontype{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -56,7 +56,7 @@
 }
 
 
--(int)GetConnectionTypeInfoWithOutNewConnectionType:(NSMutableString*)newconnectiontype OutNewPossibleConnectionTypes:(NSMutableString*)newpossibleconnectiontypes{
+- (int)GetConnectionTypeInfoWithOutNewConnectionType:(NSMutableString *)newconnectiontype OutNewPossibleConnectionTypes:(NSMutableString *)newpossibleconnectiontypes{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -72,7 +72,7 @@
 }
 
 
--(int)ConfigureConnectionWithNewUserName:(NSString*)newusername NewPassword:(NSString*)newpassword{
+- (int)ConfigureConnectionWithNewUserName:(NSString *)newusername NewPassword:(NSString *)newpassword{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -88,7 +88,7 @@
 }
 
 
--(int)RequestConnection{
+- (int)RequestConnection{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -98,7 +98,7 @@
 }
 
 
--(int)RequestTermination{
+- (int)RequestTermination{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -108,7 +108,7 @@
 }
 
 
--(int)ForceTermination{
+- (int)ForceTermination{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -118,7 +118,7 @@
 }
 
 
--(int)SetAutoDisconnectTimeWithNewAutoDisconnectTime:(NSString*)newautodisconnecttime{
+- (int)SetAutoDisconnectTimeWithNewAutoDisconnectTime:(NSString *)newautodisconnecttime{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -134,7 +134,7 @@
 }
 
 
--(int)SetIdleDisconnectTimeWithNewIdleDisconnectTime:(NSString*)newidledisconnecttime{
+- (int)SetIdleDisconnectTimeWithNewIdleDisconnectTime:(NSString *)newidledisconnecttime{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -150,7 +150,7 @@
 }
 
 
--(int)SetWarnDisconnectDelayWithNewWarnDisconnectDelay:(NSString*)newwarndisconnectdelay{
+- (int)SetWarnDisconnectDelayWithNewWarnDisconnectDelay:(NSString *)newwarndisconnectdelay{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -166,7 +166,7 @@
 }
 
 
--(int)GetStatusInfoWithOutNewConnectionStatus:(NSMutableString*)newconnectionstatus OutNewLastConnectionError:(NSMutableString*)newlastconnectionerror OutNewUptime:(NSMutableString*)newuptime{
+- (int)GetStatusInfoWithOutNewConnectionStatus:(NSMutableString *)newconnectionstatus OutNewLastConnectionError:(NSMutableString *)newlastconnectionerror OutNewUptime:(NSMutableString *)newuptime{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -182,7 +182,7 @@
 }
 
 
--(int)GetLinkLayerMaxBitRatesWithOutNewUpstreamMaxBitRate:(NSMutableString*)newupstreammaxbitrate OutNewDownstreamMaxBitRate:(NSMutableString*)newdownstreammaxbitrate{
+- (int)GetLinkLayerMaxBitRatesWithOutNewUpstreamMaxBitRate:(NSMutableString *)newupstreammaxbitrate OutNewDownstreamMaxBitRate:(NSMutableString *)newdownstreammaxbitrate{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -198,7 +198,7 @@
 }
 
 
--(int)GetPPPEncryptionProtocolWithOutNewPPPEncryptionProtocol:(NSMutableString*)newpppencryptionprotocol{
+- (int)GetPPPEncryptionProtocolWithOutNewPPPEncryptionProtocol:(NSMutableString *)newpppencryptionprotocol{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -214,7 +214,7 @@
 }
 
 
--(int)GetPPPCompressionProtocolWithOutNewPPPCompressionProtocol:(NSMutableString*)newpppcompressionprotocol{
+- (int)GetPPPCompressionProtocolWithOutNewPPPCompressionProtocol:(NSMutableString *)newpppcompressionprotocol{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -230,7 +230,7 @@
 }
 
 
--(int)GetPPPAuthenticationProtocolWithOutNewPPPAuthenticationProtocol:(NSMutableString*)newpppauthenticationprotocol{
+- (int)GetPPPAuthenticationProtocolWithOutNewPPPAuthenticationProtocol:(NSMutableString *)newpppauthenticationprotocol{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -246,7 +246,7 @@
 }
 
 
--(int)GetUserNameWithOutNewUserName:(NSMutableString*)newusername{
+- (int)GetUserNameWithOutNewUserName:(NSMutableString *)newusername{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -262,7 +262,7 @@
 }
 
 
--(int)GetPasswordWithOutNewPassword:(NSMutableString*)newpassword{
+- (int)GetPasswordWithOutNewPassword:(NSMutableString *)newpassword{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -278,7 +278,7 @@
 }
 
 
--(int)GetAutoDisconnectTimeWithOutNewAutoDisconnectTime:(NSMutableString*)newautodisconnecttime{
+- (int)GetAutoDisconnectTimeWithOutNewAutoDisconnectTime:(NSMutableString *)newautodisconnecttime{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -294,7 +294,7 @@
 }
 
 
--(int)GetIdleDisconnectTimeWithOutNewIdleDisconnectTime:(NSMutableString*)newidledisconnecttime{
+- (int)GetIdleDisconnectTimeWithOutNewIdleDisconnectTime:(NSMutableString *)newidledisconnecttime{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -310,7 +310,7 @@
 }
 
 
--(int)GetWarnDisconnectDelayWithOutNewWarnDisconnectDelay:(NSMutableString*)newwarndisconnectdelay{
+- (int)GetWarnDisconnectDelayWithOutNewWarnDisconnectDelay:(NSMutableString *)newwarndisconnectdelay{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -326,7 +326,7 @@
 }
 
 
--(int)GetNATRSIPStatusWithOutNewRSIPAvailable:(NSMutableString*)newrsipavailable OutNewNATEnabled:(NSMutableString*)newnatenabled{
+- (int)GetNATRSIPStatusWithOutNewRSIPAvailable:(NSMutableString *)newrsipavailable OutNewNATEnabled:(NSMutableString *)newnatenabled{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -342,7 +342,7 @@
 }
 
 
--(int)GetGenericPortMappingEntryWithNewPortMappingIndex:(NSString*)newportmappingindex OutNewRemoteHost:(NSMutableString*)newremotehost OutNewExternalPort:(NSMutableString*)newexternalport OutNewProtocol:(NSMutableString*)newprotocol OutNewInternalPort:(NSMutableString*)newinternalport OutNewInternalClient:(NSMutableString*)newinternalclient OutNewEnabled:(NSMutableString*)newenabled OutNewPortMappingDescription:(NSMutableString*)newportmappingdescription OutNewLeaseDuration:(NSMutableString*)newleaseduration{
+- (int)GetGenericPortMappingEntryWithNewPortMappingIndex:(NSString *)newportmappingindex OutNewRemoteHost:(NSMutableString *)newremotehost OutNewExternalPort:(NSMutableString *)newexternalport OutNewProtocol:(NSMutableString *)newprotocol OutNewInternalPort:(NSMutableString *)newinternalport OutNewInternalClient:(NSMutableString *)newinternalclient OutNewEnabled:(NSMutableString *)newenabled OutNewPortMappingDescription:(NSMutableString *)newportmappingdescription OutNewLeaseDuration:(NSMutableString *)newleaseduration{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -364,7 +364,7 @@
 }
 
 
--(int)GetSpecificPortMappingEntryWithNewRemoteHost:(NSString*)newremotehost NewExternalPort:(NSString*)newexternalport NewProtocol:(NSString*)newprotocol OutNewInternalPort:(NSMutableString*)newinternalport OutNewInternalClient:(NSMutableString*)newinternalclient OutNewEnabled:(NSMutableString*)newenabled OutNewPortMappingDescription:(NSMutableString*)newportmappingdescription OutNewLeaseDuration:(NSMutableString*)newleaseduration{
+- (int)GetSpecificPortMappingEntryWithNewRemoteHost:(NSString *)newremotehost NewExternalPort:(NSString *)newexternalport NewProtocol:(NSString *)newprotocol OutNewInternalPort:(NSMutableString *)newinternalport OutNewInternalClient:(NSMutableString *)newinternalclient OutNewEnabled:(NSMutableString *)newenabled OutNewPortMappingDescription:(NSMutableString *)newportmappingdescription OutNewLeaseDuration:(NSMutableString *)newleaseduration{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -386,7 +386,7 @@
 }
 
 
--(int)AddPortMappingWithNewRemoteHost:(NSString*)newremotehost NewExternalPort:(NSString*)newexternalport NewProtocol:(NSString*)newprotocol NewInternalPort:(NSString*)newinternalport NewInternalClient:(NSString*)newinternalclient NewEnabled:(NSString*)newenabled NewPortMappingDescription:(NSString*)newportmappingdescription NewLeaseDuration:(NSString*)newleaseduration{
+- (int)AddPortMappingWithNewRemoteHost:(NSString *)newremotehost NewExternalPort:(NSString *)newexternalport NewProtocol:(NSString *)newprotocol NewInternalPort:(NSString *)newinternalport NewInternalClient:(NSString *)newinternalclient NewEnabled:(NSString *)newenabled NewPortMappingDescription:(NSString *)newportmappingdescription NewLeaseDuration:(NSString *)newleaseduration{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -402,7 +402,7 @@
 }
 
 
--(int)DeletePortMappingWithNewRemoteHost:(NSString*)newremotehost NewExternalPort:(NSString*)newexternalport NewProtocol:(NSString*)newprotocol{
+- (int)DeletePortMappingWithNewRemoteHost:(NSString *)newremotehost NewExternalPort:(NSString *)newexternalport NewProtocol:(NSString *)newprotocol{
     int ret = 0;
 
     NSDictionary *parameters = nil;
@@ -418,7 +418,7 @@
 }
 
 
--(int)GetExternalIPAddressWithOutNewExternalIPAddress:(NSMutableString*)newexternalipaddress{
+- (int)GetExternalIPAddressWithOutNewExternalIPAddress:(NSMutableString *)newexternalipaddress{
     int ret = 0;
 
     NSDictionary *parameters = nil;

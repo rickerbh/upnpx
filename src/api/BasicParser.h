@@ -47,11 +47,11 @@
 
 -(id)init;
 -(id)initWithNamespaceSupport:(BOOL)namespaceSupport;
--(void)dealloc;
--(void)clearAllAssets;
--(int)addAsset:(NSArray*)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj;
--(int)parseFromURL:(NSURL*)url;
--(int)parseFromData:(NSData*)data;
+- (void)dealloc;
+- (void)clearAllAssets;
+- (int)addAsset:(NSArray*)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj;
+- (int)parseFromURL:(NSURL *)url;
+- (int)parseFromData:(NSData*)data;
 
 -(BasicParserAsset*)getAssetForElementStack:(NSMutableArray*)stack;
 

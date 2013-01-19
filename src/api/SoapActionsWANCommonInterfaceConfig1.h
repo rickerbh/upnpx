@@ -10,15 +10,15 @@
 
 //SOAP
 
--(int)SetEnabledForInternetWithNewEnabledForInternet:(NSString*)newenabledforinternet;
--(int)GetEnabledForInternetWithOutNewEnabledForInternet:(NSMutableString*)newenabledforinternet;
--(int)GetCommonLinkPropertiesWithOutNewWANAccessType:(NSMutableString*)newwanaccesstype OutNewLayer1UpstreamMaxBitRate:(NSMutableString*)newlayer1upstreammaxbitrate OutNewLayer1DownstreamMaxBitRate:(NSMutableString*)newlayer1downstreammaxbitrate OutNewPhysicalLinkStatus:(NSMutableString*)newphysicallinkstatus;
--(int)GetWANAccessProviderWithOutNewWANAccessProvider:(NSMutableString*)newwanaccessprovider;
--(int)GetMaximumActiveConnectionsWithOutNewMaximumActiveConnections:(NSMutableString*)newmaximumactiveconnections;
--(int)GetTotalBytesSentWithOutNewTotalBytesSent:(NSMutableString*)newtotalbytessent;
--(int)GetTotalBytesReceivedWithOutNewTotalBytesReceived:(NSMutableString*)newtotalbytesreceived;
--(int)GetTotalPacketsSentWithOutNewTotalPacketsSent:(NSMutableString*)newtotalpacketssent;
--(int)GetTotalPacketsReceivedWithOutNewTotalPacketsReceived:(NSMutableString*)newtotalpacketsreceived;
--(int)GetActiveConnectionWithNewActiveConnectionIndex:(NSString*)newactiveconnectionindex OutNewActiveConnDeviceContainer:(NSMutableString*)newactiveconndevicecontainer OutNewActiveConnectionServiceID:(NSMutableString*)newactiveconnectionserviceid;
+- (int)SetEnabledForInternetWithNewEnabledForInternet:(NSString *)newenabledforinternet;
+- (int)GetEnabledForInternetWithOutNewEnabledForInternet:(NSMutableString *)newenabledforinternet;
+- (int)GetCommonLinkPropertiesWithOutNewWANAccessType:(NSMutableString *)newwanaccesstype OutNewLayer1UpstreamMaxBitRate:(NSMutableString *)newlayer1upstreammaxbitrate OutNewLayer1DownstreamMaxBitRate:(NSMutableString *)newlayer1downstreammaxbitrate OutNewPhysicalLinkStatus:(NSMutableString *)newphysicallinkstatus;
+- (int)GetWANAccessProviderWithOutNewWANAccessProvider:(NSMutableString *)newwanaccessprovider;
+- (int)GetMaximumActiveConnectionsWithOutNewMaximumActiveConnections:(NSMutableString *)newmaximumactiveconnections;
+- (int)GetTotalBytesSentWithOutNewTotalBytesSent:(NSMutableString *)newtotalbytessent;
+- (int)GetTotalBytesReceivedWithOutNewTotalBytesReceived:(NSMutableString *)newtotalbytesreceived;
+- (int)GetTotalPacketsSentWithOutNewTotalPacketsSent:(NSMutableString *)newtotalpacketssent;
+- (int)GetTotalPacketsReceivedWithOutNewTotalPacketsReceived:(NSMutableString *)newtotalpacketsreceived;
+- (int)GetActiveConnectionWithNewActiveConnectionIndex:(NSString *)newactiveconnectionindex OutNewActiveConnDeviceContainer:(NSMutableString *)newactiveconndevicecontainer OutNewActiveConnectionServiceID:(NSMutableString *)newactiveconnectionserviceid;
 
 @end

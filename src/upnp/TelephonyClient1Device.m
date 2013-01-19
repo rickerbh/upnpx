@@ -31,95 +31,61 @@
 //
 // **********************************************************************************
 
-
 #import "TelephonyClient1Device.h"
 
+@interface TelephonyClient1Device ()
+@property (strong) SoapActionsMediaManagement1 *mMediaManagement;
+@property (strong) SoapActionsMessaging1 *mMessaging;
+@property (strong) SoapActionsInputConfig1 *mInputConfig;
+@property (strong) SoapActionsDeviceProtection1 *mDeviceProtection;
+@end
 
 @implementation TelephonyClient1Device
 
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {		
-        mMediaManagement = nil;
-        mMessaging = nil;
-        mInputConfig = nil;
-        mDeviceProtection = nil;
-    }
-
-	return self;
-}
-
-
--(void)dealloc{
-	
-	[mMediaManagement release];
-	[mMessaging release];
-	[mInputConfig release];
-	[mDeviceProtection release];
-	
-	[super dealloc];
-}
-
-
-
--(SoapActionsMediaManagement1*)mediaManagement{
-	if(mMediaManagement == nil){
-		mMediaManagement = (SoapActionsMediaManagement1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:MediaManagement:1"] soap];
-		[mMediaManagement retain];
+- (SoapActionsMediaManagement1 *)mediaManagement {
+	if (!self.mMediaManagement) {
+		self.mMediaManagement = (SoapActionsMediaManagement1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:MediaManagement:1"] soap];
 	}
 	
-	return mMediaManagement;
+	return self.mMediaManagement;
 }
 
--(SoapActionsMessaging1*)messaging{
-	if(mMessaging == nil){
-		mMessaging = (SoapActionsMessaging1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:Messaging:1"] soap];
-		[mMessaging retain];
+- (SoapActionsMessaging1 *)messaging {
+	if (!self.mMessaging) {
+		self.mMessaging = (SoapActionsMessaging1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:Messaging:1"] soap];
 	}
-	
-	return mMessaging;
+	return self.mMessaging;
 }
 
 
--(SoapActionsInputConfig1*)inputConfig{
-	if(mInputConfig == nil){
-		mInputConfig = (SoapActionsInputConfig1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:InputConfig:1"] soap];
-		[mInputConfig retain];
+- (SoapActionsInputConfig1 *)inputConfig {
+	if (!self.mInputConfig) {
+		self.mInputConfig = (SoapActionsInputConfig1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:InputConfig:1"] soap];
 	}
-	
-	return mInputConfig;
+	return self.mInputConfig;
 }
 
--(SoapActionsDeviceProtection1*)deviceProtection{
-	if(mDeviceProtection == nil){
-		mDeviceProtection = (SoapActionsDeviceProtection1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"] soap];
-		[mDeviceProtection retain];
+- (SoapActionsDeviceProtection1 *)deviceProtection {
+	if (!self.mDeviceProtection) {
+		self.mDeviceProtection = (SoapActionsDeviceProtection1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"] soap];
 	}
-	
-	return mDeviceProtection;
+	return self.mDeviceProtection;
 }
 
-
-
--(BasicUPnPService*)mediaManagementService{
-	return [self getServiceForType:@"urn:schemas-upnp-org:service:MediaManagement:1"];
+- (BasicUPnPService *)mediaManagementService {
+  return [self getServiceForType:@"urn:schemas-upnp-org:service:MediaManagement:1"];
 }
 
-
--(BasicUPnPService*)messagingService{
-	return [self getServiceForType:@"urn:schemas-upnp-org:service:Messaging:1"];
+- (BasicUPnPService *)messagingService {
+  return [self getServiceForType:@"urn:schemas-upnp-org:service:Messaging:1"];
 }
 
--(BasicUPnPService*)inputConfigService{
-	return [self getServiceForType:@"urn:schemas-upnp-org:service:InputConfig:1"];
+- (BasicUPnPService *)inputConfigService {
+  return [self getServiceForType:@"urn:schemas-upnp-org:service:InputConfig:1"];
 }
 
--(BasicUPnPService*)deviceProtectionService{
-    return [self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"];
+- (BasicUPnPService *)deviceProtectionService {
+  return [self getServiceForType:@"urn:schemas-upnp-org:service:DeviceProtection:1"];
 }
-
 
 @end

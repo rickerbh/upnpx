@@ -49,7 +49,7 @@
 }
 
 
--(void)dealloc{
+- (void)dealloc{
 	
 	[mSwitchPower release];
 	[mDimming release];
@@ -59,28 +59,28 @@
 
 
 
--(BasicUPnPService*)switchPowerService{
+- (BasicUPnPService *)switchPowerService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"];
 }
 
--(BasicUPnPService*)dimmingService{
+- (BasicUPnPService *)dimmingService{
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:Dimming:1"];
 }
 
 
 
--(SoapActionsSwitchPower1*)switchPower{
+- (SoapActionsSwitchPower1 *)switchPower{
 	if(mSwitchPower == nil){	                                                                     
-		mSwitchPower = (SoapActionsSwitchPower1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
+		mSwitchPower = (SoapActionsSwitchPower1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
 		[mSwitchPower retain];
 	}
 	
 	return mSwitchPower;
 }
 
--(SoapActionsDimming1*)dimming{
+- (SoapActionsDimming1 *)dimming{
 	if(mDimming == nil){	                                                                     
-		mDimming = (SoapActionsDimming1*)[[self getServiceForType:@"urn:schemas-upnp-org:service:Dimming:1"] soap];
+		mDimming = (SoapActionsDimming1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:Dimming:1"] soap];
 		[mDimming retain];
 	}
 	
