@@ -44,8 +44,10 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-#import "SoapActionsWANIPConnection1.h"
-#import "SoapActionsWANPPPConnection1.h"
+
+@class BasicUPnPService;
+@class SoapActionsWANIPConnection1;
+@class SoapActionsWANPPPConnection1;
 
 @interface WANConnection1Device : BasicUPnPDevice
 

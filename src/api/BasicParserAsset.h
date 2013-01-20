@@ -31,27 +31,18 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 
+@interface BasicParserAsset : NSObject
+@property (strong) NSArray *path;
+// Not sure if assign is the correct value for a SEL property
+@property (readonly, assign) SEL function;
+@property (readonly, strong) id functionObject;
+// Not sure if assign is the correct value for a SEL property
+@property (readonly, assign) SEL stringValueFunction;
+@property (readonly, strong) id stringValueObject;
+@property (strong) NSMutableString *stringCache;
 
-@interface BasicParserAsset : NSObject {
-	NSArray *path;
-	SEL function;
-	id functionObject;
-	SEL stringValueFunction;
-	id  stringValueObject;
-	NSMutableString *stringCache;
-}
-
--(id)initWithPath:(NSArray*)thePath setStringValueFunction:(SEL)theValueFunction setStringValueObject:(id)obj callFunction:(SEL)theFunction functionObject:(id)funcobj;
-- (void)dealloc;
-
-@property (readwrite, retain) NSArray *path;
-@property (readonly) SEL function;
-@property (readonly) id functionObject;
-@property (readonly) SEL stringValueFunction;
-@property (readonly) id stringValueObject;
-@property (readwrite, retain) NSMutableString *stringCache;
+- (id)initWithPath:(NSArray *)thePath setStringValueFunction:(SEL)theValueFunction setStringValueObject:(id)obj callFunction:(SEL)theFunction functionObject:(id)funcobj;
 
 @end

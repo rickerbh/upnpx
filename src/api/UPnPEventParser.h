@@ -31,24 +31,16 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "BasicParser.h"
 #import "LastChangeParser.h"
 
-@interface UPnPEventParser : BasicParser {
-	NSMutableDictionary *events;
-	NSString *elementValue;	
-	LastChangeParser *lastChangeParser;
-}
+@interface UPnPEventParser : BasicParser
+@property (readonly, strong) NSMutableDictionary *events;
+@property (strong, nonatomic) NSString *elementValue;
 
--(id)init;
-- (void)dealloc;
 - (void)propertyName:(NSString *)startStop;
 - (void)lastChangeElement:(NSString *)startStop;
 - (void)reinit;
-
-@property(readonly)NSMutableDictionary *events;
-@property(retain, nonatomic)NSString *elementValue;
 
 @end

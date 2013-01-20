@@ -56,7 +56,7 @@
     _readyForDescription = [[NSMutableArray alloc] init]; //BasicUPnPDevice
     _mObservers = [[NSMutableArray alloc] init];
     
-    [_mSSDP addObserver:(SSDPDB_ObjC_Observer*)self];
+    [_mSSDP addObserver:self];
     
     _mHTTPThread = [[NSThread alloc] initWithTarget:self selector:@selector(httpThread:) object:nil];
     [_mHTTPThread start];
@@ -66,7 +66,7 @@
 
 - (void)dealloc{
 	[_mHTTPThread cancel];
-	[_mSSDP removeObserver:(SSDPDB_ObjC_Observer*)self];
+	[_mSSDP removeObserver:self];
 	[_rootDevices removeAllObjects];
 }
 
@@ -114,7 +114,7 @@
 
 	//Flag all rootdevices as 'notfound'
   for (BasicUPnPDevice *upnpdevice in self.rootDevices) {
-		upnpdevice.isFound = NO;
+		upnpdevice.found = NO;
   }
   
 	__block BOOL found;
@@ -130,7 +130,7 @@
 				found = NO;
         [self.rootDevices enumerateObjectsUsingBlock:^(BasicUPnPDevice *upnpdevice, NSUInteger idx, BOOL *stop){
 					if ([ssdpdevice.usn compare:upnpdevice.usn] == NSOrderedSame){
-						upnpdevice.isFound = YES;
+						upnpdevice.found = YES;
 						found = YES;
             *stop = YES;
 					}

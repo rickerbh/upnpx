@@ -31,55 +31,36 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "BasicHTTPServer_ObjC.h"
 #import "UPnPEventParser.h"
 
-@class UPnPEvents_Observer;
-
 //Observer
 @protocol UPnPEvents_Observer
 - (void)UPnPEvent:(NSDictionary *)events;
--(NSURL *)GetUPnPEventURL;
+- (NSURL *)GetUPnPEventURL;
 - (void)SubscriptionTimerExpiresIn:(int)seconds timeoutSubscription:(int)timeout timeSubscription:(double)subscribed;
 @end
 
-
-@interface ObserverEntry : NSObject{
-    UPnPEvents_Observer* observer;
-    int timeout;
-    double subscriptiontime;
-}
-- (void)dealloc;
-@property (readwrite, retain) UPnPEvents_Observer* observer;
-@property (readwrite) int timeout;;
-@property (readwrite) double subscriptiontime;
+@interface ObserverEntry : NSObject
+@property (strong) NSObject<UPnPEvents_Observer> *observer;
+@property (assign) int timeout;
+@property (assign) double subscriptiontime;
 @end
 
+@interface UPnPEvents : NSObject <BasicHTTPServer_ObjC_Observer>
 
-@interface UPnPEvents : NSObject <BasicHTTPServer_ObjC_Observer> {
-	NSMutableDictionary *mEventSubscribers; //uuid, observer
-	BasicHTTPServer_ObjC *server;
-	UPnPEventParser *parser;
-	NSRecursiveLock *mMutex;
-    NSTimer *mTimeoutTimer;
-}
-
--(id)init;
-- (void)dealloc;
 - (void)start;
 - (void)stop;
 
--(NSString *)Subscribe:(UPnPEvents_Observer*)subscriber;
+- (NSString *)Subscribe:(NSObject<UPnPEvents_Observer> *)subscriber;
 - (void)UnSubscribe:(NSString *)uuid;
 
-- (void)ManageSubscriptionTimeouts:(NSTimer*)timer;
-
+- (void)ManageSubscriptionTimeouts:(NSTimer *)timer;
 
 //BasicHTTPServer_ObjC_Observer
--(BOOL)canProcessMethod:(BasicHTTPServer_ObjC*)sender requestMethod:(NSString *)method;
--(BOOL)request:(BasicHTTPServer_ObjC*)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData*)body;
--(BOOL)response:(BasicHTTPServer_ObjC*)sender returncode:(int*)returncode headers:(NSMutableDictionary*)headers body:(NSMutableData*)body;
+- (BOOL)canProcessMethod:(BasicHTTPServer_ObjC *)sender requestMethod:(NSString *)method;
+- (BOOL)request:(BasicHTTPServer_ObjC *)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData *)body;
+- (BOOL)response:(BasicHTTPServer_ObjC *)sender returncode:(int *)returncode headers:(NSMutableDictionary *)headers body:(NSMutableData *)body;
 
 @end

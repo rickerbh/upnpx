@@ -32,6 +32,11 @@
 // **********************************************************************************
 
 #import "TelephonyClient1Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsMediaManagement1.h"
+#import "SoapActionsMessaging1.h"
+#import "SoapActionsInputConfig1.h"
+#import "SoapActionsDeviceProtection1.h"
 
 @interface TelephonyClient1Device ()
 @property (strong) SoapActionsMediaManagement1 *mMediaManagement;

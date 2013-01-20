@@ -34,11 +34,6 @@
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
 
-#import "SoapActionsAVTransport1.h"
-#import "SoapActionsConnectionManager1.h"
-#import "SoapActionsContentDirectory1.h"
-
-
 /*
  * Services:
  * M - ContentDirectory:1.0 
@@ -46,23 +41,18 @@
  * O - AVTransport:1.0 
  */
 
-@interface MediaServer1Device : BasicUPnPDevice {
-	SoapActionsAVTransport1 *mAvTransport;
-	SoapActionsConnectionManager1 *mConnectionManager;
-	SoapActionsContentDirectory1 *mContentDirectory;
-}
+@class BasicUPnPService;
+@class SoapActionsAVTransport1;
+@class SoapActionsConnectionManager1;
+@class SoapActionsContentDirectory1;
 
--(id)init;
-- (void)dealloc;
+@interface MediaServer1Device : BasicUPnPDevice
 
 - (SoapActionsAVTransport1 *)avTransport;
 - (SoapActionsConnectionManager1 *)connectionManager;
 - (SoapActionsContentDirectory1 *)contentDirectory;
-
 - (BasicUPnPService *)avTransportService;
 - (BasicUPnPService *)connectionManagerService;
 - (BasicUPnPService *)contentDirectoryService;
-
-
 
 @end

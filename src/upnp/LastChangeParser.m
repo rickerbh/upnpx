@@ -31,45 +31,35 @@
 //
 // **********************************************************************************
 
-
 #import "LastChangeParser.h"
 
+@interface LastChangeParser ()
+@property (strong) NSMutableDictionary *events;
+@end
 
 @implementation LastChangeParser
 
--(id)initWithEventDictionary:(NSMutableDictionary*)foundEvents{
-    self = [super init];
-    
-    if (self) {
-        /* TODO: events -> retain property */
-        events = foundEvents;
-        [events retain];
-        
-        [self addAsset:[NSArray arrayWithObjects: @"Event", @"InstanceID", nil] callfunction:@selector(propertyName:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
-        [self addAsset:[NSArray arrayWithObjects: @"Event", @"InstanceID", @"*", nil] callfunction:@selector(propertyName:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
-    }
-	
+- (id)initWithEventDictionary:(NSMutableDictionary *)foundEvents {
+  self = [super init];
+  if (self) {
+    _events = foundEvents;
+
+    [self addAsset:@[@"Event", @"InstanceID"] callfunction:@selector(propertyName:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
+    [self addAsset:@[@"Event", @"InstanceID", @"*"] callfunction:@selector(propertyName:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
+  }
 	return self;
 }
 
-- (void)dealloc{
-	[super dealloc];
-}
-
-
-- (void)propertyName:(NSString *)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
-	}else{		
+- (void)propertyName:(NSString *)startStop {
+	if (![startStop isEqualToString:@"ElementStart"]) {
 		//Element name
-		NSString *name = [[NSString alloc] initWithString:currentElementName];
+		NSString *name = [[NSString alloc] initWithString:self.currentElementName];
 		//Element value
-		NSString *value = [elementAttributeDict objectForKey:@"val"];
+		NSString *value = [self.elementAttributeDict objectForKey:@"val"];
 		//Add
-		if(name != nil && value != nil){
-			[events setObject:value forKey:name];
+		if (name && value) {
+			[self.events setObject:value forKey:name];
 		}
-		
-		[name release];
 	}
 }
 

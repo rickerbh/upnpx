@@ -31,48 +31,25 @@
 //
 // **********************************************************************************
 
-
 #import "BinaryLight1Device.h"
+#import "SoapActionsSwitchPower1.h"
+#import "BasicUPnPService.h"
 
+@interface BinaryLight1Device ()
+@property (strong) SoapActionsSwitchPower1 *mSwitchPower;
+@end
 
 @implementation BinaryLight1Device
 
-
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mSwitchPower = nil;
-	}
-    
-	return self;
-}
-
-
-- (void)dealloc{
-	
-	[mSwitchPower release];
-	
-	[super dealloc];
-}
-
-
-
-- (BasicUPnPService *)switchPowerService{
+- (BasicUPnPService *)switchPowerService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"];
 }
 
-
-- (SoapActionsSwitchPower1 *)switchPower{
-	if(mSwitchPower == nil){	                                                                     
-		mSwitchPower = (SoapActionsSwitchPower1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
-		[mSwitchPower retain];
+- (SoapActionsSwitchPower1 *)switchPower {
+	if (!self.mSwitchPower) {
+		self.mSwitchPower = (SoapActionsSwitchPower1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
 	}
-	
-	return mSwitchPower;
+	return self.mSwitchPower;
 }
-
-
-
 
 @end

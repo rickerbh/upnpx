@@ -33,6 +33,8 @@
 
 
 #import "InternetGateway2Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsLayer3Forwarding1.h"
 
 @interface InternetGateway2Device ()
 @property (strong) SoapActionsLayer3Forwarding1 *mLayer3Forwarding;

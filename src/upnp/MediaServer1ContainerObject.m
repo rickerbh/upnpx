@@ -31,17 +31,8 @@
 //
 // **********************************************************************************
 
-
 #import "MediaServer1ContainerObject.h"
 
-
 @implementation MediaServer1ContainerObject
-
-@synthesize childCount;
-
-- (void)dealloc{
-    [childCount release];
-    [super dealloc];
-}
 
 @end

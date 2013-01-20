@@ -34,7 +34,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class SocketServer_ObjC, SocketServer_ObjC_Observer;
+@class SocketServer_ObjC;
 
 /**
  * Interface
@@ -46,10 +46,7 @@
 
 
 @interface SocketServer_ObjC : NSObject {
-//@public
-	
 @private
-	NSMutableArray *mObservers; //SocketServer_ObjC_Observer
 	void* mCppSocketServer;	
 	void *mCppSocketServerObserverWrapper;
 }
@@ -59,10 +56,10 @@
 - (void)dealloc;
 - (void)start;
 - (void)stop;
-- (void)addObserver:(SocketServer_ObjC_Observer*)obs;
-- (void)removeObserver:(SocketServer_ObjC_Observer*)obs;
--(NSString *)getIPAddress;
--(unsigned short)getPort;
-- (int)dataIn:(unsigned char*)data length:(int)len fromIP:(NSString *)ipAddress fromPort:(unsigned short)port;
+- (void)addObserver:(NSObject<SocketServer_ObjC_Observer> *)obs;
+- (void)removeObserver:(NSObject<SocketServer_ObjC_Observer> *)obs;
+- (NSString *)getIPAddress;
+- (unsigned short)getPort;
+- (int)dataIn:(unsigned char *)data length:(int)len fromIP:(NSString *)ipAddress fromPort:(unsigned short)port;
 
 @end

@@ -65,48 +65,42 @@ private:
 };
 
 
+@interface SSDPDB_ObjC ()
+@property (strong) NSRecursiveLock *mMutex;
+@property (strong) NSMutableArray *mObservers;
+@property (readwrite, strong) NSMutableArray *SSDPObjCDevices;
+@end
+
 /***
  * Obj-C
  */
-
-
 @implementation SSDPDB_ObjC
 
-@synthesize SSDPObjCDevices;
+- (id)init {
+  self = [super init];
 
--(id)init
-{
-    self = [super init];
-    
-    if (self) {		
-        mMutex = [[NSRecursiveLock alloc] init];
-        mObservers = [[NSMutableArray alloc] init];
-        SSDPObjCDevices = [[NSMutableArray alloc] init]; 
+  if (self) {		
+    _mMutex = [[NSRecursiveLock alloc] init];
+    _mObservers = [[NSMutableArray alloc] init];
+    _SSDPObjCDevices = [[NSMutableArray alloc] init];
+    mWrapper = new SSDPDB_Observer_wrapper(self);
+  }
 
-        mWrapper = new SSDPDB_Observer_wrapper(self);
-    }
-
-	return self;
+  return self;
 }
 
 - (void)dealloc{
-    if (mWrapper) {
-        delete((SSDPDB_Observer_wrapper*)mWrapper);
-    }
-	[mObservers removeAllObjects];
-	[mObservers release];
-	[SSDPObjCDevices removeAllObjects];
-	[SSDPObjCDevices release];
-	[mMutex release];
-	[super dealloc];
+  if (mWrapper) {
+    delete((SSDPDB_Observer_wrapper*)mWrapper);
+  }
 }
 
 - (void)lock{
-	[mMutex lock];
+  [self.mMutex lock];
 }
 
 - (void)unlock{
-	[mMutex unlock];
+  [self.mMutex unlock];
 }
 
 
@@ -115,32 +109,30 @@ private:
 }
 
 - (int)stopSSDP{
-	return UPNP::GetInstance()->GetSSDP()->Stop();
+  return UPNP::GetInstance()->GetSSDP()->Stop();
 }
-
-
 
 - (int)searchSSDP{
-	return UPNP::GetInstance()->GetSSDP()->Search();	
+  return UPNP::GetInstance()->GetSSDP()->Search();
 }
 
 
-- (int)addObserver:(SSDPDB_ObjC_Observer*)obs{
-	int ret = 0;
-	[self lock];
-	[mObservers addObject:obs];
-	ret = [mObservers count];
-	[self unlock];
-	return ret;
+- (int)addObserver:(NSObject<SSDPDB_ObjC_Observer> *)obs{
+  int ret = 0;
+  [self lock];
+  [self.mObservers addObject:obs];
+  ret = [self.mObservers count];
+  [self unlock];
+  return ret;
 }
 
-- (int)removeObserver:(SSDPDB_ObjC_Observer*)obs{
-	int ret = 0;
-	[self lock];
-	[mObservers removeObject:obs];
-	ret = [mObservers count];
-	[self unlock];
-	return ret;
+- (int)removeObserver:(NSObject<SSDPDB_ObjC_Observer> *)obs{
+  int ret = 0;
+  [self lock];
+  [self.mObservers removeObject:obs];
+  ret = [self.mObservers count];
+  [self unlock];
+  return ret;
 }
 
 - (void)setUserAgentProduct:(NSString *)product andOS:(NSString *)os{    
@@ -159,12 +151,12 @@ private:
 	
   @autoreleasepool {
     //Inform the listeners
-    for (SSDPDB_ObjC_Observer *obs in mObservers) {
+    for (NSObject<SSDPDB_ObjC_Observer> *obs in self.mObservers) {
       [obs SSDPDBWillUpdate:self];
     }
 	
     [self lock];
-    [SSDPObjCDevices removeAllObjects];
+    [self.SSDPObjCDevices removeAllObjects];
     //Update the Obj-C Array	
     UPNP::GetInstance()->GetSSDP()->GetDB()->Lock();
     SSDPDBDevice* thisDevice;
@@ -174,13 +166,12 @@ private:
     for(it=devices.begin();it<devices.end();it++){
       thisDevice = *it;
       SSDPDBDevice_ObjC* thisObjCDevice = [[SSDPDBDevice_ObjC alloc] initWithCPPDevice:thisDevice];
-      [SSDPObjCDevices addObject:thisObjCDevice];
-      [thisObjCDevice release];
+      [self.SSDPObjCDevices addObject:thisObjCDevice];
     }
     UPNP::GetInstance()->GetSSDP()->GetDB()->Unlock();
     
     //Inform the listeners
-    for (SSDPDB_ObjC_Observer *obs in mObservers) {
+    for (NSObject<SSDPDB_ObjC_Observer> *obs in self.mObservers) {
       [obs SSDPDBUpdated:self];
     }
     
@@ -190,59 +181,47 @@ private:
 @end
 
 
+@interface SSDPDBDevice_ObjC ()
+@property (readwrite, assign) bool isdevice;
+@property (readwrite, assign) bool isroot;
+@property (readwrite, assign) bool isservice;
+@property (readwrite, strong) NSString *uuid;
+@property (readwrite, strong) NSString *urn;
+@property (readwrite, strong) NSString *usn;
+@property (readwrite, strong) NSString *type;
+@property (readwrite, strong) NSString *version;
+@property (readwrite, strong) NSString *host;
+@property (readwrite, strong) NSString *location;
+@property (readwrite, assign) unsigned int ip;
+@property (readwrite, assign) unsigned short port;
+@end
+
 /**
  * Device class
  */
 @implementation SSDPDBDevice_ObjC
 
-@synthesize isdevice;
-@synthesize isroot;
-@synthesize isservice;
-@synthesize uuid;
-@synthesize urn;
-@synthesize usn;
-@synthesize type;
-@synthesize version;
-@synthesize host;
-@synthesize location;	
-@synthesize ip;
-@synthesize port;
+- (id)initWithCPPDevice:(void *)cppDevice {
+  self = [super init];
 
+  if (self) {
+    SSDPDBDevice *dev = (SSDPDBDevice *)cppDevice;
 
--(id)initWithCPPDevice:(void*)cppDevice{
-    self = [super init];
-    
-    if (self) {
-        SSDPDBDevice *dev = (SSDPDBDevice*)cppDevice;
-        
-        isdevice	= dev->isdevice==1?true:false;
-        isroot		= dev->isroot==1?true:false;
-        isservice	= dev->isservice==1?true:false;
-        uuid		= [[NSString alloc] initWithCString:dev->uuid.c_str() encoding:NSASCIIStringEncoding];
-        urn			= [[NSString alloc] initWithCString:dev->urn.c_str() encoding:NSASCIIStringEncoding];
-        usn			= [[NSString alloc] initWithCString:dev->usn.c_str() encoding:NSASCIIStringEncoding];
-        type		= [[NSString alloc] initWithCString:dev->type.c_str() encoding:NSASCIIStringEncoding];
-        version		= [[NSString alloc] initWithCString:dev->version.c_str() encoding:NSASCIIStringEncoding];
-        host		= [[NSString alloc] initWithCString:dev->host.c_str() encoding:NSASCIIStringEncoding];
-        location	= [[NSString alloc] initWithCString:dev->location.c_str() encoding:NSASCIIStringEncoding];	
-        ip			= dev->ip;
-        port		= dev->port;
-	}
-    
-	return self;
+    _isdevice	= dev->isdevice==1?true:false;
+    _isroot		= dev->isroot==1?true:false;
+    _isservice	= dev->isservice==1?true:false;
+    _uuid		= [[NSString alloc] initWithCString:dev->uuid.c_str() encoding:NSASCIIStringEncoding];
+    _urn			= [[NSString alloc] initWithCString:dev->urn.c_str() encoding:NSASCIIStringEncoding];
+    _usn			= [[NSString alloc] initWithCString:dev->usn.c_str() encoding:NSASCIIStringEncoding];
+    _type		= [[NSString alloc] initWithCString:dev->type.c_str() encoding:NSASCIIStringEncoding];
+    _version		= [[NSString alloc] initWithCString:dev->version.c_str() encoding:NSASCIIStringEncoding];
+    _host		= [[NSString alloc] initWithCString:dev->host.c_str() encoding:NSASCIIStringEncoding];
+    _location	= [[NSString alloc] initWithCString:dev->location.c_str() encoding:NSASCIIStringEncoding];
+    _ip			= dev->ip;
+    _port		= dev->port;
+  }
+
+  return self;
 }
-
-- (void)dealloc{
-	[uuid release];
-	[urn release];
-	[usn release];
-	[type release];
-	[version release];
-	[host release];
-	[location release];
-	
-	[super dealloc];
-}
-
 
 @end

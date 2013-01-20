@@ -31,36 +31,18 @@
 //
 // **********************************************************************************
 
-
 #import "ServiceFactory.h"
 #import "BasicServiceParser.h"
 
 @implementation ServiceFactory
 
--(id)init{
-    self = [super init];
+- (BasicUPnPService *)allocServiceForSSDPService:(SSDPDBDevice_ObjC *)ssdp {
+  BasicUPnPService* service = nil;
 
-	return self;
+  //Our BasicUPnPService is generic enough, no need so far to make more specialized, derived services
+  service = [[BasicUPnPService alloc] initWithSSDPDevice:ssdp];
+
+  return service;
 }
-
-- (void)dealloc{
-	
-	[super dealloc];
-}
-
-
-
-- (BasicUPnPService *)allocServiceForSSDPService:(SSDPDBDevice_ObjC*)ssdp{
-	BasicUPnPService* service = nil;	
-
-	//Our BasicUPnPService is generic enough, no need so far to make more specialized, derived services
-	service = [[BasicUPnPService alloc] initWithSSDPDevice:ssdp]; 
-
-
-	return service;
-}
-
-
-
 
 @end

@@ -35,46 +35,24 @@
 #import "MediaServer1BasicObject.h"
 #import "MediaServer1ItemRes.h"
 
-@interface MediaServer1ItemObject : MediaServer1BasicObject {
-	NSString *artist;
-	NSString *album;
-	NSString *date;
-	NSString *genre;
-	NSString *originalTrackNumber;
-	NSString *uri; //Use uriCollection (uri contains the last element of uriCollection)
-	NSString *protocolInfo; //Use uriCollection (protocolInfo contains the last element of uriCollection)
-	NSString *frequency;
-	NSString *audioChannels;
-	NSString *size;
-	NSString *duration;
-	NSString *icon;
-	NSString *bitrate;
-	int durationInSeconds;
-    NSDictionary *uriCollection; //key: NSString* protocolinfo -> value:NSString* uri
-    NSMutableArray *resources; //MediaServer1ItemRes[]
-}
+@interface MediaServer1ItemObject : MediaServer1BasicObject
+@property (strong) NSString *artist;
+@property (strong) NSString *album;
+@property (strong) NSString *date;
+@property (strong) NSString *genre;
+@property (strong) NSString *originalTrackNumber;
+@property (strong) NSString *uri; //Use uriCollection (uri contains the last element of uriCollection)
+@property (strong) NSString *protocolInfo; //Use uriCollection (protocolInfo contains the last element of uriCollection)
+@property (strong) NSString *frequency;
+@property (strong) NSString *audioChannels;
+@property (strong) NSString *size;
+@property (strong) NSString *duration;
+@property (strong) NSString *icon;
+@property (strong) NSString *bitrate;
+@property (readwrite) int durationInSeconds;
+@property (strong) NSDictionary *uriCollection; //key: NSString* protocolinfo -> value:NSString* uri
+@property (readonly) NSMutableArray *resources; //MediaServer1ItemRes[]
 
--(id)init;
-- (void)dealloc;
 - (void)addRes:(MediaServer1ItemRes*) res;
-
-
-@property(retain, nonatomic) NSString *artist;
-@property(retain, nonatomic) NSString *album;
-@property(retain, nonatomic) NSString *date;
-@property(retain, nonatomic) NSString *genre;
-@property(retain, nonatomic) NSString *originalTrackNumber;
-@property(retain, nonatomic) NSString *uri;
-@property(retain, nonatomic) NSString *protocolInfo;
-@property(retain, nonatomic) NSString *frequency;
-@property(retain, nonatomic) NSString *audioChannels;
-@property(retain, nonatomic) NSString *size;
-@property(retain, nonatomic) NSString *duration;
-@property(retain, nonatomic) NSString *icon;
-@property(retain, nonatomic) NSString *bitrate;
-@property(readwrite) int durationInSeconds;
-@property(retain, nonatomic) NSDictionary *uriCollection;
-@property(readonly) NSMutableArray *resources;
-
 
 @end

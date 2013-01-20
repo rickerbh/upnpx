@@ -31,69 +31,22 @@
 //
 // **********************************************************************************
 
-
 #import "MediaServer1ItemObject.h"
-
 
 @implementation MediaServer1ItemObject
 
-@synthesize artist;
-@synthesize album;
-@synthesize date;
-@synthesize genre;
-@synthesize originalTrackNumber;
-@synthesize uri; 
-@synthesize protocolInfo; 
-@synthesize frequency;
-@synthesize audioChannels;
-@synthesize size;
-@synthesize duration;
-@synthesize icon;
-@synthesize bitrate;
-@synthesize durationInSeconds;
-@synthesize uriCollection; 
-@synthesize resources; 
-
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {
-        resources = [[NSMutableArray alloc] init];
-    }
-    
-    return self;
+- (id)init {
+  self = [super init];
+  if (self) {
+    _resources = [[NSMutableArray alloc] init];
+  }
+  return self;
 }
 
-
-- (void)dealloc{
-    [artist release];
-    [album release];
-    [date release];
-    [genre release];
-    [originalTrackNumber release];
-    [uri release];
-    [protocolInfo release];
-    [frequency release];
-    [audioChannels release];
-    [size release];
-    [duration release];
-    [icon release];
-    [bitrate release];
-    [uriCollection release];
-    [resources release];
-    
-    [super dealloc];
+- (void)addRes:(MediaServer1ItemRes *)resource {
+  if (resource != nil) {
+    [self.resources addObject:resource];
+  }
 }
-
-
-- (void)addRes:(MediaServer1ItemRes*) resource{
-    if(resource != nil){
-        [resources addObject:resource];
-    }
-}
-
-
 
 @end

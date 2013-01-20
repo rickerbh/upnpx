@@ -32,6 +32,9 @@
 // **********************************************************************************
 
 #import "WANConnection1Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsWANIPConnection1.h"
+#import "SoapActionsWANPPPConnection1.h"
 
 @interface WANConnection1Device ()
 @property (strong) SoapActionsWANIPConnection1 *mIPConnection;

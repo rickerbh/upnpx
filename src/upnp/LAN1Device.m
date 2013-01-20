@@ -33,6 +33,8 @@
 
 
 #import "LAN1Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsLANHostConfigManagement1.h"
 
 @interface LAN1Device ()
 @property (strong) SoapActionsLANHostConfigManagement1 *mLanHostConfigManagement;

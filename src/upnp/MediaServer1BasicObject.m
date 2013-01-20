@@ -31,37 +31,8 @@
 //
 // **********************************************************************************
 
-
 #import "MediaServer1BasicObject.h"
 
-
 @implementation MediaServer1BasicObject
-
-@synthesize objectID;
-@synthesize parentID;
-@synthesize title;
-@synthesize isContainer;
-@synthesize objectClass;
-@synthesize albumArt;
-
--(id)init{
-    self = [super init];
-    
-	return self;
-}
-
-- (void)dealloc{
-    [objectID release];
-    [parentID release];
-    [title release];
-    [objectClass release];
-    [albumArt release];
-    
-	[super dealloc];
-}
-
-
-
-
 
 @end

@@ -73,72 +73,66 @@ private:
 	SocketServerObserver_wrapper(){}
 };
 
-
+@interface SocketServer_ObjC ()
+@property (strong) NSMutableArray *mObservers; //SocketServer_ObjC_Observer
+@end
 
 @implementation SocketServer_ObjC
 
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mCppSocketServer = new SocketServer(42809);
-        mCppSocketServerObserverWrapper = new SocketServerObserver_wrapper(self, (SocketServer*)mCppSocketServer);
-    }
-    
-	return self;
+- (id)init {
+  self = [super init];
+  if (self) {
+    mCppSocketServer = new SocketServer(42809);
+    mCppSocketServerObserverWrapper = new SocketServerObserver_wrapper(self, (SocketServer*)mCppSocketServer);
+  }
+  return self;
 }
 	
 - (void)dealloc{
-    if (mCppSocketServer) {
-        ((SocketServer*)mCppSocketServer)->Stop();
-        delete((SocketServer*)mCppSocketServer);
-    }
-    
-    if (mCppSocketServerObserverWrapper) {
-        delete((SocketServerObserver_wrapper*)mCppSocketServerObserverWrapper);
-	}
-    
-	[super dealloc];
+  if (mCppSocketServer) {
+    ((SocketServer *)mCppSocketServer)->Stop();
+    delete((SocketServer *)mCppSocketServer);
+  }
+
+  if (mCppSocketServerObserverWrapper) {
+    delete((SocketServerObserver_wrapper *)mCppSocketServerObserverWrapper);
+  }
 }
 
 - (void)start{
-	((SocketServer*)mCppSocketServer)->Start();	
+  ((SocketServer *)mCppSocketServer)->Start();
 }
 
 - (void)stop{
-	((SocketServer*)mCppSocketServer)->Stop();
+  ((SocketServer *)mCppSocketServer)->Stop();
 }
 
-
--(NSString *)getIPAddress{
-	char *ip = ((SocketServer*)mCppSocketServer)->getServerIPAddress();
-	
-	return [NSString stringWithCString:ip encoding:NSASCIIStringEncoding];
+- (NSString *)getIPAddress{
+  char *ip = ((SocketServer *)mCppSocketServer)->getServerIPAddress();
+  return [NSString stringWithCString:ip encoding:NSASCIIStringEncoding];
 }
 
--(unsigned short)getPort{
-	return ((SocketServer*)mCppSocketServer)->getServerPort();
+- (unsigned short)getPort{
+  return ((SocketServer *)mCppSocketServer)->getServerPort();
 }
 
-
-- (void)addObserver:(SocketServer_ObjC_Observer*)obs{
-	[mObservers addObject:obs];
+- (void)addObserver:(NSObject<SocketServer_ObjC_Observer> *)obs{
+	[self.mObservers addObject:obs];
 }
 
-- (void)removeObserver:(SocketServer_ObjC_Observer*)obs{
-	[mObservers removeObject:obs];
+- (void)removeObserver:(NSObject<SocketServer_ObjC_Observer> *)obs{
+	[self.mObservers removeObject:obs];
 }
 
 
 - (int)dataIn:(unsigned char *)data length:(int)len fromIP:(NSString *)ipAddress fromPort:(unsigned short)port {
-	int ret  = -1;
+  int ret  = -1;
 
-  for (SocketServer_ObjC_Observer* obs in mObservers) {
-		[obs DataIn:self withData:data andLen:len fromSource:ipAddress];
+  for (NSObject<SocketServer_ObjC_Observer> *obs in self.mObservers) {
+    [obs DataIn:self withData:data andLen:len fromSource:ipAddress];
   }
   
-	return ret;
+  return ret;
 }
-
 
 @end

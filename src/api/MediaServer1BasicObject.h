@@ -33,27 +33,11 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface MediaServer1BasicObject : NSObject {
-	
-	NSString *objectID;
-	NSString *parentID;
-	NSString *objectClass;
-	NSString *title;
-	NSString *albumArt;
-	
-	BOOL isContainer;
-}
-
--(id)init;
-- (void)dealloc;
-
-
-@property (readwrite, retain)NSString *objectID;
-@property (readwrite, retain)NSString *parentID;
-@property (readwrite, retain)NSString *title;
-@property (readwrite, retain)NSString *objectClass;
-@property (readwrite)BOOL isContainer;
-@property(readwrite, retain) NSString *albumArt;
-
+@interface MediaServer1BasicObject : NSObject
+@property (strong) NSString *objectID;
+@property (strong) NSString *parentID;
+@property (strong) NSString *title;
+@property (strong) NSString *objectClass;
+@property (assign, getter = isContainer) BOOL container;
+@property (strong) NSString *albumArt;
 @end

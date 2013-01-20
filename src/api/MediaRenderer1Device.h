@@ -34,13 +34,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-
-#import "SoapActionsAVTransport1.h"
-#import "SoapActionsRenderingControl1.h"
-#import "SoapActionsConnectionManager1.h"
-
-#import "MediaPlaylist.h"
-#import "MediaServer1BasicObject.h"
+#import "BasicUPnPService.h"
 
 /*
  * Services:
@@ -49,41 +43,23 @@
  * O - AVTransport:1.0 
  */
 
+@class MediaPlaylist;
+@class MediaServer1BasicObject;
+@class SoapActionsAVTransport1;
+@class SoapActionsConnectionManager1;
+@class SoapActionsRenderingControl1;
 
-@interface MediaRenderer1Device : BasicUPnPDevice <BasicUPnPServiceObserver> {
-	SoapActionsAVTransport1 *mAvTransport;
-	SoapActionsRenderingControl1 *mRenderingControl;
-	SoapActionsConnectionManager1 *mConnectionManager;
-	
-	//Cache
-	NSMutableString *mProtocolInfoSource;
-	NSMutableString *mProtocolInfoSink;
-
-	//Playlist
-	MediaPlaylist *playList;
-}
-
--(id)init;
-- (void)dealloc;
+@interface MediaRenderer1Device : BasicUPnPDevice <BasicUPnPServiceObserver>
+@property (readonly, strong) MediaPlaylist *playList;
 
 - (SoapActionsAVTransport1 *)avTransport;
 - (SoapActionsRenderingControl1 *)renderingControl;
 - (SoapActionsConnectionManager1 *)connectionManager;
-
 - (BasicUPnPService *)avTransportService;
 - (BasicUPnPService *)renderingControlService;
 - (BasicUPnPService *)connectionManagerService;
-
--(BOOL)supportProtocol:(NSString *)protocolInfo withCache:(BOOL)useCache;
-
-
+- (BOOL)supportProtocol:(NSString *)protocolInfo withCache:(BOOL)useCache;
 - (int)play;
-- (int)playWithMedia:(MediaServer1BasicObject*)media;
-
-@property(readonly) MediaPlaylist *playList;
-
-//BasicUPnPServiceObserver
-- (void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary *)events;
-
+- (int)playWithMedia:(MediaServer1BasicObject *)media;
 
 @end

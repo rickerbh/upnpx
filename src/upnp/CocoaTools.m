@@ -31,13 +31,12 @@
 //
 // **********************************************************************************
 
-
 #import "CocoaTools.h"
 
 @implementation NSString(AcranegraExtentions)
 
--(NSString *)XMLUnEscape{
-	if([self length] < 2){
+- (NSString *)XMLUnEscape {
+	if ([self length] < 2) {
 		return self;
 	}
 	
@@ -54,16 +53,13 @@
     returnStr = [ returnStr stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
     returnStr = [ returnStr stringByReplacingOccurrencesOfString:@"&#10;" withString:@"\n"];
     returnStr = [ returnStr stringByReplacingOccurrencesOfString:@"&#13;" withString:@"\r"];
-    
-    returnStr = [ [ NSString alloc ] initWithString:returnStr];
   }
 	
-	return [returnStr autorelease];
+	return returnStr;
 }
 
-
--(NSString *)XMLEscape{
-	if([self length] < 2){
+- (NSString *)XMLEscape {
+	if ([self length] < 2) {
 		return self;
 	}
 	
@@ -90,21 +86,17 @@
     returnStr = [ returnStr stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
     returnStr = [ returnStr stringByReplacingOccurrencesOfString:@"\n" withString:@"&#10;"];
     returnStr = [ returnStr stringByReplacingOccurrencesOfString:@"\r" withString:@"&#13;"];
-    
-    returnStr = [ [ NSString alloc ] initWithString:returnStr];
   }
 	
-	return [returnStr autorelease];
+	return returnStr;
 }
 
-
-
 //hh:mm:ss -> seconds
-- (int)HMS2Seconds{
+- (int)HMS2Seconds {
 	int s = 0;
   @autoreleasepool {
     NSArray *items = [self componentsSeparatedByString:@":"];
-    if([items count] == 3){
+    if ([items count] == 3) {
       //hh
       s = s + [(NSString *)[items objectAtIndex:0] intValue] * 60 * 60;		
       //mm
@@ -117,25 +109,20 @@
 }
 
 //seconds -> hh:mm:ss 
-+(NSString *)Seconds2HMS:(int)seconds{
++ (NSString *)Seconds2HMS:(int)seconds {
 	NSString *ret = nil;
-	if(seconds > 0){
+	if (seconds > 0) {
 		int hh = (int) (seconds / 60 / 60);
 		int mm = (int) ((seconds / 60) %  60 );
 		int ss = (int) (seconds % 60 );
 		ret = [NSString stringWithFormat:@"%.2d:%.2d:%.2d", hh, mm, ss];
-	}else{
+	} else {
 		ret = @"00:00:00";
 	}
-	
-	return ret;	
+	return ret;
 }
 
-
 @end
-
-
-
 
 @implementation CocoaTools
 

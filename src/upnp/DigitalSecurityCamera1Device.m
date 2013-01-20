@@ -32,6 +32,7 @@
 // **********************************************************************************
 
 #include "DigitalSecurityCamera1Device.h"
+#import "BasicUPnPService.h"
 #import "SoapActionsDigitalSecurityCameraSettings1.h"
 #import "SoapActionsDigitalSecurityCameraStillImage1.h"
 #import "SoapActionsDigitalSecurityCameraMotionImage1.h"

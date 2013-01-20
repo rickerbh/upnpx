@@ -31,19 +31,12 @@
 //
 // **********************************************************************************
 
-
-
 #import <Foundation/Foundation.h>
 #import "SSDPDB_ObjC.h"
 #import "BasicUPnPService.h"
 
-@interface ServiceFactory : NSObject {
-}
+@interface ServiceFactory : NSObject
 
-- (BasicUPnPService *)allocServiceForSSDPService:(SSDPDBDevice_ObjC*)ssdp;
-
-
--(id)init;
-- (void)dealloc;
+- (BasicUPnPService *)allocServiceForSSDPService:(SSDPDBDevice_ObjC *)ssdp;
 
 @end

@@ -33,60 +33,37 @@
 
 
 #import "DimmableLight1Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsDimming1.h"
+#import "SoapActionsSwitchPower1.h"
 
+@interface DimmableLight1Device ()
+@property (strong) SoapActionsSwitchPower1 *mSwitchPower;
+@property (strong) SoapActionsDimming1 *mDimming;
+@end
 
 @implementation DimmableLight1Device
 
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mSwitchPower = nil;
-        mDimming = nil;
-    }
-    
-	return self;
-}
-
-
-- (void)dealloc{
-	
-	[mSwitchPower release];
-	[mDimming release];
-	
-	[super dealloc];
-}
-
-
-
-- (BasicUPnPService *)switchPowerService{
-	return [self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"];
+- (BasicUPnPService *)switchPowerService {
+  return [self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"];
 }
 
 - (BasicUPnPService *)dimmingService{
-	return [self getServiceForType:@"urn:schemas-upnp-org:service:Dimming:1"];
+  return [self getServiceForType:@"urn:schemas-upnp-org:service:Dimming:1"];
 }
 
-
-
-- (SoapActionsSwitchPower1 *)switchPower{
-	if(mSwitchPower == nil){	                                                                     
-		mSwitchPower = (SoapActionsSwitchPower1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
-		[mSwitchPower retain];
-	}
-	
-	return mSwitchPower;
+- (SoapActionsSwitchPower1 *)switchPower {
+  if (!self.mSwitchPower) {
+    self.mSwitchPower = (SoapActionsSwitchPower1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:SwitchPower:1"] soap];
+  }
+  return self.mSwitchPower;
 }
 
-- (SoapActionsDimming1 *)dimming{
-	if(mDimming == nil){	                                                                     
-		mDimming = (SoapActionsDimming1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:Dimming:1"] soap];
-		[mDimming retain];
-	}
-	
-	return mDimming;
+- (SoapActionsDimming1 *)dimming {
+  if (!self.mDimming) {
+    self.mDimming = (SoapActionsDimming1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:Dimming:1"] soap];
+  }
+  return self.mDimming;
 }
-
-
 
 @end

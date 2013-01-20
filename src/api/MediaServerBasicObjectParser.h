@@ -31,75 +31,37 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "BasicParser.h"
 
+@interface MediaServerBasicObjectParser : BasicParser
+@property (strong) NSString *mediaTitle;
+@property (strong) NSString *mediaClass;
+@property (strong) NSString *mediaID;
+@property (strong) NSString *parentID;
+@property (strong) NSString *childCount;
+@property (strong) NSString *artist;
+@property (strong) NSString *album;
+@property (strong) NSString *date;
+@property (strong) NSString *genre;
+@property (strong) NSString *originalTrackNumber;
+@property (readonly, strong) NSString *uri;
+@property (strong) NSString *protocolInfo;
+@property (strong) NSString *frequency;
+@property (strong) NSString *audioChannels;
+@property (strong) NSString *size;
+@property (strong) NSString *duration;
+@property (strong) NSString *icon;
+@property (strong) NSString *bitrate;
+@property (strong) NSString *albumArt;
 
-
-
-@interface MediaServerBasicObjectParser : BasicParser {
-	NSMutableArray *mediaObjects;	
-	
-	//Generic
-	NSString *mediaID;
-	NSString *mediaTitle;
-	NSString *mediaClass;
-	NSString *parentID;
-	
-	//Container
-	NSString *childCount;
-	NSString *albumArt;
-	
-	//Item	
-	NSString *artist;
-	NSString *album;
-	NSString *date;
-	NSString *genre;
-	NSString *originalTrackNumber;
-	NSString *uri;
-	NSString *protocolInfo; 
-	NSString *frequency;
-	NSString *audioChannels;
-	NSString *size;
-	NSString *duration;
-	NSString *icon;
-	NSString *bitrate;
-
-	NSMutableDictionary *uriCollection;  //key: NSString* protocolinfo -> value:NSString* uri
-	NSMutableArray *resources;
-}
-
--(id)initWithMediaObjectArray:(NSMutableArray*)mediaObjectsArray;
--(id)initWithMediaObjectArray:(NSMutableArray*)mediaObjectsArray itemsOnly:(BOOL)onlyItems;
-- (void)dealloc;
+- (id)initWithMediaObjectArray:(NSMutableArray *)mediaObjectsArray;
+- (id)initWithMediaObjectArray:(NSMutableArray *)mediaObjectsArray itemsOnly:(BOOL)onlyItems;
 
 - (void)container:(NSString *)startStop;
 - (void)item:(NSString *)startStop;
 - (void)empty;
 
 - (void)setUri:(NSString *)s;
-
-@property(readwrite, retain) NSString *mediaTitle;
-@property(readwrite, retain) NSString *mediaClass;
-@property(readwrite, retain) NSString *mediaID;
-@property(readwrite, retain) NSString *parentID;
-@property(readwrite, retain) NSString *childCount;
-@property(readwrite, retain) NSString *artist;
-@property(readwrite, retain) NSString *album;
-@property(readwrite, retain) NSString *date;
-@property(readwrite, retain) NSString *genre;
-@property(readwrite, retain) NSString *originalTrackNumber;
-@property(readonly) NSString *uri;
-@property(readwrite, retain) NSString *protocolInfo;
-@property(readwrite, retain) NSString *frequency;
-@property(readwrite, retain) NSString *audioChannels;
-@property(readwrite, retain) NSString *size;
-@property(readwrite, retain) NSString *duration;
-@property(readwrite, retain) NSString *icon;
-@property(readwrite, retain) NSString *bitrate;
-@property(readwrite, retain) NSString *albumArt;
-
-
 
 @end

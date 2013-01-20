@@ -35,11 +35,7 @@
 #import <Foundation/Foundation.h>
 #import "SoapAction.h"
 
-@interface SoapActionsAVTransport1 : SoapAction {
-    }
-
-//SOAP
-
+@interface SoapActionsAVTransport1 : SoapAction
 - (int)SetAVTransportURIWithInstanceID:(NSString *)instanceid CurrentURI:(NSString *)currenturi CurrentURIMetaData:(NSString *)currenturimetadata;
 - (int)SetNextAVTransportURIWithInstanceID:(NSString *)instanceid NextURI:(NSString *)nexturi NextURIMetaData:(NSString *)nexturimetadata;
 - (int)GetMediaInfoWithInstanceID:(NSString *)instanceid OutNrTracks:(NSMutableString *)nrtracks OutMediaDuration:(NSMutableString *)mediaduration OutCurrentURI:(NSMutableString *)currenturi OutCurrentURIMetaData:(NSMutableString *)currenturimetadata OutNextURI:(NSMutableString *)nexturi OutNextURIMetaData:(NSMutableString *)nexturimetadata OutPlayMedium:(NSMutableString *)playmedium OutRecordMedium:(NSMutableString *)recordmedium OutWriteStatus:(NSMutableString *)writestatus;

@@ -32,43 +32,24 @@
 // **********************************************************************************
 
 #import <Foundation/Foundation.h>
-#import "BasicUPnPDevice.h"
 #import "BasicParser.h"
 
-@interface BasicDeviceParser : BasicParser {
-	BasicUPnPDevice *device;
-	NSString* iconURL;
-	NSString* iconWidth;
-	NSString* iconHeight;
-	NSString* iconMime;	
-	NSString* iconDepth;			
-	
-	NSMutableArray* friendlyNameStack;
-	NSMutableArray* udnStack;
+@class BasicUPnPDevice;
 
-	NSString* friendlyName;
-    NSString* manufacturer;
-	NSString* udn;
+@interface BasicDeviceParser : BasicParser
+@property (strong) NSString *iconURL;
+@property (strong) NSString *iconWidth;
+@property (strong) NSString *iconHeight;
+@property (strong) NSString *iconMime;
+@property (strong) NSString *iconDepth;
+@property (strong) NSString *udn;
+@property (strong) NSString *friendlyName;
+@property (strong) NSString *manufacturer;
 
-	
-}
-
--(id)initWithUPnPDevice:(BasicUPnPDevice*)upnpdevice;
+- (id)initWithUPnPDevice:(BasicUPnPDevice *)upnpdevice;
 - (int)parse;
 - (void)iconFound:(NSString *)startStop;
 - (void)embeddedDevice:(NSString *)startStop;
 - (void)rootDevice:(NSString *)startStop;
-
-
-@property (readwrite, retain) NSString* iconURL;
-@property (readwrite, retain) NSString* iconWidth;
-@property (readwrite, retain) NSString* iconHeight;
-@property (readwrite, retain) NSString* iconMime;
-@property (readwrite, retain) NSString* iconDepth;
-
-@property (readwrite, retain) NSString* udn;
-@property (readwrite, retain) NSString* friendlyName;
-@property (readwrite, retain) NSString* manufacturer;
-
 
 @end

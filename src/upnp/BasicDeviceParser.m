@@ -33,22 +33,18 @@
 
 
 #import "BasicDeviceParser.h"
+#import "BasicUPnPDevice.h"
 
 #define IDEALICONWIDTH 48
 #define IDEALICONHEIGHT 48
 
+@interface BasicDeviceParser ()
+@property (strong) BasicUPnPDevice *device;
+@property (strong) NSMutableArray* friendlyNameStack;
+@property (strong) NSMutableArray* udnStack;
+@end
 
 @implementation BasicDeviceParser
-
-@synthesize iconURL;
-@synthesize iconWidth;
-@synthesize iconHeight;
-@synthesize iconMime;
-@synthesize iconDepth;
-@synthesize udn;
-@synthesize friendlyName;
-@synthesize manufacturer;
-
 
 /****
  © 2002 Contributing Members of the UPnP™ Forum. All Rights Reserved.
@@ -93,185 +89,144 @@
  **/
 
 
--(id)initWithUPnPDevice:(BasicUPnPDevice*)upnpdevice{
-    self = [super init];
-    
-    if (self) {
-        /* TODO: set device as retain property */
-        device = upnpdevice;
-        [device retain];
+- (id)initWithUPnPDevice:(BasicUPnPDevice *)upnpdevice {
+  self = [super init];
 
-        friendlyNameStack = [[NSMutableArray alloc] init];
-        udnStack = [[NSMutableArray alloc] init];
-        
-        [self setIconURL:nil];
-        [self setIconWidth:nil];
-        [self setIconHeight:nil];
-        [self setIconMime:nil];
-        
-        
-        //Device is the root device
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", nil] callfunction:@selector(rootDevice:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"UDN", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setUdn:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"friendlyName", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setFriendlyName:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"manufacturer", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setManufacturer:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"iconList", @"icon", nil] callfunction:@selector(iconFound:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"iconList", @"icon", @"mimetype", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconMime:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"iconList", @"icon", @"width", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconWidth:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"iconList", @"icon", @"height", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconHeight:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"iconList", @"icon", @"depth", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconDepth:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"device", @"iconList", @"icon", @"url", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconURL:) setStringValueObject:self];
+  if (self) {
+    _device = upnpdevice;
 
-        [self addAsset:[NSArray arrayWithObjects: @"root", @"URLBase", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setBaseURLString:) setStringValueObject:device];
+    _friendlyNameStack = [[NSMutableArray alloc] init];
+    _udnStack = [[NSMutableArray alloc] init];
 
-        //Device is an embedded device (embedded devices can include embedded devices)
-        [self addAsset:[NSArray arrayWithObjects: @"*", @"device", @"deviceList", @"device", nil] callfunction:@selector(embeddedDevice:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
-        [self addAsset:[NSArray arrayWithObjects: @"*", @"device", @"deviceList", @"device", @"UDN", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setUdn:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"*", @"device", @"deviceList", @"device", @"friendlyName", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setFriendlyName:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"*", @"device", @"deviceList", @"device", @"manufacturer", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setManufacturer:) setStringValueObject:self];
-    }
-	
-	return self;
+    //Device is the root device
+    [self addAsset:@[@"root", @"device"] callfunction:@selector(rootDevice:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
+    [self addAsset:@[@"root", @"device", @"UDN"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setUdn:) setStringValueObject:self];
+    [self addAsset:@[@"root", @"device", @"friendlyName"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setFriendlyName:) setStringValueObject:self];
+    [self addAsset:@[@"root", @"device", @"manufacturer"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setManufacturer:) setStringValueObject:self];
+    [self addAsset:@[@"root", @"device", @"iconList", @"icon"] callfunction:@selector(iconFound:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
+    [self addAsset:@[@"root", @"device", @"iconList", @"icon", @"mimetype"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconMime:) setStringValueObject:self];
+    [self addAsset:@[@"root", @"device", @"iconList", @"icon", @"width"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconWidth:) setStringValueObject:self];
+    [self addAsset:@[@"root", @"device", @"iconList", @"icon", @"height"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconHeight:) setStringValueObject:self];
+    [self addAsset:@[@"root", @"device", @"iconList", @"icon", @"depth"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconDepth:) setStringValueObject:self];
+    [self addAsset:@[@"root", @"device", @"iconList", @"icon", @"url"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setIconURL:) setStringValueObject:self];
+
+    [self addAsset:@[@"root", @"URLBase"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setBaseURLString:) setStringValueObject:self.device];
+
+    //Device is an embedded device (embedded devices can include embedded devices)
+    [self addAsset:@[@"*", @"device", @"deviceList", @"device"] callfunction:@selector(embeddedDevice:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
+    [self addAsset:@[@"*", @"device", @"deviceList", @"device", @"UDN"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setUdn:) setStringValueObject:self];
+    [self addAsset:@[@"*", @"device", @"deviceList", @"device", @"friendlyName"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setFriendlyName:) setStringValueObject:self];
+    [self addAsset:@[@"*", @"device", @"deviceList", @"device", @"manufacturer"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setManufacturer:) setStringValueObject:self];
+  }
+
+  return self;
 }
-
-
-- (void)dealloc{
-	[device release];
-	[iconURL release];
-	[iconWidth release];
-	[iconHeight release];
-	[iconMime release];
-    [iconDepth release];
-    [udn release];
-    [friendlyName release];
-    [manufacturer release];
-    
-	[friendlyNameStack release];
-	[udnStack release];
-		
-	[super dealloc];
-}
-
 
 /**
  * XML
  */
-- (int)parse{
+- (int)parse {
 	int ret=0;
 
-	NSURL *descurl = [NSURL URLWithString:device.xmlLocation];	
+	NSURL *descurl = [NSURL URLWithString:self.device.xmlLocation];
     
 	ret = [super parseFromURL:descurl];
 	
-	
 	//Base URL
-	if([device baseURLString] == nil){
+	if (![self.device baseURLString]) {
 		//Create one based on [device xmlLocation] 
-		NSURL *loc = [NSURL URLWithString:[device xmlLocation]];
-		if(loc != nil){
+		NSURL *loc = [NSURL URLWithString:[self.device xmlLocation]];
+		if (loc) {
 //			NSURL *base = [loc host];
-			[device setBaseURL:loc];
+			[self.device setBaseURL:loc];
 		}		
-	}else{
-		NSURL *loc = [NSURL URLWithString:[device baseURLString]];
-		if(loc != nil){
-			[device setBaseURL:loc];
+	} else {
+		NSURL *loc = [NSURL URLWithString:[self.device baseURLString]];
+		if (loc) {
+			[self.device setBaseURL:loc];
 		}				
 	}
 	
 	//load icon if any
-	if(ret == 0 && iconURL != nil){
-		NSURL *u = [NSURL URLWithString:iconURL relativeToURL:device.baseURL];
+	if (ret == 0 && self.iconURL) {
+		NSURL *u = [NSURL URLWithString:self.iconURL relativeToURL:self.device.baseURL];
 		NSData *imageData = [NSData dataWithContentsOfURL:u];
 		UIImage *i = [UIImage imageWithData:imageData];
-		[device setSmallIcon:i];
+		[self.device setSmallIcon:i];
 	}
 	
 	return ret;
 }
 
-
 //Parse Icon stuff, if any
-- (void)iconFound:(NSString *)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
+- (void)iconFound:(NSString *)startStop {
+	if ([startStop isEqualToString:@"ElementStart"]) {
 		[self setIconURL:nil];
 		[self setIconWidth:nil];
 		[self setIconHeight:nil];
 		[self setIconMime:nil];
-	}else{
-	
-		if( iconMime != nil && 
-		   ([iconMime rangeOfString:@"jpeg"].location != NSNotFound ||
-			[iconMime rangeOfString:@"jpg"].location != NSNotFound ||
-			[iconMime rangeOfString:@"tiff"].location != NSNotFound ||
-			[iconMime rangeOfString:@"tif"].location != NSNotFound ||
-			[iconMime rangeOfString:@"gif"].location != NSNotFound ||
-			[iconMime rangeOfString:@"png"].location != NSNotFound ||
-			[iconMime rangeOfString:@"bmp"].location != NSNotFound ||
-			[iconMime rangeOfString:@"BMPf"].location != NSNotFound ||
-			[iconMime rangeOfString:@"ico"].location != NSNotFound ||
-			[iconMime rangeOfString:@"cur"].location != NSNotFound ||
-			[iconMime rangeOfString:@"xbm"].location != NSNotFound) )
-		{
+	} else {
+		if (self.iconMime &&
+       ([self.iconMime rangeOfString:@"jpeg"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"jpg"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"tiff"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"tif"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"gif"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"png"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"bmp"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"BMPf"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"ico"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"cur"].location != NSNotFound ||
+        [self.iconMime rangeOfString:@"xbm"].location != NSNotFound)) {
 			//we can handle this
-			if( [device smallIconWidth] == 0 || [device smallIconHeight] == 0){
-				device.smallIconWidth = [iconWidth intValue];
-				device.smallIconHeight = [iconHeight intValue];
-				[device setSmallIconURL:iconURL];			
-			}else{
-				if( (abs(IDEALICONHEIGHT - [device smallIconHeight]) > abs(IDEALICONHEIGHT - [iconHeight intValue])) ||
-				    (abs(IDEALICONHEIGHT - [device smallIconHeight]) - 10 > abs(IDEALICONHEIGHT - [iconHeight intValue]) && [iconDepth intValue] > [device smallIconDepth]) )
-				{
-					device.smallIconWidth = [iconWidth intValue];
-					device.smallIconHeight = [iconHeight intValue];
-					device.smallIconDepth = [iconDepth intValue];
-					[device setSmallIconURL:[NSString stringWithString:iconURL] ];			
-					
+			if ([self.device smallIconWidth] == 0 || [self.device smallIconHeight] == 0) {
+				self.device.smallIconWidth = [self.iconWidth intValue];
+				self.device.smallIconHeight = [self.iconHeight intValue];
+				[self.device setSmallIconURL:self.iconURL];			
+			} else {
+				if ((abs(IDEALICONHEIGHT - [self.device smallIconHeight]) > abs(IDEALICONHEIGHT - [self.iconHeight intValue])) ||
+				    (abs(IDEALICONHEIGHT - [self.device smallIconHeight]) - 10 > abs(IDEALICONHEIGHT - [self.iconHeight intValue]) && [self.iconDepth intValue] > [self.device smallIconDepth])) {
+					self.device.smallIconWidth = [self.iconWidth intValue];
+					self.device.smallIconHeight = [self.iconHeight intValue];
+					self.device.smallIconDepth = [self.iconDepth intValue];
+					[self.device setSmallIconURL:[NSString stringWithString:self.iconURL] ];			
 				}
 			}
-			
-		}
-	
-	}	
-
-}
-
-
-- (void)rootDevice:(NSString *)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
-	}else{ 
-		//Was this the device we are looking for ?
-		if([udn isEqualToString:[device uuid]]){
-			//this is our device, copy the collected info to the [device] instance
-			[device setUdn:udn];
-			[device setFriendlyName:friendlyName];
-            [device setManufacturer:manufacturer];
 		}
 	}
 }
 
-- (void)embeddedDevice:(NSString *)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
-		[friendlyNameStack addObject:friendlyName];
-		[udnStack addObject:udn];		
-	}else{
+- (void)rootDevice:(NSString *)startStop {
+	if (![startStop isEqualToString:@"ElementStart"]){
 		//Was this the device we are looking for ?
-		if(udn){//@todo check this
-			if([udn isEqualToString:[device uuid]]){
+		if ([self.udn isEqualToString:[self.device uuid]]) {
+			//this is our device, copy the collected info to the [device] instance
+			[self.device setUdn:self.udn];
+			[self.device setFriendlyName:self.friendlyName];
+      [self.device setManufacturer:self.manufacturer];
+		}
+	}
+}
+
+- (void)embeddedDevice:(NSString *)startStop {
+	if ([startStop isEqualToString:@"ElementStart"]) {
+    [self.friendlyNameStack addObject:self.friendlyName];
+    [self.udnStack addObject:self.udn];
+	} else {
+		//Was this the device we are looking for ?
+		if (self.udn) {//@todo check this
+			if ([self.udn isEqualToString:[self.device uuid]]) {
 				//this is our device, copy the collected info to the [device] instance
-				[device setFriendlyName:friendlyName];
-				[device setUdn:udn];
-                [device setManufacturer:manufacturer];
+				[self.device setFriendlyName:self.friendlyName];
+				[self.device setUdn:self.udn];
+        [self.device setManufacturer:self.manufacturer];
 			}
 		}
-        [self setUdn:[udnStack lastObject]];
-        [self setFriendlyName:[friendlyNameStack lastObject]];
-        
-        [friendlyNameStack removeLastObject];
-		[udnStack removeLastObject];        
+    [self setUdn:[self.udnStack lastObject]];
+    [self setFriendlyName:[self.friendlyNameStack lastObject]];
+    [self.friendlyNameStack removeLastObject];
+    [self.udnStack removeLastObject];
 	}
 }
-
-
 
 @end

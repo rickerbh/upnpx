@@ -34,66 +34,56 @@
 
 #import "BasicParser.h"
 
-@interface BasicParser()
-	- (int)startParser:(NSXMLParser*)parser;	
+@interface BasicParser ()
+@property (strong) NSMutableArray *mElementStack; //NSString
+@property (strong) NSMutableArray *mAssets; //BasicParserAssets
+@property (assign) BOOL mSupportNamespaces;
+
+- (int)startParser:(NSXMLParser*)parser;
+
 @end
 
-
 @implementation BasicParser
-
 static NSString *ElementStart = @"ElementStart";
 static NSString *ElementStop = @"ElementStop";
 
-
--(id)init{
-	return [self initWithNamespaceSupport:NO];
+- (id)init {
+  return [self initWithNamespaceSupport:NO];
 }
 
--(id)initWithNamespaceSupport:(BOOL)namespaceSupport{
-    self = [super init];
-    
-    if (self) {
-        mSupportNamespaces = namespaceSupport;
-        mElementStack = [[NSMutableArray alloc] init];
-        mAssets = [[NSMutableArray alloc] init];
-    }
-    
-	return self;	
+- (id)initWithNamespaceSupport:(BOOL)namespaceSupport {
+  self = [super init];
+  if (self) {
+    _mSupportNamespaces = namespaceSupport;
+    _mElementStack = [[NSMutableArray alloc] init];
+    _mAssets = [[NSMutableArray alloc] init];
+  }
+  return self;	
 }
 
-- (void)dealloc{
-	[mElementStack release];
-	[mAssets release];
-	[super dealloc];
-}
-
-- (int)addAsset:(NSArray*)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj;{
-	BasicParserAsset* asset = [[BasicParserAsset alloc] initWithPath:path setStringValueFunction:valueFunction setStringValueObject:obj callFunction:function functionObject:funcObj];
-	[mAssets addObject:asset];
-	[asset release];
+- (int)addAsset:(NSArray *)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj {
+	BasicParserAsset *asset = [[BasicParserAsset alloc] initWithPath:path setStringValueFunction:valueFunction setStringValueObject:obj callFunction:function functionObject:funcObj];
+	[self.mAssets addObject:asset];
 	return 0;
 }
 
-
-- (void)clearAllAssets{
-	[mAssets removeAllObjects];
+- (void)clearAllAssets {
+	[self.mAssets removeAllObjects];
 }
 
-
-
--(BasicParserAsset*)getAssetForElementStack:(NSMutableArray*)stack{
-	BasicParserAsset* ret = nil;
+- (BasicParserAsset *)getAssetForElementStack:(NSMutableArray *)stack {
+	BasicParserAsset *ret = nil;
 	
-  for (BasicParserAsset* asset in mAssets) {
+  for (BasicParserAsset *asset in self.mAssets) {
 		//Full compares go first
-		if([[asset path] isEqualToArray:stack]){
+		if ([[asset path] isEqualToArray:stack]) {
 			ret = asset;
 			break;
-		}else{
+		} else {
 			// * -> leafX -> leafY
 			//Maybe we have a wildchar, that means that the path after the wildchar must match
-			if([(NSString *)[[asset path] objectAtIndex:0] isEqualToString:@"*"]){
-				if([stack count] >= [[asset path] count]){
+			if ([(NSString *)[[asset path] objectAtIndex:0] isEqualToString:@"*"]) {
+				if ([stack count] >= [[asset path] count]) {
 					//Path ends with
 					NSMutableArray *lastStackPath = [[NSMutableArray alloc] initWithArray:stack];
 					NSMutableArray *lastAssetPath = [[NSMutableArray alloc] initWithArray:[asset path]];
@@ -105,34 +95,25 @@ static NSString *ElementStop = @"ElementStop";
 					range.location = 0;
 					range.length = elementsToRemove;
 					[lastStackPath removeObjectsInRange:range];
-					if([lastAssetPath isEqualToArray:lastStackPath]){
+					if ([lastAssetPath isEqualToArray:lastStackPath]) {
 						ret = asset;
-						[lastAssetPath release];
-						[lastStackPath release];
 						break;
 					}
-					[lastAssetPath release];
-					[lastStackPath release];
 				}
 			}
 			// leafX -> leafY -> *
-			if([(NSString *)[[asset path] lastObject] isEqualToString:@"*"]){
-				if([stack count] == [[asset path] count] && [stack count] > 1){
+			if ([(NSString *)[[asset path] lastObject] isEqualToString:@"*"]) {
+				if ([stack count] == [[asset path] count] && [stack count] > 1) {
 					//Path start with
 					NSMutableArray *beginStackPath = [[NSMutableArray alloc] initWithArray:stack];
 					NSMutableArray *beginAssetPath = [[NSMutableArray alloc] initWithArray:[asset path]];
 					//Cut the last entry (which is * in one array and <element> in the other
 					[beginStackPath removeLastObject];
 					[beginAssetPath removeLastObject];
-					if([beginAssetPath isEqualToArray:beginStackPath]){
+					if ([beginAssetPath isEqualToArray:beginStackPath]) {
 						ret = asset;
-						[beginAssetPath release];
-						[beginStackPath release];
 						break;
 					}
-					[beginAssetPath release];
-					[beginStackPath release];
-					
 				}
 			}
 			
@@ -142,22 +123,18 @@ static NSString *ElementStop = @"ElementStop";
 	return ret;
 }
 
-
-- (int)parseFromData:(NSData *)data{
+- (int)parseFromData:(NSData *)data {
 	int ret=0;
 	
   @autoreleasepool {
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
     ret = [self startParser:parser];
-    [parser release];
   }
     
 	return ret;
 }
 
-
-
-- (int)parseFromURL:(NSURL *)url{
+- (int)parseFromURL:(NSURL *)url {
 	int ret = 0;
 
   @autoreleasepool {
@@ -170,105 +147,104 @@ static NSString *ElementStop = @"ElementStop";
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:xml];;
 
     ret = [self startParser:parser];
-    [parser release];
-
   }
 	return ret;
 }
 
-
-- (int)startParser:(NSXMLParser*)parser{
+- (int)startParser:(NSXMLParser*)parser {
 	int ret = 0;
 	
-	if(parser == nil){
+	if (parser == nil) {
 		return -1;
 	}
 	
-
-	[parser setShouldProcessNamespaces:mSupportNamespaces];
-	
+	[parser setShouldProcessNamespaces:self.mSupportNamespaces];
 	[parser setDelegate:self];
 	
 	BOOL pret = [parser parse];
-	if(pret == YES){
+	if (pret) {
 		ret = 0;
-	}else{
+	} else {
 		ret = -1;
 	}
 	
-    [parser setDelegate:nil];
-	
+  [parser setDelegate:nil];
 	
 	return ret;
 }
 
+- (NSMutableArray *)elementStack {
+  return self.mElementStack;
+}
 
-
-
-/***
- * NSXMLParser Delegates
- */
-
+#pragma mark - NSXMLParserDelegate conformance
 - (void)parserDidStartDocument:(NSXMLParser *)parser{
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser{
 }
 
-
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict{
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
 	//NSLog(@"open=%@", elementName);
-	[mElementStack addObject:elementName];
+	[self.mElementStack addObject:elementName];
 	
 	//Check if we are looking for this asset
-	BasicParserAsset* asset = [self getAssetForElementStack:mElementStack];
-	if(asset != nil){
-		elementAttributeDict = attributeDict; //make temprary available to derived classes
+	BasicParserAsset *asset = [self getAssetForElementStack:self.mElementStack];
+	if (asset) {
+		self.elementAttributeDict = attributeDict; //make temprary available to derived classes
 
-		if([asset stringValueFunction] != nil && [asset stringValueObject] != nil){
-			//we are interested in a string and we are looking for this
-			[[asset stringCache] setString:@""];
-            //[asset setStringCache:[[[NSString alloc] init] autorelease]];
-		}
-		if([asset function] != nil && [asset functionObject] != nil){
-			if([[asset functionObject] respondsToSelector:[asset function]]){
-				[[asset functionObject] performSelector:[asset function] withObject:ElementStart];
-			}
-		}
+    if ([asset stringValueFunction] && [asset stringValueObject]) {
+      //we are interested in a string and we are looking for this
+      [[asset stringCache] setString:@""];
+      //[asset setStringCache:[[[NSString alloc] init] autorelease]];
+    }
 		
-	}
+    if ([asset function] && [asset functionObject] ) {
+      if ([[asset functionObject] respondsToSelector:[asset function]]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [[asset functionObject] performSelector:[asset function] withObject:ElementStart];
+#pragma clang diagnostic pop
+      }
+    }
+  }
 }
-
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
 	//NSLog(@"close=%@", elementName);
   	
-	BasicParserAsset* asset = [self getAssetForElementStack:mElementStack];
-	if(asset != nil){
-		currentElementName = elementName; //make temporary available to derived classes
+	BasicParserAsset* asset = [self getAssetForElementStack:self.mElementStack];
+	if (asset) {
+		self.currentElementName = elementName; //make temporary available to derived classes
 		
 		//We where looking for this
 		//Set string (call function to set)
-		if([asset stringValueFunction] != nil && [asset stringValueObject] != nil){
-			if([[asset stringValueObject] respondsToSelector:[asset stringValueFunction]]){                
-                NSString *obj = [[NSString alloc] initWithString:[asset stringCache]];
+		if ([asset stringValueFunction] && [asset stringValueObject]) {
+			if ([[asset stringValueObject] respondsToSelector:[asset stringValueFunction]]) {
+        NSString *obj = [[NSString alloc] initWithString:[asset stringCache]];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 				[[asset stringValueObject] performSelector:[asset stringValueFunction] withObject:obj];
-                [obj release];
-			}else{
-				NSLog(@"Does not respond to selector @" );
+#pragma clang diagnostic pop
+			} else {
+				NSLog(@"Does not respond to selector %@", NSStringFromSelector([asset stringValueFunction]));
 			}
 		}
+    
 		//Call function
-		if([asset function] != nil && [asset functionObject] != nil){
-			if([[asset functionObject] respondsToSelector:[asset function]]){
+		if ([asset function] && [asset functionObject]){ 
+			if ([[asset functionObject] respondsToSelector:[asset function]]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 				[[asset functionObject] performSelector:[asset function] withObject:ElementStop];
+#pragma clang diagnostic pop
 			}
 		}
 	}
 	
-	if([elementName isEqualToString:[mElementStack lastObject]]){
-		[mElementStack removeLastObject];
-	}else{
+	if ([elementName isEqualToString:[self.mElementStack lastObject]]) {
+		[self.mElementStack removeLastObject];
+	} else {
 		//XML structure error (!)
 		NSLog(@"XML wrong formatted (!)");
 		[parser abortParsing]; 
@@ -282,16 +258,15 @@ static NSString *ElementStop = @"ElementStop";
 	
 	//Are we looking for this ?
 	//Check if we are looking for this asset
-	BasicParserAsset* asset = [self getAssetForElementStack:mElementStack];
-	if(asset != nil){
+	BasicParserAsset* asset = [self getAssetForElementStack:self.mElementStack];
+	if (asset != nil) {
 		[[asset stringCache] appendString:string];
 	}
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    NSLog(@"%@", [NSString stringWithFormat:@"Parser Error %i, Description: %@, Line: %i, Column: %i", [parseError code], [[parser parserError] localizedDescription], [parser lineNumber], [parser columnNumber]]);
+  NSLog(@"%@", [NSString stringWithFormat:@"Parser Error %i, Description: %@, Line: %i, Column: %i", [parseError code], [[parser parserError] localizedDescription], [parser lineNumber], [parser columnNumber]]);
 }
-
 
 /*
  # – parser:didStartMappingPrefix:toURI:  delegate method
@@ -304,8 +279,5 @@ static NSString *ElementStop = @"ElementStop";
  # – parser:foundComment:  delegate method
  # – parser:foundCDATA:  delegate method
  */
-
-
-
 
 @end

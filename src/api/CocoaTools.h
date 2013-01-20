@@ -34,19 +34,16 @@
 
 #import <Foundation/Foundation.h>
 
-
-//NSString functions (via categories)
 @interface NSString(AcranegraExtentions)
--(NSString *)XMLUnEscape;
--(NSString *)XMLEscape;
+
++ (NSString *)Seconds2HMS:(int)seconds;
+
+- (NSString *)XMLUnEscape;
+- (NSString *)XMLEscape;
 - (int)HMS2Seconds;
-+(NSString *)Seconds2HMS:(int)seconds;
+
 @end
 
-
-
-@interface CocoaTools : NSObject {
-
-}
+@interface CocoaTools : NSObject
 
 @end

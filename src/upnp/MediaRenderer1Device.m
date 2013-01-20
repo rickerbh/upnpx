@@ -31,108 +31,86 @@
 //
 // **********************************************************************************
 
-
 #import "MediaRenderer1Device.h"
 #import "CocoaTools.h"
+#import "MediaServer1Device.h"
+#import "MediaServer1ItemObject.h"
+#import "MediaPlaylist.h"
+#import "SoapActionsAVTransport1.h"
+#import "SoapActionsConnectionManager1.h"
+#import "SoapActionsContentDirectory1.h"
+
+@interface MediaRenderer1Device ()
+@property (strong) SoapActionsAVTransport1 *mAvTransport;
+@property (strong) SoapActionsRenderingControl1 *mRenderingControl;
+@property (strong) SoapActionsConnectionManager1 *mConnectionManager;
+@property (strong) NSMutableString *mProtocolInfoSource;
+@property (strong) NSMutableString *mProtocolInfoSink;
+@property (readwrite, strong) MediaPlaylist *playList;
+@end
 
 @implementation MediaRenderer1Device
 
-@synthesize playList;
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mAvTransport = nil;
-        mRenderingControl = nil;
-        mConnectionManager = nil;
-        mProtocolInfoSink = nil;
-        mProtocolInfoSource = nil;
-        
-        
-        playList = [[MediaPlaylist alloc] init];
-        
-            
-        //Try to load the playist (?)
-	}
-    
-	return self;
+- (id)init {
+  self = [super init];
+  if (self) {
+    _playList = [[MediaPlaylist alloc] init];
+    //Try to load the playist (?)
+  }
+  return self;
 }
 
-
-- (void)dealloc{
-	
-	[[self avTransportService] removeObserver:(BasicUPnPServiceObserver*)self];
-
-	[mAvTransport release];
-	[mRenderingControl release];
-	[mConnectionManager release];
-	[mProtocolInfoSink release];
-	[mProtocolInfoSource release];
-	[playList release];
-	
-	[super dealloc];
+- (void)dealloc {
+	[[self avTransportService] removeObserver:(NSObject<BasicUPnPServiceObserver> *)self];
 }
 
-
-- (BasicUPnPService *)avTransportService{
+- (BasicUPnPService *)avTransportService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"];
 }
 
-- (BasicUPnPService *)renderingControlService{
+- (BasicUPnPService *)renderingControlService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:RenderingControl:1"];
 }
 
-- (BasicUPnPService *)connectionManagerService{
+- (BasicUPnPService *)connectionManagerService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"];
 }
 
-
-- (SoapActionsAVTransport1 *)avTransport{
-	if(mAvTransport == nil){
-		
-		mAvTransport = (SoapActionsAVTransport1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
-		[mAvTransport retain];
+- (SoapActionsAVTransport1 *)avTransport {
+	if (!self.mAvTransport) {
+		self.mAvTransport = (SoapActionsAVTransport1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
 	}
-	
-	return mAvTransport;
+	return self.mAvTransport;
 }
 
-- (SoapActionsRenderingControl1 *)renderingControl{
-	if(mRenderingControl == nil){
-		mRenderingControl = (SoapActionsRenderingControl1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:RenderingControl:1"] soap];
-		[mRenderingControl retain];
+- (SoapActionsRenderingControl1 *)renderingControl {
+	if (!self.mRenderingControl) {
+		self.mRenderingControl = (SoapActionsRenderingControl1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:RenderingControl:1"] soap];
 	}
-	
-	return mRenderingControl;
+	return self.mRenderingControl;
 }
 
-
-- (SoapActionsConnectionManager1 *)connectionManager{
-	if(mConnectionManager == nil){
-		mConnectionManager = (SoapActionsConnectionManager1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
-		[mConnectionManager retain];
+- (SoapActionsConnectionManager1 *)connectionManager {
+	if (!self.mConnectionManager) {
+		self.mConnectionManager = (SoapActionsConnectionManager1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
 	}
-	
-	return mConnectionManager;
+	return self.mConnectionManager;
 }
 
-
--(BOOL)supportProtocol:(NSString *)protocolInfo withCache:(BOOL)useCache{
+-(BOOL)supportProtocol:(NSString *)protocolInfo withCache:(BOOL)useCache {
 	BOOL ret = NO;
 	
 	//Cache the protocolInfo
-	if(useCache == YES && mProtocolInfoSink != nil && mProtocolInfoSource != nil){
+	if (useCache == YES && self.mProtocolInfoSink && self.mProtocolInfoSource) {
 		//Don't do soap
 	}else{
-		if(mProtocolInfoSink == nil){
-			mProtocolInfoSink = [[NSMutableString alloc] init];
+		if (!self.mProtocolInfoSink) {
+			self.mProtocolInfoSink = [[NSMutableString alloc] init];
 		}
-		if(mProtocolInfoSource == nil){		
-			mProtocolInfoSource = [[NSMutableString alloc] init];
+		if (!self.mProtocolInfoSource) {
+			self.mProtocolInfoSource = [[NSMutableString alloc] init];
 		}
-		[[self connectionManager] GetProtocolInfoWithOutSource:mProtocolInfoSource OutSink:mProtocolInfoSink];
+		[[self connectionManager] GetProtocolInfoWithOutSource:self.mProtocolInfoSource OutSink:self.mProtocolInfoSink];
 	}
 	
 	//@TODO Implement the check ; See Intel PDF "Designing a UPnP av MediaRenderer, 5.3 Mime Types and File Extension Mappings
@@ -142,20 +120,16 @@
 	return ret;
 }
 
-
-
-
-- (int)play{
+- (int)play {
 	
-	[playList stop];
+	[self.playList stop];
 	
-	if([[self avTransportService] isObserver:(BasicUPnPServiceObserver*)self] == NO){
-		[[self avTransportService] addObserver:(BasicUPnPServiceObserver*)self]; //Lazy observer attach
+	if([[self avTransportService] isObserver:(NSObject<BasicUPnPServiceObserver> *)self] == NO){
+		[[self avTransportService] addObserver:(NSObject<BasicUPnPServiceObserver> *)self]; //Lazy observer attach
 	}
 	
-	
 	//Set the device to play the current track 
-	MediaServer1ItemObject* mediaItem = [playList GetCurrentTrackItem];
+	MediaServer1ItemObject* mediaItem = [self.playList GetCurrentTrackItem];
 	
 	//Metadata
 	NSMutableString *metaData = [[NSMutableString alloc] init];
@@ -164,62 +138,47 @@
 	NSMutableString *outUpdateID = [[NSMutableString alloc] init];
 	
 	//Get the metadata, we need to supply it when playback
-	[[[playList mediaServer] contentDirectory] BrowseWithObjectID:[mediaItem objectID] BrowseFlag:@"BrowseMetadata" Filter:@"*" StartingIndex:@"0" RequestedCount:@"1" SortCriteria:@"+dc:title" OutResult:metaData OutNumberReturned:outNumberReturned OutTotalMatches:outTotalMatches OutUpdateID:outUpdateID];
-	
-	
-	[outTotalMatches release];
-	[outUpdateID release];
-	[outNumberReturned release];
-	
-	
-	
-	if([self supportProtocol:[mediaItem protocolInfo] withCache:YES] == YES){
-		
-		[[self avTransport] SetPlayModeWithInstanceID:@"0" NewPlayMode:@"NORMAL"];
-		
+	[[[self.playList mediaServer] contentDirectory] BrowseWithObjectID:[mediaItem objectID]
+                                                          BrowseFlag:@"BrowseMetadata"
+                                                              Filter:@"*"
+                                                       StartingIndex:@"0"
+                                                      RequestedCount:@"1"
+                                                        SortCriteria:@"+dc:title"
+                                                           OutResult:metaData
+                                                   OutNumberReturned:outNumberReturned
+                                                     OutTotalMatches:outTotalMatches
+                                                         OutUpdateID:outUpdateID];
 
+	if ([self supportProtocol:[mediaItem protocolInfo] withCache:YES] == YES) {
+		[[self avTransport] SetPlayModeWithInstanceID:@"0" NewPlayMode:@"NORMAL"];
 //		[[self avTransport] StopWithInstanceID:@"0"]; //Causes the playlist to goto next	
 //		[[self avTransport] SetNextAVTransportURIWithInstanceID:@"0" NextURI:[mediaItem uri] NextURIMetaData:[metaData XMLEscape] ]; 		
-		[[self avTransport] SetAVTransportURIWithInstanceID:@"0" CurrentURI:[mediaItem uri] CurrentURIMetaData:[metaData XMLEscape] ]; 
+		[[self avTransport] SetAVTransportURIWithInstanceID:@"0" CurrentURI:[mediaItem uri] CurrentURIMetaData:[metaData XMLEscape]]; 
 		
-		
-		[[self avTransport] PlayWithInstanceID:@"0" Speed:@"1"];		
-		
-		
-		
-		
-	}else{
+		[[self avTransport] PlayWithInstanceID:@"0" Speed:@"1"];
+	} else {
 		NSLog(@"Does not support protocol: %@", [mediaItem protocolInfo]);
 	}	
 	
-	[metaData release];
-	
-	[playList play];
+	[self.playList play];
 	
 //	return [self changeState:MediaPlaylistState_Playing];
 	return 0;
 }
 
-
-
-- (int)playWithMedia:(MediaServer1BasicObject*)media{
-
-	
-	[playList setTrackByID:[media objectID]];
-	
+- (int)playWithMedia:(MediaServer1BasicObject*)media {
+	[self.playList setTrackByID:[media objectID]];
 	return [self play];
 }
 
-
-
-//BasicUPnPServiceObserver
-- (void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary *)events{
-	if(sender == [self avTransportService]){
+#pragma mark - BasicUPnPServiceObserver conformance
+- (void)UPnPEvent:(BasicUPnPService *)sender events:(NSDictionary *)events {
+	if (sender == [self avTransportService]) {
 		NSString *newState = [events objectForKey:@"TransportState"];
 	
-		if([newState isEqualToString:@"STOPPED"]){
-			int i = [playList nextTrack];
-			if(i >= 0){
+		if ([newState isEqualToString:@"STOPPED"]) {
+			int i = [self.playList nextTrack];
+			if (i >= 0) {
 				[self play];
 			}
 		}

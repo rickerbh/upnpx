@@ -33,12 +33,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-#import "SoapActionsLANHostConfigManagement1.h"
 
 /*
  * Services:
  * O - LANHostConfigManagement:1 
  */
+
+@class BasicUPnPService;
+@class SoapActionsLANHostConfigManagement1;
 
 @interface LAN1Device : BasicUPnPDevice
 

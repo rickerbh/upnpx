@@ -44,13 +44,15 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-#import "SoapActionsWANPOTSLinkConfig1.h"
-#import "SoapActionsWANDSLLinkConfig1.h"
-#import "SoapActionsWANCableLinkConfig1.h"
-#import "SoapActionsWANEthernetLinkConfig1.h"
-#import "SoapActionsWANPPPConnection1.h"
-#import "SoapActionsWANIPConnection2.h"
-#import "SoapActionsWANIPv6FirewallControl1.h"
+
+@class BasicUPnPService;
+@class SoapActionsWANPOTSLinkConfig1;
+@class SoapActionsWANDSLLinkConfig1;
+@class SoapActionsWANCableLinkConfig1;
+@class SoapActionsWANEthernetLinkConfig1;
+@class SoapActionsWANPPPConnection1;
+@class SoapActionsWANIPConnection2;
+@class SoapActionsWANIPv6FirewallControl1;
 
 @interface WANConnection2Device : BasicUPnPDevice
 

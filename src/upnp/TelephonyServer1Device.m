@@ -33,6 +33,12 @@
 
 
 #import "TelephonyServer1Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsCallManagement1.h"
+#import "SoapActionsMessaging1.h"
+#import "SoapActionsInputConfig1.h"
+#import "SoapActionsDeviceProtection1.h"
+#import "SoapActionsConfigurationManagement1.h"
 
 @interface TelephonyServer1Device ()
 @property (strong) SoapActionsCallManagement1 *mCallManagement;

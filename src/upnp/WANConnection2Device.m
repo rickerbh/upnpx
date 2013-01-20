@@ -31,8 +31,15 @@
 //
 // **********************************************************************************
 
-
 #import "WANConnection2Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsWANPOTSLinkConfig1.h"
+#import "SoapActionsWANDSLLinkConfig1.h"
+#import "SoapActionsWANCableLinkConfig1.h"
+#import "SoapActionsWANEthernetLinkConfig1.h"
+#import "SoapActionsWANPPPConnection1.h"
+#import "SoapActionsWANIPConnection2.h"
+#import "SoapActionsWANIPv6FirewallControl1.h"
 
 @interface WANConnection2Device ()
 @property (strong) SoapActionsWANPOTSLinkConfig1 *mPOTSLinkConfig;

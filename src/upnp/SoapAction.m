@@ -122,7 +122,7 @@
 - (void)setStringValueForFoundAsset:(NSString *)value {
 	if (value) {
 		//Check which asset is active in our stack
-		BasicParserAsset* asset = [self getAssetForElementStack:mElementStack];
+		BasicParserAsset* asset = [self getAssetForElementStack:self.elementStack];
 		if (asset) {
 			NSString *elementName = [[asset path] lastObject];
 			if (elementName) {

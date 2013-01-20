@@ -33,6 +33,8 @@
 
 
 #import "DeviceFactory.h"
+#import "BasicUPnPDevice.h"
+#import "SSDPDB_ObjC.h"
 
 //Specific devices
 #import "MediaRenderer1Device.h"
@@ -50,49 +52,35 @@
 
 @implementation DeviceFactory
 
-
--(id)init{
-    self = [super init];
-    
-    return self;
-}
-
-
-- (void)dealloc{
+- (BasicUPnPDevice *)allocDeviceForSSDPDevice:(SSDPDBDevice_ObjC *)ssdp {
+	BasicUPnPDevice *device = nil;
 	
-	[super dealloc];
-}
-
-
--(BasicUPnPDevice*)allocDeviceForSSDPDevice:(SSDPDBDevice_ObjC*)ssdp{
-	BasicUPnPDevice* device = nil;	
-	
-	if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:MediaRenderer:1"]){
-		device =  [[MediaRenderer1Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:MediaServer:1"]){
-		device =  [[MediaServer1Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:BinaryLight:1"]){
-		device =  [[BinaryLight1Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:DimmableLight:1"]){
-		device =  [[DimmableLight1Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:WANConnectionDevice:1"]){
-		device =  [[WANConnection1Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:WANConnectionDevice:2"]){
-		device =  [[WANConnection2Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:DigitalSecurityCamera:1"]){
-		device =  [[DigitalSecurityCamera1Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:InternetGatewayDevice:2"]){
-		device =  [[InternetGateway2Device alloc] initWithSSDPDevice:ssdp];
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:WANDevice:2"]){
-		device =  [[WAN2Device alloc] initWithSSDPDevice:ssdp];        
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:LANDevice:1"]){
-		device =  [[LAN1Device alloc] initWithSSDPDevice:ssdp];        
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:TelephonyClient:1"]){
-		device =  [[TelephonyClient1Device alloc] initWithSSDPDevice:ssdp];        
-	}else if([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:TelephonyServer:1"]){
-		device =  [[TelephonyServer1Device alloc] initWithSSDPDevice:ssdp];        
-	}else{
-		device =  [[BasicUPnPDevice alloc] initWithSSDPDevice:ssdp];
+	if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:MediaRenderer:1"]) {
+		device = [[MediaRenderer1Device alloc] initWithSSDPDevice:ssdp];
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:MediaServer:1"]) {
+		device = [[MediaServer1Device alloc] initWithSSDPDevice:ssdp];
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:BinaryLight:1"]) {
+		device = [[BinaryLight1Device alloc] initWithSSDPDevice:ssdp];
+  } else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:DimmableLight:1"]) {
+		device = [[DimmableLight1Device alloc] initWithSSDPDevice:ssdp];
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:WANConnectionDevice:1"]) {
+		device = [[WANConnection1Device alloc] initWithSSDPDevice:ssdp];
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:WANConnectionDevice:2"]) {
+		device = [[WANConnection2Device alloc] initWithSSDPDevice:ssdp];
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:DigitalSecurityCamera:1"]) { 
+		device = [[DigitalSecurityCamera1Device alloc] initWithSSDPDevice:ssdp];
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:InternetGatewayDevice:2"]) {
+		device = [[InternetGateway2Device alloc] initWithSSDPDevice:ssdp];
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:WANDevice:2"]) {
+		device = [[WAN2Device alloc] initWithSSDPDevice:ssdp];        
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:LANDevice:1"]) {
+		device = [[LAN1Device alloc] initWithSSDPDevice:ssdp];        
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:TelephonyClient:1"]) {
+		device = [[TelephonyClient1Device alloc] initWithSSDPDevice:ssdp];        
+	} else if ([[ssdp urn] isEqualToString:@"urn:schemas-upnp-org:device:TelephonyServer:1"]) {
+		device = [[TelephonyServer1Device alloc] initWithSSDPDevice:ssdp];        
+	} else {
+		device = [[BasicUPnPDevice alloc] initWithSSDPDevice:ssdp];
 	}
 	
 	return device;

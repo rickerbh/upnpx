@@ -32,6 +32,8 @@
 // **********************************************************************************
 
 #import "WAN2Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsWANCommonInterfaceConfig1.h"
 
 @interface WAN2Device ()
 @property (strong) SoapActionsWANCommonInterfaceConfig1 *mCommonInterfaceConfig;

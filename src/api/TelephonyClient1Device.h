@@ -34,11 +34,6 @@
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
 
-#import "SoapActionsMediaManagement1.h"
-#import "SoapActionsMessaging1.h"
-#import "SoapActionsInputConfig1.h"
-#import "SoapActionsDeviceProtection1.h"
-
 
 /*
  * Services:
@@ -47,6 +42,12 @@
  * O - InputConfig:1 
  * O - DeviceProtection:1
  */
+
+@class BasicUPnPService;
+@class SoapActionsMediaManagement1;
+@class SoapActionsMessaging1;
+@class SoapActionsInputConfig1;
+@class SoapActionsDeviceProtection1;
 
 @interface TelephonyClient1Device : BasicUPnPDevice
 

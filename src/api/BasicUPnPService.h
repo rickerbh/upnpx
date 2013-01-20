@@ -33,69 +33,40 @@
 
 
 #import <Foundation/Foundation.h>
-#import "SSDPDB_ObjC.h"
-#import "StateVariable.h"
-#import "SoapAction.h"
 #import "UPnPEvents.h"
 
-@class BasicUPnPServiceObserver, BasicUPnPService;
+@class BasicUPnPServiceObserver;
+@class BasicUPnPService;
+@class SoapAction;
+@class SSDPDBDevice_ObjC;
 
 @protocol BasicUPnPServiceObserver
 - (void)UPnPEvent:(BasicUPnPService*)sender events:(NSDictionary *)events;
 @end
 
+@interface BasicUPnPService : NSObject <UPnPEvents_Observer>
+@property (strong) NSURL* baseURL;
+@property (strong) NSString* baseURLString;
+@property (strong) NSString* descriptionURL;
+@property (strong) NSString* eventURL;
+@property (strong) NSString* controlURL;
+@property (strong) NSString* serviceType;
+@property (readonly, strong) SSDPDBDevice_ObjC *ssdpdevice;
+@property (readonly, strong) NSMutableDictionary *stateVariables;
+@property (readonly, strong) SoapAction *soap;
+@property (strong) NSString* urn;
+@property (assign, getter = isProcessed) BOOL processed;
+@property (assign, getter = isSupportForEvents) BOOL supportForEvents;
 
-@interface BasicUPnPService : NSObject <UPnPEvents_Observer> {
-	SSDPDBDevice_ObjC *ssdpdevice;
-	
-	BOOL isProcessed;
-	BOOL isSupportForEvents;
-	
-	NSString *baseURLString;
-	NSURL *baseURL;
-	NSString *descriptionURL;
-	NSString *eventURL;
-	NSString *controlURL;
-	NSString *serviceType;
-	SoapAction *soap;
-	
-	NSString *urn;
-	NSString *eventUUID;
-	
-	NSMutableDictionary *stateVariables; //StateVariable
-	NSMutableArray *mObservers; //BasicUPnPServiceObserver
-	
-	NSRecursiveLock *mMutex;
-}
-
-
--(id)initWithSSDPDevice:(SSDPDBDevice_ObjC*)device;
-- (void)dealloc;
-
-- (int)addObserver:(BasicUPnPServiceObserver*)obs;
-- (int)removeObserver:(BasicUPnPServiceObserver*)obs;
--(BOOL)isObserver:(BasicUPnPServiceObserver*)obs;
-
+- (id)initWithSSDPDevice:(SSDPDBDevice_ObjC*)device;
+- (int)addObserver:(NSObject<BasicUPnPServiceObserver> *)obs;
+- (int)removeObserver:(NSObject<BasicUPnPServiceObserver> *)obs;
+- (BOOL)isObserver:(NSObject<BasicUPnPServiceObserver> *)obs;
 
 //Process is called by the ServiceFactory after basic parsing is done and succeeded
 //The BasicUPnPService (this) members are set with the right values
 //Further processing is service dependent and must be handled by the derived classes 
 //The return value must be 0 when implenented
 - (int)process; //in C++ this should be a pure virtual function
-
-
-
-@property (readwrite, retain) NSURL* baseURL;
-@property (readwrite, retain) NSString* baseURLString;
-@property (readwrite, retain) NSString* descriptionURL;
-@property (readwrite, retain) NSString* eventURL;
-@property (readwrite, retain) NSString* controlURL;
-@property (readwrite, retain) NSString* serviceType;
-@property (readonly, retain) SSDPDBDevice_ObjC *ssdpdevice;
-@property (readonly) NSMutableDictionary *stateVariables;
-@property (readonly) SoapAction *soap;
-@property (readwrite, retain) NSString* urn;
-@property (readwrite) BOOL isProcessed;
-@property (readwrite) BOOL isSupportForEvents;
 
 @end

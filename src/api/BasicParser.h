@@ -35,24 +35,16 @@
 #import <Foundation/Foundation.h>
 #import "BasicParserAsset.h"
 
-//For older XCode3 builds, you might need to comment out <NSXMLParserDelegate>
-@interface BasicParser : NSObject <NSXMLParserDelegate> {
-@public
-	NSMutableArray *mElementStack; //NSString
-	NSMutableArray *mAssets; //BasicParserAssets
-	BOOL mSupportNamespaces;
-	NSDictionary * elementAttributeDict;
-	NSString *currentElementName;
-}
+@interface BasicParser : NSObject <NSXMLParserDelegate>
+@property (strong) NSDictionary *elementAttributeDict;
+@property (strong) NSString *currentElementName;
 
--(id)init;
--(id)initWithNamespaceSupport:(BOOL)namespaceSupport;
-- (void)dealloc;
+- (id)initWithNamespaceSupport:(BOOL)namespaceSupport;
 - (void)clearAllAssets;
-- (int)addAsset:(NSArray*)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj;
+- (int)addAsset:(NSArray *)path callfunction:(SEL)function functionObject:(id)funcObj setStringValueFunction:(SEL)valueFunction setStringValueObject:(id)obj;
 - (int)parseFromURL:(NSURL *)url;
-- (int)parseFromData:(NSData*)data;
-
--(BasicParserAsset*)getAssetForElementStack:(NSMutableArray*)stack;
+- (int)parseFromData:(NSData *)data;
+- (BasicParserAsset *)getAssetForElementStack:(NSMutableArray *)stack;
+- (NSMutableArray *)elementStack;
 
 @end

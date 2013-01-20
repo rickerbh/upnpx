@@ -32,15 +32,12 @@
 // **********************************************************************************
 
 #import <Foundation/Foundation.h>
-#import "BasicUPnPDevice.h"
-#import "SSDPDB_ObjC.h"
 
-@interface DeviceFactory : NSObject {
+@class BasicUPnPDevice;
+@class SSDPDBDevice_ObjC;
 
-}
+@interface DeviceFactory : NSObject
 
--(BasicUPnPDevice*)allocDeviceForSSDPDevice:(SSDPDBDevice_ObjC*)ssdp;
--(id)init;
-- (void)dealloc;
+- (BasicUPnPDevice *)allocDeviceForSSDPDevice:(SSDPDBDevice_ObjC *)ssdp;
 
 @end

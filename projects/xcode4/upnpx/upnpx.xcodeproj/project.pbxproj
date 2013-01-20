@@ -26,7 +26,7 @@
 		15055EA21391E2C1003DE49F /* TelephonyClient1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E9A1391E2C1003DE49F /* TelephonyClient1Device.m */; };
 		15055EA31391E2C1003DE49F /* TelephonyServer1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15055E9B1391E2C1003DE49F /* TelephonyServer1Device.m */; };
 		1541026313D2762A000894ED /* OrderedDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 1541026113D2762A000894ED /* OrderedDictionary.h */; };
-		1541026413D2762A000894ED /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1541026213D2762A000894ED /* OrderedDictionary.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1541026413D2762A000894ED /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 1541026213D2762A000894ED /* OrderedDictionary.m */; };
 		154978C71393D863008A5BD4 /* BinaryLight1Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 154978C51393D863008A5BD4 /* BinaryLight1Device.h */; };
 		154978C81393D863008A5BD4 /* DimmableLight1Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 154978C61393D863008A5BD4 /* DimmableLight1Device.h */; };
 		1556AB241393DC480059635A /* BasicDeviceParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1556AB1C1393DC480059635A /* BasicDeviceParser.h */; };
@@ -77,13 +77,13 @@
 		15584068139134E900A734E7 /* WANConnection2Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15584057139134E900A734E7 /* WANConnection2Device.m */; };
 		15BAC4F8132C22BA00F5C41A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BAC4F7132C22BA00F5C41A /* Foundation.framework */; };
 		15C44D9F132C30000013D453 /* basichttpobserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44D91132C30000013D453 /* basichttpobserver.h */; };
-		15C44DA1132C30000013D453 /* BasicHTTPServer_ObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D93132C30000013D453 /* BasicHTTPServer_ObjC.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44DA1132C30000013D453 /* BasicHTTPServer_ObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D93132C30000013D453 /* BasicHTTPServer_ObjC.mm */; };
 		15C44DA2132C30000013D453 /* basichttpserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D94132C30000013D453 /* basichttpserver.cpp */; };
 		15C44DA3132C30000013D453 /* basichttpserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44D95132C30000013D453 /* basichttpserver.h */; };
 		15C44DA4132C30000013D453 /* httpsession.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D96132C30000013D453 /* httpsession.cpp */; };
 		15C44DA5132C30000013D453 /* httpsession.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44D97132C30000013D453 /* httpsession.h */; };
 		15C44DA6132C30000013D453 /* SocketServer_ObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44D98132C30000013D453 /* SocketServer_ObjC.h */; };
-		15C44DA7132C30000013D453 /* SocketServer_ObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D99132C30000013D453 /* SocketServer_ObjC.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44DA7132C30000013D453 /* SocketServer_ObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D99132C30000013D453 /* SocketServer_ObjC.mm */; };
 		15C44DA8132C30000013D453 /* socketserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D9A132C30000013D453 /* socketserver.cpp */; };
 		15C44DA9132C30000013D453 /* socketserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44D9B132C30000013D453 /* socketserver.h */; };
 		15C44DAA132C30000013D453 /* socketserverconnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44D9C132C30000013D453 /* socketserverconnection.cpp */; };
@@ -95,7 +95,7 @@
 		15C44DD7132C302D0013D453 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DB4132C302D0013D453 /* main.mm */; };
 		15C44DD8132C302D0013D453 /* ssdp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DB5132C302D0013D453 /* ssdp.cpp */; };
 		15C44DD9132C302D0013D453 /* ssdp.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44DB6132C302D0013D453 /* ssdp.h */; };
-		15C44DDB132C302D0013D453 /* SSDPDB_ObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DB8132C302D0013D453 /* SSDPDB_ObjC.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44DDB132C302D0013D453 /* SSDPDB_ObjC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DB8132C302D0013D453 /* SSDPDB_ObjC.mm */; };
 		15C44DDC132C302D0013D453 /* ssdpdb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DB9132C302D0013D453 /* ssdpdb.cpp */; };
 		15C44DDD132C302D0013D453 /* ssdpdb.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44DBA132C302D0013D453 /* ssdpdb.h */; };
 		15C44DDE132C302D0013D453 /* ssdpdbdevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DBB132C302D0013D453 /* ssdpdbdevice.cpp */; };
@@ -126,25 +126,25 @@
 		15C44DF7132C302D0013D453 /* ssdptools.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44DD4132C302D0013D453 /* ssdptools.h */; };
 		15C44DF8132C302D0013D453 /* upnp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DD5132C302D0013D453 /* upnp.cpp */; };
 		15C44DF9132C302D0013D453 /* upnp.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44DD6132C302D0013D453 /* upnp.h */; };
-		15C44E48132C30490013D453 /* BasicDeviceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DFB132C30490013D453 /* BasicDeviceParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E4A132C30490013D453 /* BasicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DFD132C30490013D453 /* BasicParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E4C132C30490013D453 /* BasicParserAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DFF132C30490013D453 /* BasicParserAsset.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E4E132C30490013D453 /* BasicServiceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E01132C30490013D453 /* BasicServiceParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E50132C30490013D453 /* BasicUPnPDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E03132C30490013D453 /* BasicUPnPDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E52132C30490013D453 /* BasicUPnPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E05132C30490013D453 /* BasicUPnPService.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E54132C30490013D453 /* BinaryLight1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E07132C30490013D453 /* BinaryLight1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E56132C30490013D453 /* CocoaTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E09132C30490013D453 /* CocoaTools.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E58132C30490013D453 /* DeviceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E0B132C30490013D453 /* DeviceFactory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E59132C30490013D453 /* DimmableLigh1tDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E0C132C30490013D453 /* DimmableLigh1tDevice.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E5C132C30490013D453 /* LastChangeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E0F132C30490013D453 /* LastChangeParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E5E132C30490013D453 /* MediaPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E11132C30490013D453 /* MediaPlaylist.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E60132C30490013D453 /* MediaRenderer1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E13132C30490013D453 /* MediaRenderer1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E62132C30490013D453 /* MediaServer1BasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E15132C30490013D453 /* MediaServer1BasicObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E64132C30490013D453 /* MediaServer1ContainerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E17132C30490013D453 /* MediaServer1ContainerObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E66132C30490013D453 /* MediaServer1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E19132C30490013D453 /* MediaServer1Device.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E68132C30490013D453 /* MediaServer1ItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1B132C30490013D453 /* MediaServer1ItemObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E6A132C30490013D453 /* MediaServerBasicObjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1D132C30490013D453 /* MediaServerBasicObjectParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E6C132C30490013D453 /* ServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1F132C30490013D453 /* ServiceFactory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44E48132C30490013D453 /* BasicDeviceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DFB132C30490013D453 /* BasicDeviceParser.m */; };
+		15C44E4A132C30490013D453 /* BasicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DFD132C30490013D453 /* BasicParser.m */; };
+		15C44E4C132C30490013D453 /* BasicParserAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44DFF132C30490013D453 /* BasicParserAsset.m */; };
+		15C44E4E132C30490013D453 /* BasicServiceParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E01132C30490013D453 /* BasicServiceParser.m */; };
+		15C44E50132C30490013D453 /* BasicUPnPDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E03132C30490013D453 /* BasicUPnPDevice.m */; };
+		15C44E52132C30490013D453 /* BasicUPnPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E05132C30490013D453 /* BasicUPnPService.m */; };
+		15C44E54132C30490013D453 /* BinaryLight1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E07132C30490013D453 /* BinaryLight1Device.m */; };
+		15C44E56132C30490013D453 /* CocoaTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E09132C30490013D453 /* CocoaTools.m */; };
+		15C44E58132C30490013D453 /* DeviceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E0B132C30490013D453 /* DeviceFactory.m */; };
+		15C44E59132C30490013D453 /* DimmableLight1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E0C132C30490013D453 /* DimmableLight1Device.m */; };
+		15C44E5C132C30490013D453 /* LastChangeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E0F132C30490013D453 /* LastChangeParser.m */; };
+		15C44E5E132C30490013D453 /* MediaPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E11132C30490013D453 /* MediaPlaylist.m */; };
+		15C44E60132C30490013D453 /* MediaRenderer1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E13132C30490013D453 /* MediaRenderer1Device.m */; };
+		15C44E62132C30490013D453 /* MediaServer1BasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E15132C30490013D453 /* MediaServer1BasicObject.m */; };
+		15C44E64132C30490013D453 /* MediaServer1ContainerObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E17132C30490013D453 /* MediaServer1ContainerObject.m */; };
+		15C44E66132C30490013D453 /* MediaServer1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E19132C30490013D453 /* MediaServer1Device.m */; };
+		15C44E68132C30490013D453 /* MediaServer1ItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1B132C30490013D453 /* MediaServer1ItemObject.m */; };
+		15C44E6A132C30490013D453 /* MediaServerBasicObjectParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1D132C30490013D453 /* MediaServerBasicObjectParser.m */; };
+		15C44E6C132C30490013D453 /* ServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E1F132C30490013D453 /* ServiceFactory.m */; };
 		15C44E6E132C30490013D453 /* SoapAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E21132C30490013D453 /* SoapAction.m */; };
 		15C44E70132C30490013D453 /* SoapActionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E23132C30490013D453 /* SoapActionFactory.m */; };
 		15C44E72132C30490013D453 /* SoapActionsAVTransport1.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E25132C30490013D453 /* SoapActionsAVTransport1.m */; };
@@ -160,8 +160,8 @@
 		15C44E86132C30490013D453 /* StateVariableList.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E39132C30490013D453 /* StateVariableList.m */; };
 		15C44E88132C30490013D453 /* StateVariableRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E3B132C30490013D453 /* StateVariableRange.m */; };
 		15C44E8A132C30490013D453 /* UPnPDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E3E132C30490013D453 /* UPnPDB.m */; };
-		15C44E8C132C30490013D453 /* UPnPEventParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E40132C30490013D453 /* UPnPEventParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		15C44E8E132C30490013D453 /* UPnPEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E42132C30490013D453 /* UPnPEvents.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15C44E8C132C30490013D453 /* UPnPEventParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E40132C30490013D453 /* UPnPEventParser.m */; };
+		15C44E8E132C30490013D453 /* UPnPEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E42132C30490013D453 /* UPnPEvents.m */; };
 		15C44E90132C30490013D453 /* UPnPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E44132C30490013D453 /* UPnPManager.m */; };
 		15C44E92132C30490013D453 /* WANConnection1Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C44E46132C30490013D453 /* WANConnection1Device.m */; };
 		15C44EA2132C332D0013D453 /* iphoneport.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C44EA1132C332D0013D453 /* iphoneport.h */; };
@@ -324,7 +324,7 @@
 		15C44E07132C30490013D453 /* BinaryLight1Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BinaryLight1Device.m; path = ../../../../src/upnp/BinaryLight1Device.m; sourceTree = "<group>"; };
 		15C44E09132C30490013D453 /* CocoaTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CocoaTools.m; path = ../../../../src/upnp/CocoaTools.m; sourceTree = "<group>"; };
 		15C44E0B132C30490013D453 /* DeviceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceFactory.m; path = ../../../../src/upnp/DeviceFactory.m; sourceTree = "<group>"; };
-		15C44E0C132C30490013D453 /* DimmableLigh1tDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DimmableLigh1tDevice.m; path = ../../../../src/upnp/DimmableLigh1tDevice.m; sourceTree = "<group>"; };
+		15C44E0C132C30490013D453 /* DimmableLight1Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DimmableLight1Device.m; path = ../../../../src/upnp/DimmableLight1Device.m; sourceTree = "<group>"; };
 		15C44E0F132C30490013D453 /* LastChangeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LastChangeParser.m; path = ../../../../src/upnp/LastChangeParser.m; sourceTree = "<group>"; };
 		15C44E11132C30490013D453 /* MediaPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaPlaylist.m; path = ../../../../src/upnp/MediaPlaylist.m; sourceTree = "<group>"; };
 		15C44E13132C30490013D453 /* MediaRenderer1Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaRenderer1Device.m; path = ../../../../src/upnp/MediaRenderer1Device.m; sourceTree = "<group>"; };
@@ -632,7 +632,7 @@
 				15C44E07132C30490013D453 /* BinaryLight1Device.m */,
 				15C44E09132C30490013D453 /* CocoaTools.m */,
 				15C44E0B132C30490013D453 /* DeviceFactory.m */,
-				15C44E0C132C30490013D453 /* DimmableLigh1tDevice.m */,
+				15C44E0C132C30490013D453 /* DimmableLight1Device.m */,
 				15C44E0F132C30490013D453 /* LastChangeParser.m */,
 				15C44E11132C30490013D453 /* MediaPlaylist.m */,
 				15C44E13132C30490013D453 /* MediaRenderer1Device.m */,
@@ -854,7 +854,7 @@
 				15C44E54132C30490013D453 /* BinaryLight1Device.m in Sources */,
 				15C44E56132C30490013D453 /* CocoaTools.m in Sources */,
 				15C44E58132C30490013D453 /* DeviceFactory.m in Sources */,
-				15C44E59132C30490013D453 /* DimmableLigh1tDevice.m in Sources */,
+				15C44E59132C30490013D453 /* DimmableLight1Device.m in Sources */,
 				15C44E5C132C30490013D453 /* LastChangeParser.m in Sources */,
 				15C44E5E132C30490013D453 /* MediaPlaylist.m in Sources */,
 				15C44E60132C30490013D453 /* MediaRenderer1Device.m in Sources */,

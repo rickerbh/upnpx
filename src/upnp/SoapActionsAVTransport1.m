@@ -26,11 +26,9 @@
 // ******************************************************************
 
 #import "SoapActionsAVTransport1.h"
-
 #import "OrderedDictionary.h"
 
 @implementation SoapActionsAVTransport1
-
 
 - (int)SetAVTransportURIWithInstanceID:(NSString *)instanceid CurrentURI:(NSString *)currenturi CurrentURIMetaData:(NSString *)currenturimetadata{
     int ret = 0;

@@ -31,23 +31,17 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-#import "SoapActionsDimming1.h"
-#import "SoapActionsSwitchPower1.h"
 
-@interface DimmableLight1Device : BasicUPnPDevice {
-	SoapActionsSwitchPower1 *mSwitchPower;
-	SoapActionsDimming1 *mDimming;
-}
+@class BasicUPnPService;
+@class SoapActionsDimming1;
+@class SoapActionsSwitchPower1;
 
--(id)init;
-- (void)dealloc;
+@interface DimmableLight1Device : BasicUPnPDevice
 
 - (SoapActionsSwitchPower1 *)switchPower;
 - (SoapActionsDimming1 *)dimming;
-
 - (BasicUPnPService *)switchPowerService;
 - (BasicUPnPService *)dimmingService;
 

@@ -31,51 +31,41 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
-#import "MediaServer1Device.h"
-//#import "MediaRenderer1Device.h"
-#import "MediaServer1ContainerObject.h"
-#import "MediaServer1ItemObject.h"
 
-
-@class MediaPlaylistObserver, MediaPlaylist;
-
-typedef enum MediaPlaylistState{
+typedef enum MediaPlaylistState {
 	MediaPlaylistState_NotInitialized = 0,
 	MediaPlaylistState_Stopped,
 	MediaPlaylistState_Playing
-}MediaPlaylistState;
+} MediaPlaylistState;
 
+@class MediaServer1ItemObject;
 
 /**
  * Observer
  */
 @protocol MediaPlaylistObserver
-- (int)NewTrack:(MediaServer1ItemObject*)track;
+- (int)NewTrack:(MediaServer1ItemObject *)track;
 - (void)StateChanged:(MediaPlaylistState)state;
 @end
 
-
+@class MediaServer1ContainerObject;
+@class MediaServer1Device;
 
 /**
  * Class
  */
-@interface MediaPlaylist : NSObject {
-	NSMutableArray *playList; //MediaServer1ItemObject[]
-	int currentTrack;
-	MediaServer1Device* mediaServer;
-//	MediaRenderer1Device* mediaRenderer;
-	MediaServer1ContainerObject* container;
-	NSMutableArray *mObservers; //MediaPlaylistObserver[]
-	MediaPlaylistState state;
-}
+@interface MediaPlaylist : NSObject
+@property (readonly, strong) NSMutableArray *playList;
+@property (readonly, assign) int currentTrack;
+@property (readonly, strong) MediaServer1Device *mediaServer;
+@property (readonly, strong) MediaServer1ContainerObject *container;
+@property (readonly, assign) MediaPlaylistState state;
+//@property(readwrite, strong) MediaRenderer1Device* mediaRenderer;
 
--(id)init;
-- (void)dealloc;
-- (int)addObserver:(MediaPlaylistObserver*)obs;
-- (int)removeObserver:(MediaPlaylistObserver*)obs;
-- (int)loadWithMediaServer:(MediaServer1Device*)server forContainer:(MediaServer1ContainerObject*)selectedContainer;
+- (int)addObserver:(NSObject<MediaPlaylistObserver> *)obs;
+- (int)removeObserver:(NSObject<MediaPlaylistObserver> *)obs;
+- (int)loadWithMediaServer:(MediaServer1Device *)server forContainer:(MediaServer1ContainerObject *)selectedContainer;
 
 - (int)stop;
 - (int)play;
@@ -83,14 +73,6 @@ typedef enum MediaPlaylistState{
 - (int)prevTrack;
 - (int)setTrackByNumber:(int)track;
 - (int)setTrackByID:(NSString *)objectID; 
--(MediaServer1ItemObject*)GetCurrentTrackItem;
-
-@property(readonly) NSMutableArray *playList;
-@property(readonly) int currentTrack;
-@property(readonly) MediaServer1Device* mediaServer;
-@property(readonly) MediaServer1ContainerObject* container;
-@property(readonly) MediaPlaylistState state;
-//@property(readwrite, retain) MediaRenderer1Device* mediaRenderer;
-
+- (MediaServer1ItemObject *)GetCurrentTrackItem;
 
 @end

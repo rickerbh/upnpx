@@ -31,16 +31,9 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "MediaServer1BasicObject.h"
 
-@interface MediaServer1ContainerObject : MediaServer1BasicObject {
-	NSString *childCount;
-}
-- (void)dealloc;
-
-@property(retain, nonatomic) NSString *childCount;
-
-
+@interface MediaServer1ContainerObject : MediaServer1BasicObject
+@property (strong) NSString *childCount;
 @end

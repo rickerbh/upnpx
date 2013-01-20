@@ -39,51 +39,32 @@
 #import "OrderedDictionary.h"
 #import "MediaServer1ItemRes.h"
 
-@implementation MediaServerBasicObjectParser
-
-@synthesize mediaTitle;
-@synthesize mediaClass;
-@synthesize mediaID;
-@synthesize parentID;
-@synthesize childCount;
-@synthesize artist;
-@synthesize album;
-@synthesize date;
-@synthesize genre;
-@synthesize originalTrackNumber;
-@synthesize uri;
-@synthesize protocolInfo;
-@synthesize frequency;
-@synthesize audioChannels;
-@synthesize size;
-@synthesize duration;
-@synthesize icon;
-@synthesize bitrate;
-@synthesize albumArt;
-
-
-
-
 /*
- <container id="7" parentID="0" restricted="1" childCount="6">
-	 <dc:title>Audio</dc:title>
-	 <upnp:class>object.container</upnp:class>
- </container>
+  <container id="7" parentID="0" restricted="1" childCount="6">
+    <dc:title>Audio</dc:title>
+    <upnp:class>object.container</upnp:class>
+  </container>
  
- 
- <item id="27934" parentID="27933" restricted="0">
-	 <dc:title>01-Mis-Shapes.mp3</dc:title>
-	 <upnp:class>object.item.audioItem.musicTrack</upnp:class>
-	 <upnp:artist>Pulp</upnp:artist>
-	 <upnp:album>Different Class</upnp:album>
-	 <dc:date>1995-01-01</dc:date>
-	 <upnp:genre>Rock</upnp:genre>
-	 <upnp:originalTrackNumber>1</upnp:originalTrackNumber>
-	 <res protocolInfo="http-get:*:audio/mpeg:*" sampleFrequency="48000" nrAudioChannels="2">http://192.168.123.15:49152/content/media/object_id=27934&amp;res_id=0&amp;ext=.mp3</res>
- </item>
- */
+  <item id="27934" parentID="27933" restricted="0">
+    <dc:title>01-Mis-Shapes.mp3</dc:title>
+    <upnp:class>object.item.audioItem.musicTrack</upnp:class>
+    <upnp:artist>Pulp</upnp:artist>
+    <upnp:album>Different Class</upnp:album>
+    <dc:date>1995-01-01</dc:date>
+    <upnp:genre>Rock</upnp:genre>
+    <upnp:originalTrackNumber>1</upnp:originalTrackNumber>
+    <res protocolInfo="http-get:*:audio/mpeg:*" sampleFrequency="48000" nrAudioChannels="2">http://192.168.123.15:49152/content/media/object_id=27934&amp;res_id=0&amp;ext=.mp3</res>
+  </item>
+*/
 
+@interface MediaServerBasicObjectParser ()
+@property (strong) NSMutableArray *mediaObjects;
+@property (strong) NSMutableDictionary *uriCollection;  //key: NSString* protocolinfo -> value:NSString* uri
+@property (strong) NSMutableArray *resources;
+@property (readwrite, strong) NSString *uri;
+@end
 
+@implementation MediaServerBasicObjectParser
 /**
  * All Objects; Items + Containers
  */
@@ -91,79 +72,40 @@
 	return [self initWithMediaObjectArray:mediaObjectsArray itemsOnly:NO];
 }
 
-
--(id)initWithMediaObjectArray:(NSMutableArray*)mediaObjectsArray itemsOnly:(BOOL)onlyItems{
-    self = [super initWithNamespaceSupport:YES];
-    
-    if (self) {
-        uriCollection = [[OrderedDictionary alloc] init];
-        resources = [[NSMutableArray alloc] init];
+- (id)initWithMediaObjectArray:(NSMutableArray *)mediaObjectsArray itemsOnly:(BOOL)onlyItems {
+  self = [super initWithNamespaceSupport:YES];
+  if (self) {
+    _uriCollection = [[OrderedDictionary alloc] init];
+    _resources = [[NSMutableArray alloc] init];
         
-        /* TODO: mediaObjects -> retain property */
-        mediaObjects = mediaObjectsArray;
-        [mediaObjects retain];
+    _mediaObjects = mediaObjectsArray;
 
-
-        //Container
-        if(onlyItems == NO){
-            [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"container", nil] callfunction:@selector(container:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
-            [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"container", @"title", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaTitle:) setStringValueObject:self];
-            [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"container", @"class", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaClass:) setStringValueObject:self];
-            [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"container", @"albumArtURI", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbumArt:) setStringValueObject:self];
-        }
-        
-        
-        //Item
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", nil] callfunction:@selector(item:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"title", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaTitle:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"class", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaClass:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"artist", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setArtist:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"album", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbum:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"date", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDate:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"genre", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setGenre:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"originalTrackNumber", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setOriginalTrackNumber:) setStringValueObject:self];
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"albumArtURI", nil] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbumArt:) setStringValueObject:self];
-
-        [self addAsset:[NSArray arrayWithObjects: @"DIDL-Lite", @"item", @"res",  nil] callfunction:@selector(res:) functionObject:self setStringValueFunction:@selector(setUri:) setStringValueObject:self];
+    //Container
+    if (!onlyItems) {
+      [self addAsset:@[@"DIDL-Lite", @"container"] callfunction:@selector(container:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
+      [self addAsset:@[@"DIDL-Lite", @"container", @"title"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaTitle:) setStringValueObject:self];
+      [self addAsset:@[@"DIDL-Lite", @"container", @"class"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaClass:) setStringValueObject:self];
+      [self addAsset:@[@"DIDL-Lite", @"container", @"albumArtURI"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbumArt:) setStringValueObject:self];
     }
+    
+    //Item
+    [self addAsset:@[@"DIDL-Lite", @"item"] callfunction:@selector(item:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"title"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaTitle:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"class"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaClass:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"artist"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setArtist:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"album"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbum:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"date"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDate:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"genre"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setGenre:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"originalTrackNumber"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setOriginalTrackNumber:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"albumArtURI"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbumArt:) setStringValueObject:self];
+
+    [self addAsset:@[@"DIDL-Lite", @"item", @"res"] callfunction:@selector(res:) functionObject:self setStringValueFunction:@selector(setUri:) setStringValueObject:self];
+  }
     
 	return self;
 }
 
-
-
-
-
-- (void)dealloc{
-	[mediaTitle release];
-	[mediaClass release];
-	[mediaID release];
-	[parentID release];
-	[childCount release];
-	[artist release];
-	[album release];
-	[date release];
-	[genre release];
-	[originalTrackNumber release];
-	[uri release];
-    [protocolInfo release];
-	[frequency release];
-	[audioChannels release];
-	[size release];
-	[duration release];
-	[icon release];
-	[bitrate release];
-	[albumArt release];
-
-    [uriCollection release];
-    [resources release];
-    [mediaObjects release];
-   
-	[super dealloc];
-}
-
-
-- (void)empty{
+- (void)empty {
 	[self setMediaClass:@""];
 	[self setMediaTitle:@""];
 	[self setMediaID:@""];
@@ -174,123 +116,104 @@
 	[self setAlbumArt:nil];
 	[self setDuration:nil];
     
-    
-    [resources removeAllObjects];
-    [uriCollection removeAllObjects];
+  [self.resources removeAllObjects];
+  [self.uriCollection removeAllObjects];
 }
 
-
 - (void)container:(NSString *)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
+	if ([startStop isEqualToString:@"ElementStart"]) {
 		//Clear
 		[self empty];
 		
 		//Get the attributes
-		[self setMediaID:[elementAttributeDict objectForKey:@"id"]];
-		[self setParentID:[elementAttributeDict objectForKey:@"parentID"]];
-		[self setChildCount:[elementAttributeDict objectForKey:@"childCount"]];
-		
-	}else{
+		[self setMediaID:[self.elementAttributeDict objectForKey:@"id"]];
+		[self setParentID:[self.elementAttributeDict objectForKey:@"parentID"]];
+		[self setChildCount:[self.elementAttributeDict objectForKey:@"childCount"]];
+	} else {
 		MediaServer1ContainerObject *media = [[MediaServer1ContainerObject alloc] init];
 
-		[media setIsContainer:YES];
+		[media setContainer:YES];
  
-		[media setObjectID:mediaID];
-		[media setParentID:parentID];
-		[media setTitle:mediaTitle];	
-		[media setObjectClass:mediaClass];
-		[media setChildCount:childCount];
-		[media setAlbumArt:albumArt];
+		[media setObjectID:self.mediaID];
+		[media setParentID:self.parentID];
+		[media setTitle:self.mediaTitle];	
+		[media setObjectClass:self.mediaClass];
+		[media setChildCount:self.childCount];
+		[media setAlbumArt:self.albumArt];
 		
-		[mediaObjects addObject:media];
-
-		[media release];
-
+		[self.mediaObjects addObject:media];
 	}
 }
 
-
-- (void)item:(NSString *)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
+- (void)item:(NSString *)startStop {
+	if ([startStop isEqualToString:@"ElementStart"]) {
 		//Clear
 		[self empty];
 
 		//Get the attributes
-		[self setMediaID:[elementAttributeDict objectForKey:@"id"]];
-		[self setParentID:[elementAttributeDict objectForKey:@"parentID"]];
-	}else{
+		[self setMediaID:[self.elementAttributeDict objectForKey:@"id"]];
+		[self setParentID:[self.elementAttributeDict objectForKey:@"parentID"]];
+	} else {
 		MediaServer1ItemObject *media = [[MediaServer1ItemObject alloc] init];
 		
-		[media setIsContainer:NO];
+		[media setContainer:NO];
 
-		[media setObjectID:mediaID];
-		[media setParentID:parentID];
-		[media setTitle:mediaTitle];	
-		[media setArtist:artist];	
-		[media setAlbum:album];	
-		[media setDate:date];	
-		[media setGenre:genre];	
-		[media setOriginalTrackNumber:originalTrackNumber];	
-		[media setUri:uri];	
-		[media setProtocolInfo:protocolInfo]; 	
-		[media setFrequency:frequency];	
-		[media setAudioChannels:audioChannels];	
-		[media setSize:size];
-		[media setDuration:duration];
-    [media setDurationInSeconds:[duration HMS2Seconds]];
-		[media setBitrate:bitrate];
-		[media setIcon:icon]; //REMOVE THIS ?
-		[media setAlbumArt:albumArt];
-    [media setUriCollection:uriCollection];
+		[media setObjectID:self.mediaID];
+		[media setParentID:self.parentID];
+		[media setTitle:self.mediaTitle];	
+		[media setArtist:self.artist];
+		[media setAlbum:self.album];
+		[media setDate:self.date];	
+		[media setGenre:self.genre];	
+		[media setOriginalTrackNumber:self.originalTrackNumber];	
+		[media setUri:self.uri];	
+		[media setProtocolInfo:self.protocolInfo]; 	
+		[media setFrequency:self.frequency];	
+		[media setAudioChannels:self.audioChannels];	
+		[media setSize:self.size];
+		[media setDuration:self.duration];
+    [media setDurationInSeconds:[self.duration HMS2Seconds]];
+		[media setBitrate:self.bitrate];
+		[media setIcon:self.icon]; //REMOVE THIS ?
+		[media setAlbumArt:self.albumArt];
+    [media setUriCollection:self.uriCollection];
     
-    for (MediaServer1ItemRes *resource in resources) {
+    for (MediaServer1ItemRes *resource in self.resources) {
       [media addRes:resource];
     }
                 
-    [resources removeAllObjects];
-    [mediaObjects addObject:media];
-		[media release];
+    [self.resources removeAllObjects];
+    [self.mediaObjects addObject:media];
 	}
 }
 
-
-- (void)res:(NSString *)startStop{
-	if([startStop isEqualToString:@"ElementStart"]){
+- (void)res:(NSString *)startStop {
+	if ([startStop isEqualToString:@"ElementStart"]) {
 		//Get the attributes
-		[self setProtocolInfo:[elementAttributeDict objectForKey:@"protocolInfo"]];
-		[self setFrequency:[elementAttributeDict objectForKey:@"sampleFrequency"]];
-		[self setAudioChannels:[elementAttributeDict objectForKey:@"nrAudioChannels"]];
+		[self setProtocolInfo:[self.elementAttributeDict objectForKey:@"protocolInfo"]];
+		[self setFrequency:[self.elementAttributeDict objectForKey:@"sampleFrequency"]];
+		[self setAudioChannels:[self.elementAttributeDict objectForKey:@"nrAudioChannels"]];
 		
-		[self setSize:[elementAttributeDict objectForKey:@"size"]];
-		[self setDuration:[elementAttributeDict objectForKey:@"duration"]];
-		[self setBitrate:[elementAttributeDict objectForKey:@"bitrate"]];
+		[self setSize:[self.elementAttributeDict objectForKey:@"size"]];
+		[self setDuration:[self.elementAttributeDict objectForKey:@"duration"]];
+		[self setBitrate:[self.elementAttributeDict objectForKey:@"bitrate"]];
 		
-		[self setIcon:[elementAttributeDict objectForKey:@"icon"]];
+		[self setIcon:[self.elementAttributeDict objectForKey:@"icon"]];
 		
         
-        //Add to the recource connection, there can be multiple resources per media item 
-        MediaServer1ItemRes *r = [[MediaServer1ItemRes alloc] init];
-        [r setBitrate: [bitrate intValue]];
-        [r setDuration: duration];
-        [r setNrAudioChannels: [audioChannels intValue]];
-        [r setProtocolInfo: protocolInfo];
-        [r setSize: [size intValue]];
-        [r setDurationInSeconds:[duration HMS2Seconds]];
-        
-        [resources addObject:r];      
-        [r release];
-        
-	}else{
-        [uriCollection setObject:uri forKey:protocolInfo]; //@todo: we overwrite uri's with same protocol info
+    //Add to the recource connection, there can be multiple resources per media item
+    MediaServer1ItemRes *r = [[MediaServer1ItemRes alloc] init];
+    [r setBitrate:[self.bitrate intValue]];
+    [r setDuration:self.duration];
+    [r setNrAudioChannels: [self.audioChannels intValue]];
+    [r setProtocolInfo:self.protocolInfo];
+    [r setSize: [self.size intValue]];
+    [r setDurationInSeconds:[self.duration HMS2Seconds]];
+    
+    [self.resources addObject:r];      
+	} else {
+    [self.uriCollection setObject:self.uri forKey:self.protocolInfo]; //@todo: we overwrite uri's with same protocol info
 	}
 }
-
-- (void)setUri:(NSString *)s{
-    [uri release];
-    uri = s;
-    [uri retain];
-}
-
-
 
 @end

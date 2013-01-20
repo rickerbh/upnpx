@@ -33,12 +33,14 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-#import "SoapActionsLayer3Forwarding1.h"
 
 /*
  * Services:
  * O - Layer3Forwarding:1 
  */
+
+@class BasicUPnPService;
+@class SoapActionsLayer3Forwarding1;
 
 @interface InternetGateway2Device : BasicUPnPDevice
 

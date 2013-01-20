@@ -33,9 +33,6 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicUPnPDevice.h"
-#import "SoapActionsDigitalSecurityCameraSettings1.h"
-#import "SoapActionsDigitalSecurityCameraStillImage1.h"
-#import "SoapActionsDigitalSecurityCameraMotionImage1.h"
 
 /*
  * Services:
@@ -43,6 +40,11 @@
  * O - DigitalSecurityCameraStillImage:1
  * O - DigitalSecurityCameraMotionImage:1
  */
+
+@class BasicUPnPService;
+@class SoapActionsDigitalSecurityCameraSettings1;
+@class SoapActionsDigitalSecurityCameraStillImage1;
+@class SoapActionsDigitalSecurityCameraMotionImage1;
 
 @interface DigitalSecurityCamera1Device : BasicUPnPDevice
 

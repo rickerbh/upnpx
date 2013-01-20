@@ -34,43 +34,26 @@
 
 #import "BasicParserAsset.h"
 
+@interface BasicParserAsset ()
+@property (readwrite, assign) SEL function;
+@property (readwrite, strong) id functionObject;
+@property (readwrite, assign) SEL stringValueFunction;
+@property (readwrite, strong) id stringValueObject;
+@end
+
 @implementation BasicParserAsset
 
-
-@synthesize path;
-@synthesize function;
-@synthesize functionObject;
-@synthesize stringValueFunction;
-@synthesize stringCache;
-@synthesize stringValueObject;
-
--(id)initWithPath:(NSArray*)thePath setStringValueFunction:(SEL)theValueFunction setStringValueObject:(id)obj callFunction:(SEL)theFunction functionObject:(id)funcobj{
-    self = [super init];
-    
-    if (self) {
-        /* TODO: path -> retain property */
-        path = thePath;
-        [path retain];
-
-        stringValueFunction = theValueFunction;
-        stringValueObject = obj;
-        function = theFunction;
-        functionObject = funcobj;
-        
-        NSMutableString *s = [[NSMutableString alloc] init] ;
-        [self setStringCache:s];
-        [s release];
-    }
-    
-	return self;
+- (id)initWithPath:(NSArray *)thePath setStringValueFunction:(SEL)theValueFunction setStringValueObject:(id)obj callFunction:(SEL)theFunction functionObject:(id)funcobj {
+  self = [super init];
+  if (self) {
+    _path = thePath;
+    _stringValueFunction = theValueFunction;
+    _stringValueObject = obj;
+    _function = theFunction;
+    _functionObject = funcobj;
+    [self setStringCache:[[NSMutableString alloc] init]];
+  }
+  return self;
 }
-
-
-- (void)dealloc{
-	[path release];
-	[stringCache release];
-	[super dealloc];
-}
-
 
 @end

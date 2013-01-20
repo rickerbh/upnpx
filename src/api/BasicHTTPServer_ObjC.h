@@ -34,7 +34,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class BasicHTTPServer_ObjC_Observer, BasicHTTPServer_ObjC;
+@class BasicHTTPServer_ObjC;
 
 /**
  * Interface
@@ -51,18 +51,14 @@
 @interface BasicHTTPServer_ObjC : NSObject {
 @private
 	void* httpServerWrapper;
-	NSMutableArray *mObservers; //BasicHTTPServer_ObjC_Observer
 }
 
-
--(id)init;
-- (void)dealloc;
 - (int)start;
 - (int)stop;
-- (void)addObserver:(BasicHTTPServer_ObjC_Observer*)observer;
-- (void)removeObserver:(BasicHTTPServer_ObjC_Observer*)observer;
--(NSMutableArray*)getObservers;
--(NSString *)getIPAddress;
--(unsigned short)getPort;
+- (void)addObserver:(NSObject<BasicHTTPServer_ObjC_Observer> *)observer;
+- (void)removeObserver:(NSObject<BasicHTTPServer_ObjC_Observer> *)observer;
+- (NSMutableArray *)getObservers;
+- (NSString *)getIPAddress;
+- (unsigned short)getPort;
 
 @end

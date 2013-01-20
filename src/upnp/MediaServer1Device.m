@@ -31,83 +31,51 @@
 //
 // **********************************************************************************
 
-
 #import "MediaServer1Device.h"
+#import "BasicUPnPService.h"
+#import "SoapActionsAVTransport1.h"
+#import "SoapActionsConnectionManager1.h"
+#import "SoapActionsContentDirectory1.h"
 
+@interface MediaServer1Device ()
+@property (strong) SoapActionsAVTransport1 *mAvTransport;
+@property (strong) SoapActionsConnectionManager1 *mConnectionManager;
+@property (strong) SoapActionsContentDirectory1 *mContentDirectory;
+@end
 
 @implementation MediaServer1Device
 
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mAvTransport = nil;
-        mConnectionManager = nil;
-        mContentDirectory = nil;
+- (SoapActionsAVTransport1 *)avTransport {
+	if (!self.mAvTransport) {
+		self.mAvTransport = (SoapActionsAVTransport1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
 	}
-    
-	return self;
+	return self.mAvTransport;
 }
 
-
-- (void)dealloc{
-	
-    if(mContentDirectory)
-        NSLog(@"[mContentDirectory retainCount]=%d", [mContentDirectory retainCount] );
-    
-    
-	[mAvTransport release];
-	[mContentDirectory release];
-	[mConnectionManager release];
-	
-	[super dealloc];
-}
-
-
-- (SoapActionsAVTransport1 *)avTransport{
-	if(mAvTransport == nil){
-		mAvTransport = (SoapActionsAVTransport1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"] soap];
-		[mAvTransport retain];
+- (SoapActionsContentDirectory1 *)contentDirectory {
+	if (!self.mContentDirectory) {
+		self.mContentDirectory = (SoapActionsContentDirectory1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ContentDirectory:1"] soap];
 	}
-	
-	return mAvTransport;
+	return self.mContentDirectory;
 }
 
-- (SoapActionsContentDirectory1 *)contentDirectory{
-	if(mContentDirectory == nil){
-		mContentDirectory = (SoapActionsContentDirectory1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ContentDirectory:1"] soap];
-		[mContentDirectory retain];
+- (SoapActionsConnectionManager1 *)connectionManager {
+	if (!self.mConnectionManager) {
+		self.mConnectionManager = (SoapActionsConnectionManager1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
 	}
-	
-	return mContentDirectory;
+	return self.mConnectionManager;
 }
 
-
-- (SoapActionsConnectionManager1 *)connectionManager{
-	if(mConnectionManager == nil){
-		mConnectionManager = (SoapActionsConnectionManager1 *)[[self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"] soap];
-		[mConnectionManager retain];
-	}
-	
-	return mConnectionManager;
-}
-
-
-- (BasicUPnPService *)avTransportService{
+- (BasicUPnPService *)avTransportService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:AVTransport:1"];
 }
 
-
-- (BasicUPnPService *)connectionManagerService{
+- (BasicUPnPService *)connectionManagerService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:ConnectionManager:1"];
 }
 
-- (BasicUPnPService *)contentDirectoryService{
+- (BasicUPnPService *)contentDirectoryService {
 	return [self getServiceForType:@"urn:schemas-upnp-org:service:ContentDirectory:1"];
 }
-
-
 
 @end

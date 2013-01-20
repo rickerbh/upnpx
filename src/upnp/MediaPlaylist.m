@@ -31,7 +31,6 @@
 //
 // **********************************************************************************
 
-
 /*
  * States:
  * Stopped <-> Playing
@@ -41,75 +40,59 @@
 #import "MediaPlaylist.h"
 #import "MediaServerBasicObjectParser.h"
 #import "CocoaTools.h"
-
+#import "MediaServer1Device.h"
+//#import "MediaRenderer1Device.h"
+#import "MediaServer1ContainerObject.h"
+#import "MediaServer1ItemObject.h"
+#import "SoapActionsContentDirectory1.h"
 
 @interface MediaPlaylist()
-- (int)changeState:(MediaPlaylistState)newState;
-@end
+@property (readwrite, strong) NSMutableArray *playList; //MediaServer1ItemObject[]
+@property (readwrite, assign) int currentTrack;
+@property (readwrite, strong) MediaServer1Device* mediaServer;
+// @property (readwrite, strong) MediaRenderer1Device* mediaRenderer;
+@property (readwrite, strong) MediaServer1ContainerObject* container;
+@property (readwrite, strong) NSMutableArray *mObservers; //MediaPlaylistObserver[]
+@property (readwrite, assign) MediaPlaylistState state;
 
-	
-	
+- (int)changeState:(MediaPlaylistState)newState;
+
+@end
 
 @implementation MediaPlaylist
 
-@synthesize playList;
-@synthesize currentTrack;
-@synthesize mediaServer;
-//@synthesize mediaRenderer;
-@synthesize container;
-@synthesize state;
-
-
--(id)init{
-    self = [super init];
-    
-    if (self) {
-        state = MediaPlaylistState_NotInitialized;
-        mObservers = [[NSMutableArray alloc] init];
-        currentTrack = 0;
-        playList = [[NSMutableArray alloc] init];
-        mediaServer = nil;
-        container = nil;
+- (id)init {
+  self = [super init];
+  if (self) {
+    _state = MediaPlaylistState_NotInitialized;
+    _mObservers = [[NSMutableArray alloc] init];
+    _currentTrack = 0;
+    _playList = [[NSMutableArray alloc] init];
 	}
-    
 	return self;
 }
 
-
-- (void)dealloc{
-	[mObservers removeAllObjects];
-	[mObservers release];
-	[playList removeAllObjects];
-	[playList release];
-	[mediaServer release];
-	[container release];
-//	[mediaRenderer release];
-	
-	[super dealloc];
-}
-
-
-- (int)addObserver:(MediaPlaylistObserver*)obs{
+- (int)addObserver:(NSObject<MediaPlaylistObserver> *)obs {
 	int ret = 0;
 	
-	[mObservers addObject:obs];
-	ret = [mObservers count];
+	[self.mObservers addObject:obs];
+	ret = [self.mObservers count];
 	
 	return ret;	
 }
 
 
-- (int)removeObserver:(MediaPlaylistObserver*)obs{
+- (int)removeObserver:(NSObject<MediaPlaylistObserver> *)obs {
 	int ret = 0;
 	
-	[mObservers removeObject:obs];
-	ret = [mObservers count];
+	[self.mObservers removeObject:obs];
+	ret = [self.mObservers count];
 	
 	return ret;	
 }
 
 
-- (int)loadWithMediaServer:(MediaServer1Device*)server forContainer:(MediaServer1ContainerObject*)selectedContainer{
+- (int)loadWithMediaServer:(MediaServer1Device *)server forContainer:(MediaServer1ContainerObject *)selectedContainer {
 	int ret = 0;
 	
 	//Sanity
@@ -118,17 +101,11 @@
 	}
 	
 	//Re-init
-	[playList removeAllObjects];
+	[self.playList removeAllObjects];
 	
-	[mediaServer release];
-	mediaServer = server;
-	[mediaServer retain];
+	self.mediaServer = server;
 	
-	[container release];
-	container = selectedContainer;
-	[container retain];
-	
-	
+	self.container = selectedContainer;
 	
 	//Browse the container & create the objects
 	NSMutableString *outResult = [[NSMutableString alloc] init];
@@ -137,102 +114,96 @@
 	NSMutableString *outUpdateID = [[NSMutableString alloc] init];
 	
 	
-	ret = [[server contentDirectory] BrowseWithObjectID:[selectedContainer objectID] BrowseFlag:@"BrowseDirectChildren" Filter:@"*" StartingIndex:@"0" RequestedCount:@"0" SortCriteria:@"+dc:title" OutResult:outResult OutNumberReturned:outNumberReturned OutTotalMatches:outTotalMatches OutUpdateID:outUpdateID];
-	if(ret == 0){	
-        //Fill mediaObjects	
-        //Parse the return DIDL and store all entries as objects in the 'mediaObjects' array
-        NSData *didl = [outResult dataUsingEncoding:NSUTF8StringEncoding]; // NSASCIIStringEncoding
-        MediaServerBasicObjectParser *parser = [[MediaServerBasicObjectParser alloc] initWithMediaObjectArray:playList itemsOnly:YES];
-        [parser parseFromData:didl];
-        [parser release];
+	ret = [[server contentDirectory] BrowseWithObjectID:[selectedContainer objectID]
+                                           BrowseFlag:@"BrowseDirectChildren"
+                                               Filter:@"*"
+                                        StartingIndex:@"0"
+                                       RequestedCount:@"0"
+                                         SortCriteria:@"+dc:title"
+                                            OutResult:outResult
+                                    OutNumberReturned:outNumberReturned
+                                      OutTotalMatches:outTotalMatches
+                                          OutUpdateID:outUpdateID];
+	if (ret == 0) {
+    //Fill mediaObjects
+    //Parse the return DIDL and store all entries as objects in the 'mediaObjects' array
+    NSData *didl = [outResult dataUsingEncoding:NSUTF8StringEncoding]; // NSASCIIStringEncoding
+    MediaServerBasicObjectParser *parser = [[MediaServerBasicObjectParser alloc] initWithMediaObjectArray:self.playList itemsOnly:YES];
+    [parser parseFromData:didl];
 	}
 	
-	
-	[outResult release];
-	[outNumberReturned release];
-	[outTotalMatches release];
-	[outUpdateID release];
-	
-	currentTrack = 0;
-	
-	state = MediaPlaylistState_Stopped;
+	self.currentTrack = 0;
+	self.state = MediaPlaylistState_Stopped;
 	
 	return ret;
-	
 }
 
 
-- (int)setTrackByNumber:(int)track{
-	if([playList count] > track){		
-		currentTrack = track;
-	}else{
+- (int)setTrackByNumber:(int)track {
+	if ([self.playList count] > track) {
+		self.currentTrack = track;
+	} else {
 		return -1;
 	}
-	return currentTrack;
+	return self.currentTrack;
 }
 
-- (int)setTrackByID:(NSString *)objectID{
-	MediaServer1ItemObject* lobj = nil;
-	
+- (int)setTrackByID:(NSString *)objectID {
 	//Set the current track
-	for(int t=0;t<[playList count];t++){
-		lobj = [playList objectAtIndex:t];
-		if( [[lobj objectID] isEqualToString:objectID]){
-			currentTrack = t;
-			break;
-		}
-	}
+  [self.playList enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(MediaServer1ItemObject* lobj, NSUInteger idx, BOOL *stop){
+    if ([[lobj objectID] isEqualToString:objectID]) {
+      self.currentTrack = idx;
+      *stop = YES;
+    }
+  }];
 	
-	return currentTrack;
+	return self.currentTrack;
 }
 
-- (int)nextTrack{
-	if(state == MediaPlaylistState_Playing && [playList count] > currentTrack + 1){		
-		currentTrack++;
-	}else{
+- (int)nextTrack {
+	if (self.state == MediaPlaylistState_Playing && [self.playList count] > self.currentTrack + 1) {
+		self.currentTrack = self.currentTrack + 1;
+	} else {
 		return -1;
 	}
-	return currentTrack;
+	return self.currentTrack;
 }
 
 - (int)prevTrack{
-	if(state == MediaPlaylistState_Playing && [playList count] > currentTrack - 1){		
-		if(currentTrack > 0){
-			currentTrack--;
+	if (self.state == MediaPlaylistState_Playing && [self.playList count] > self.currentTrack - 1) {
+		if (self.currentTrack > 0) {
+			self.currentTrack = self.currentTrack - 1;
 		}
-	}else{
+	} else {
 		return -1;
 	}
-	return currentTrack;	
+	return self.currentTrack;	
 }
 
-
-- (int)stop{
+- (int)stop {
 	return [self changeState:MediaPlaylistState_Stopped];
 }
 
-
-- (int)play{
+- (int)play {
 	return [self changeState:MediaPlaylistState_Playing];
 }
 
-
-- (int)changeState:(MediaPlaylistState)newState{
+- (int)changeState:(MediaPlaylistState)newState {
 	int ret = 0;
 	
-	MediaPlaylistState oldState = state;
+	MediaPlaylistState oldState = self.state;
 	
-	switch(state){
+	switch(self.state){
 		//Stop - > Play
 		case MediaPlaylistState_Stopped:
-			if(newState == MediaPlaylistState_Playing){
-				state = newState;
+			if (newState == MediaPlaylistState_Playing) {
+				self.state = newState;
 			}				
 			break;
 		//Play -> Stop
 		case MediaPlaylistState_Playing:
-			if(newState == MediaPlaylistState_Stopped){
-				state = newState;
+			if (newState == MediaPlaylistState_Stopped) {
+				self.state = newState;
 			}				
 			break;
 		case MediaPlaylistState_NotInitialized:
@@ -241,21 +212,21 @@
 			break;
 	}
 
-	if (oldState != state){
-    for (MediaPlaylistObserver *obs in mObservers) {
-			[obs StateChanged:state];
+	if (oldState != self.state) {
+    for (NSObject<MediaPlaylistObserver> *obs in self.mObservers) {
+			[obs StateChanged:self.state];
     }
 	}
 	return ret;
 }
 	
--(MediaServer1ItemObject*)GetCurrentTrackItem{
+- (MediaServer1ItemObject *)GetCurrentTrackItem {
 	MediaServer1ItemObject *ret  = nil;
 	
-	if([playList count] > currentTrack){
-		ret = [playList objectAtIndex:currentTrack];
+	if([self.playList count] > self.currentTrack) {
+		ret = [self.playList objectAtIndex:self.currentTrack];
 	}
-	
+  
 	return ret;
 }
 

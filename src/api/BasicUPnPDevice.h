@@ -33,64 +33,34 @@
 
 
 #import <Foundation/Foundation.h>
-#import "SSDPDB_ObjC.h"
-#import "BasicUPnPService.h"
+#import <UIKit/UIKit.h>
 
+@class BasicUPnPService;
+@class SSDPDBDevice_ObjC;
 
-#import "iphoneport.h"
+@interface BasicUPnPDevice : NSObject
+@property (readonly, assign, getter = isRoot) BOOL root;
+@property (assign, getter = isFound) BOOL found;
+@property (assign) double lastUpdated;
+@property (readonly, strong) NSString *uuid;
+@property (readonly, strong) NSString *type;
+@property (readonly, strong) NSString *xmlLocation;
+@property (strong) NSURL *baseURL;
+@property (strong) NSString *baseURLString;
+@property (strong) NSString *friendlyName;
+@property (strong) NSString *manufacturer;
+@property (strong) NSString *udn;
+@property (strong) NSString *usn;
+@property (strong) NSString *urn;
+@property (strong) UIImage *smallIcon;
+@property (assign) int smallIconHeight;
+@property (assign) int smallIconWidth;
+@property (assign) int smallIconDepth;
+@property (strong) NSString *smallIconURL;
 
-@interface BasicUPnPDevice : NSObject {
-@private	
-	bool isRoot;
-	bool isFound;
-	double lastUpdated;
-	NSMutableDictionary *services;  //Key=urn string, Object=BasicUPnPService 
-	NSString *uuid;	
-	NSString *type;
-	
-	NSString *xmlLocation;
-	NSURL *baseURL;
-	NSString *baseURLString;
-	NSString *friendlyName;
-    NSString *manufacturer;
-	NSString *udn;
-	NSString *usn;
-	NSString *urn;
-	UIImage *smallIcon;
-	int smallIconHeight;
-	int smallIconWidth;
-	int smallIconDepth;
-	NSString *smallIconURL;
-	
-}
-
--(id)init;
--(id)initWithSSDPDevice:(SSDPDBDevice_ObjC*)ssdp;
-- (void)dealloc;
+- (id)initWithSSDPDevice:(SSDPDBDevice_ObjC *)ssdp;
 - (int)loadDeviceDescriptionFromXML;
 - (BasicUPnPService *)getServiceForType:(NSString *)serviceUrn;
--(NSMutableDictionary*)getServices; //BasicUPnPService[]
-
-@property(readonly) bool isRoot;
-@property(readwrite) bool isFound;
-@property(readwrite) double lastUpdated;
-@property(readonly) NSString *uuid;
-@property(readonly) NSString *type;
-@property(readonly) NSString *xmlLocation;
-@property(readwrite, retain) NSURL *baseURL;
-@property(readwrite, retain) NSString *baseURLString;
-@property(readwrite, retain) NSString *friendlyName;
-@property(readwrite, retain) NSString *manufacturer;
-@property(readwrite, retain) NSString *udn;
-@property(readwrite, retain) NSString *usn;
-@property(readwrite, retain) NSString *urn;
-@property(readwrite, retain) UIImage *smallIcon;
-@property(readwrite) int smallIconHeight;
-@property(readwrite) int smallIconWidth;
-@property(readwrite) int smallIconDepth;
-@property(readwrite, retain) NSString *smallIconURL;
-
-
-
+- (NSMutableDictionary *)getServices; //BasicUPnPService[]
 
 @end

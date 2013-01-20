@@ -32,8 +32,6 @@
 // **********************************************************************************
 
 #import <Foundation/Foundation.h>
-#import "SoapActionsSwitchPower1.h"
-#import "BasicUPnPService.h"
 #import "BasicUPnPDevice.h"
 
 /*
@@ -41,17 +39,12 @@
  * M - SwitchPower:1 
   */
 
-@interface BinaryLight1Device : BasicUPnPDevice {
-	SoapActionsSwitchPower1 *mSwitchPower;
-}
+@class BasicUPnPService;
+@class SoapActionsSwitchPower1;
 
-
--(id)init;
-- (void)dealloc;
+@interface BinaryLight1Device : BasicUPnPDevice
 
 - (SoapActionsSwitchPower1 *)switchPower;
 - (BasicUPnPService *)switchPowerService;
-
-
 
 @end

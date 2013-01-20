@@ -33,40 +33,21 @@
 
 #import <Foundation/Foundation.h>
 #import "BasicParser.h"
-#import "BasicUPnPService.h"
-#import "StateVariable.h"
-#import "StateVariableRange.h"
-#import "StateVariableList.h"
 
-@interface BasicServiceParser : BasicParser {	
-	BasicUPnPService* service;
-	
-	NSString *descriptionURL;
-	NSString *eventURL;
-	NSString *controlURL;
-	NSString *serviceType;
-	BOOL mCollectingStateVar;
-	
-	StateVariableType mCachedType;
-	StateVariableList *mStatevarListCache;
-	StateVariableRange *mStatevarRangeCache;
-	StateVariable *mStatevarCache;
+@class BasicUPnPService;
 
-}
+@interface BasicServiceParser : BasicParser
+@property (readonly, strong) BasicUPnPService *service;
+//Keep a local copy because there are mutiple services found during parsing
+@property (readwrite, strong) NSString* descriptionURL;
+@property (readwrite, strong) NSString* eventURL;
+@property (readwrite, strong) NSString* controlURL;
+@property (readwrite, strong) NSString* serviceType;
 
--(id)initWithUPnPService:(BasicUPnPService*)upnpservice;
+- (id)initWithUPnPService:(BasicUPnPService *)upnpservice;
 - (int)parse;
-- (void)dealloc;
 - (void)serviceTag:(NSString *)startStop;
 - (void)stateVariable:(NSString *)startStop;
 - (void)setAllowedValue:(NSString *)value;
-			
-@property (readonly, retain) BasicUPnPService* service;
-
-//Keep a local copy because there are mutiple services found during parsing
-@property (readwrite, retain) NSString* descriptionURL;
-@property (readwrite, retain) NSString* eventURL;
-@property (readwrite, retain) NSString* controlURL;
-@property (readwrite, retain) NSString* serviceType;
 
 @end

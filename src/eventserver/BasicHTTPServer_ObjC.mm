@@ -79,11 +79,9 @@ public:
 		@autoreleasepool {
       NSString *request = [[NSString alloc] initWithCString:method->c_str() encoding:NSASCIIStringEncoding];
       
-      for (BasicHTTPServer_ObjC_Observer *obs in mObjCObservers) {
+      for (NSObject<BasicHTTPServer_ObjC_Observer> *obs in mObjCObservers) {
         ret = [obs canProcessMethod:mObjCServer requestMethod:request];
       }
-      
-      [request release];
     }
 		
 		return (ret==YES?true:false);
@@ -105,25 +103,15 @@ public:
         value = [[NSString alloc] initWithCString:(*it).second.c_str() encoding:NSASCIIStringEncoding];
         NSString *upperHeader = [header uppercaseString];
         [oHeaders setObject:value forKey:upperHeader];
-        [value release];
-        [header release];
       }
       NSData *oBody = nil;
       if(bodylen >= 0){
         oBody = [[NSData alloc] initWithBytes:body length:bodylen];
       }
       
-      NSLog(@"Request CFUNCTION: %@", [[[NSString alloc] initWithData:oBody encoding:NSUTF8StringEncoding] autorelease]);
-      
-      for (BasicHTTPServer_ObjC_Observer *obs in mObjCObservers) {
+      for (NSObject<BasicHTTPServer_ObjC_Observer> *obs in mObjCObservers) {
         ret = [obs request:mObjCServer method:oMethod path:oPath version:oVersion headers:oHeaders body:oBody];
       }
-      
-      [oMethod release];
-      [oPath release];
-      [oVersion release];
-      [oHeaders release];
-      [oBody release];
     }
 		
 		return (ret==YES?true:false);
@@ -144,8 +132,8 @@ public:
       string value;
       string name;
       
-      BasicHTTPServer_ObjC_Observer *obs = nil;
-      if([mObjCObservers count] > 0){
+      NSObject<BasicHTTPServer_ObjC_Observer> *obs = nil;
+      if ([mObjCObservers count] > 0) {
         //Only the first observer can respond
         obs = [mObjCObservers objectAtIndex:0];	
         
@@ -153,23 +141,20 @@ public:
         [oHeaders removeAllObjects];
         [oBody setLength:0];
         ret = [obs response:mObjCServer returncode:&oReturnCode headers:oHeaders body:oBody];
-        if(ret == YES){
+        if (ret == YES) {
           *returncode = oReturnCode;
           *bodylen = [oBody length];
-          if(*bodylen > 0){
+          if (*bodylen > 0) {
             *body = (char*)malloc([oBody length]); //must be deleted by the caller (!!!)
             memcpy(*body, [oBody bytes], [oBody length]);
           }
-          for(id key in oHeaders){
+          for (id key in oHeaders) {
             value = [(NSString *)[oHeaders objectForKey:key] cStringUsingEncoding: NSASCIIStringEncoding];
             name = [(NSString *)key cStringUsingEncoding: NSASCIIStringEncoding];
             (*headers)[name] = value;
           }
         }
       }	
-		
-      [oHeaders release];
-      [oBody release];
     }
 
 		return (ret==YES?true:false);
@@ -178,66 +163,57 @@ public:
 private:	
 };
 
-
+@interface BasicHTTPServer_ObjC ()
+@property (strong) NSMutableArray *mObservers; //BasicHTTPServer_ObjC_Observer
+@end
 
 @implementation BasicHTTPServer_ObjC
 
+- (id)init {
+  self = [super init];
 
--(id)init{
-    self = [super init];
-    
-    if (self) {	
-        mObservers = [[NSMutableArray alloc] init];
-        httpServerWrapper = new BasicHTTPObserver_wrapper(self);
-	}
-    
-	return self;
+  if (self) {	
+    _mObservers = [[NSMutableArray alloc] init];
+    httpServerWrapper = new BasicHTTPObserver_wrapper(self);
+  }
+
+  return self;
 }
 
-- (void)dealloc{
-	[self stop];
-    if (httpServerWrapper) {
-        delete((BasicHTTPObserver_wrapper*)httpServerWrapper);
-    }
-	[mObservers release];
-	
-	[super dealloc];
+- (void)dealloc {
+  [self stop];
+  if (httpServerWrapper) {
+    delete((BasicHTTPObserver_wrapper *)httpServerWrapper);
+  }
 }
 
-- (int)start{
-	return ((BasicHTTPObserver_wrapper*)httpServerWrapper)->Start();
+- (int)start {
+  return ((BasicHTTPObserver_wrapper *)httpServerWrapper)->Start();
 }
 
-- (int)stop{
-	return ((BasicHTTPObserver_wrapper*)httpServerWrapper)->Stop();
+- (int)stop {
+	return ((BasicHTTPObserver_wrapper *)httpServerWrapper)->Stop();
 }
 
-- (void)addObserver:(BasicHTTPServer_ObjC_Observer*)observer{
-	[mObservers addObject:observer];
+- (void)addObserver:(NSObject<BasicHTTPServer_ObjC_Observer> *)observer {
+  [self.mObservers addObject:observer];
 }
 
-- (void)removeObserver:(BasicHTTPServer_ObjC_Observer*)observer{
-	[mObservers removeObject:observer];
+- (void)removeObserver:(NSObject<BasicHTTPServer_ObjC_Observer> *)observer {
+  [self.mObservers removeObject:observer];
 }
 
--(NSMutableArray*)getObservers{
-	return mObservers;
+-(NSMutableArray *)getObservers {
+	return self.mObservers;
 }
 
-
-
--(NSString *)getIPAddress{
-	char *ip = ((BasicHTTPObserver_wrapper*)httpServerWrapper)->GetServer()->GetSocketServer()->getServerIPAddress();
-	
-	return [NSString stringWithCString:ip encoding:NSASCIIStringEncoding];
+- (NSString *)getIPAddress {
+  char *ip = ((BasicHTTPObserver_wrapper*)httpServerWrapper)->GetServer()->GetSocketServer()->getServerIPAddress();
+  return [NSString stringWithCString:ip encoding:NSASCIIStringEncoding];
 }
 
--(unsigned short)getPort{
-	return ((BasicHTTPObserver_wrapper*)httpServerWrapper)->GetServer()->GetSocketServer()->getServerPort();
+-(unsigned short)getPort {
+  return ((BasicHTTPObserver_wrapper*)httpServerWrapper)->GetServer()->GetSocketServer()->getServerPort();
 }
-
-
-
 
 @end
-

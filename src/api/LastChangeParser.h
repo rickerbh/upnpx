@@ -31,16 +31,11 @@
 //
 // **********************************************************************************
 
-
 #import <Foundation/Foundation.h>
 #import "BasicParser.h"
 
-@interface LastChangeParser : BasicParser {
-	NSMutableDictionary *events;
-}
+@interface LastChangeParser : BasicParser
 
--(id)initWithEventDictionary:(NSMutableDictionary*)foundEvents;
-- (void)dealloc;
-
+- (id)initWithEventDictionary:(NSMutableDictionary *)foundEvents;
 
 @end
