@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MediaRenderer1Device.h"
-#import "MediaServer1Device.h"
-#import "BasicUPnPService.h"
+#import "UPnPx.h"
 
 @interface PlayBack : NSObject <BasicUPnPServiceObserver> {
     MediaRenderer1Device *renderer;

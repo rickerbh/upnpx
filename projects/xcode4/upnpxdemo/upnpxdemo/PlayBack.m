@@ -43,8 +43,8 @@ static PlayBack *_playback = nil;
     
     //Remove the Old Observer, if any
     if(old!=nil){
-         if([[old avTransportService] isObserver:(BasicUPnPServiceObserver*)self] == YES){
-             [[old avTransportService] removeObserver:(BasicUPnPServiceObserver*)self]; 
+         if([[old avTransportService] isObserver:self] == YES){
+             [[old avTransportService] removeObserver:self]; 
          }
     }
 
@@ -54,8 +54,8 @@ static PlayBack *_playback = nil;
 
     //Add New Observer, if any
     if(renderer!=nil){
-        if([[renderer avTransportService] isObserver:(BasicUPnPServiceObserver*)self] == NO){
-            [[renderer avTransportService] addObserver:(BasicUPnPServiceObserver*)self]; 
+        if([[renderer avTransportService] isObserver:self] == NO){
+            [[renderer avTransportService] addObserver:self];
         }
     }
     
@@ -67,8 +67,8 @@ static PlayBack *_playback = nil;
     [self setPlaylist:playList];
     
     //Lazy Observer attach
-    if([[renderer avTransportService] isObserver:(BasicUPnPServiceObserver*)self] == NO){
-        [[renderer avTransportService] addObserver:(BasicUPnPServiceObserver*)self]; 
+    if([[renderer avTransportService] isObserver:self] == NO){
+        [[renderer avTransportService] addObserver:self]; 
     }
     
     //Play
