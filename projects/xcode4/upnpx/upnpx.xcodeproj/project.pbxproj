@@ -194,6 +194,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		072EB24316AB9C4300A98206 /* UPnPx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UPnPx.h; path = ../../../../src/api/UPnPx.h; sourceTree = "<group>"; };
 		15004515141298E900ED553F /* MediaServer1ItemRes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaServer1ItemRes.m; path = ../../../../src/upnp/MediaServer1ItemRes.m; sourceTree = "<group>"; };
 		150045191412A00C00ED553F /* MediaServer1ItemRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MediaServer1ItemRes.h; path = ../../../../src/api/MediaServer1ItemRes.h; sourceTree = "<group>"; };
 		15055E831391E2A4003DE49F /* SoapActionsCallManagement1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoapActionsCallManagement1.h; path = ../../../../src/api/SoapActionsCallManagement1.h; sourceTree = "<group>"; };
@@ -515,6 +516,7 @@
 		15BAC504132C2E7800F5C41A /* api */ = {
 			isa = PBXGroup;
 			children = (
+				072EB24316AB9C4300A98206 /* UPnPx.h */,
 				150045191412A00C00ED553F /* MediaServer1ItemRes.h */,
 				1556AB1C1393DC480059635A /* BasicDeviceParser.h */,
 				1556AB1D1393DC480059635A /* BasicServiceParser.h */,
