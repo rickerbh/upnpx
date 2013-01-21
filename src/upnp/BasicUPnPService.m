@@ -73,9 +73,9 @@
 	}
 }
 
-- (int)addObserver:(BasicUPnPServiceObserver *)obs {
+- (int)addObserver:(NSObject<BasicUPnPServiceObserver> *)obs {
 	int ret = 0;
-	
+
 	[self.mMutex lock];
 	[self.mObservers addObject:obs];
 	ret = [self.mObservers count];
@@ -84,7 +84,7 @@
 	return ret;	
 }
 
-- (int)removeObserver:(BasicUPnPServiceObserver *)obs {
+- (int)removeObserver:(NSObject<BasicUPnPServiceObserver> *)obs {
 	int ret = 0;
 	
 	[self.mMutex lock];
@@ -95,7 +95,7 @@
 	return ret;	
 }
 
-- (BOOL)isObserver:(BasicUPnPServiceObserver *)obs {
+- (BOOL)isObserver:(NSObject<BasicUPnPServiceObserver> *)obs {
 	BOOL ret = NO;
 	[self.mMutex lock];
 	ret = [self.mObservers containsObject:obs];
