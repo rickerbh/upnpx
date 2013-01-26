@@ -50,8 +50,6 @@
 @property (readonly, strong) NSMutableArray *rootDevices;
 
 - (id)initWithSSDP:(SSDPDB_ObjC *)ssdp;
-- (void)lock;
-- (void)unlock;
 - (void)httpThread:(id)argument;
 - (int)addObserver:(UPnPDBObserver*)obs;
 - (int)removeObserver:(UPnPDBObserver*)obs;

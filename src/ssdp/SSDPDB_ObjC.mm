@@ -66,7 +66,6 @@ private:
 
 
 @interface SSDPDB_ObjC ()
-@property (strong) NSRecursiveLock *mMutex;
 @property (strong) NSMutableArray *mObservers;
 @property (readwrite, strong) NSMutableArray *SSDPObjCDevices;
 @end
@@ -80,7 +79,6 @@ private:
   self = [super init];
 
   if (self) {		
-    _mMutex = [[NSRecursiveLock alloc] init];
     _mObservers = [[NSMutableArray alloc] init];
     _SSDPObjCDevices = [[NSMutableArray alloc] init];
     mWrapper = new SSDPDB_Observer_wrapper(self);
@@ -94,15 +92,6 @@ private:
     delete((SSDPDB_Observer_wrapper*)mWrapper);
   }
 }
-
-- (void)lock{
-  [self.mMutex lock];
-}
-
-- (void)unlock{
-  [self.mMutex unlock];
-}
-
 
 - (int)startSSDP{
 	return UPNP::GetInstance()->GetSSDP()->Start();
@@ -119,19 +108,19 @@ private:
 
 - (int)addObserver:(NSObject<SSDPDB_ObjC_Observer> *)obs{
   int ret = 0;
-  [self lock];
-  [self.mObservers addObject:obs];
-  ret = [self.mObservers count];
-  [self unlock];
+  @synchronized(self) {
+    [self.mObservers addObject:obs];
+    ret = [self.mObservers count];
+  }
   return ret;
 }
 
 - (int)removeObserver:(NSObject<SSDPDB_ObjC_Observer> *)obs{
   int ret = 0;
-  [self lock];
-  [self.mObservers removeObject:obs];
-  ret = [self.mObservers count];
-  [self unlock];
+  @synchronized(self) {
+    [self.mObservers removeObject:obs];
+    ret = [self.mObservers count];
+  }
   return ret;
 }
 
@@ -155,27 +144,26 @@ private:
       [obs SSDPDBWillUpdate:self];
     }
 	
-    [self lock];
-    [self.SSDPObjCDevices removeAllObjects];
-    //Update the Obj-C Array	
-    UPNP::GetInstance()->GetSSDP()->GetDB()->Lock();
-    SSDPDBDevice* thisDevice;
-    std::vector<SSDPDBDevice*> devices;
-    std::vector<SSDPDBDevice*>::const_iterator it;
-    devices = UPNP::GetInstance()->GetSSDP()->GetDB()->GetDevices();
-    for(it=devices.begin();it<devices.end();it++){
-      thisDevice = *it;
-      SSDPDBDevice_ObjC* thisObjCDevice = [[SSDPDBDevice_ObjC alloc] initWithCPPDevice:thisDevice];
-      [self.SSDPObjCDevices addObject:thisObjCDevice];
+    @synchronized(self) {
+      [self.SSDPObjCDevices removeAllObjects];
+      //Update the Obj-C Array
+      UPNP::GetInstance()->GetSSDP()->GetDB()->Lock();
+      SSDPDBDevice* thisDevice;
+      std::vector<SSDPDBDevice*> devices;
+      std::vector<SSDPDBDevice*>::const_iterator it;
+      devices = UPNP::GetInstance()->GetSSDP()->GetDB()->GetDevices();
+      for(it=devices.begin();it<devices.end();it++){
+        thisDevice = *it;
+        SSDPDBDevice_ObjC* thisObjCDevice = [[SSDPDBDevice_ObjC alloc] initWithCPPDevice:thisDevice];
+        [self.SSDPObjCDevices addObject:thisObjCDevice];
+      }
+      UPNP::GetInstance()->GetSSDP()->GetDB()->Unlock();
+      
+      //Inform the listeners
+      for (NSObject<SSDPDB_ObjC_Observer> *obs in self.mObservers) {
+        [obs SSDPDBUpdated:self];
+      }
     }
-    UPNP::GetInstance()->GetSSDP()->GetDB()->Unlock();
-    
-    //Inform the listeners
-    for (NSObject<SSDPDB_ObjC_Observer> *obs in self.mObservers) {
-      [obs SSDPDBUpdated:self];
-    }
-    
-    [self unlock];
   }
 }
 @end

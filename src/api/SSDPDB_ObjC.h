@@ -53,8 +53,6 @@
 }
 @property (readonly, strong) NSMutableArray *SSDPObjCDevices;
 
-- (void)lock;
-- (void)unlock;
 - (int)startSSDP;
 - (int)stopSSDP;
 - (int)searchSSDP;
