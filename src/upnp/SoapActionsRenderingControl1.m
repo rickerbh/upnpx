@@ -640,25 +640,25 @@
 }
 
 
-- (int)GetVolumeDBRangeWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel OutMinValue:(NSMutableString *)minvalue OutMaxValue:(NSMutableString *)maxvalue{
-    int ret = 0;
+- (int)GetVolumeDBRangeWithInstanceID:(NSString *)instanceid Channel:(NSString *)channel OutMinValue:(NSMutableString *)minvalue OutMaxValue:(NSMutableString *)maxvalue {
+  int ret = 0;
 
-    NSDictionary *parameters = nil;
-    NSDictionary *output = nil;
-    NSArray *parameterKeys = nil;
-    NSArray *parameterObjects = nil;
-    parameterKeys = [NSArray arrayWithObjects:@"InstanceID", @"Channel", nil];
-    parameterObjects = [NSArray arrayWithObjects:instanceid, channel, nil];
-    parameters = [OrderedDictionary dictionaryWithObjects:parameterObjects forKeys:parameterKeys];
+  NSDictionary *parameters = nil;
+  NSDictionary *output = nil;
+  NSArray *parameterKeys = nil;
+  NSArray *parameterObjects = nil;
+  parameterKeys = @[@"InstanceID", @"Channel"];
+  parameterObjects = @[instanceid, channel];
+  parameters = [OrderedDictionary dictionaryWithObjects:parameterObjects forKeys:parameterKeys];
 
-    NSArray *outputObjects = nil;
-    NSArray *outputKeys = nil;
-    outputKeys = [NSArray arrayWithObjects:@"MinValue", @"MaxValue", nil];
-    outputObjects = [NSArray arrayWithObjects:minvalue, maxvalue, nil];
-    output = [NSDictionary dictionaryWithObjects:outputObjects forKeys:outputKeys];
+  NSArray *outputObjects = nil;
+  NSArray *outputKeys = nil;
+  outputKeys = @[@"MinValue", @"MaxValue"];
+  outputObjects = @[minvalue, maxvalue];
+  output = [NSDictionary dictionaryWithObjects:outputObjects forKeys:outputKeys];
 
-    ret = [self action:@"GetVolumeDBRange" parameters:parameters returnValues:output];
-    return ret;
+  ret = [self action:@"GetVolumeDBRange" parameters:parameters returnValues:output];
+  return ret;
 }
 
 

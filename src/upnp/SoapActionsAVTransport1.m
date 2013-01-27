@@ -31,20 +31,32 @@
 @implementation SoapActionsAVTransport1
 
 - (int)SetAVTransportURIWithInstanceID:(NSString *)instanceid CurrentURI:(NSString *)currenturi CurrentURIMetaData:(NSString *)currenturimetadata{
-    int ret = 0;
+  int ret = 0;
 
-    NSDictionary *parameters = nil;
-    NSDictionary *output = nil;
-    NSArray *parameterKeys = nil;
-    NSArray *parameterObjects = nil;
-    parameterKeys = [NSArray arrayWithObjects:@"InstanceID", @"CurrentURI", @"CurrentURIMetaData", nil];
-    parameterObjects = [NSArray arrayWithObjects:instanceid, currenturi, currenturimetadata, nil];
-    parameters = [OrderedDictionary dictionaryWithObjects:parameterObjects forKeys:parameterKeys];
+  if (!instanceid) {
+    instanceid = @"0";
+  }
+  
+  if (!currenturi) {
+    NSAssert(currenturi, @"Must have a current uri to be able to play a track");
+    return -1;
+  }
+  
+  if (!currenturimetadata) {
+    currenturimetadata = @"";
+  }
 
-    ret = [self action:@"SetAVTransportURI" parameters:parameters returnValues:output];
-    return ret;
-}
+  NSDictionary *parameters = nil;
+  NSDictionary *output = nil;
+  NSArray *parameterKeys = nil;
+  NSArray *parameterObjects = nil;
+  parameterKeys = @[@"InstanceID", @"CurrentURI", @"CurrentURIMetaData"];
+  parameterObjects = @[instanceid, currenturi, currenturimetadata];
+  parameters = [OrderedDictionary dictionaryWithObjects:parameterObjects forKeys:parameterKeys];
 
+  ret = [self action:@"SetAVTransportURI" parameters:parameters returnValues:output];
+  return ret;
+  }
 
 - (int)SetNextAVTransportURIWithInstanceID:(NSString *)instanceid NextURI:(NSString *)nexturi NextURIMetaData:(NSString *)nexturimetadata{
     int ret = 0;
