@@ -36,6 +36,7 @@
 @interface MediaServer1BasicObject : NSObject
 @property (strong) NSString *objectID;
 @property (strong) NSString *parentID;
+@property (strong) NSString *refID;
 @property (strong) NSString *title;
 @property (strong) NSString *objectClass;
 @property (assign, getter = isContainer) BOOL container;

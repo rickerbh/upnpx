@@ -39,6 +39,7 @@
 @property (strong) NSString *mediaClass;
 @property (strong) NSString *mediaID;
 @property (strong) NSString *parentID;
+@property (strong) NSString *refID;
 @property (strong) NSString *childCount;
 @property (strong) NSString *artist;
 @property (strong) NSString *album;

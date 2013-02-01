@@ -57,6 +57,24 @@
   </item>
 */
 
+/* From XBMC
+ <item id="musicdb://1/17/-1/-1/989.mp3?genreid=17" parentID="musicdb://1/17/-1/-1/?genreid=17" refID="musicdb://4/989.mp3" restricted="1">
+ <dc:title>Breathe</dc:title>
+ <dc:creator>Alexi Murdoch</dc:creator>
+ <upnp:artist>Alexi Murdoch</upnp:artist>
+ <upnp:artist role="Performer">Alexi Murdoch</upnp:artist>
+ <upnp:artist role="AlbumArtist">Alexi Murdoch</upnp:artist>
+ <upnp:album>Time Without Consequence</upnp:album>
+ <upnp:genre>Alternative</upnp:genre>
+ <upnp:albumArtURI dlna:profileID="JPEG_TN">http://192.168.1.10:1776/%25/A5F407852DD2C0476D1B9131684FA50E/01%20All%20My%20Days.mp3</upnp:albumArtURI>
+ <upnp:originalTrackNumber>2</upnp:originalTrackNumber>
+ <upnp:lastPlaybackTime>1969-12-31</upnp:lastPlaybackTime>
+ <upnp:playbackCount>0</upnp:playbackCount>
+ <res duration="0:04:19.000" protocolInfo="http-get:*:audio/mpeg:DLNA.ORG_PN=MP3;DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=01500000000000000000000000000000">http://192.168.1.10:1776/%25/E572559EE1791A3D8A79193DA3E164D0/Alexi%20Murdoch-%20Breathe.mp3</res>
+ <upnp:class>object.item.audioItem.musicTrack</upnp:class>
+ </item>
+*/
+
 @interface MediaServerBasicObjectParser ()
 @property (strong) NSMutableArray *mediaObjects;
 @property (strong) NSMutableDictionary *uriCollection;  //key: NSString* protocolinfo -> value:NSString* uri
@@ -109,6 +127,7 @@
 	[self setMediaClass:@""];
 	[self setMediaTitle:@""];
 	[self setMediaID:@""];
+	[self setRefID:@""];
 	[self setArtist:@""];
 	[self setAlbum:@""];
 	[self setDate:nil];
@@ -129,6 +148,7 @@
 		[self setMediaID:[self.elementAttributeDict objectForKey:@"id"]];
 		[self setParentID:[self.elementAttributeDict objectForKey:@"parentID"]];
 		[self setChildCount:[self.elementAttributeDict objectForKey:@"childCount"]];
+		[self setRefID:[self.elementAttributeDict objectForKey:@"refID"]];
 	} else {
 		MediaServer1ContainerObject *media = [[MediaServer1ContainerObject alloc] init];
 
@@ -151,15 +171,18 @@
 		[self empty];
 
 		//Get the attributes
-		[self setMediaID:[self.elementAttributeDict objectForKey:@"id"]];
-		[self setParentID:[self.elementAttributeDict objectForKey:@"parentID"]];
+		[self setMediaID:self.elementAttributeDict[@"id"]];
+		[self setParentID:self.elementAttributeDict[@"parentID"]];
+		[self setRefID:self.elementAttributeDict[@"refID"]];
 	} else {
 		MediaServer1ItemObject *media = [[MediaServer1ItemObject alloc] init];
 		
 		[media setContainer:NO];
 
 		[media setObjectID:self.mediaID];
+    [media setObjectClass:self.mediaClass];
 		[media setParentID:self.parentID];
+    [media setRefID:self.refID];
 		[media setTitle:self.mediaTitle];	
 		[media setArtist:self.artist];
 		[media setAlbum:self.album];
