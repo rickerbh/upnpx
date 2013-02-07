@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		073BEE4516C2159A00169A42 /* MediaServer1VideoItemObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 073BEE4316C2159900169A42 /* MediaServer1VideoItemObject.h */; };
+		073BEE4616C2159A00169A42 /* MediaServer1VideoItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 073BEE4416C2159A00169A42 /* MediaServer1VideoItemObject.m */; };
+		073BEE4916C2176E00169A42 /* MediaServer1MovieVideoItemObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 073BEE4716C2176D00169A42 /* MediaServer1MovieVideoItemObject.h */; };
+		073BEE4A16C2176E00169A42 /* MediaServer1MovieVideoItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 073BEE4816C2176D00169A42 /* MediaServer1MovieVideoItemObject.m */; };
 		15004517141298EA00ED553F /* MediaServer1ItemRes.m in Sources */ = {isa = PBXBuildFile; fileRef = 15004515141298E900ED553F /* MediaServer1ItemRes.m */; };
 		1500451A1412A00C00ED553F /* MediaServer1ItemRes.h in Headers */ = {isa = PBXBuildFile; fileRef = 150045191412A00C00ED553F /* MediaServer1ItemRes.h */; };
 		15055E8B1391E2A4003DE49F /* SoapActionsCallManagement1.h in Headers */ = {isa = PBXBuildFile; fileRef = 15055E831391E2A4003DE49F /* SoapActionsCallManagement1.h */; };
@@ -195,6 +199,10 @@
 
 /* Begin PBXFileReference section */
 		072EB24316AB9C4300A98206 /* UPnPx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UPnPx.h; path = ../../../../src/api/UPnPx.h; sourceTree = "<group>"; };
+		073BEE4316C2159900169A42 /* MediaServer1VideoItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaServer1VideoItemObject.h; sourceTree = "<group>"; };
+		073BEE4416C2159A00169A42 /* MediaServer1VideoItemObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaServer1VideoItemObject.m; sourceTree = "<group>"; };
+		073BEE4716C2176D00169A42 /* MediaServer1MovieVideoItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaServer1MovieVideoItemObject.h; sourceTree = "<group>"; };
+		073BEE4816C2176D00169A42 /* MediaServer1MovieVideoItemObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaServer1MovieVideoItemObject.m; sourceTree = "<group>"; };
 		15004515141298E900ED553F /* MediaServer1ItemRes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaServer1ItemRes.m; path = ../../../../src/upnp/MediaServer1ItemRes.m; sourceTree = "<group>"; };
 		150045191412A00C00ED553F /* MediaServer1ItemRes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MediaServer1ItemRes.h; path = ../../../../src/api/MediaServer1ItemRes.h; sourceTree = "<group>"; };
 		15055E831391E2A4003DE49F /* SoapActionsCallManagement1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoapActionsCallManagement1.h; path = ../../../../src/api/SoapActionsCallManagement1.h; sourceTree = "<group>"; };
@@ -549,6 +557,8 @@
 				15C44F31132C45B60013D453 /* MediaServer1ContainerObject.h */,
 				15C44F32132C45B60013D453 /* MediaServer1Device.h */,
 				15C44F33132C45B60013D453 /* MediaServer1ItemObject.h */,
+				073BEE4316C2159900169A42 /* MediaServer1VideoItemObject.h */,
+				073BEE4716C2176D00169A42 /* MediaServer1MovieVideoItemObject.h */,
 				15583F2E138F448E00A734E7 /* MediaServerBasicObjectParser.h */,
 				15C44F34132C45B60013D453 /* ServiceFactory.h */,
 				15C44F3A132C45B60013D453 /* UPnPManager.h */,
@@ -642,6 +652,8 @@
 				15C44E17132C30490013D453 /* MediaServer1ContainerObject.m */,
 				15C44E19132C30490013D453 /* MediaServer1Device.m */,
 				15C44E1B132C30490013D453 /* MediaServer1ItemObject.m */,
+				073BEE4416C2159A00169A42 /* MediaServer1VideoItemObject.m */,
+				073BEE4816C2176D00169A42 /* MediaServer1MovieVideoItemObject.m */,
 				15C44E1D132C30490013D453 /* MediaServerBasicObjectParser.m */,
 				15C44E1F132C30490013D453 /* ServiceFactory.m */,
 				15C44E21132C30490013D453 /* SoapAction.m */,
@@ -769,6 +781,8 @@
 				1556AB2B1393DC480059635A /* StateVariableRange.h in Headers */,
 				1541026313D2762A000894ED /* OrderedDictionary.h in Headers */,
 				1500451A1412A00C00ED553F /* MediaServer1ItemRes.h in Headers */,
+				073BEE4516C2159A00169A42 /* MediaServer1VideoItemObject.h in Headers */,
+				073BEE4916C2176E00169A42 /* MediaServer1MovieVideoItemObject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,6 +926,8 @@
 				15055EA31391E2C1003DE49F /* TelephonyServer1Device.m in Sources */,
 				1541026413D2762A000894ED /* OrderedDictionary.m in Sources */,
 				15004517141298EA00ED553F /* MediaServer1ItemRes.m in Sources */,
+				073BEE4616C2159A00169A42 /* MediaServer1VideoItemObject.m in Sources */,
+				073BEE4A16C2176E00169A42 /* MediaServer1MovieVideoItemObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,9 +35,13 @@
 #import "MediaServer1BasicObject.h"
 #import "MediaServer1ContainerObject.h"
 #import "MediaServer1ItemObject.h"
+#import "MediaServer1VideoItemObject.h"
+#import "MediaServer1MovieVideoItemObject.h"
 #import "CocoaTools.h"
 #import "OrderedDictionary.h"
 #import "MediaServer1ItemRes.h"
+
+// object.item.audioItem.musicTrack
 
 /*
   <container id="7" parentID="0" restricted="1" childCount="6">
@@ -56,23 +60,43 @@
     <res protocolInfo="http-get:*:audio/mpeg:*" sampleFrequency="48000" nrAudioChannels="2">http://192.168.123.15:49152/content/media/object_id=27934&amp;res_id=0&amp;ext=.mp3</res>
   </item>
 */
+/* From XBMC
+  <item id="musicdb://1/17/-1/-1/989.mp3?genreid=17" parentID="musicdb://1/17/-1/-1/?genreid=17" refID="musicdb://4/989.mp3" restricted="1">
+    <dc:title>Breathe</dc:title>
+    <dc:creator>Alexi Murdoch</dc:creator>
+    <upnp:artist>Alexi Murdoch</upnp:artist>
+    <upnp:artist role="Performer">Alexi Murdoch</upnp:artist>
+    <upnp:artist role="AlbumArtist">Alexi Murdoch</upnp:artist>
+    <upnp:album>Time Without Consequence</upnp:album>
+    <upnp:genre>Alternative</upnp:genre>
+    <upnp:albumArtURI dlna:profileID="JPEG_TN">http://192.168.1.10:1776/%25/A5F407852DD2C0476D1B9131684FA50E/01%20All%20My%20Days.mp3</upnp:albumArtURI>
+    <upnp:originalTrackNumber>2</upnp:originalTrackNumber>
+    <upnp:lastPlaybackTime>1969-12-31</upnp:lastPlaybackTime>
+    <upnp:playbackCount>0</upnp:playbackCount>
+    <res duration="0:04:19.000" protocolInfo="http-get:*:audio/mpeg:DLNA.ORG_PN=MP3;DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=01500000000000000000000000000000">http://192.168.1.10:1776/%25/E572559EE1791A3D8A79193DA3E164D0/Alexi%20Murdoch-%20Breathe.mp3</res>
+    <upnp:class>object.item.audioItem.musicTrack</upnp:class>
+  </item>
+*/
+
+// object.item.videoItem.movie
 
 /* From XBMC
- <item id="musicdb://1/17/-1/-1/989.mp3?genreid=17" parentID="musicdb://1/17/-1/-1/?genreid=17" refID="musicdb://4/989.mp3" restricted="1">
- <dc:title>Breathe</dc:title>
- <dc:creator>Alexi Murdoch</dc:creator>
- <upnp:artist>Alexi Murdoch</upnp:artist>
- <upnp:artist role="Performer">Alexi Murdoch</upnp:artist>
- <upnp:artist role="AlbumArtist">Alexi Murdoch</upnp:artist>
- <upnp:album>Time Without Consequence</upnp:album>
- <upnp:genre>Alternative</upnp:genre>
- <upnp:albumArtURI dlna:profileID="JPEG_TN">http://192.168.1.10:1776/%25/A5F407852DD2C0476D1B9131684FA50E/01%20All%20My%20Days.mp3</upnp:albumArtURI>
- <upnp:originalTrackNumber>2</upnp:originalTrackNumber>
- <upnp:lastPlaybackTime>1969-12-31</upnp:lastPlaybackTime>
- <upnp:playbackCount>0</upnp:playbackCount>
- <res duration="0:04:19.000" protocolInfo="http-get:*:audio/mpeg:DLNA.ORG_PN=MP3;DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=01500000000000000000000000000000">http://192.168.1.10:1776/%25/E572559EE1791A3D8A79193DA3E164D0/Alexi%20Murdoch-%20Breathe.mp3</res>
- <upnp:class>object.item.audioItem.musicTrack</upnp:class>
- </item>
+  <item id="videodb://1/2/146" parentID="" restricted="1">
+    <dc:title>You Can Count on Me</dc:title>
+    <dc:creator>Unknown</dc:creator>
+    <dc:date>2000-01-01</dc:date>
+    <upnp:author>Kenneth Lonergan</upnp:author>
+    <upnp:director>Kenneth Lonergan</upnp:director>
+    <upnp:genre>Drama</upnp:genre>
+    <upnp:genre>Romance</upnp:genre>
+    <upnp:genre>Indie</upnp:genre>
+    <dc:description>A single mother&apos;s life is thrown into turmoil after her struggling, rarely-seen younger brother returns to town.</dc:description>
+    <upnp:longDescription>A single mother&apos;s life is thrown into turmoil after her struggling, rarely-seen younger brother returns to town.</upnp:longDescription>
+    <upnp:rating>Rated </upnp:rating>
+    <upnp:lastPlaybackTime>1969-12-31</upnp:lastPlaybackTime>
+    <upnp:playbackCount>0</upnp:playbackCount><res duration="1:51:00.000" protocolInfo="http-get:*:video/mp4:DLNA.ORG_PN=MPEG4_P2_SP_AAC;DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=01500000000000000000000000000000">http://192.168.1.10:1776/%25/47B5FF7802E8417D713628400F19349C/You%20Can%20Count%20On%20Me.m4v</res>
+    <upnp:class>object.item.videoItem.movie</upnp:class>
+  </item>
 */
 
 @interface MediaServerBasicObjectParser ()
@@ -118,6 +142,24 @@
     [self addAsset:@[@"DIDL-Lite", @"item", @"albumArtURI"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbumArt:) setStringValueObject:self];
 
     [self addAsset:@[@"DIDL-Lite", @"item", @"res"] callfunction:@selector(res:) functionObject:self setStringValueFunction:@selector(setUri:) setStringValueObject:self];
+    
+    // Video Item
+    [self addAsset:@[@"DIDL-Lite", @"item", @"longDescription"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setLongDescription:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"producer"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setProducer:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"rating"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setRating:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"actor"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setActor:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"director"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDirector:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"description"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMovieDescription:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"publisher"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setPublisher:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"language"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setLanguage:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"relation"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setRelation:) setStringValueObject:self];
+
+    // Movie Item
+    [self addAsset:@[@"DIDL-Lite", @"item", @"storageMedium"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setStorageMedium:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"DVDRegionCode"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDVDRegionCode:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"channelName"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setChannelName:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"scheduledStartTime"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setScheduledStartTime:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"scheduledEndTime"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setScheduledEndTime:) setStringValueObject:self];
   }
     
 	return self;
@@ -134,9 +176,28 @@
 	[self setGenre:@""];
 	[self setAlbumArt:nil];
 	[self setDuration:nil];
-    
+  
   [self.resources removeAllObjects];
   [self.uriCollection removeAllObjects];
+
+  // Video Item
+  self.longDescription = @"";
+  self.producer = @"";
+  self.rating = @"";
+  self.actor = @"";
+  self.director = @"";
+  self.movieDescription = @"";
+  self.publisher = @"";
+  self.language = @"";
+  self.relation = @"";
+  
+  // Movie Item
+  self.storageMedium = @"";
+  self.DVDRegionCode = @"";
+  self.channelName = @"";
+  self.scheduledStartTime = @"";
+  self.scheduledEndTime = @"";
+
 }
 
 - (void)container:(NSString *)startStop{
@@ -175,7 +236,14 @@
 		[self setParentID:self.elementAttributeDict[@"parentID"]];
 		[self setRefID:self.elementAttributeDict[@"refID"]];
 	} else {
-		MediaServer1ItemObject *media = [[MediaServer1ItemObject alloc] init];
+		MediaServer1ItemObject *media;
+    if ([self.mediaClass isEqualToString:@"object.item.videoItem"]) {
+      media = [[MediaServer1VideoItemObject alloc] init];
+    } else if ([self.mediaClass isEqualToString:@"object.item.videoItem.movie"]) {
+      media = [[MediaServer1MovieVideoItemObject alloc] init];
+    } else {
+      media = [[MediaServer1ItemObject alloc] init];
+    }
 		
 		[media setContainer:NO];
 
@@ -204,8 +272,31 @@
     for (MediaServer1ItemRes *resource in self.resources) {
       [media addRes:resource];
     }
-                
     [self.resources removeAllObjects];
+    
+    // Populate subclass details if the media is a vaild subclass
+    if ([media isKindOfClass:[MediaServer1VideoItemObject class]]) {
+      MediaServer1VideoItemObject *videoItem = (MediaServer1VideoItemObject *)media;
+      videoItem.longDescription = self.longDescription;
+      videoItem.producer = self.producer;
+      videoItem.rating = self.rating;
+      videoItem.actor = self.actor;
+      videoItem.director = self.director;
+      videoItem.movieDescription = self.movieDescription;
+      videoItem.publisher = self.publisher;
+      videoItem.language = self.language;
+      videoItem.relation = self.relation;
+    }
+
+    if ([media isKindOfClass:[MediaServer1MovieVideoItemObject class]]) {
+      MediaServer1MovieVideoItemObject *movieItem = (MediaServer1MovieVideoItemObject *)media;
+      movieItem.storageMedium = self.storageMedium;
+      movieItem.DVDRegionCode = self.DVDRegionCode;
+      movieItem.channelName = self.channelName;
+      movieItem.scheduledStartTime = self.scheduledStartTime;
+      movieItem.scheduledEndTime = self.scheduledEndTime;
+    }
+    
     [self.mediaObjects addObject:media];
 	}
 }

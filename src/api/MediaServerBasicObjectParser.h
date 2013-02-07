@@ -56,6 +56,25 @@
 @property (strong) NSString *bitrate;
 @property (strong) NSString *albumArt;
 
+// Video Item
+// @property (strong) NSString *genre // Already in the base parser details
+@property (strong) NSString *longDescription;
+@property (strong) NSString *producer;
+@property (strong) NSString *rating;
+@property (strong) NSString *actor;
+@property (strong) NSString *director;
+@property (strong) NSString *movieDescription;
+@property (strong) NSString *publisher;
+@property (strong) NSString *language;
+@property (strong) NSString *relation;
+
+// Movie Item
+@property (strong) NSString *storageMedium;
+@property (strong) NSString *DVDRegionCode;
+@property (strong) NSString *channelName;
+@property (strong) NSString *scheduledStartTime;
+@property (strong) NSString *scheduledEndTime;
+
 - (id)initWithMediaObjectArray:(NSMutableArray *)mediaObjectsArray;
 - (id)initWithMediaObjectArray:(NSMutableArray *)mediaObjectsArray itemsOnly:(BOOL)onlyItems;
 
