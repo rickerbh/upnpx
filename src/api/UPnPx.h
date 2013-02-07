@@ -28,6 +28,8 @@
 #import "MediaServer1Device.h"
 #import "MediaServer1ItemObject.h"
 #import "MediaServer1ItemRes.h"
+#import "MediaServer1VideoItemObject.h"
+#import "MediaServer1MovieVideoItemObject.h"
 #import "MediaServerBasicObjectParser.h"
 #import "SSDPDB_ObjC.h"
 #import "ServiceFactory.h"
