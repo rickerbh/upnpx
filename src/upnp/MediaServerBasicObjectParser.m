@@ -35,6 +35,8 @@
 #import "MediaServer1BasicObject.h"
 #import "MediaServer1ContainerObject.h"
 #import "MediaServer1ItemObject.h"
+#import "MediaServer1AudioItemObject.h"
+#import "MediaServer1MusicTrackAudioItemObject.h"
 #import "MediaServer1VideoItemObject.h"
 #import "MediaServer1MovieVideoItemObject.h"
 #import "CocoaTools.h"
@@ -134,28 +136,38 @@
     [self addAsset:@[@"DIDL-Lite", @"item"] callfunction:@selector(item:) functionObject:self setStringValueFunction:nil setStringValueObject:nil];
     [self addAsset:@[@"DIDL-Lite", @"item", @"title"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaTitle:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"class"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMediaClass:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"artist"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setArtist:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"album"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbum:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"date"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDate:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"genre"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setGenre:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"originalTrackNumber"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setOriginalTrackNumber:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"albumArtURI"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbumArt:) setStringValueObject:self];
 
     [self addAsset:@[@"DIDL-Lite", @"item", @"res"] callfunction:@selector(res:) functionObject:self setStringValueFunction:@selector(setUri:) setStringValueObject:self];
     
-    // Video Item
+    // Common to Audio & Video Items
+    [self addAsset:@[@"DIDL-Lite", @"item", @"genre"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setGenre:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"description"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setItemDescription:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"longDescription"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setLongDescription:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"producer"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setProducer:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"rating"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setRating:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"actor"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setActor:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"director"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDirector:) setStringValueObject:self];
-    [self addAsset:@[@"DIDL-Lite", @"item", @"description"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setMovieDescription:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"publisher"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setPublisher:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"language"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setLanguage:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"relation"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setRelation:) setStringValueObject:self];
 
-    // Movie Item
     [self addAsset:@[@"DIDL-Lite", @"item", @"storageMedium"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setStorageMedium:) setStringValueObject:self];
+
+    // Audio Item
+    [self addAsset:@[@"DIDL-Lite", @"item", @"rights"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setRights:) setStringValueObject:self];
+
+    // Music Track Item
+    [self addAsset:@[@"DIDL-Lite", @"item", @"artist"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setArtist:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"album"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setAlbum:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"originalTrackNumber"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setOriginalTrackNumber:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"playlist"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setPlaylist:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"contributor"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setContributor:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"date"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDate:) setStringValueObject:self];
+    
+    // Video Item
+    [self addAsset:@[@"DIDL-Lite", @"item", @"producer"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setProducer:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"rating"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setRating:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"actor"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setActor:) setStringValueObject:self];
+    [self addAsset:@[@"DIDL-Lite", @"item", @"director"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDirector:) setStringValueObject:self];
+
+    // Movie Item
     [self addAsset:@[@"DIDL-Lite", @"item", @"DVDRegionCode"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setDVDRegionCode:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"channelName"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setChannelName:) setStringValueObject:self];
     [self addAsset:@[@"DIDL-Lite", @"item", @"scheduledStartTime"] callfunction:nil functionObject:nil setStringValueFunction:@selector(setScheduledStartTime:) setStringValueObject:self];
@@ -170,29 +182,41 @@
 	[self setMediaTitle:@""];
 	[self setMediaID:@""];
 	[self setRefID:@""];
-	[self setArtist:@""];
-	[self setAlbum:@""];
-	[self setDate:nil];
-	[self setGenre:@""];
 	[self setAlbumArt:nil];
 	[self setDuration:nil];
   
   [self.resources removeAllObjects];
   [self.uriCollection removeAllObjects];
 
-  // Video Item
+  
+  // Common to Audio & Video Items
+  self.genre = @"";
+  self.itemDescription = @"";
   self.longDescription = @"";
+  self.publisher = @"";
+  self.language = @"";
+  self.relation = @"";
+
+  self.storageMedium = @"";
+
+  // Audio Item
+  self.rights = @"";
+
+  // Music Track Item
+  self.artist = @"";
+	self.album = @"";
+  self.playlist = @"";
+  self.originalTrackNumber = @"";
+  self.contributor = @"";
+	self.date = nil;
+  
+  // Video Item
   self.producer = @"";
   self.rating = @"";
   self.actor = @"";
   self.director = @"";
-  self.movieDescription = @"";
-  self.publisher = @"";
-  self.language = @"";
-  self.relation = @"";
   
   // Movie Item
-  self.storageMedium = @"";
   self.DVDRegionCode = @"";
   self.channelName = @"";
   self.scheduledStartTime = @"";
@@ -241,6 +265,10 @@
       media = [[MediaServer1VideoItemObject alloc] init];
     } else if ([self.mediaClass isEqualToString:@"object.item.videoItem.movie"]) {
       media = [[MediaServer1MovieVideoItemObject alloc] init];
+    } else if ([self.mediaClass isEqualToString:@"object.item.audioItem"]) {
+      media = [[MediaServer1AudioItemObject alloc] init];
+    } else if ([self.mediaClass isEqualToString:@"object.item.audioItem.musicTrack"]) {
+      media = [[MediaServer1MusicTrackAudioItemObject alloc] init];
     } else {
       media = [[MediaServer1ItemObject alloc] init];
     }
@@ -252,11 +280,6 @@
 		[media setParentID:self.parentID];
     [media setRefID:self.refID];
 		[media setTitle:self.mediaTitle];	
-		[media setArtist:self.artist];
-		[media setAlbum:self.album];
-		[media setDate:self.date];	
-		[media setGenre:self.genre];	
-		[media setOriginalTrackNumber:self.originalTrackNumber];	
 		[media setUri:self.uri];	
 		[media setProtocolInfo:self.protocolInfo]; 	
 		[media setFrequency:self.frequency];	
@@ -275,14 +298,36 @@
     [self.resources removeAllObjects];
     
     // Populate subclass details if the media is a vaild subclass
+    if ([media isKindOfClass:[MediaServer1AudioItemObject class]]) {
+      MediaServer1AudioItemObject *audioItem = (MediaServer1AudioItemObject *)media;
+      audioItem.genre = self.genre;
+      audioItem.audioDescription = self.itemDescription;
+      audioItem.longDescription = self.longDescription;
+      audioItem.publisher = self.publisher;
+      audioItem.language = self.language;
+      audioItem.relation = self.relation;
+      audioItem.rights = self.rights;
+    }
+    
+    if ([media isKindOfClass:[MediaServer1MusicTrackAudioItemObject class]]) {
+      MediaServer1MusicTrackAudioItemObject *musicTrackItem = (MediaServer1MusicTrackAudioItemObject *)media;
+      musicTrackItem.artist = self.artist;
+      musicTrackItem.album = self.album;
+      musicTrackItem.date = self.date;
+      musicTrackItem.originalTrackNumber = self.originalTrackNumber;
+      musicTrackItem.contributor = self.contributor;
+      musicTrackItem.playlist = self.playlist;
+    }
+    
     if ([media isKindOfClass:[MediaServer1VideoItemObject class]]) {
       MediaServer1VideoItemObject *videoItem = (MediaServer1VideoItemObject *)media;
+      videoItem.genre = self.genre;
       videoItem.longDescription = self.longDescription;
       videoItem.producer = self.producer;
       videoItem.rating = self.rating;
       videoItem.actor = self.actor;
       videoItem.director = self.director;
-      videoItem.movieDescription = self.movieDescription;
+      videoItem.movieDescription = self.itemDescription;
       videoItem.publisher = self.publisher;
       videoItem.language = self.language;
       videoItem.relation = self.relation;

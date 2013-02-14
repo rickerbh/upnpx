@@ -41,11 +41,6 @@
 @property (strong) NSString *parentID;
 @property (strong) NSString *refID;
 @property (strong) NSString *childCount;
-@property (strong) NSString *artist;
-@property (strong) NSString *album;
-@property (strong) NSString *date;
-@property (strong) NSString *genre;
-@property (strong) NSString *originalTrackNumber;
 @property (readonly, strong) NSString *uri;
 @property (strong) NSString *protocolInfo;
 @property (strong) NSString *frequency;
@@ -56,20 +51,36 @@
 @property (strong) NSString *bitrate;
 @property (strong) NSString *albumArt;
 
-// Video Item
-// @property (strong) NSString *genre // Already in the base parser details
+// TODO: This is a huge mess. Need a better way of parsing the data.
+
+// Common to Audio & Video Items
+@property (strong) NSString *itemDescription;
+@property (strong) NSString *genre;
 @property (strong) NSString *longDescription;
-@property (strong) NSString *producer;
-@property (strong) NSString *rating;
-@property (strong) NSString *actor;
-@property (strong) NSString *director;
-@property (strong) NSString *movieDescription;
 @property (strong) NSString *publisher;
 @property (strong) NSString *language;
 @property (strong) NSString *relation;
 
-// Movie Item
 @property (strong) NSString *storageMedium;
+
+// Audio Item
+@property (strong) NSString *rights;
+
+// Music Track
+@property (strong) NSString *artist;
+@property (strong) NSString *album;
+@property (strong) NSString *originalTrackNumber;
+@property (strong) NSString *playlist;
+@property (strong) NSString *contributor;
+@property (strong) NSString *date;
+
+// Video Item
+@property (strong) NSString *producer;
+@property (strong) NSString *rating;
+@property (strong) NSString *actor;
+@property (strong) NSString *director;
+
+// Movie Item
 @property (strong) NSString *DVDRegionCode;
 @property (strong) NSString *channelName;
 @property (strong) NSString *scheduledStartTime;

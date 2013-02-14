@@ -36,11 +36,6 @@
 #import "MediaServer1ItemRes.h"
 
 @interface MediaServer1ItemObject : MediaServer1BasicObject
-@property (strong) NSString *artist;
-@property (strong) NSString *album;
-@property (strong) NSString *date;
-@property (strong) NSString *genre;
-@property (strong) NSString *originalTrackNumber;
 @property (strong) NSString *uri; //Use uriCollection (uri contains the last element of uriCollection)
 @property (strong) NSString *protocolInfo; //Use uriCollection (protocolInfo contains the last element of uriCollection)
 @property (strong) NSString *frequency;
