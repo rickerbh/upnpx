@@ -120,7 +120,7 @@ public:
 	
 	
 	bool Response(int *returncode, map<string, string> *headers, char **body, int *bodylen){
-		BOOL ret;
+		BOOL ret = NO;
 
     @autoreleasepool {
       int oReturnCode;

@@ -64,7 +64,7 @@ private:
 	char ipAddress[16];
 	
 	SOCKET mServerSocket;
-	struct sockaddr_in mClientAddr;
+//	struct sockaddr_in mClientAddr;
 	struct sockaddr_in mServerAddr;
 
   u8 mReadLoop;
