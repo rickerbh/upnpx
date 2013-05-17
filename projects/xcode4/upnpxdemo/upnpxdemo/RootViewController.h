@@ -10,18 +10,13 @@
 
 #import "UPnPDB.h"
 
-@interface RootViewController : UITableViewController <UPnPDBObserver>{
-    UITableView *menuView;
-    NSArray *mDevices; //BasicUPnPDevice*
-    UILabel *titleLabel;
-}
+@interface RootViewController : UITableViewController <UPnPDBObserver>
 
 @property (assign) IBOutlet UITableView *menuView;
-@property (retain) UILabel *titleLabel;
+@property (strong) UILabel *titleLabel;
 
 //protocol UPnPDBObserver
--(void)UPnPDBWillUpdate:(UPnPDB*)sender;
--(void)UPnPDBUpdated:(UPnPDB*)sender;
-
+- (void)UPnPDBWillUpdate:(UPnPDB *)sender;
+- (void)UPnPDBUpdated:(UPnPDB *)sender;
 
 @end

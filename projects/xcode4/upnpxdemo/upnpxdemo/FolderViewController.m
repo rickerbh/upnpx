@@ -13,6 +13,13 @@
 #import "MediaServer1ContainerObject.h"
 #import "PlayBack.h"
 
+@interface FolderViewController ()
+@property (strong) NSString *m_rootId;
+@property (strong) NSString *m_title;
+@property (strong) MediaServer1Device *m_device;
+@property (strong) NSMutableArray *m_playList; //MediaServer1BasicObject (can be: MediaServer1ContainerObject, MediaServer1ItemObject)
+@end
+
 @implementation FolderViewController
 
 @synthesize titleLabel;
@@ -21,25 +28,14 @@
 
 -(id)initWithMediaDevice:(MediaServer1Device*)device andHeader:(NSString*)header andRootId:(NSString*)rootId{
     self = [super init];
-    
     if (self) {
-        /* TODO: Properties are not retained. Possible issue? */
-        m_device = device;
-        m_rootId=rootId;
-        m_title=header;
-        
-        m_playList = [[NSMutableArray alloc] init];
+        self.m_device = device;
+        self.m_rootId=rootId;
+        self.m_title=header;
+        self.m_playList = [[NSMutableArray alloc] init];
     }
-
     return self;
 }
-
-
--(void)dealloc{
-    [m_playList release];
-    [super dealloc];
-}
-
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -73,7 +69,16 @@
     NSMutableString *outTotalMatches = [[NSMutableString alloc] init];
     NSMutableString *outUpdateID = [[NSMutableString alloc] init];
     
-    [[m_device contentDirectory] BrowseWithObjectID:m_rootId BrowseFlag:@"BrowseDirectChildren" Filter:@"*" StartingIndex:@"0" RequestedCount:@"0" SortCriteria:@"+dc:title" OutResult:outResult OutNumberReturned:outNumberReturned OutTotalMatches:outTotalMatches OutUpdateID:outUpdateID];  
+    [[self.m_device contentDirectory] BrowseWithObjectID:self.m_rootId
+                                              BrowseFlag:@"BrowseDirectChildren"
+                                                  Filter:@"*"
+                                           StartingIndex:@"0"
+                                          RequestedCount:@"0"
+                                            SortCriteria:@"+dc:title"
+                                               OutResult:outResult
+                                       OutNumberReturned:outNumberReturned
+                                         OutTotalMatches:outTotalMatches
+                                             OutUpdateID:outUpdateID];
 //    SoapActionsAVTransport1* _avTransport = [m_device avTransport];
 //    SoapActionsConnectionManager1* _connectionManager = [m_device connectionManager];
     
@@ -81,18 +86,11 @@
     //upnpx provide a helper class to parse the DIDL Xml in usable MediaServer1BasicObject object
     //(MediaServer1ContainerObject and MediaServer1ItemObject)
     //Parse the return DIDL and store all entries as objects in the 'mediaObjects' array
-    [m_playList removeAllObjects];
+    [self.m_playList removeAllObjects];
     NSData *didl = [outResult dataUsingEncoding:NSUTF8StringEncoding]; 
-    MediaServerBasicObjectParser *parser = [[MediaServerBasicObjectParser alloc] initWithMediaObjectArray:m_playList itemsOnly:NO];
+    MediaServerBasicObjectParser *parser = [[MediaServerBasicObjectParser alloc] initWithMediaObjectArray:self.m_playList itemsOnly:NO];
     [parser parseFromData:didl];
-    [parser release];
-    
-    [outResult release];
-    [outNumberReturned release];
-    [outTotalMatches release];
-    [outUpdateID release];
-    
-    
+  
     self.navigationController.toolbarHidden = NO;
     
     
@@ -111,10 +109,8 @@
     UIBarButtonItem *ttitle = [[UIBarButtonItem alloc] initWithCustomView:self.titleLabel];
     NSArray *items = [NSArray arrayWithObjects:ttitle, nil]; 
     self.toolbarItems = items; 
-    [ttitle release];
 
-    
-    self.title = m_title;    
+  self.title = self.m_title;
     
 }
 
@@ -135,7 +131,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [m_playList count];
+    return [self.m_playList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -143,11 +139,11 @@
 
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
 
   // Configure the cell...
-  MediaServer1BasicObject *item = [m_playList objectAtIndex:indexPath.row];
+  MediaServer1BasicObject *item = [self.m_playList objectAtIndex:indexPath.row];
   [[cell textLabel] setText:[item title]];
   if ([item isContainer]) {
    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -165,13 +161,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    MediaServer1BasicObject *item = [m_playList objectAtIndex:indexPath.row];
+    MediaServer1BasicObject *item = [self.m_playList objectAtIndex:indexPath.row];
     if([item isContainer]){
-        MediaServer1ContainerObject *container = [m_playList objectAtIndex:indexPath.row];
-        FolderViewController *targetViewController = [[[FolderViewController alloc] initWithMediaDevice:m_device andHeader:[container title] andRootId:[container objectID]] autorelease];
+        MediaServer1ContainerObject *container = [self.m_playList objectAtIndex:indexPath.row];
+        FolderViewController *targetViewController = [[FolderViewController alloc] initWithMediaDevice:self.m_device andHeader:[container title] andRootId:[container objectID]];
         [[self navigationController] pushViewController:targetViewController animated:YES];
     }else{
-        MediaServer1ItemObject *item = [m_playList objectAtIndex:indexPath.row];
+        MediaServer1ItemObject *item = [self.m_playList objectAtIndex:indexPath.row];
 
         MediaServer1ItemRes *resource = nil;		
         NSEnumerator *e = [[item resources] objectEnumerator];
@@ -179,7 +175,7 @@
             NSLog(@"%@ - %d, %@, %d, %d, %d, %@", [item title], [resource bitrate], [resource duration], [resource nrAudioChannels], [resource size],  [resource durationInSeconds],  [resource protocolInfo] );
         }	    
 
-        [[PlayBack GetInstance] Play:m_playList position:indexPath.row];
+        [[PlayBack GetInstance] Play:self.m_playList position:indexPath.row];
         
     }
 }

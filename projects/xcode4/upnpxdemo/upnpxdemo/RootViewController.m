@@ -11,6 +11,10 @@
 #import "FolderViewController.h"
 #import "PlayBack.h"
 
+@interface RootViewController ()
+@property (strong) NSArray *mDevices; //BasicUPnPDevice*
+@end
+
 @implementation RootViewController
 
 @synthesize menuView;
@@ -22,14 +26,12 @@
     
     UPnPDB* db = [[UPnPManager GetInstance] DB];
     
-    mDevices = [db rootDevices]; //BasicUPnPDevice
-    [mDevices retain];
+    self.mDevices = [db rootDevices]; //BasicUPnPDevice
     
     [db addObserver:(UPnPDBObserver*)self];
     
     //Optional; set User Agent
     [[[UPnPManager GetInstance] SSDP] setUserAgentProduct:@"upnpxdemo/1.0" andOS:@"OSX"];
-    
     
     //Search for UPnP Devices 
     [[[UPnPManager GetInstance] SSDP] searchSSDP];      
@@ -49,18 +51,15 @@
 
     NSArray *items = [NSArray arrayWithObjects:ttitle, nil]; 
     self.toolbarItems = items; 
-    [ttitle release];
 }
 
 // Customize the number of sections in the table view.
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [mDevices count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.mDevices count];
 }
 
 // Customize the appearance of table view cells.
@@ -69,11 +68,11 @@
     
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
 
   // Configure the cell.
-  BasicUPnPDevice *device = [mDevices objectAtIndex:indexPath.row];
+  BasicUPnPDevice *device = [self.mDevices objectAtIndex:indexPath.row];
   [[cell textLabel] setText:[device friendlyName]];
   if([[device urn] isEqualToString:@"urn:schemas-upnp-org:device:MediaServer:1"]){
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -88,10 +87,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BasicUPnPDevice *device = [mDevices objectAtIndex:indexPath.row];
+    BasicUPnPDevice *device = [self.mDevices objectAtIndex:indexPath.row];
     if([[device urn] isEqualToString:@"urn:schemas-upnp-org:device:MediaServer:1"]){
         MediaServer1Device *server = (MediaServer1Device*)device;        
-        FolderViewController *targetViewController = [[[FolderViewController alloc] initWithMediaDevice:server andHeader:@"root" andRootId:@"0" ] autorelease];
+        FolderViewController *targetViewController = [[FolderViewController alloc] initWithMediaDevice:server andHeader:@"root" andRootId:@"0" ];
         [[self navigationController] pushViewController:targetViewController animated:YES];
         [[PlayBack GetInstance] setServer:server];
     }else if([[device urn] isEqualToString:@"urn:schemas-upnp-org:device:MediaRenderer:1"]){
@@ -102,13 +101,13 @@
 }
 
 //protocol UPnPDBObserver
--(void)UPnPDBWillUpdate:(UPnPDB*)sender{
-    NSLog(@"UPnPDBWillUpdate %d", [mDevices count]);
+- (void)UPnPDBWillUpdate:(UPnPDB *)sender{
+    NSLog(@"UPnPDBWillUpdate %d", [self.mDevices count]);
 }
 
--(void)UPnPDBUpdated:(UPnPDB*)sender{
-    NSLog(@"UPnPDBUpdated %d", [mDevices count]);
-    [menuView performSelectorOnMainThread : @ selector(reloadData) withObject:nil waitUntilDone:YES];
+- (void)UPnPDBUpdated:(UPnPDB *)sender{
+    NSLog(@"UPnPDBUpdated %d", [self.mDevices count]);
+    [menuView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 @end

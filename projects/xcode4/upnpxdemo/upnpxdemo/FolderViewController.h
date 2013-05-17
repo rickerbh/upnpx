@@ -9,17 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "MediaServer1Device.h"
 
-@interface FolderViewController : UITableViewController {
-    NSString *m_rootId;
-    NSString *m_title;
-    MediaServer1Device *m_device;
-    NSMutableArray *m_playList; //MediaServer1BasicObject (can be: MediaServer1ContainerObject, MediaServer1ItemObject)
-    UILabel *titleLabel;
-}
+@interface FolderViewController : UITableViewController
 
-@property (retain) UILabel *titleLabel;
+@property (strong) UILabel *titleLabel;
 
--(id)initWithMediaDevice:(MediaServer1Device*)device andHeader:(NSString*)header andRootId:(NSString*)rootId;
--(void)dealloc;
+- (id)initWithMediaDevice:(MediaServer1Device *)device andHeader:(NSString*)header andRootId:(NSString*)rootId;
 
 @end

@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface upnpxdemoAppDelegate : NSObject <UIApplicationDelegate> {
-
-}
+@interface upnpxdemoAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (strong) IBOutlet UINavigationController *navigationController;
 
 @end
