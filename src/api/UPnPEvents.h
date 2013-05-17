@@ -32,7 +32,7 @@
 // **********************************************************************************
 
 #import <Foundation/Foundation.h>
-#import "BasicHTTPServer_ObjC.h"
+#import "EventServer.h"
 #import "UPnPEventParser.h"
 
 //Observer
@@ -48,7 +48,7 @@
 @property (assign) double subscriptiontime;
 @end
 
-@interface UPnPEvents : NSObject <BasicHTTPServer_ObjC_Observer>
+@interface UPnPEvents : NSObject <EventServerObserver>
 
 - (void)start;
 - (void)stop;
@@ -58,9 +58,9 @@
 
 - (void)ManageSubscriptionTimeouts:(NSTimer *)timer;
 
-//BasicHTTPServer_ObjC_Observer
-- (BOOL)canProcessMethod:(BasicHTTPServer_ObjC *)sender requestMethod:(NSString *)method;
-- (BOOL)request:(BasicHTTPServer_ObjC *)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData *)body;
-- (BOOL)response:(BasicHTTPServer_ObjC *)sender returncode:(int *)returncode headers:(NSMutableDictionary *)headers body:(NSMutableData *)body;
+#pragma mark - EventServerObserver conformance
+- (BOOL)canProcessMethod:(EventServer *)sender requestMethod:(NSString *)method;
+- (BOOL)request:(EventServer *)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData *)body;
+- (BOOL)response:(EventServer *)sender returncode:(int *)returncode headers:(NSMutableDictionary *)headers body:(NSMutableData *)body;
 
 @end

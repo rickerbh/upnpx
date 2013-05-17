@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07045E211745DD1E00C6FDF6 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07045E201745DD1E00C6FDF6 /* CFNetwork.framework */; };
+		07045E251745DD4500C6FDF6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07045E241745DD4500C6FDF6 /* Security.framework */; };
 		072EB25316AB9ECE00A98206 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 072EB25216AB9ECE00A98206 /* Default-568h@2x.png */; };
 		072EB25F16AB9F1600A98206 /* libupnpx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 072EB25C16AB9F0A00A98206 /* libupnpx.a */; };
 		15055E4213913F0A003DE49F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15055E4113913F0A003DE49F /* UIKit.framework */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07045E201745DD1E00C6FDF6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		07045E241745DD4500C6FDF6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		072EB25216AB9ECE00A98206 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		072EB25416AB9F0A00A98206 /* upnpx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = upnpx.xcodeproj; path = ../upnpx/upnpx.xcodeproj; sourceTree = "<group>"; };
 		15055E3D13913F0A003DE49F /* upnpxdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = upnpxdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07045E251745DD4500C6FDF6 /* Security.framework in Frameworks */,
+				07045E211745DD1E00C6FDF6 /* CFNetwork.framework in Frameworks */,
 				072EB25F16AB9F1600A98206 /* libupnpx.a in Frameworks */,
 				15055E4213913F0A003DE49F /* UIKit.framework in Frameworks */,
 				15055E4413913F0A003DE49F /* Foundation.framework in Frameworks */,
@@ -109,6 +115,8 @@
 		15055E4013913F0A003DE49F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07045E241745DD4500C6FDF6 /* Security.framework */,
+				07045E201745DD1E00C6FDF6 /* CFNetwork.framework */,
 				15055E4113913F0A003DE49F /* UIKit.framework */,
 				15055E4313913F0A003DE49F /* Foundation.framework */,
 				15055E4513913F0A003DE49F /* CoreGraphics.framework */,
@@ -319,18 +327,14 @@
 				GCC_PREFIX_HEADER = "upnpxdemo/upnpxdemo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "upnpxdemo/upnpxdemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../upnpx/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../upnpx/build/Debug-iphoneos\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-lstdc++",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "../../../src/api ../../../src/port/ios";
+				USER_HEADER_SEARCH_PATHS = "../../../src/api ../../../src/port/ios ../../../src/\"External Libraries\"/CocoaHTTPServer/Core/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -346,19 +350,13 @@
 				GCC_PREFIX_HEADER = "upnpxdemo/upnpxdemo-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "upnpxdemo/upnpxdemo-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../upnpx/build/Debug-iphonesimulator\"",
-					"\"$(SRCROOT)/../upnpx/build/Release-iphoneos\"",
-					"\"$(SRCROOT)/../upnpx/build/Debug-iphoneos\"",
-				);
 				OTHER_LDFLAGS = (
 					"-lstdc++",
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "../../../src/api ../../../src/port/ios";
+				USER_HEADER_SEARCH_PATHS = "../../../src/api ../../../src/port/ios ../../../src/\"External Libraries\"/CocoaHTTPServer/Core/**";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

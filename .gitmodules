@@ -1,0 +1,3 @@
+[submodule "src/External Libraries/CocoaHTTPServer"]
+	path = src/External Libraries/CocoaHTTPServer
+	url = https://github.com/robbiehanson/CocoaHTTPServer.git

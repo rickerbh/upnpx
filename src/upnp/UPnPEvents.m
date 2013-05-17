@@ -39,7 +39,7 @@
 
 @interface UPnPEvents ()
 @property (strong) NSMutableDictionary *mEventSubscribers; //uuid, observer
-@property (strong) BasicHTTPServer_ObjC *server;
+@property (strong) EventServer *server;
 @property (strong) UPnPEventParser *parser;
 @property (strong) NSRecursiveLock *mMutex;
 @property (strong) NSTimer *mTimeoutTimer;
@@ -54,7 +54,7 @@
     _mEventSubscribers = [[NSMutableDictionary alloc] init];
     _parser =[[UPnPEventParser alloc] init];
 
-    _server = [[BasicHTTPServer_ObjC alloc] init];
+    _server = [[EventServer alloc] init];
     [_server start];
     [_server addObserver:self];
 	}
@@ -145,16 +145,17 @@
 }
 
 
+
 /*
  * Incomming HTTP events
- * BasicHTTPServer_ObjC_Observer
+ * EventServerObserver
  */
-- (BOOL)canProcessMethod:(BasicHTTPServer_ObjC *)sender requestMethod:(NSString *)method {
+- (BOOL)canProcessMethod:(EventServer *)sender requestMethod:(NSString *)method {
   return [method caseInsensitiveCompare:@"NOTIFY"] == NSOrderedSame;
 }
 
 //Request / Response is always synchronized 
-- (BOOL)request:(BasicHTTPServer_ObjC *)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData *)body {
+- (BOOL)request:(EventServer *)sender method:(NSString *)method path:(NSString *)path version:(NSString *)version headers:(NSDictionary *)headers body:(NSData *)body {
 	BOOL ret = NO;
 	
 	NSString *uuid = [headers objectForKey:@"SID"];
@@ -211,8 +212,8 @@
 }
 
 //Request / Response is always synchronized 
-- (BOOL)response:(BasicHTTPServer_ObjC *)sender returncode:(int *)returncode headers:(NSMutableDictionary *)retHeaders body:(NSMutableData *)retBody {
-	BOOL ret = YES;
+- (BOOL)response:(EventServer *)sender returncode:(int *)returncode headers:(NSMutableDictionary *)retHeaders body:(NSMutableData *)retBody {
+  BOOL ret = YES;
 	
 	[retBody setLength:0];
 	[retHeaders removeAllObjects];

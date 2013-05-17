@@ -7,7 +7,6 @@
 //
 
 #import "BasicDeviceParser.h"
-#import "BasicHTTPServer_ObjC.h"
 #import "BasicParser.h"
 #import "BasicParserAsset.h"
 #import "BasicServiceParser.h"
@@ -18,6 +17,7 @@
 #import "DeviceFactory.h"
 #import "DigitalSecurityCamera1Device.h"
 #import "DimmableLight1Device.h"
+#import "EventServer.h"
 #import "InternetGateway2Device.h"
 #import "LAN1Device.h"
 #import "LastChangeParser.h"
